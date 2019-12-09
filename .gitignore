@@ -23,3 +23,4 @@
 hs_err_pid*
 /database-migration/01-Code/database-migration/.idea
 /database-migration/01-Code/database-migration/*.iml
+/database-migration/01-Code/database-migration/iods/.mvn
