@@ -1,0 +1,4128 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="now" value="GETDATE()" dbms="mssql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="nvarchar(MAX)" value="ntext" dbms="mysql"/>
+    <property name="nvarchar(MAX)" value="nvarchar(MAX)" dbms="mssql"/>
+    <property name="nvarchar(MAX)" value="NCLOB" dbms="oracle"/>
+
+    <property name="isnull" value="ISNULL" dbms="mssql"/>
+    <property name="isnull" value="IFNULL" dbms="mysql"/>
+    <property name="isnull" value="NVL" dbms="oracle"/>
+
+    <property name="len" value="LEN" dbms="mssql"/>
+    <property name="len" value="LENGTH" dbms="mysql"/>
+    <property name="len" value="LENGTH" dbms="oracle"/>
+
+    <changeSet author="WangXun" id="1574840696094-1" >
+        <createTable remarks="生产报警信息" tableName="CF_Alarm">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级别" type="int"/>
+            <column name="strEventTime" remarks="报警时间" type="datetime"/>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(128)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strMsgDes" remarks="报警描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警阀值" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警实时值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复时间" type="datetime"/>
+            <column name="strAckedTime" remarks="确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="恢复内容" type="nvarchar(255)"/>
+            <column name="nSource" remarks="报警来源" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strNodeDomain" type="nvarchar(255)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-2" >
+        <createTable remarks="生产报警信息" tableName="CF_AlarmHis">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级别" type="int"/>
+            <column name="strEventTime" remarks="报警时间" type="datetime"/>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strMsgDes" remarks="报警描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警阀值" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警实时值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复时间" type="datetime"/>
+            <column name="strAckedTime" remarks="确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="恢复内容" type="nvarchar(255)"/>
+            <column name="nSource" remarks="报警来源" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strNodeDomain" type="nvarchar(255)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-3">
+        <createTable remarks="抑制报警设置" tableName="CF_ForbidAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_FBALARMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperater" remarks="操作人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strForbidTime" remarks="抑制时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-4">
+        <createTable remarks="隐藏报警设置" tableName="CF_HideAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_HDALARMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperater" remarks="操作人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strHideTime" remarks="隐藏时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-5">
+        <createTable remarks="组态节点状态信息" tableName="CF_NodeState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_NODESTATEID"/>
+            </column>
+            <column name="nCPULoad" remarks="CPU负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fTemperature" remarks="温度" type="float(53)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nMemoryLoad" remarks="内存负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodeType" remarks="节点类型（0普通节点，1网闸安全侧，2网闸开放侧，3云卡）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号" type="int"/>
+            <column name="strStateTime" remarks="更新时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strSerialNum" remarks="网闸序列号" type="nvarchar(20)"/>
+            <column name="fNetworkALoad" type="float(53)"/>
+            <column name="fNetworkBLoad" type="float(53)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-6">
+        <createTable remarks="节点PC下的进程状态信息，非主表，无UUID" tableName="CF_ProcessState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PROCESSSTATEID"/>
+            </column>
+            <column name="nProcessID" remarks="进程ID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号&#9;关联表CF_NodeState" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProcessName" remarks="进程名" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strStateTime" remarks="更新时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-7">
+        <createTable remarks="PC节点进程下的驱动服务信息 ，非主表，无UUID" tableName="CF_ServiceState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SERVICESTATEID"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号&#9;关联CF_ProcessState" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常  2:部分正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strServiceName" remarks="服务名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProcessName" remarks="进程名称&#9;关联CF_ProcessState" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-8">
+        <createTable remarks="系统报警信息" tableName="CF_SysAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_HIDENALERMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级" type="int"/>
+            <column name="strEventTime" remarks="事件发生事件" type="datetime"/>
+            <column name="strTagName" remarks="标签名" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strMsgDes" remarks="事件信息描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警限" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警时刻值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复事件" type="datetime"/>
+            <column name="strAckedTime" remarks="报警确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="报警确认信息" type="nvarchar(255)"/>
+            <column name="nSource" remarks="来源 1:DCS 2:ODS生产 3:ODS设备" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-9">
+        <createTable remarks="趋势组表" tableName="PM_TrendGroup">
+            <column name="ID" remarks="趋势组ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PM_TrendGroup"/>
+            </column>
+            <column name="strInputCode" remarks="创建人code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_InputDate" name="strInputDate" remarks="创建时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDeptCode" remarks="部门code" type="nvarchar(50)"/>
+            <column name="strCorpCode" remarks="公司code" type="nvarchar(50)"/>
+            <column name="strModifyCode" remarks="修改人code"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_ModifyDate" name="strModifyDate" remarks="修改时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTrendGroupName" remarks="趋势组名称" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_PM_TrendGroup_TrendGroupType" defaultValueNumeric="0" name="nTrendGroupType"
+                    remarks="趋势组类型，0公共趋势组   1自定义趋势组" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProjectCode" remarks="项目架构code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroup_DelFlag" name="strDelFlag" remarks="删除标志 1删除  0未删除" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-10">
+        <createTable remarks="趋势组和标签点关系表" tableName="PM_TrendGroupAndTag">
+            <column name="ID" remarks="自增ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PM_TrendGroupAndTag"/>
+            </column>
+            <column name="strInputCode" remarks="创建人code"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_InputDate" name="strInputDate"
+                    remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDeptCode" remarks="部门code" type="nvarchar(50)"/>
+            <column name="strCorpCode" remarks="公司code" type="nvarchar(50)"/>
+            <column name="strModifyCode" remarks="修改人code"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_ModifyDate" name="strModifyDate"
+                    remarks="修改时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTrendGroupID" remarks="趋势组ID"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagName" remarks="标签点名称" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagDes" remarks="标签点描述"
+                    type="nvarchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagColor" remarks="标签点颜色"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nLowest" defaultValueNumeric="0" name="nLowest" remarks="最低值" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nHighest" defaultValueNumeric="0" name="nHighest" remarks="最高值" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_DelFlag" name="strDelFlag" remarks="删除标志，1删除  0未删除"
+                    type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-11">
+        <createTable tableName="SM_Attachment">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ATTACHMENT"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EntityName" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(200)"/>
+            <column name="Path" type="nvarchar(1000)"/>
+            <column name="Size" type="nvarchar(50)"/>
+            <column name="UploadTime" type="datetime"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Attach__DelFl__3E52440B" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)"/>
+            <column name="ModuleId" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-12">
+        <createTable tableName="SM_Biz">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_BD_BIZ"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CodeLength" type="int"/>
+            <column name="Prefix" type="nvarchar(20)"/>
+            <column name="Suffix" type="nvarchar(10)"/>
+            <column name="CodeOrder" type="nvarchar(10)"/>
+            <column name="ModuleCode" type="nvarchar(50)"/>
+            <column name="ValueSource" type="nvarchar(10)"/>
+            <column name="ISYMD" type="char(1)"/>
+            <column name="MaxCode" type="nvarchar(10)"/>
+            <column name="MinCode" type="nvarchar(10)"/>
+            <column name="SerialEntity" type="nvarchar(10)"/>
+            <column name="SerialTimeGran" type="nvarchar(10)"/>
+            <column name="PolishChar" type="nvarchar(1)"/>
+            <column name="PolishRule" type="nvarchar(10)"/>
+            <column name="Name" type="nvarchar(20)"/>
+            <column name="Radix" type="nvarchar(10)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeptCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CorpCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-13">
+        <createTable tableName="SM_CodeVou">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_BD_CODEVOU"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FiscalYear" type="nvarchar(4)"/>
+            <column name="CurrNo" type="int"/>
+            <column name="LastUpdateDay" type="nvarchar(2)"/>
+            <column name="FiscalMonth" type="nvarchar(2)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeptCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CorpCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-14">
+        <createTable tableName="SM_Department">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_DEPARTMENT"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Pcode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)"/>
+            <column name="Charge" type="nvarchar(50)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsCompany" type="char(1)"/>
+            <column name="IsProductionDept" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Depart__DelFl__1B0907CE" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-15">
+        <createTable tableName="SM_GeneralSettings">
+            <column name="ID" remarks="主键，guid" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_GeneralSettings"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_AlarmVoiceCycleNum" defaultValueNumeric="3" name="AlarmVoiceCycleNum"
+                    remarks="报警声音轮询条数设置，默认3" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_ConnInterruptTime" defaultValueNumeric="0" name="ConnInterruptTime"
+                    remarks="连接中断时间设置，单位分钟" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_LogoutTime" defaultValueNumeric="0" name="LogoutTime" remarks="无操作注销时间设置，单位分钟"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PassWordInValidTime" remarks="密码失效时间设置，单位月" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NetworkRecordNumber" remarks="版权和网络备案号" type="nvarchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LoginBackGroundPicture" remarks="登陆页背景图设置，存储文件流" type="image"/>
+            <column name="MainLogoPicture" remarks="主界面logo设置" type="image"/>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_CreateTime" name="CreateTime" remarks="创建时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_ModifiedTime" name="ModifiedTime"
+                    remarks="修改设置时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HomeBackgroundPicture" remarks="主页背景图片" type="image"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-16">
+        <createTable tableName="SM_ListFieldConfig">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_LISTFIELDCONFIG"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ResourceUrl" type="nvarchar(200)"/>
+            <column name="ResorceFile" type="nvarchar(200)"/>
+            <column name="FieldID" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FieldName" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-17">
+        <createTable remarks="日志表" tableName="SM_Log">
+            <column name="ID" remarks="自增序号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_NLOGID"/>
+            </column>
+            <column name="strOperater" remarks="创建人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime" name="strOperateTime" remarks="创建时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_Log_nLogSource" defaultValueNumeric="2" name="nLogSource"
+                    remarks="日志来源 生产日志 = 1,系统日志 = 2,DCS日志 = 3" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_Log_nOperateContentKey" defaultValueNumeric="0" name="nOperateContentKey"
+                    remarks="其他0，登录注销1、新增2、删除3、修改4，置位 = 10,写模拟量值 = 11," type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_Log_nStatus" defaultValueNumeric="1" name="nStatus" remarks="状态 1成功  0失败" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strIP" remarks="ip" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strLabelName" remarks="标签名" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strLabelDescribe" remarks="标签描述" type="nvarchar(128)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strOperateRoute" remarks="页面编码或者流程图id" type="nvarchar(255)"/>
+            <column name="strPreContent" remarks="修改前值" type="nvarchar(255)"/>
+            <column name="strafterContent" remarks="修改后值" type="nvarchar(255)"/>
+            <column name="strContent" remarks="日志详情" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-18">
+        <createTable tableName="SM_MessageInfo">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_MESSAGEINFO"/>
+            </column>
+            <column name="Title" type="nvarchar(50)"/>
+            <column name="EndTime" type="datetime"/>
+            <column name="Content" type="nvarchar(4000)"/>
+            <column name="Sender" type="nvarchar(50)"/>
+            <column name="SendTime" type="datetime"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__108B795B" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="MsgType" type="int"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="Client" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-19">
+        <createTable tableName="SM_MessageInfoDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_MESSAGEINFODTL"/>
+            </column>
+            <column name="PID" type="nvarchar(50)"/>
+            <column name="PersonCode" type="nvarchar(50)"/>
+            <column name="IsRead" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__1367E606" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-20">
+        <createTable remarks="操作类型key,value对应表" tableName="SM_OperateContent">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nOperateContentKey" remarks="操作类型的key" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_OperateContent"/>
+            </column>
+            <column name="strOperateContent" remarks="操作类型key对应的汉字" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-21">
+        <createTable tableName="SM_PageButtonConfig">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PAGEBUTTONCONFIG"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ResourceUrl" type="nvarchar(200)"/>
+            <column name="ButtonID" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ButtonName" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-22">
+        <createTable tableName="SM_Person">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSON"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)"/>
+            <column name="Sex" type="char(1)"/>
+            <column name="WorkNum" type="nvarchar(50)"/>
+            <column name="Account" type="nvarchar(50)"/>
+            <column name="Password" type="nvarchar(200)"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="Duty" type="nvarchar(50)"/>
+            <column name="Position" type="int"/>
+            <column name="Superior" type="nvarchar(50)"/>
+            <column name="Mobile" type="nvarchar(20)"/>
+            <column name="Email" type="nvarchar(50)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="PersonStatus" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Person__DelFl__21B6055D" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RandCode" type="int"/>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF__SM_Person__LastP__2DB1C7EE" name="LastPasswordChangeTime"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-23">
+        <createTable tableName="SM_PersonDataPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONDATAPOWER"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)"/>
+            <column name="DataPower" type="char(1)"/>
+            <column name="CustomPower" type="nvarchar(1000)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-24">
+        <createTable tableName="SM_PersonDepart_Rel">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONDEPART_REL"/>
+            </column>
+            <column name="PersonCode" remarks="用户编码" type="nvarchar(50)"/>
+            <column name="DepartCode" remarks="归属部门编码" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-25">
+        <createTable tableName="SM_PersonDeptPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONDEPTPOWER"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeptCode" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-26">
+        <createTable tableName="SM_PersonProjectPower">
+            <column name="ID" remarks="项目架构用户权限项ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PersonProjectPower"/>
+            </column>
+            <column name="strPersonCode" remarks="项目架构关联用户编码" type="nvarchar(50)"/>
+            <column name="strProjectCode" remarks="项目架构叶子节点项编码" type="nvarchar(50)"/>
+            <column name="strItem" remarks="项目架构权限项" type="nvarchar(50)"/>
+            <column name="strPowerCode" remarks="项目架构权限项父节点编码" type="nvarchar(50)"/>
+            <column name="strDataPower" remarks="数据权限" type="char(1)"/>
+            <column name="strCustomPower" remarks="自定义权限" type="nvarchar(500)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-27">
+        <createTable remarks="用户项目架构树操作权限" tableName="SM_PersonProjectSysPower">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONPROJECTSYSPOWER"/>
+            </column>
+            <column name="strPersonCode" remarks="用户编码" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strItemCode" remarks="授权项编码" type="nvarchar(50)"/>
+            <column name="strProjectCode" remarks="项目结构节点编码" type="nvarchar(50)"/>
+            <column name="nPageButtonConfigID" remarks="操作按钮ID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strIsEnable" remarks="是否可用" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-28">
+        <createTable tableName="SM_PersonRole_Rel">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONROLE_REL"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)"/>
+            <column name="RoleCode" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-29">
+        <createTable tableName="SM_PersonSysPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_PERSONSYSPOWER"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PageButtonConfigID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsEnable" type="char(1)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-30">
+        <createTable remarks="项目架构管理树" tableName="SM_ProjectArchitecture">
+            <column name="ID" remarks="项目节点ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProjectCode" remarks="项目节点编码" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strPProjectCode" remarks="项目父项节点编码" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strName" remarks="项目节点名称" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="项目节点序号" type="int"/>
+            <column name="strIsFinalLeaf" remarks="是否为最终叶子节点" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectStruct_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-31">
+        <createTable tableName="SM_ProjectFlowChart">
+            <column name="ID" remarks="流程图节点ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectFlowChart"/>
+            </column>
+            <column name="strGTGuid" remarks="流程图归属工程ID" type="nvarchar(50)"/>
+            <column name="strGTProject" remarks="流程图归属工程" type="nvarchar(50)"/>
+            <column name="strID" remarks="流程图组态ID" type="nvarchar(80)"/>
+            <column name="strName" remarks="流程图节点名称" type="nvarchar(50)"/>
+            <column name="strDescription" remarks="流程图节点描述" type="nvarchar(300)"/>
+            <column name="strProjectCode" remarks="流程图父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="流程图节点序号" type="int"/>
+            <column name="strResourceUrl" remarks="流程图节点关联资源地址" type="nvarchar(1000)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectFlowChart_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-32">
+        <createTable remarks="项目架构GIS组态" tableName="SM_ProjectGIS">
+            <column name="ID" remarks="趋势组ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectGIS_1"/>
+            </column>
+            <column name="strProjectCode" remarks="项目架构编码" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLon" defaultValueNumeric="0" name="nLon" remarks="经度" type="decimal(18, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLat" defaultValueNumeric="0" name="nLat" remarks="纬度" type="decimal(18, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strIcon" remarks="图标的名字" type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nDisplaySet" defaultValueNumeric="1" name="nDisplaySet" remarks="始终显示1  鼠标放上显示2"
+                    type="int"/>
+            <column name="strTagNames" remarks="标签名称集合" type="${nvarchar(MAX)}"/>
+            <column name="strRemark" remarks="备注" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectGIS_strDelFlag" name="strDelFlag" remarks="删除标志 1删除  0未删除"
+                    type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-33">
+        <createTable tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" remarks="唯一ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectPageButtonConfig"/>
+            </column>
+            <column name="strProjectSysPowerCode" remarks="归属操作权限Code" type="nvarchar(50)"/>
+            <column name="strButtonID" remarks="按钮ID" type="nvarchar(50)"/>
+            <column name="strButtonName" remarks="按钮名称" type="nvarchar(300)"/>
+            <column name="strRemark" remarks="描述" type="nvarchar(50)"/>
+            <column name="nPowerCodeType" remarks="操作权限类型" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-34">
+        <createTable tableName="SM_ProjectPowerItem">
+            <column name="ID" remarks="项目架构项ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectPowerCode"/>
+            </column>
+            <column name="strCode" remarks="项目架构项编码" type="nvarchar(50)"/>
+            <column name="strName" remarks="项目架构项名称" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="项目架构项序号" type="int"/>
+            <column name="nVirtualItemType" remarks="虚拟项类型（0：非虚拟项， 1： 普通单虚拟项， 2： 组虚拟项）" type="int"/>
+            <column name="nIsCanPowerItem" remarks="是否可以设置对应权限" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-35">
+        <createTable tableName="SM_ProjectReportPlan">
+            <column name="ID" remarks="报表计划ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectReportPlan"/>
+            </column>
+            <column name="strID" remarks="报表计划组态ID" type="nvarchar(80)"/>
+            <column name="strName" remarks="报表计划名称" type="nvarchar(50)"/>
+            <column name="strDescription" remarks="报表计划描述" type="nvarchar(300)"/>
+            <column name="strProjectCode" remarks="报表计划父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="报表计划序号" type="int"/>
+            <column name="strResourceUrl" remarks="报表计划关联资源地址" type="nvarchar(1000)"/>
+            <column name="strReportServiceName" remarks="报表服务名称" type="nvarchar(110)"/>
+            <column name="strGTGuid" remarks="报表计划归属工程" type="nvarchar(50)"/>
+            <column name="strGTProject" remarks="报表计划归属工程标识" type="nvarchar(50)"/>
+            <column name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-36">
+        <createTable tableName="SM_ProjectReportTemplet">
+            <column name="ID" remarks="报表模板ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectReportTemplet"/>
+            </column>
+            <column name="strID" remarks="报表模板组态ID" type="nvarchar(80)"/>
+            <column name="strName" remarks="报表模板名称" type="nvarchar(50)"/>
+            <column name="strDescription" remarks="报表模板描述" type="nvarchar(300)"/>
+            <column name="strProjectCode" remarks="报表模板父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="报表模板序号" type="int"/>
+            <column name="strResourceUrl" remarks="报表模板关联资源地址" type="nvarchar(1000)"/>
+            <column name="strGTGuid" remarks="报表模板归属工程" type="nvarchar(50)"/>
+            <column name="strGTProject" remarks="报表模板归属工程标识" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectReportTemplet_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-37">
+        <createTable tableName="SM_ProjectSuperReport">
+            <column name="ID" remarks="高级报表节点ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectSuperReport"/>
+            </column>
+            <column name="strGTGuid" remarks="高级报表归属工程" type="nvarchar(50)"/>
+            <column name="strName" remarks="高级报表节点名称" type="nvarchar(50)"/>
+            <column name="strDescription" remarks="高级报表节点描述" type="nvarchar(300)"/>
+            <column name="strProjectCode" remarks="高级报表节点父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="高级报表节点序号" type="int"/>
+            <column name="strResourceUrl" remarks="高级报表节点关联服务器地址" type="nvarchar(1000)"/>
+            <column name="strCompanyID" remarks="高级报表厂商ID" type="nvarchar(50)"/>
+            <column name="strUserName" remarks="高级报表服务器用户名" type="nvarchar(50)"/>
+            <column name="strPassword" remarks="高级报表服务器访问密码" type="nvarchar(200)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectSuperReport_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-38">
+        <createTable tableName="SM_ProjectTag">
+            <column name="ID" remarks="标签节点ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strID" remarks="标签组态ID" type="nvarchar(80)"/>
+            <column name="strName" remarks="标签节点名称" type="nvarchar(70)"/>
+            <column name="strDescription" remarks="标签节点描述" type="nvarchar(300)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProjectCode" remarks="标签节点父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="标签节点序号" type="int"/>
+            <column name="nTagType" remarks="标签节点类型（0：普通标签，1：特殊标签）" type="int"/>
+            <column name="strResourceUrl" remarks="标签节点资源地址" type="nvarchar(1000)"/>
+            <column name="strGTGuid" remarks="标签归属工程标识" type="nvarchar(50)"/>
+            <column name="strGTPC" remarks="标签归属PC" type="nvarchar(50)"/>
+            <column name="strGTDomain" remarks="标签归属MACS域号" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectTag_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nTagDataType" remarks="标签数据类型：开关，模拟" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-39">
+        <createTable tableName="SM_ProjectVideo">
+            <column name="ID" remarks="视频节点ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ProjectVideo"/>
+            </column>
+            <column name="strGTGuid" remarks="视频归属工程" type="nvarchar(50)"/>
+            <column name="strName" remarks="视频节点名称" type="nvarchar(50)"/>
+            <column name="strDescription" remarks="视频节点描述" type="nvarchar(300)"/>
+            <column name="strProjectCode" remarks="视频节点父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="视频节点序号" type="int"/>
+            <column name="strResourceUrl" remarks="视频节点关联视频服务器地址" type="nvarchar(1000)"/>
+            <column name="strDevType" remarks="视频设备类型" type="nvarchar(50)"/>
+            <column name="strUserName" remarks="视频服务器用户名" type="nvarchar(50)"/>
+            <column name="strPassword" remarks="视频服务器访问密码" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectVideo_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strAccountID" remarks="视频帐户ID" type="nvarchar(50)"/>
+            <column name="strSerialNum" remarks="视频序列号" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-40">
+        <createTable tableName="SM_QueryFieldConfig">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_QUERYFIELDCONFIG"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ResourceUrl" type="nvarchar(200)"/>
+            <column name="ResorceFile" type="nvarchar(200)"/>
+            <column name="FieldID" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FieldName" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FieldType" type="char(1)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-41">
+        <createTable tableName="SM_ReceiverGroup">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_RECEIVERGROUP"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GroupName" type="nvarchar(50)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Receiv__DelFl__164452B1" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeptCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CorpCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ModifyDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-42">
+        <createTable tableName="SM_ReceiverGroupDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_RECEIVERGROUPDTL"/>
+            </column>
+            <column name="PCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-43">
+        <createTable tableName="SM_ReportPlan">
+            <column name="ID" remarks="自增id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ReportPlan"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strInputDate" name="strInputDate" remarks="创建时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strModifyDate" name="strModifyDate" remarks="修改时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strGTName" remarks="工程名称" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strGTGuid" remarks="GTPlus工程id" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strReportServiceA" remarks="报表服务A系统号" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strReportServiceAName" remarks="报表服务A系统名称" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strReportServiceB" remarks="报表服务B系统号" type="nvarchar(50)"/>
+            <column name="strReportServiceBName" remarks="报表服务B系统名称" type="nvarchar(64)"/>
+            <column name="strPlanName" remarks="报表打印计划名称" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strPlanDescription" remarks="报表服务描述"
+                    type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nPlanAttribute" defaultValueNumeric="1" name="nPlanAttribute" remarks="计划属性 1自动  2手动"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nIsSendPrinter" defaultValueNumeric="0" name="nIsSendPrinter"
+                    remarks="是否自动发送打印机 1发送  0不发送" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nPrintCycle" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonth" defaultValueNumeric="0" name="nMonth" remarks="月份，1到12" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nDay" defaultValueNumeric="0" name="nDay" remarks="日，1到31" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nHour" defaultValueNumeric="0" name="nHour" remarks="时，0到23" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMinute" defaultValueNumeric="0" name="nMinute" remarks="分 0到59" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonthNumber" defaultValueNumeric="0" name="nMonthNumber" remarks="第几个月，为季度报表用"
+                    type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nWeekNumber" defaultValueNumeric="0" name="nWeekNumber" remarks="周几，1到7，为周报用"
+                    type="int"/>
+            <column name="strReportTemplateID" remarks="报表模板id" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strReportTemplateName" remarks="报表模板名称" type="nvarchar(64)"/>
+            <column name="strReportTemplateResourceUrl" remarks="报表模板文件磁盘地址" type="nvarchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_strDelFlag" defaultValueNumeric="0" name="strDelFlag" remarks="删除标志  1删除  0未删除"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_strIsSynchronize" defaultValueNumeric="1" name="strIsSynchronize"
+                    remarks="重新下装后数据是否同步了，1是同步  0是未同步" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-44">
+        <createTable tableName="SM_ReportRecord">
+            <column name="ID" remarks="自增id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ReportRecord"/>
+            </column>
+            <column name="PID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strInputDate" name="strInputDate" remarks="创建时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strModifyDate" name="strModifyDate" remarks="修改时间"
+                    type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strReportNameAndTime" remarks="报表名称(带生成时间)" type="nvarchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperatorAccount" remarks="执行人（自动报表为空）" type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF_SM_ReportRecord_strDelFlag" defaultValueNumeric="0" name="strDelFlag" remarks="删除标志  1删除  0未删除"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-45">
+        <createTable tableName="SM_Role">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ROLE"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)"/>
+            <column name="Describe" type="nvarchar(1000)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Role__DelFlag__2E1BDC42" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-46">
+        <createTable tableName="SM_RoleDataPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ROLEDATAPOWER"/>
+            </column>
+            <column name="RoleCode" type="nvarchar(50)"/>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)"/>
+            <column name="DataPower" type="char(1)"/>
+            <column name="CustomPower" type="nvarchar(1000)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-47">
+        <createTable tableName="SM_RoleDeptPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ROLEDEPTPOWER"/>
+            </column>
+            <column name="RoleCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeptCode" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-48">
+        <createTable tableName="SM_RoleProjectPower">
+            <column name="ID" remarks="项目架构角色权限项ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_RoleProjectPower"/>
+            </column>
+            <column name="strRoleCode" remarks="项目架构关联角色编码" type="nvarchar(50)"/>
+            <column name="strProjectCode" remarks="项目架构叶子节点项编码" type="nvarchar(50)"/>
+            <column name="strItem" remarks="项目架构权限项" type="nvarchar(50)"/>
+            <column name="strPowerCode" remarks="项目架构权限项父节点编码" type="nvarchar(50)"/>
+            <column name="strDataPower" remarks="数据权限" type="char(1)"/>
+            <column name="strCustomPower" remarks="自定义权限" type="nvarchar(500)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-49">
+        <createTable remarks="角色项目架构树操作权限" tableName="SM_RoleProjectSysPower">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ROLEPROJECTSYSPOWER"/>
+            </column>
+            <column name="strRoleCode" remarks="角色编码" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strItemCode" remarks="授权项编码" type="nvarchar(50)"/>
+            <column name="strProjectCode" remarks="项目结构节点编码" type="nvarchar(50)"/>
+            <column name="nPageButtonConfigID" remarks="操作按钮ID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strIsEnable" remarks="是否可用" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-50">
+        <createTable tableName="SM_RoleSysPower">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ROLESYSPOWER"/>
+            </column>
+            <column name="RoleCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceDtlCode" type="nvarchar(50)"/>
+            <column name="PageButtonConfigID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsEnable" type="char(1)"/>
+            <column name="strIsEnable" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-51">
+        <createTable tableName="SM_SyncObject">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SyncObject"/>
+            </column>
+            <column name="strObjectName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nStatus" type="int"/>
+            <column name="dtLastLockTime" type="datetime"/>
+            <column name="dtLastUnlockTime" type="datetime"/>
+            <column name="ts" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-52">
+        <createTable tableName="SM_SysSetting">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SysSetting"/>
+            </column>
+            <column name="strKey" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strValue" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-53">
+        <createTable tableName="SM_SystemResource">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCE"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PCode" type="nvarchar(50)"/>
+            <column name="Title" type="nvarchar(50)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__36B12243" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-54">
+        <createTable tableName="SM_SystemResourceDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCEDTL"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title" type="nvarchar(50)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="ResourceType" type="char(1)"/>
+            <column name="ResourceUrl" type="nvarchar(1000)"/>
+            <column name="ResourceUrlApp" type="nvarchar(100)"/>
+            <column name="Parameter" type="nvarchar(200)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column name="ConfCodeVou" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__398D8EEE" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-55">
+        <createTable tableName="SM_SystemResourceRmisDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCERMISDTL"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeployID" type="int"/>
+            <column name="Title" type="nvarchar(100)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="ResourceType" type="char(1)"/>
+            <column name="Parameter" type="nvarchar(200)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column name="ConfCodeVou" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ExternalNetwork" type="nvarchar(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-56">
+        <createTable remarks="用户配置" tableName="SM_UserConfig">
+            <column name="ID" remarks="用户配置项ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_UserConfig"/>
+            </column>
+            <column name="strPersonCode" remarks="配置关联用户编码" type="nvarchar(50)"/>
+            <column name="strAlarmVoiceOff" remarks="报警消音开关（0：开启， 1：关闭）" type="char(1)"/>
+            <column name="strAlarmLightTime" remarks="报警灯时间戳" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-57">
+        <createTable tableName="SM_UserLogin">
+            <column name="ID" remarks="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_UserLogin"/>
+            </column>
+            <column name="strAccount" remarks="用户登录帐号" type="nvarchar(50)"/>
+            <column name="strUID" remarks="用户登录唯一标识" type="nvarchar(50)"/>
+            <column name="strLogTime" remarks="用户登录时间" type="nvarchar(50)"/>
+            <column name="strLastReqTime" remarks="客户端最近请求时间" type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF_SM_UserLogin_IsOrNotLogin" defaultValueNumeric="0" name="IsOrNotLogin" remarks="是否登陆，1登陆，0未登录"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-58">
+        <createTable tableName="SM_UserPushConfig">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_UserPushConfig"/>
+            </column>
+            <column name="strPersonCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dtAlarmPushLastTime" type="datetime"/>
+            <column name="dtNotifyPushLastTime" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-59">
+        <createTable tableName="SM_UserSession">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_UserSession"/>
+            </column>
+            <column name="strAccount" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strSessionID" type="nvarchar(50)"/>
+            <column name="strLastUpdateTime" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-60">
+        <createTable tableName="SM_UserSetting">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_UserSetting"/>
+            </column>
+            <column name="strAccount" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bEnablePush" type="bit"/>
+            <column name="bEnableAlarmPush" type="bit"/>
+            <column name="nAlarmPushLevel" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-61">
+        <createTable tableName="SM_VideoAccount">
+            <column name="ID" remarks="视频帐户ID" type="nvarchar(50)"/>
+            <column name="strAccountName" remarks="视频帐户名称" type="nvarchar(50)"/>
+            <column name="strAppKey" remarks="AppKey" type="nvarchar(50)"/>
+            <column name="strAppSecret" remarks="AppSecret" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-62">
+        <createTable tableName="SM_VideoDevDict">
+            <column name="ID" remarks="视频设备类型ID" type="nvarchar(50)"/>
+            <column name="strDeviceType" remarks="视频设备类型" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-63">
+        <createTable tableName="t_BD_ArrangePeriod">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_BD_ArrangePeriod"/>
+            </column>
+            <column name="WorkDate" type="date"/>
+            <column name="ShiftCode" type="nvarchar(50)"/>
+            <column name="TeamCode" type="nvarchar(50)"/>
+            <column name="Dept" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangePeriod_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-64">
+        <createTable tableName="t_BD_ArrangeResult">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WorkDate" type="date">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_ArrangeResult"/>
+            </column>
+            <column name="ShiftCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_ArrangeResult"/>
+            </column>
+            <column name="TeamCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_ArrangeResult"/>
+            </column>
+            <column name="Dept" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_ArrangeResult"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangeResult_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-65">
+        <createTable tableName="t_BD_Dict">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DictCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Dict"/>
+            </column>
+            <column name="DictName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TypeCode" type="nvarchar(50)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Dict_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Inputcode" type="nvarchar(50)"/>
+            <column name="Inputdate" type="datetime"/>
+            <column name="Deptcode" type="nvarchar(50)"/>
+            <column name="Corpcode" type="nvarchar(50)"/>
+            <column name="Modifycode" type="nvarchar(50)"/>
+            <column name="Modifydate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-66">
+        <createTable tableName="t_BD_DictDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DictDtlCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_DictDtl"/>
+            </column>
+            <column name="DictDtlName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DictCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_DictDtl"/>
+            </column>
+            <column defaultValueConstraintName="DF_t_BD_DictDtl_SeqNo" defaultValueNumeric="0" name="SeqNo" type="int"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_DictDtl_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Inputcode" type="nvarchar(50)"/>
+            <column name="Inputdate" type="datetime"/>
+            <column name="Deptcode" type="nvarchar(50)"/>
+            <column name="Corpcode" type="nvarchar(50)"/>
+            <column name="Modifycode" type="nvarchar(50)"/>
+            <column name="Modifydate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-67">
+        <createTable tableName="t_BD_Material">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MatCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Material"/>
+            </column>
+            <column name="MatName" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Spec" type="nvarchar(200)"/>
+            <column name="Model" type="nvarchar(200)"/>
+            <column name="FirstUnitCode" type="nvarchar(50)"/>
+            <column name="SecondUnitCode" type="nvarchar(50)"/>
+            <column name="PYCode" type="nvarchar(50)"/>
+            <column name="UseFlag" type="nchar(1)"/>
+            <column name="MatType" type="nvarchar(50)"/>
+            <column name="MaxInventory" type="decimal(22, 6)"/>
+            <column name="MinInventory" type="decimal(22, 6)"/>
+            <column name="SafeInventory" type="decimal(22, 6)"/>
+            <column name="IsSetBatch" type="int"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Material_DelFlag" name="DelFlag" type="nchar(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-68">
+        <createTable tableName="t_BD_MaterialAttr">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AttrCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_MaterialAttr"/>
+            </column>
+            <column name="MatCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_MaterialAttr"/>
+            </column>
+            <column name="AttrName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AttrValue" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialAttr_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-69">
+        <createTable tableName="t_BD_MaterialRelType">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TypeCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_MaterialRelType"/>
+            </column>
+            <column name="MatCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_MaterialRelType"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialRelType_DelFlag" name="DelFlag" type="char(1)"/>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-70">
+        <createTable tableName="t_BD_Member">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TeamCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PersonCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Member"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Member_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-71">
+        <createTable tableName="t_BD_Supplier">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SupplierCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Supplier"/>
+            </column>
+            <column name="SupplierName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ContactPerson" type="nvarchar(50)"/>
+            <column name="ContactInfo" type="nvarchar(100)"/>
+            <column name="ShortName" type="nvarchar(50)"/>
+            <column name="Place" type="nvarchar(200)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Supplier_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-72">
+        <createTable tableName="t_BD_SupplierMaterialDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SupplierCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_SupplierMaterialDtl"/>
+            </column>
+            <column name="MatCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_SupplierMaterialDtl"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_SupplierMaterialDtl_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-73">
+        <createTable tableName="t_BD_Team">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TeamCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Team"/>
+            </column>
+            <column name="TeamName" type="nvarchar(50)"/>
+            <column name="Leader" type="nvarchar(50)"/>
+            <column name="Dept" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Team_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-74">
+        <createTable tableName="t_BD_Unit">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_Unit"/>
+            </column>
+            <column name="UnitName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Unit_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Inputcode" type="nvarchar(50)"/>
+            <column name="Inputdate" type="datetime"/>
+            <column name="Deptcode" type="nvarchar(50)"/>
+            <column name="Corpcode" type="nvarchar(50)"/>
+            <column name="Modifycode" type="nvarchar(50)"/>
+            <column name="Modifydate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-75">
+        <createTable tableName="t_BD_UnitConv">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MatCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_UnitConv"/>
+            </column>
+            <column name="BeforeConvCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_UnitConv"/>
+            </column>
+            <column name="AfterConvCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_UnitConv"/>
+            </column>
+            <column name="ScaledValue" type="nvarchar(50)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_UnitConv_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-76">
+        <createTable tableName="t_BD_UnitDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitDtlCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_UnitDtl"/>
+            </column>
+            <column name="UnitDtlName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitCode" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_UnitDtl"/>
+            </column>
+            <column name="Symbol" type="nvarchar(50)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_UnitDtl_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Inputcode" type="nvarchar(50)"/>
+            <column name="Inputdate" type="datetime"/>
+            <column name="Deptcode" type="nvarchar(50)"/>
+            <column name="Corpcode" type="nvarchar(50)"/>
+            <column name="Modifycode" type="nvarchar(50)"/>
+            <column name="Modifydate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-77">
+        <createTable tableName="t_BD_WorkShift">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_BD_WorkShift"/>
+            </column>
+            <column name="ShiftCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ShiftName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BeginTime" type="char(5)"/>
+            <column name="EndTime" type="char(5)"/>
+            <column name="Remark" type="nvarchar(500)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Trains_DelFlag" name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="InputCode" type="nvarchar(50)"/>
+            <column name="InputDate" type="datetime"/>
+            <column name="DeptCode" type="nvarchar(50)"/>
+            <column name="CorpCode" type="nvarchar(50)"/>
+            <column name="ModifyCode" type="nvarchar(50)"/>
+            <column name="ModifyDate" type="datetime"/>
+            <column name="FlowSts" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-78">
+        <createTable tableName="t_clctr">
+            <column name="id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_T_CLCTR"/>
+            </column>
+            <column name="name" type="nvarchar(16)"/>
+            <column name="description" type="nvarchar(32)"/>
+            <column name="version" type="int"/>
+            <column name="idletimeout" type="int"/>
+            <column name="syncrate" type="int"/>
+            <column name="updaterate" type="int"/>
+            <column name="compensation" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-79">
+        <createTable tableName="t_deply">
+            <column name="Id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_T_DEPLY"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(64)"/>
+            <column name="type" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sort" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pid" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RTDBServer" type="nvarchar(64)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-80">
+        <createTable tableName="t_tag">
+            <column name="id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_T_TAG"/>
+            </column>
+            <column name="clctr" type="int"/>
+            <column name="name" type="nvarchar(60)"/>
+            <column name="ioaddr" type="nvarchar(76)"/>
+            <column name="type" type="tinyint"/>
+            <column name="version" type="int"/>
+            <column name="arcmode" type="int"/>
+            <column name="arcto" type="int"/>
+            <column name="arcoff" type="int"/>
+            <column name="clctrate" type="int"/>
+            <column name="clctto" type="int"/>
+            <column name="description" type="nvarchar(32)"/>
+            <column name="unit" type="nvarchar(16)"/>
+            <column name="arcddbnd" type="float(53)"/>
+            <column name="clctddbnd" type="float(53)"/>
+            <column name="minimal" type="float(53)"/>
+            <column name="maximal" type="float(53)"/>
+            <column name="lowlimit" type="float(53)"/>
+            <column name="highlimit" type="float(53)"/>
+            <column name="lololimit" type="float(53)"/>
+            <column name="hihilimit" type="float(53)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-81">
+        <createTable tableName="t_tag_mobile">
+            <column name="id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_t_tag_mobile"/>
+            </column>
+            <column name="sortid" type="int"/>
+            <column name="sortname" type="nvarchar(50)"/>
+            <column name="secondname" type="nvarchar(50)"/>
+            <column name="clctrname" type="nvarchar(50)"/>
+            <column name="tagname" type="nvarchar(50)"/>
+            <column name="tagdesc" type="nvarchar(50)"/>
+            <column name="unit" type="nvarchar(50)"/>
+            <column name="sortby" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-82">
+        <createTable tableName="tagtest">
+            <column name="id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_tagtest"/>
+            </column>
+            <column name="projectcode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tagname" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tagdes" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-83" dbms="mssql">
+        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_CF_Alarm" tableName="CF_Alarm"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-83" dbms="mysql">
+        <addPrimaryKey columnNames="ID" constraintName="PK_CF_Alarm" tableName="CF_Alarm"/>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-84" dbms="mssql">
+        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_CF_AlarmHis" tableName="CF_AlarmHis"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-84" dbms="mysql">
+        <addPrimaryKey columnNames="ID" constraintName="PK_CF_AlarmHis" tableName="CF_AlarmHis"/>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-85" dbms="mssql">
+        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_SM_ProjectArchitecture" tableName="SM_ProjectArchitecture"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-85" dbms="mysql">
+        <addPrimaryKey columnNames="ID" constraintName="PK_SM_ProjectArchitecture" tableName="SM_ProjectArchitecture"/>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-86" dbms="mssql">
+        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_SM_ProjectTag" tableName="SM_ProjectTag"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-86" dbms="mysql">
+        <addPrimaryKey columnNames="ID" constraintName="PK_SM_ProjectTag" tableName="SM_ProjectTag"/>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-87">
+        <addUniqueConstraint columnNames="strObjectName" constraintName="UQ__SM_SyncO__96439D4DAC4FD534" tableName="SM_SyncObject"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-88">
+        <addUniqueConstraint columnNames="strPersonCode" constraintName="UQ__SM_UserP__4AE80FD304D4B198" tableName="SM_UserPushConfig"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-89">
+        <addUniqueConstraint columnNames="strAccount" constraintName="UQ__SM_UserS__9C0CF01868C968C4" tableName="SM_UserSetting"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-90">
+        <createIndex clustered="true" indexName="IX_CF_Alarm_C" tableName="CF_Alarm">
+            <column name="strTagName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-91">
+        <createIndex indexName="IX_CF_Alarm_Soft" tableName="CF_Alarm">
+            <column name="nAlarmState"/>
+            <column name="nAlarmlevel"/>
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-92">
+        <createIndex indexName="IX_CF_SysAlarm" tableName="CF_SysAlarm">
+            <column name="nAlarmState"/>
+            <column name="nAlarmlevel"/>
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-93">
+        <createIndex indexName="IX_SM_Department_Name" tableName="SM_Department" unique="true">
+            <column name="Name"/>
+            <column name="Pcode"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-94">
+        <createIndex indexName="IX_SM_Log" tableName="SM_Log">
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime" name="strOperateTime"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-95">
+        <createIndex indexName="IX_SM_Person_Account" tableName="SM_Person" unique="true">
+            <column name="Account"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-96">
+        <createIndex clustered="true" indexName="IX_SM_ProjectArchitecture_C" tableName="SM_ProjectArchitecture" unique="true">
+            <column name="strProjectCode"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-97">
+        <createIndex indexName="IX_SM_ProjectArchitecture_Name" tableName="SM_ProjectArchitecture" unique="true">
+            <column name="strPProjectCode"/>
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-98">
+        <createIndex indexName="IX_SM_ProjectArchitecture_PP" tableName="SM_ProjectArchitecture">
+            <column name="strPProjectCode"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-99">
+        <createIndex indexName="IX_SM_ProjectFlowChart_strID" tableName="SM_ProjectFlowChart" unique="true">
+            <column name="strID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-100">
+        <createIndex indexName="IX_SM_ProjectReportPlan" tableName="SM_ProjectReportPlan" unique="true">
+            <column name="strID"/>
+            <column name="strDelFlag"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-101">
+        <createIndex indexName="IX_SM_ProjectSuperReport_Name" tableName="SM_ProjectSuperReport" unique="true">
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-102">
+        <createIndex clustered="true" indexName="IX_SM_ProjectTag_C" tableName="SM_ProjectTag" unique="true">
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-103">
+        <createIndex indexName="IX_SM_ProjectTag_P" tableName="SM_ProjectTag">
+            <column name="strProjectCode"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-104">
+        <createIndex indexName="IX_SM_ProjectVideo_Name" tableName="SM_ProjectVideo" unique="true">
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-105">
+        <createIndex indexName="IX_SM_Role_Name" tableName="SM_Role" unique="true">
+            <column name="Name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-106">
+        <addForeignKeyConstraint baseColumnNames="strProjectCode" baseTableName="PM_TrendGroup"
+                                 constraintName="FK_PM_TrendGroup_SM_ProjectArchitecture" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="strProjectCode"
+                                 referencedTableName="SM_ProjectArchitecture" validate="true"/>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-107" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_BD_ArrangePeriod">
+            SELECT
+            a.ID,
+            CONVERT ( VARCHAR ( 10 ), a.WorkDate, 121 ) AS WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.DelFlag,
+            a.InputCode,
+            a.InputDate,
+            b.BeginTime,
+            b.EndTime,
+            b.ShiftName,
+            c.TeamName
+            FROM
+            t_BD_ArrangePeriod AS a
+            LEFT OUTER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = 0
+            LEFT OUTER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-107" dbms="mysql">
+        <!--yyyy-mm-dd hh:mi:ss.mmm(24h)-->
+        <createView fullDefinition="false" viewName="V_BD_ArrangePeriod">
+            SELECT
+            a.ID,
+            DATE_FORMAT(a.WorkDate,'%Y-%m-%d %T:%f')AS WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.DelFlag,
+            a.InputCode,
+            a.InputDate,
+            b.BeginTime,
+            b.EndTime,
+            b.ShiftName,
+            c.TeamName
+            FROM
+            t_BD_ArrangePeriod AS a
+            LEFT OUTER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = 0
+            LEFT OUTER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = 0
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-108" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_BD_ArrangeResult">
+            SELECT
+            a.ID,
+            CONVERT ( VARCHAR ( 10 ), a.WorkDate, 121 ) AS WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.InputCode,
+            a.InputDate,
+            a.DelFlag,
+            b.BeginTime,
+            b.EndTime,
+            b.ShiftName,
+            c.TeamName,
+            c.Leader,
+            d.Name AS LeaderName,
+            e.Name AS DeptName
+            FROM
+            t_BD_ArrangeResult AS a
+            LEFT OUTER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = '0'
+            LEFT OUTER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = '0'
+            LEFT OUTER JOIN SM_Person AS d ON c.Leader = d.Code
+            AND d.DelFlag = '0'
+            LEFT OUTER JOIN SM_Department AS e ON a.DeptCode = e.Code
+            AND e.DelFlag = '0'
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-108" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_BD_ArrangeResult">
+            SELECT
+            a.ID,
+            DATE_FORMAT(a.WorkDate,'%Y-%m-%d %T:%f')AS WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.InputCode,
+            a.InputDate,
+            a.DelFlag,
+            b.BeginTime,
+            b.EndTime,
+            b.ShiftName,
+            c.TeamName,
+            c.Leader,
+            d.Name AS LeaderName,
+            e.Name AS DeptName
+            FROM
+            t_BD_ArrangeResult AS a
+            LEFT OUTER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = '0'
+            LEFT OUTER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = '0'
+            LEFT OUTER JOIN SM_Person AS d ON c.Leader = d.Code
+            AND d.DelFlag = '0'
+            LEFT OUTER JOIN SM_Department AS e ON a.DeptCode = e.Code
+            AND e.DelFlag = '0'
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-109">
+        <createView fullDefinition="false" viewName="V_BD_Dict">
+            SELECT
+            d.ID,
+            d.DictCode,
+            d.DictName,
+            d.TypeCode,
+            d.Remark,
+            d.DelFlag,
+            dd.ID AS dtlId,
+            dd.DictDtlName AS dtlName,
+            dd.DictDtlCode AS dtlCode,
+            dd.SeqNo,
+            dd.Remark AS dtlRemark
+            FROM
+            t_BD_Dict AS d
+            INNER JOIN t_BD_DictDtl AS dd ON d.DictCode = dd.DictCode
+            AND dd.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-110" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_BD_GetTeamInfo">
+            SELECT
+            a.WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.DelFlag,
+            b.ShiftName,
+            b.BeginTime,
+            b.EndTime,
+            c.TeamName,
+            c.Leader,
+            CONVERT ( VARCHAR ( 100 ), a.WorkDate, 23 ) + ' ' + b.BeginTime + ':00' AS BeginDate,
+            CASE
+
+            WHEN BeginTime > EndTime THEN
+            CONVERT ( VARCHAR ( 100 ), DATEADD ( DAY, 1, WorkDate ), 23 ) + ' ' + EndTime + ':00' ELSE CONVERT ( VARCHAR ( 100 ), WorkDate, 23 ) + ' ' + EndTime + ':00'
+            END AS EndDate
+            FROM
+            t_BD_ArrangeResult AS a
+            INNER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = '0'
+            INNER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = '0'
+            WHERE
+            ( a.DelFlag = '0' )
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-110" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_BD_GetTeamInfo">
+            SELECT
+            a.WorkDate,
+            a.ShiftCode,
+            a.TeamCode,
+            a.Dept,
+            a.DelFlag,
+            b.ShiftName,
+            b.BeginTime,
+            b.EndTime,
+            c.TeamName,
+            c.Leader,
+            DATE_FORMAT( a.WorkDate, '%Y-%m-%d' ) + ' ' + b.BeginTime + ':00' AS BeginDate,
+            CASE
+
+            WHEN BeginTime > EndTime THEN
+            DATE_FORMAT( DATE_ADD( WorkDate, INTERVAL 1 DAY ), '%Y-%m-%d' ) + ' ' + EndTime + ':00' ELSE DATE_FORMAT( WorkDate, '%Y-%m-%d' ) + ' ' + EndTime + ':00'
+            END AS EndDate
+            FROM
+            t_BD_ArrangeResult AS a
+            INNER JOIN t_BD_WorkShift AS b ON a.ShiftCode = b.ShiftCode
+            AND b.DelFlag = '0'
+            INNER JOIN t_BD_Team AS c ON a.TeamCode = c.TeamCode
+            AND c.DelFlag = '0'
+            WHERE
+            ( a.DelFlag = '0' )
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-111">
+        <createView fullDefinition="false" viewName="V_BD_Mat">
+            SELECT
+            a.ID,
+            a.MatName,
+            a.MatCode,
+            a.Spec,
+            a.Model,
+            a.FirstUnitCode,
+            a.SecondUnitCode,
+            a.PYCode,
+            a.UseFlag,
+            a.MaxInventory,
+            a.MinInventory,
+            a.SafeInventory,
+            a.Remark,
+            a.DelFlag,
+            a.InputCode,
+            a.InputDate,
+            a.DeptCode,
+            a.CorpCode,
+            a.ModifyCode,
+            a.ModifyDate,
+            a.IsSetBatch,
+            b.UnitDtlName AS FirstUnitName,
+            c.UnitDtlName AS SecondUnitName
+            FROM
+            t_BD_Material AS a
+            LEFT OUTER JOIN t_BD_UnitDtl AS b ON a.FirstUnitCode = b.UnitDtlCode
+            AND b.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS c ON a.SecondUnitCode = c.UnitDtlCode
+            AND c.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-112">
+        <createView fullDefinition="false" viewName="V_BD_Material">
+            SELECT
+            a.ID,
+            a.MatName,
+            a.MatCode,
+            a.Spec,
+            a.Model,
+            a.FirstUnitCode,
+            a.SecondUnitCode,
+            a.PYCode,
+            a.UseFlag,
+            a.MaxInventory,
+            a.MinInventory,
+            a.SafeInventory,
+            a.Remark,
+            a.DelFlag,
+            a.InputCode,
+            a.InputDate,
+            a.DeptCode,
+            a.CorpCode,
+            a.ModifyCode,
+            a.ModifyDate,
+            b.UnitDtlName AS FirstUnitName,
+            c.UnitDtlName AS SecondUnitName,
+            t.TypeCode
+            FROM
+            t_BD_Material AS a
+            LEFT OUTER JOIN t_BD_UnitDtl AS b ON a.FirstUnitCode = b.UnitDtlCode
+            AND b.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS c ON a.SecondUnitCode = c.UnitDtlCode
+            AND c.DelFlag = 0
+            LEFT OUTER JOIN t_BD_MaterialRelType AS t ON a.MatCode = t.MatCode
+            AND t.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-113">
+        <createView fullDefinition="false" viewName="V_BD_MaterialAttr">
+            SELECT
+            b.ID,
+            b.MatCode,
+            b.AttrCode,
+            b.AttrName,
+            b.AttrValue,
+            b.Remark,
+            b.InputCode,
+            b.InputDate,
+            a.DelFlag,
+            a.Spec
+            FROM
+            t_BD_Material AS a
+            INNER JOIN t_BD_MaterialAttr AS b ON a.MatCode = b.MatCode
+            AND b.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-114">
+        <createView fullDefinition="false" viewName="V_BD_MaterialType">
+            SELECT
+            t.ID,
+            m.MatName,
+            m.MatCode,
+            m.Spec,
+            m.Model,
+            m.FirstUnitCode,
+            m.SecondUnitCode,
+            v.DelFlag,
+            v.TypeCode,
+            v.dtlId,
+            v.dtlCode,
+            a.UnitDtlName AS FirstUnitName,
+            b.UnitDtlName AS SecondUnitName,
+            v.dtlCode AS MatType
+            FROM
+            V_BD_Dict AS v
+            INNER JOIN t_BD_MaterialRelType AS t ON v.dtlCode = t.TypeCode
+            AND t.DelFlag = 0
+            INNER JOIN t_BD_Material AS m ON t.MatCode = m.MatCode
+            AND m.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS a ON m.FirstUnitCode = a.UnitDtlCode
+            AND a.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS b ON m.SecondUnitCode = b.UnitDtlCode
+            AND b.DelFlag = 0
+            WHERE
+            ( v.DictCode = 'MatType' )
+            AND (
+            m.UseFlag = '1')
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-115">
+        <createView fullDefinition="false" viewName="V_BD_Team">
+            SELECT
+            a.ID,
+            a.TeamCode,
+            a.TeamName,
+            a.Leader,
+            a.Dept,
+            a.DelFlag,
+            a.InputCode,
+            a.InputDate,
+            a.DeptCode,
+            a.CorpCode,
+            a.ModifyCode,
+            a.ModifyDate,
+            b.Name AS LeaderName
+            FROM
+            t_BD_Team AS a
+            LEFT OUTER JOIN SM_Person AS b ON a.Leader = b.Code
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-116">
+        <createView fullDefinition="false" viewName="V_BD_PersonDeptInfo">
+            SELECT
+            a.PersonCode,
+            a.DeptCode,
+            b.Name
+            FROM
+            SM_PersonDeptPower a
+            INNER JOIN SM_Department b ON a.DeptCode = b.Code
+            AND b.DelFlag = '0' UNION
+            SELECT
+            b.Code AS PersonCode,
+            b.DeptCode,
+            a.Name
+            FROM
+            SM_Department a
+            INNER JOIN SM_Person b ON a.Code = b.DeptCode
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-117" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_BD_StartDate">
+            SELECT CONVERT
+            ( VARCHAR ( 10 ), MIN ( t.WorkDate ), 121 ) AS WorkDate,
+            t.Dept
+            FROM
+            t_BD_ArrangePeriod t
+            WHERE
+            t.DelFlag = '0'
+            GROUP BY
+            t.Dept
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-117" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_BD_StartDate">
+            SELECT
+            MIN(DATE_FORMAT(t.WorkDate ,'%Y-%m-%d %T:%f'))AS WorkDate,
+            t.Dept
+            FROM
+            t_BD_ArrangePeriod t
+            WHERE
+            t.DelFlag = '0'
+            GROUP BY
+            t.Dept
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-118">
+        <createView fullDefinition="false" viewName="V_BD_SupplierMaterialDtl">
+            SELECT
+            dtl.ID,
+            dtl.SupplierCode,
+            sup.SupplierName,
+            mat.MatName,
+            mat.MatCode,
+            mat.Spec,
+            mat.Model,
+            mat.FirstUnitCode,
+            mat.SecondUnitCode,
+            mat.DelFlag,
+            a.UnitDtlName AS FirstUnitName,
+            b.UnitDtlName AS SecondUnitName
+            FROM
+            t_BD_SupplierMaterialDtl AS dtl
+            INNER JOIN t_BD_Material AS mat ON dtl.MatCode = mat.MatCode
+            AND mat.DelFlag = 0
+            INNER JOIN t_BD_Supplier AS sup ON dtl.SupplierCode = sup.SupplierCode
+            AND sup.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS a ON mat.FirstUnitCode = a.UnitDtlCode
+            AND a.DelFlag = 0
+            LEFT OUTER JOIN t_BD_UnitDtl AS b ON mat.SecondUnitCode = b.UnitDtlCode
+            AND b.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-119">
+        <createView fullDefinition="false" viewName="V_BD_Tag">
+            SELECT
+            t_tag.id,
+            t_tag.clctr,
+            t_tag.name,
+            t_tag.ioaddr,
+            t_tag.type,
+            t_tag.version,
+            t_tag.arcmode,
+            t_tag.arcto,
+            t_tag.arcoff,
+            t_tag.clctrate,
+            t_tag.clctto,
+            t_tag.description,
+            t_tag.unit,
+            t_tag.arcddbnd,
+            t_tag.clctddbnd,
+            t_tag.minimal,
+            t_tag.maximal,
+            t_tag.lowlimit,
+            t_tag.highlimit,
+            t_tag.lololimit,
+            t_tag.hihilimit,
+            t_clctr.name AS clctrname,
+            t_clctr.name + '.' + t_tag.name AS fullname
+            FROM
+            t_clctr
+            INNER JOIN t_tag ON t_clctr.id = t_tag.clctr
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-120">
+        <createView fullDefinition="false" viewName="V_BD_Member">
+            SELECT
+            a.ID,
+            a.TeamCode,
+            a.PersonCode,
+            a.DelFlag,
+            b.Name AS PersonName,
+            b.Sex,
+            b.WorkNum,
+            b.Account,
+            b.DeptCode,
+            b.CorpCode,
+            b.Duty,
+            b.Position,
+            b.Superior,
+            b.Mobile,
+            b.Email,
+            b.PersonStatus,
+            c.TeamName
+            FROM
+            t_BD_Member AS a
+            LEFT OUTER JOIN SM_Person AS b ON a.PersonCode = b.Code
+            LEFT OUTER JOIN V_BD_Team AS c ON a.TeamCode = c.TeamCode
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-121">
+        <createView fullDefinition="false" viewName="V_BD_UnitConv">
+            SELECT
+            a.ID,
+            a.MatCode,
+            a.BeforeConvCode,
+            a.AfterConvCode,
+            a.ScaledValue,
+            a.Remark,
+            a.DelFlag,
+            b.UnitDtlName AS BeforeConvName,
+            c.UnitDtlName AS AfterConvName
+            FROM
+            t_BD_UnitConv AS a
+            INNER JOIN t_BD_Material AS m ON a.MatCode = m.MatCode
+            AND m.DelFlag = 0
+            INNER JOIN t_BD_UnitDtl AS b ON a.BeforeConvCode = b.UnitDtlCode
+            AND b.DelFlag = 0
+            INNER JOIN t_BD_UnitDtl AS c ON a.AfterConvCode = c.UnitDtlCode
+            AND c.DelFlag = 0
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-122">
+        <createView fullDefinition="false" viewName="V_CF_Alarm">
+            SELECT
+            SM_ProjectArchitecture.strProjectCode,
+            SM_ProjectArchitecture.strName AS strProjectName,
+            CF_Alarm.ID,
+            CF_Alarm.nAlarmType,
+            CF_Alarm.nAlarmState,
+            CF_Alarm.nAlarmlevel,
+            CF_Alarm.strEventTime,
+            CF_Alarm.strTagName,
+            CF_Alarm.strTagDes,
+            CF_Alarm.strArea,
+            CF_Alarm.strDevice,
+            CF_Alarm.strUnit,
+            CF_Alarm.strMsgDes,
+            CF_Alarm.fAlarmlimit,
+            CF_Alarm.strAlarmValue,
+            CF_Alarm.strRecoveryTime,
+            CF_Alarm.strAckedTime,
+            CF_Alarm.strAckedComment,
+            CF_Alarm.nSource,
+            CF_Alarm.strIsHide,
+            CF_Alarm.strNodeDomain,
+            CF_Alarm.strTypeName,
+            CF_Alarm.strAlarmTypeDes,
+            CF_Alarm.nPushStatus,
+            CF_Alarm.strAlarmLevelDes
+            FROM
+            SM_ProjectArchitecture
+            INNER JOIN SM_ProjectTag ON SM_ProjectArchitecture.strDelFlag = '0'
+            AND SM_ProjectArchitecture.strProjectCode = SM_ProjectTag.strProjectCode
+            INNER JOIN CF_Alarm ON SM_ProjectTag.strName = CF_Alarm.strTagName
+            OR SM_ProjectTag.strName = CF_Alarm.strNodeDomain
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-123" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_CF_NodeState">
+            SELECT
+            ID,
+            CASE
+
+            WHEN nNodeType = 3 THEN
+            strSerialNum ELSE CAST (
+            nNodePCID AS nvarchar ( 20 ))
+            END AS nNodePCID,
+            nCPULoad,
+            fTemperature,
+            nMemoryLoad,
+            nState,
+            CASE
+
+            WHEN nState = 1 THEN
+            '正常' ELSE '不正常'
+            END AS StateName,
+            nNodeType,
+            CASE
+
+            WHEN nNodeType = 0 THEN
+            '普通节点'
+            WHEN nNodeType = 1 THEN
+            '网闸安全侧'
+            WHEN nNodeType = 2 THEN
+            '网闸开放侧'
+            WHEN nNodeType = 3 THEN
+            '云卡'
+            END AS NodeTypeName,
+            strStateTime,
+            (
+            SELECT COUNT
+            ( 0 ) AS Expr1
+            FROM
+            CF_ProcessState
+            WHERE
+            ( nNodePCID = A.nNodePCID )) AS IsHaveDetail
+            FROM
+            CF_NodeState AS A
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-123" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_CF_NodeState">
+            SELECT
+            `a`.`ID` AS `ID`,
+            ( CASE WHEN ( `a`.`nNodeType` = 3 ) THEN `a`.`strSerialNum` ELSE `a`.`nNodePCID` END ) AS `nNodePCID`,
+            `a`.`nCPULoad` AS `nCPULoad`,
+            `a`.`fTemperature` AS `fTemperature`,
+            `a`.`nMemoryLoad` AS `nMemoryLoad`,
+            `a`.`nState` AS `nState`,
+            ( CASE WHEN ( `a`.`nState` = 1 ) THEN '正常' ELSE '不正常' END ) AS `StateName`,
+            `a`.`nNodeType` AS `nNodeType`,
+            (
+            CASE
+
+            WHEN ( `a`.`nNodeType` = 0 ) THEN
+            '普通节点'
+            WHEN ( `a`.`nNodeType` = 1 ) THEN
+            '网闸安全侧'
+            WHEN ( `a`.`nNodeType` = 2 ) THEN
+            '网闸开放侧'
+            WHEN ( `a`.`nNodeType` = 3 ) THEN
+            '云卡'
+            END
+            ) AS `NodeTypeName`,
+            `a`.`strStateTime` AS `strStateTime`,
+            ( SELECT count( 0 ) AS `Expr1` FROM `cf_processstate` WHERE ( `cf_processstate`.`nNodePCID` = `a`.`nNodePCID` ) ) AS `IsHaveDetail`
+            FROM
+            `cf_nodestate` `a`
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-124" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_CF_ProcessState" >
+            SELECT
+            ID,
+            nNodePCID,
+            nProcessID,
+            strProcessName,
+            nState,
+            CASE
+
+            WHEN nState = 1 THEN
+            '正常' ELSE '不正常'
+            END AS StateName,
+            strStateTime,
+            (
+            SELECT COUNT
+            ( 0 ) AS Expr1
+            FROM
+            CF_ServiceState
+            WHERE
+            ( strProcessName = A.strProcessName )
+            AND ( nNodePCID = A.nNodePCID )
+            AND ( A.strProcessName LIKE '%IOSERVER%' )) AS IsHaveDetail
+            FROM
+            CF_ProcessState AS A
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-124" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_CF_ProcessState" >
+            SELECT
+            `a`.`ID` AS `ID`,
+            `a`.`nNodePCID` AS `nNodePCID`,
+            `a`.`nProcessID` AS `nProcessID`,
+            `a`.`strProcessName` AS `strProcessName`,
+            `a`.`nState` AS `nState`,
+            ( CASE WHEN ( `a`.`nState` = 1 ) THEN '正常' ELSE '不正常' END ) AS `StateName`,
+            `a`.`strStateTime` AS `strStateTime`,
+            (
+            SELECT
+            count( 0 ) AS `Expr1`
+            FROM
+            `cf_servicestate`
+            WHERE
+            (
+            ( `cf_servicestate`.`strProcessName` = `a`.`strProcessName` )
+            AND ( `cf_servicestate`.`nNodePCID` = `a`.`nNodePCID` )
+            AND ( `a`.`strProcessName` LIKE '%IOSERVER%' )
+            )
+            ) AS `IsHaveDetail`
+            FROM
+            `cf_processstate` `a`
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-125">
+        <createView fullDefinition="false" viewName="V_CF_ServiceState">
+            SELECT
+            ID,
+            nNodePCID,
+            strProcessName,
+            strServiceName,
+            nState,
+            CASE
+
+            WHEN nState = 1 THEN
+            '正常' ELSE '不正常'
+            END AS StateName
+            FROM
+            CF_ServiceState AS A
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-126">
+        <createView viewName="V_SM_Biz">
+            SELECT
+            a.Code,
+            a.CodeLength,
+            a.CodeOrder,
+            a.CorpCode,
+            a.DelFlag,
+            a.DeptCode,
+            a.ID,
+            a.InputCode,
+            a.InputDate,
+            a.ISYMD,
+            ( CASE a.ISYMD WHEN '0' THEN '否' WHEN '1' THEN '是' END ) AS ISYMDName,
+            a.MaxCode,
+            a.MinCode,
+            a.ModifyCode,
+            a.ModifyDate,
+            a.ModuleCode,
+            a.Name,
+            a.PolishChar,
+            a.PolishRule,
+            ( CASE a.PolishRule WHEN '0' THEN '左补' WHEN '1' THEN '右补' WHEN '2' THEN '不补' END ) AS PolishRuleName,
+            a.Prefix,
+            a.Radix,
+            ( CASE a.Radix WHEN '0' THEN '二进制' WHEN '1' THEN '八进制' WHEN '2' THEN '十进制' WHEN '3' THEN '十六进制' END ) AS RadixName,
+            a.Remark,
+            a.SerialEntity,
+            a.SerialTimeGran,
+            ( CASE a.SerialTimeGran WHEN '0' THEN '日' WHEN '1' THEN '月' WHEN '2' THEN '年' ELSE '无' END ) AS SerialTimeGranName,
+            a.Suffix,
+            a.ValueSource,
+            b.Title
+            FROM
+            SM_Biz AS a
+            LEFT OUTER JOIN SM_SystemResourceDtl AS b ON a.ModuleCode = b.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-127">
+        <createView viewName="V_SM_Department">
+            SELECT
+            ID,
+            Code,
+            Pcode,
+            Name,
+            Charge,
+            OrderNo,
+            IsCompany,
+            IsProductionDept,
+            DelFlag,
+            '' AS hasAuthority
+            FROM
+            SM_Department
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-128">
+        <createView viewName="V_SM_DepartmentPerson">
+            SELECT
+            c.ID,
+            c.Code,
+            c.Name,
+            c.Pcode,
+            c.Charge AS PersonCode,
+            d.Name AS Charge,
+            c.OrderNo,
+            c.IsCompany,
+            c.IsProductionDept,
+            c.DelFlag
+            FROM
+            SM_Department AS c
+            LEFT OUTER JOIN SM_Person AS d ON c.Charge = d.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-129">
+        <createView viewName="V_SM_DeployDataPower">
+            SELECT
+            b.Parameter,
+            b.DeployID,
+            c.path,
+            c.type,
+            c.pid,
+            a.PersonCode
+            FROM
+            SM_PersonDataPower AS a
+            INNER JOIN SM_SystemResourceRmisDtl AS b ON a.SystemResourceDtlCode = b.Code
+            AND b.DelFlag = '0'
+            INNER JOIN t_deply AS c ON b.DeployID = c.Id
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-130">
+        <createView viewName="V_SM_DeptPerson">
+            SELECT
+            c.ID,
+            c.Code,
+            c.Name,
+            c.DeptCode,
+            d.Name AS DeptName,
+            c.WorkNum,
+            c.Account,
+            c.OrderNo
+            FROM
+            (
+            SELECT
+            ID,
+            Code,
+            Name,
+            Sex,
+            WorkNum,
+            Account,
+            Password,
+            DeptCode,
+            CorpCode,
+            Duty,
+            POSITION,
+            Superior,
+            Mobile,
+            Email,
+            OrderNo,
+            PersonStatus,
+            DelFlag
+            FROM
+            SM_Person
+            WHERE
+            ( Code &lt;&gt; 'System' )) AS c
+            LEFT OUTER JOIN SM_Department AS d ON c.DeptCode = d.Code
+            WHERE
+            ( d.DelFlag = '0' )
+            AND (
+            c.DelFlag = '0')
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-131">
+        <createView viewName="V_SM_GetAllRoleForCode">
+            SELECT
+            a.Code AS RoleCode,
+            b.ID,
+            c.Code
+            FROM
+            SM_PersonRole_Rel AS b
+            LEFT OUTER JOIN SM_Role AS a ON a.Code = b.RoleCode
+            LEFT OUTER JOIN SM_Person AS c ON c.Code = b.PersonCode
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-132">
+        <createView viewName="V_SM_GetButtonForCode">
+            SELECT
+            a.PersonCode,
+            a.PageButtonConfigID,
+            a.SystemResourceDtlCode
+            FROM
+            SM_PersonSysPower AS a
+            LEFT OUTER JOIN SM_PageButtonConfig AS b ON b.ID = a.PageButtonConfigID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-133">
+        <createView viewName="V_SM_GetButtonForRole">
+            SELECT
+            a.PageButtonConfigID,
+            a.SystemResourceDtlCode,
+            a.RoleCode
+            FROM
+            SM_RoleSysPower AS a
+            LEFT OUTER JOIN SM_PageButtonConfig AS b ON b.ID = a.PageButtonConfigID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-134">
+        <createView viewName="V_SM_GetPersonResourceForRole">
+            SELECT
+            a.Title,
+            b.Title AS subtitle,
+            c.RoleCode,
+            b.ResourceUrl,
+            b.Parameter,
+            c.CustomPower,
+            c.DataPower,
+            a.ID,
+            c.SystemResourceDtlCode
+            FROM
+            SM_SystemResource AS a
+            LEFT OUTER JOIN SM_SystemResourceDtl AS b ON a.Code = b.SystemResourceCode
+            LEFT OUTER JOIN SM_RoleDataPower AS c ON c.SystemResourceDtlCode = b.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-135">
+        <createView fullDefinition="false" viewName="V_SM_Log">
+            SELECT
+            A.ID,
+            A.strOperater,
+            A.strOperateTime,
+            A.strLabelName,
+            A.strLabelDescribe,
+            A.nLogSource,
+            A.nStatus,
+            CASE
+
+            WHEN A.nLogSource = 1 THEN
+            'iODS'
+            WHEN A.nLogSource = 2 THEN
+            '系统日志'
+            WHEN A.nLogSource = 3 THEN
+            'DCS' ELSE ''
+            END AS strLogSourceName,
+            A.strOperateRoute,
+            CASE
+
+            WHEN A.nLogSource = 1 THEN
+            ${isnull}( B_1.Title, N'' )
+            WHEN A.nLogSource = 2 THEN
+            ${isnull}( B_1.Title, N'' )
+            WHEN A.nLogSource = 3 THEN
+            ''
+            END AS strOperateRouteName,
+            CASE
+
+            WHEN A.nLogSource = 3 THEN
+            0 ELSE A.nOperateContentKey
+            END AS nOperateContentKey,
+            CASE
+
+            WHEN A.nLogSource = 1
+            AND nStatus = 0
+            AND ${len}( A.strContent ) = 0 THEN
+            '失败'
+            WHEN A.nLogSource = 1
+            AND nStatus = 1
+            AND ( A.nOperateContentKey = 11 OR A.nOperateContentKey = 12 ) THEN
+            ( '由' + A.strPreContent + '改为' + A.strafterContent )
+            WHEN A.nLogSource = 1
+            AND nStatus = 1
+            AND A.nOperateContentKey = 10 THEN
+            ( '置为' + A.strafterContent + ',脉冲时间为' + A.strPreContent + '毫秒' ) ELSE A.strContent
+            END AS strContent,
+            CASE
+
+            WHEN A.nLogSource = 3 THEN
+            '其他' ELSE C.strOperateContent
+            END AS strOperateContent,
+            CASE
+
+            WHEN ${len}( A.strArea ) &gt;
+            0 THEN
+            A.strArea ELSE ${isnull}( D.strArea, N'' )
+            END AS strArea,
+            CASE
+
+            WHEN ${len}( A.strDevice ) &gt;
+            0 THEN
+            A.strDevice ELSE ${isnull}( D.strDevice, N'' )
+            END AS strDevice,
+            CASE
+
+            WHEN ${len}( A.strUnit ) &gt;
+            0 THEN
+            A.strUnit ELSE ${isnull}( D.strUnit, N'' )
+            END AS strUnit
+            FROM
+            SM_Log AS A
+            LEFT OUTER JOIN (
+            SELECT
+            ID,
+            Code,
+            PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            '' AS ResourceUrl,
+            '' AS Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResource UNION
+            SELECT
+            ID,
+            Code,
+            SystemResourceCode AS PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            ResourceUrl,
+            Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResourceDtl UNION
+            SELECT
+            a.ID,
+            a.Code,
+            a.SystemResourceCode AS PCode,
+            a.OrderNo,
+            a.Title,
+            a.EnTitle,
+            a.DelFlag,
+            a.IsSysMenu,
+            b.type,
+            b.path AS ResourceUrl,
+            a.Parameter,
+            a.IsHide,
+            a.ExternalNetwork
+            FROM
+            SM_SystemResourceRmisDtl AS a
+            LEFT OUTER JOIN t_deply AS b ON a.DeployID = b.Id
+            ) AS B_1 ON A.strOperateRoute = B_1.Code
+            AND A.nLogSource = 2
+            LEFT OUTER JOIN SM_OperateContent AS C ON C.nOperateContentKey = A.nOperateContentKey
+            LEFT OUTER JOIN SM_ProjectTag AS D ON D.strName = A.strLabelName
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-136">
+        <createView viewName="V_SM_MessageInfo">
+            SELECT
+            a.ID,
+            a.Sender,
+            a.SendTime,
+            a.Content,
+            a.DelFlag,
+            a.EndTime,
+            a.Title,
+            a.InputCode,
+            a.InputDate,
+            a.DeptCode,
+            a.CorpCode,
+            a.ModifyCode,
+            a.ModifyDate,
+            a.MsgType,
+            b.Name,
+            a.nPushStatus
+            FROM
+            SM_MessageInfo AS a
+            LEFT OUTER JOIN SM_Person AS b ON a.Sender = b.Code
+            WHERE
+            ( b.DelFlag = '0' )
+            AND (
+            b.PersonStatus = '1')
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-137">
+        <createView viewName="V_SM_MessageInfoAll">
+            SELECT
+            SM_MessageInfoDtl.ID,
+            SM_MessageInfo.Title,
+            SM_MessageInfo.Content,
+            SM_MessageInfoDtl.PersonCode,
+            SM_MessageInfoDtl.IsRead,
+            SM_MessageInfoDtl.DelFlag,
+            SM_MessageInfo.SendTime,
+            SM_MessageInfo.Sender,
+            SM_Person.Name AS SenderName,
+            SM_MessageInfo.ID AS PID,
+            SM_MessageInfo.MsgType,
+            SM_MessageInfo.nPushStatus,
+            SM_MessageInfo.Client
+            FROM
+            SM_MessageInfo
+            INNER JOIN SM_MessageInfoDtl ON SM_MessageInfo.ID = SM_MessageInfoDtl.PID
+            INNER JOIN SM_Person ON SM_MessageInfo.Sender = SM_Person.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-138">
+        <createView viewName="V_SM_MessageInfoDtl">
+            SELECT
+            a.PID,
+            a.PersonCode,
+            b.Name,
+            a.ID
+            FROM
+            SM_MessageInfoDtl AS a
+            LEFT OUTER JOIN SM_Person AS b ON a.PersonCode = b.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-139">
+        <createView fullDefinition="false" viewName="V_SM_PersonDataPower">
+            SELECT
+            a.ID,
+            PersonCode,
+            SystemResourceDtlCode,
+            DataPower,
+            CustomPower,
+            '0' AS strIsEnable
+            FROM
+            SM_RoleDataPower AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.RoleCode = b.RoleCode
+            WHERE
+            a.SystemResourceDtlCode IS NOT NULL UNION ALL
+            SELECT
+            ID,
+            PersonCode,
+            SystemResourceDtlCode,
+            DataPower,
+            CustomPower,
+            '1' AS strIsEnable
+            FROM
+            SM_PersonDataPower
+            WHERE
+            SystemResourceDtlCode IS NOT NULL
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-140">
+        <createView fullDefinition="false" viewName="V_SM_PersonDeptPower">
+            SELECT
+            a.ID AS Code,
+            a.DeptCode,
+            b.PersonCode
+            FROM
+            SM_RoleDeptPower AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.RoleCode = b.RoleCode UNION ALL
+            SELECT
+            ID AS Code,
+            DeptCode,
+            PersonCode
+            FROM
+            SM_PersonDeptPower
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-141" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_SM_PersonInfo">
+            SELECT
+            c.ID,
+            c.Code,
+            c.Name,
+            c.Sex,
+            CASE
+            c.Sex
+            WHEN '0' THEN
+            '男'
+            WHEN '1' THEN
+            '女'
+            END AS SexName,
+            c.Account,
+            c.WorkNum,
+            c.Password AS Pwd,
+            c.DeptCode,
+            c.Mobile,
+            c.Duty,
+            c.Position,
+            c.Superior,
+            h.Name AS SuperiorName,
+            d.Name AS DeptName,
+            c.CorpCode,
+            e.Name AS CorpName,
+            ee.RoleCode,
+            ee.RoleName,
+            ff.DepartCode,
+            ff.DepartName,
+            c.DelFlag
+            FROM
+            SM_Person AS c
+            LEFT JOIN /*ee【Code1 + RoleCode + RoleName】*/
+            (
+            SELECT
+            Code AS Code1,
+            RoleCode = (
+            STUFF((
+            SELECT
+            ',' + RoleCode
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS RoleCode,
+            c.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.Code
+            AND c.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = aa.Code FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            )),
+            RoleName = (
+            STUFF((
+            SELECT
+            ',' + RoleName
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS RoleCode,
+            c.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.Code
+            AND c.DelFlag = '0'
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = aa.Code
+            ORDER BY
+            RoleName FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            ))
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS RoleCode,
+            c.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.Code
+            AND c.DelFlag = '0'
+            WHERE
+            a.DelFlag = '0'
+            ) AS aa
+            GROUP BY
+            Code
+            ) AS ee ON c.Code = ee.Code1
+            LEFT JOIN /*ff【Code2 + DepartCode + DepartName】*/
+            (
+            SELECT
+            Code AS Code2,
+            DepartCode = (
+            STUFF((
+            SELECT
+            ',' + DepartCode
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS DepartCode,
+            c.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = hh.Code FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            )),
+            DepartName = (
+            STUFF((
+            SELECT
+            ',' + DepartName
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS DepartCode,
+            c.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = hh.Code
+            ORDER BY
+            DepartName FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            ))
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS DepartCode,
+            c.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS hh
+            GROUP BY
+            Code
+            ) AS ff ON c.Code = ff.Code2
+            LEFT JOIN SM_Department AS d ON c.DeptCode = d.Code
+            LEFT JOIN SM_Department AS e ON c.CorpCode = e.Code
+            LEFT JOIN SM_Person AS h ON c.Superior = h.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-141" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_SM_PersonInfo">
+            SELECT
+            c.ID,
+            c.CODE,
+            c.NAME,
+            c.Sex,
+            CASE
+            c.Sex
+            WHEN '0' THEN
+            '男'
+            WHEN '1' THEN
+            '女'
+            END AS SexName,
+            c.Account,
+            c.WorkNum,
+            c.PASSWORD AS Pwd,
+            c.DeptCode,
+            c.Mobile,
+            c.Duty,
+            c.Position,
+            c.Superior,
+            c.DelFlag,
+            c.CorpCode,
+            d.NAME AS DeptName,
+            e.NAME AS CorpName,
+            ee.RoleCode,
+            ee.RoleName,
+            ff.DepartCode,
+            ff.DepartName,
+            h.NAME AS SuperiorName
+            FROM
+            SM_Person AS c
+            LEFT JOIN (
+            SELECT CODE AS
+            Code1,
+            RoleCode = (
+            INSERT (
+            (
+            SELECT
+            GROUP_CONCAT( RoleCode, ',' )
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS RoleCode,
+            c.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.CODE
+            AND c.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = aa.CODE
+            ),
+            1,
+            1,
+            ''
+            )
+            ) AS RoleCode,
+            RoleName = (
+            INSERT (
+            (
+            SELECT
+            GROUP_CONCAT( RoleName, ',' )
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS RoleCode,
+            c.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.CODE
+            AND c.DelFlag = '0'
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = aa.CODE
+            ORDER BY
+            RoleName
+            ),
+            1,
+            1,
+            ''
+            )
+            ) AS RoleName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS RoleCode,
+            c.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN SM_Role AS c ON b.RoleCode = c.CODE
+            AND c.DelFlag = '0'
+            WHERE
+            a.DelFlag = '0'
+            ) AS aa
+            GROUP BY
+            CODE
+            ) AS ee ON c.CODE = ee.Code1
+            LEFT JOIN (
+            SELECT CODE AS
+            Code2,
+            DepartCode = (
+            INSERT (
+            (
+            SELECT
+            GROUP_CONCAT( DepartCode, ',' )
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS DepartCode,
+            c.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = hh.CODE
+            ),
+            1,
+            1,
+            ''
+            )
+            ) AS DepartCode,
+            DepartName = (
+            INSERT (
+            (
+            SELECT
+            GROUP_CONCAT( DepartName, ',' )
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS DepartCode,
+            c.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = hh.CODE
+            ORDER BY
+            DepartName
+            ),
+            1,
+            1,
+            ''
+            )
+            ) AS DepartName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS DepartCode,
+            c.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS hh
+            GROUP BY
+            CODE
+            ) AS ff ON c.CODE = ff.Code2
+            LEFT JOIN SM_Department AS d ON c.DeptCode = d.
+            CODE LEFT JOIN SM_Department AS e ON c.CorpCode = e.
+            CODE LEFT JOIN SM_Person AS h ON c.Superior = h.CODE;
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-142">
+        <createView fullDefinition="false" viewName="V_SM_PersonProjectPower">
+            SELECT
+            a.ID,
+            PersonCode AS strPersonCode,
+            strProjectCode,
+            strItem,
+            strPowerCode,
+            strDataPower,
+            strCustomPower,
+            '0' AS strIsEnable
+            FROM
+            SM_RoleProjectPower AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.strRoleCode = b.RoleCode UNION ALL
+            SELECT
+            ID,
+            strPersonCode,
+            strProjectCode,
+            strItem,
+            strPowerCode,
+            strDataPower,
+            strCustomPower,
+            '1' AS strIsEnable
+            FROM
+            SM_PersonProjectPower
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-143">
+        <createView fullDefinition="false" viewName="V_SM_PersonProjectSysPower">
+            SELECT
+            a.ID,
+            b.PersonCode AS strPersonCode,
+            c.strButtonID,
+            c.strButtonName,
+            c.strProjectSysPowerCode,
+            c.nPowerCodeType,
+            a.strProjectCode,
+            a.strItemCode,
+            a.nPageButtonConfigID,
+            '0' AS strIsEnable
+            FROM
+            SM_RoleProjectSysPower AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.strRoleCode = b.RoleCode
+            LEFT JOIN SM_ProjectPageButtonConfig AS c ON a.nPageButtonConfigID = c.ID UNION
+            SELECT
+            a.ID,
+            a.strPersonCode,
+            b.strButtonID,
+            b.strButtonName,
+            b.strProjectSysPowerCode,
+            b.nPowerCodeType,
+            a.strProjectCode,
+            a.strItemCode,
+            a.nPageButtonConfigID,
+            '1' AS strIsEnable
+            FROM
+            SM_PersonProjectSysPower AS a
+            LEFT JOIN SM_ProjectPageButtonConfig AS b ON a.nPageButtonConfigID = b.ID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-144">
+        <createView viewName="V_SM_PersonResourceForCode">
+            SELECT
+            a.Title,
+            b.Title AS subtitle,
+            c.PersonCode,
+            b.ResourceUrl,
+            b.Parameter,
+            c.DataPower,
+            b.Code,
+            c.CustomPower,
+            a.ID
+            FROM
+            SM_SystemResource AS a
+            LEFT OUTER JOIN SM_SystemResourceDtl AS b ON a.Code = b.SystemResourceCode
+            LEFT OUTER JOIN SM_PersonDataPower AS c ON c.SystemResourceDtlCode = b.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-145">
+        <createView viewName="V_SM_PersonSuperior">
+            SELECT
+            c.ID,
+            c.Code,
+            c.Name,
+            c.Account,
+            c.CorpCode,
+            c.DelFlag,
+            c.DeptCode,
+            c.Duty,
+            c.Email,
+            c.Mobile,
+            c.Password,
+            c.PersonStatus,
+            c.Position,
+            c.Sex,
+            c.WorkNum,
+            c.OrderNo,
+            c.Superior,
+            d.Name AS SuperiorName,
+            b.RoleCode,
+            a.Name AS RoleName
+            FROM
+            SM_Person AS c
+            LEFT OUTER JOIN SM_PersonRole_Rel AS b ON c.Code = b.PersonCode
+            LEFT OUTER JOIN SM_Role AS a ON a.Code = b.RoleCode
+            LEFT OUTER JOIN SM_Person AS d ON c.Superior = d.Code
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-146" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_SM_PersonSuperiorRole">
+            SELECT
+            dd.ID,
+            dd.Code,
+            dd.Name,
+            dd.Account,
+            dd.CorpCode,
+            dd.DelFlag,
+            dd.DeptCode,
+            dd.Duty,
+            dd.Email,
+            dd.Mobile,
+            dd.Password,
+            dd.PersonStatus,
+            dd.Position,
+            dd.Sex,
+            dd.WorkNum,
+            dd.OrderNo,
+            dd.Superior,
+            dd.SuperiorName,
+            dd.DeptName,
+            ee.Code1,
+            RoleCode,
+            RoleName,
+            ff.Code2,
+            ff.DepartCode,
+            ff.DepartName
+            FROM
+            (
+            SELECT
+            c.ID,
+            c.Code,
+            c.Name,
+            c.Account,
+            c.CorpCode,
+            c.DelFlag,
+            c.DeptCode,
+            c.Duty,
+            c.Email,
+            c.Mobile,
+            c.Password,
+            c.PersonStatus,
+            c.Position,
+            c.Sex,
+            c.WorkNum,
+            c.OrderNo,
+            c.Superior,
+            d.Name AS SuperiorName,
+            e.Name AS DeptName
+            FROM
+            (
+            SELECT
+            ID,
+            Code,
+            Name,
+            Sex,
+            WorkNum,
+            Account,
+            Password,
+            DeptCode,
+            CorpCode,
+            Duty,
+            POSITION,
+            Superior,
+            Mobile,
+            Email,
+            OrderNo,
+            PersonStatus,
+            DelFlag,
+            RandCode,
+            LastPasswordChangeTime
+            FROM
+            SM_Person
+            WHERE
+            ( Account &lt;&gt; 'System' )
+            OR ( Account IS NULL )) AS c
+            LEFT OUTER JOIN SM_Person AS d ON c.Superior = d.Code
+            LEFT OUTER JOIN SM_Department AS e ON c.DeptCode = e.Code
+            ) AS dd
+            LEFT OUTER JOIN /*dd【人员信息 + SuperName + DeptName】*/
+            (
+            SELECT
+            Code AS Code1,
+            RoleCode = (
+            STUFF((
+            SELECT
+            ',' + RoleCode
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS RoleCode,
+            c.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Role WHERE DelFlag = '0' ) AS c ON b.RoleCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = aa.Code FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            )),
+            RoleName = (
+            STUFF((
+            SELECT
+            ',' + RoleName
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS RoleCode,
+            c.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Role WHERE DelFlag = '0' ) AS c ON b.RoleCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = aa.Code
+            ORDER BY
+            RoleName FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            ))
+            FROM
+            (
+            SELECT
+            a.Code,
+            c_2.Code AS RoleCode,
+            c_2.Name AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT OUTER JOIN SM_PersonRole_Rel AS b ON a.Code = b.PersonCode
+            LEFT OUTER JOIN (
+            SELECT
+            ID,
+            Code,
+            Name,
+            DESCRIBE,
+            DelFlag
+            FROM
+            SM_Role
+            WHERE
+            ( DelFlag = '0' )) AS c_2 ON b.RoleCode = c_2.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS aa
+            GROUP BY
+            Code
+            ) AS ee ON dd.Code = ee.Code1
+            LEFT OUTER JOIN /*ff【Code2 + DepartCode + DepartName】*/
+            (
+            SELECT
+            Code AS Code2,
+            DepartCode = (
+            STUFF((
+            SELECT
+            ',' + DepartCode
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS DepartCode,
+            c.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = hh.Code FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            )),
+            DepartName = (
+            STUFF((
+            SELECT
+            ',' + DepartName
+            FROM
+            (
+            SELECT
+            a.Code,
+            c.Code AS DepartCode,
+            c.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            Code = hh.Code
+            ORDER BY
+            DepartName FOR xml path ( '' )),
+            1,
+            1,
+            ''
+            ))
+            FROM
+            (
+            SELECT
+            a.Code,
+            c_1.Code AS DepartCode,
+            c_1.Name AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT OUTER JOIN SM_PersonDepart_Rel AS b ON a.Code = b.PersonCode
+            LEFT OUTER JOIN (
+            SELECT
+            ID,
+            Code,
+            Pcode,
+            Name,
+            Charge,
+            OrderNo,
+            IsCompany,
+            IsProductionDept,
+            DelFlag
+            FROM
+            SM_Department
+            WHERE
+            ( DelFlag = '0' )) AS c_1 ON b.DepartCode = c_1.Code
+            WHERE
+            a.DelFlag = '0'
+            ) AS hh
+            GROUP BY
+            Code
+            ) AS ff ON dd.Code = ff.Code2
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-147">
+        <createView fullDefinition="false" viewName="V_SM_PersonSysPower">
+            SELECT
+            a.ID AS Code,
+            b.PersonCode,
+            a.IsEnable,
+            c.ButtonID,
+            c.ButtonName,
+            c.SystemResourceDtlCode,
+            c.IsSysMenu,
+            a.PageButtonConfigID,
+            '0' AS strIsEnable
+            FROM
+            SM_RoleSysPower AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.RoleCode = b.RoleCode
+            LEFT JOIN SM_PageButtonConfig AS c ON a.PageButtonConfigID = c.ID UNION
+            SELECT
+            a.ID AS Code,
+            a.PersonCode,
+            a.IsEnable,
+            b.ButtonID,
+            b.ButtonName,
+            b.SystemResourceDtlCode,
+            b.IsSysMenu,
+            a.PageButtonConfigID,
+            '1' AS strIsEnable
+            FROM
+            SM_PersonSysPower AS a
+            LEFT JOIN SM_PageButtonConfig AS b ON a.PageButtonConfigID = b.ID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-148" dbms="mssql">
+        <createView fullDefinition="false" viewName="V_SM_ProjectArchitectureFullPath">
+            WITH T AS (
+            SELECT
+            ID,
+            strProjectCode,
+            strPProjectCode,
+            strName,
+            CAST (
+            strName AS NVARCHAR ( MAX )) AS path,
+            CAST (
+            strProjectCode AS NVARCHAR ( MAX )) AS projectCode
+            FROM
+            SM_ProjectArchitecture
+            WHERE
+            ( strPProjectCode = '-1' )
+            AND ( strDelFlag = '0' ) UNION ALL
+            SELECT
+            B.ID,
+            B.strProjectCode,
+            B.strPProjectCode,
+            B.strName,
+            T_2.path + '\' + B.strName AS path,
+            T_2.projectCode + '\' + B.strProjectCode AS projectCode
+            FROM
+            SM_ProjectArchitecture AS B
+            INNER JOIN T AS T_2 ON B.strPProjectCode = T_2.strProjectCode
+            ) SELECT
+            ID,
+            strProjectCode,
+            strPProjectCode,
+            strName,
+            path AS namePath,
+            projectCode AS codePath
+            FROM
+            T AS T_1
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-149">
+        <createView fullDefinition="false" viewName="V_SM_ProjectReportPlan">
+            SELECT
+            c.ID,
+            c.strID,
+            c.strGTGuid,
+            c.strProjectCode,
+            c.nOrderNo,
+            d.strPlanName,
+            d.strPlanDescription,
+            d.strReportTemplateResourceUrl,
+            d.strGTName,
+            d.strReportServiceAName,
+            d.strReportServiceBName,
+            c.strDelFlag
+            FROM
+            SM_ProjectReportPlan AS c
+            INNER JOIN SM_ReportPlan AS d ON c.strID = d.ID
+            AND c.strGTGuid = d.strGTGuid
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-150">
+        <createView fullDefinition="false" viewName="V_SM_ProjectVideo">
+            SELECT
+            SM_ProjectVideo.ID,
+            SM_ProjectVideo.strGTGuid,
+            SM_ProjectVideo.strName,
+            SM_ProjectVideo.strDescription,
+            SM_ProjectVideo.strProjectCode,
+            SM_ProjectVideo.nOrderNo,
+            SM_ProjectVideo.strResourceUrl,
+            SM_ProjectVideo.strDevType,
+            SM_ProjectVideo.strUserName,
+            SM_ProjectVideo.strPassword,
+            SM_ProjectVideo.strDelFlag,
+            SM_ProjectVideo.strAccountID,
+            SM_ProjectVideo.strSerialNum,
+            SM_VideoAccount.strAccountName
+            FROM
+            SM_ProjectVideo
+            LEFT OUTER JOIN SM_VideoAccount ON SM_ProjectVideo.strAccountID = SM_VideoAccount.ID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-151">
+        <createView viewName="V_SM_ReceiverGroupDtl">
+            SELECT
+            a.PCode AS GroupCode,
+            a.PersonCode,
+            b.WorkNum,
+            b.Sex,
+            b.Name AS PersonName,
+            b.Position,
+            b.Mobile,
+            b.Email,
+            c.Name AS DeptName
+            FROM
+            SM_ReceiverGroupDtl AS a
+            INNER JOIN SM_Person AS b ON a.PersonCode = b.Code
+            INNER JOIN SM_Department AS c ON b.DeptCode = c.Code
+            WHERE
+            ( b.DelFlag = '0' )
+            AND (
+            c.DelFlag = '0')
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-152">
+        <createView viewName="V_SM_RolePerson">
+            SELECT
+            a.Code AS RoleCode,
+            c.Code,
+            c.Name,
+            c.Sex,
+            c.WorkNum,
+            c.Account,
+            c.Duty,
+            c.Position,
+            c.Superior,
+            (
+            SELECT
+            Name
+            FROM
+            SM_Person AS d
+            WHERE
+            ( Code = c.Superior )) AS SuperiorName,
+            c.Mobile,
+            c.Email,
+            c.OrderNo,
+            b.ID
+            FROM
+            SM_PersonRole_Rel AS b
+            LEFT OUTER JOIN SM_Role AS a ON a.Code = b.RoleCode
+            LEFT OUTER JOIN SM_Person AS c ON c.Code = b.PersonCode
+            WHERE
+            ( a.DelFlag = 0 )
+            AND (
+            c.DelFlag = 0)
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-153">
+        <createView fullDefinition="false" viewName="V_SM_RoleProjectSysPower">
+            SELECT
+            a.ID,
+            a.strRoleCode,
+            b.strButtonID,
+            b.strButtonName,
+            b.strProjectSysPowerCode,
+            b.nPowerCodeType,
+            a.strProjectCode,
+            a.strItemCode,
+            a.nPageButtonConfigID,
+            '1' AS strIsEnable
+            FROM
+            SM_RoleProjectSysPower AS a
+            LEFT OUTER JOIN SM_ProjectPageButtonConfig AS b ON a.nPageButtonConfigID = b.ID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-154">
+        <createView viewName="V_SM_RoleSysPower">
+            SELECT
+            a.RoleCode,
+            a.IsEnable,
+            b.ButtonID,
+            b.ButtonName,
+            b.SystemResourceDtlCode,
+            b.IsSysMenu
+            FROM
+            SM_RoleSysPower AS a
+            LEFT OUTER JOIN SM_PageButtonConfig AS b ON a.PageButtonConfigID = b.ID
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-155">
+        <createView fullDefinition="false" viewName="V_SM_SystemResourceAll">
+            SELECT
+            id,
+            Code,
+            PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            '' AS ResourceUrl,
+            '' AS Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResource UNION
+            SELECT
+            id,
+            Code,
+            SystemResourceCode AS PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            ResourceUrl,
+            Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResourceDtl UNION
+            SELECT
+            a.id,
+            Code,
+            SystemResourceCode AS PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            Type,
+            path AS ResourceUrl,
+            Parameter,
+            IsHide,
+            ExternalNetwork
+            FROM
+            SM_SystemResourceRmisDtl AS a
+            LEFT JOIN t_deply b ON a.DeployID = b.id
+        </createView>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-156">
+        <createView replaceIfExists="true" viewName="V_SM_SystemResourceRmisDtl">
+            SELECT
+            a.Code,
+            a.DelFlag,
+            a.ID,
+            a.IsHide,
+            a.IsSysMenu,
+            a.OrderNo,
+            a.Parameter,
+            a.ResourceType,
+            a.SystemResourceCode,
+            a.Title,
+            a.EnTitle,
+            a.Platform,
+            a.ConfCodeVou,
+            b.path AS ResourceUrl,
+            b.Id AS DeployID,
+            '' AS ResourceUrlApp
+            FROM
+            SM_SystemResourceRmisDtl AS a
+            LEFT OUTER JOIN t_deply AS b ON a.DeployID = b.Id
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-157">
+        <createView fullDefinition="false" viewName="V_SM_SystemResourceDtl">
+            SELECT
+            ID,
+            Code,
+            SystemResourceCode,
+            Title,
+            EnTitle,
+            ResourceType,
+            ResourceUrl,
+            ResourceUrlApp,
+            Parameter,
+            OrderNo,
+            IsHide,
+            IsSysMenu,
+            Platform,
+            ConfCodeVou,
+            DelFlag,
+            '' AS DeployID
+            FROM
+            SM_SystemResourceDtl UNION
+            SELECT
+            ID,
+            Code,
+            SystemResourceCode,
+            Title,
+            EnTitle,
+            ResourceType,
+            ResourceUrl,
+            ResourceUrlApp,
+            Parameter,
+            OrderNo,
+            IsHide,
+            IsSysMenu,
+            Platform,
+            ConfCodeVou,
+            DelFlag,
+            DeployID
+            FROM
+            V_SM_SystemResourceRmisDtl
+        </createView>
+    </changeSet>
+
+    <changeSet author="WangXun" id="1574840696094-158">
+        <createView viewName="V_SM_SystemResourcePowerDtl">
+            SELECT DISTINCT
+            b.PersonCode,
+            a.ID,
+            a.Code,
+            a.SystemResourceCode,
+            a.Title,
+            a.EnTitle,
+            a.ResourceType,
+            a.ResourceUrl,
+            a.ResourceUrlApp,
+            a.Parameter,
+            a.OrderNo,
+            a.IsHide,
+            a.IsSysMenu,
+            a.Platform,
+            a.DeployID,
+            a.ConfCodeVou,
+            a.DelFlag
+            FROM
+            V_SM_SystemResourceDtl AS a
+            CROSS JOIN V_SM_PersonDataPower AS b
+            WHERE
+            (
+            a.Code IN (
+            SELECT
+            SystemResourceDtlCode
+            FROM
+            V_SM_PersonDataPower AS c
+            WHERE
+            ( a.Code = SystemResourceDtlCode )))
+            OR (
+            a.IsSysMenu &lt;&gt; '1')
+        </createView>
+    </changeSet>
+
+
+</databaseChangeLog>

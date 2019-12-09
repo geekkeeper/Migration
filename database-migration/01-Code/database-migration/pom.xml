@@ -23,7 +23,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
-	<modules></modules>
+	<modules>
+		<module>iods</module>
+	</modules>
 	<dependencyManagement>
 		<dependencies></dependencies>
 	</dependencyManagement>

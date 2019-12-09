@@ -1,0 +1,125 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="v3.0.0.1" author="Wangxun">
+        <comment>修改SM_Person表OrderNo字段自增</comment>
+        <createSequence sequenceName="SQ_PERSON_ORDERNO" startValue="1" incrementBy="1"/>
+        <addDefaultValue tableName="SM_Person" columnName="OrderNo" defaultValueSequenceNext="SQ_PERSON_ORDERNO"/>
+        <rollback>
+            <dropDefaultValue tableName="SM_Person" columnName="OrderNo"/>
+            <dropSequence sequenceName="SQ_PERSON_ORDERNO"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="v3.0.0.1" author="Wangxun" dbms="mysql">
+        <comment>修改SM_Person表OrderNo字段自增</comment>
+        <!--mysql 的自增实现方式-->
+    </changeSet>
+
+    <changeSet id="v3.0.0.2" author="Wangxun">
+        <comment>修改工程标签表区域、装置、单元字段长度为128字节（64个汉字）</comment>
+        <!--<dropDefaultValue columnName="strArea" tableName="SM_ProjectTag"/>
+        <dropDefaultValue columnName="strDevice" tableName="SM_ProjectTag"/>-->
+        <modifyDataType columnName="strArea" newDataType="nvarchar(128)" tableName="SM_ProjectTag"/>
+        <modifyDataType columnName="strDevice" newDataType="nvarchar(128)" tableName="SM_ProjectTag"/>
+        <modifyDataType columnName="strUnit" newDataType="nvarchar(128)" tableName="SM_ProjectTag"/>
+        <dropIndex indexName="IX_SM_ProjectTag_P" tableName="SM_ProjectTag"/>
+        <rollback>
+            <createIndex indexName="IX_SM_ProjectTag_P" tableName="SM_ProjectTag">
+                <column name="strProjectCode"/>
+            </createIndex>
+            <modifyDataType columnName="strArea" newDataType="nvarchar(64)" tableName="SM_ProjectTag"/>
+            <modifyDataType columnName="strDevice" newDataType="nvarchar(64)" tableName="SM_ProjectTag"/>
+            <modifyDataType columnName="strUnit" newDataType="nvarchar(64)" tableName="SM_ProjectTag"/>
+            <!--<addDefaultValue tableName="SM_ProjectTag" columnName="strDevice"/>
+            <addDefaultValue tableName="SM_ProjectTag" columnName="strArea"/>-->
+        </rollback>
+    </changeSet>
+
+    <changeSet id="v3.0.0.3" author="WangXun">
+        <addColumn tableName="CF_Alarm">
+            <column name="nDomainNum" type="int" />
+        </addColumn>
+        <addColumn tableName="CF_AlarmHis">
+            <column name="nDomainNum" type="int" />
+        </addColumn>
+        <createView fullDefinition="false" replaceIfExists="true" viewName="V_CF_Alarm">
+            SELECT
+            SM_ProjectArchitecture.strProjectCode,
+            SM_ProjectArchitecture.strName AS strProjectName,
+            CF_Alarm.ID,
+            CF_Alarm.nAlarmType,
+            CF_Alarm.nAlarmState,
+            CF_Alarm.nAlarmlevel,
+            CF_Alarm.strEventTime,
+            CF_Alarm.strTagName,
+            CF_Alarm.strTagDes,
+            CF_Alarm.strArea,
+            CF_Alarm.strDevice,
+            CF_Alarm.strUnit,
+            CF_Alarm.strMsgDes,
+            CF_Alarm.fAlarmlimit,
+            CF_Alarm.strAlarmValue,
+            CF_Alarm.strRecoveryTime,
+            CF_Alarm.strAckedTime,
+            CF_Alarm.strAckedComment,
+            CF_Alarm.nSource,
+            CF_Alarm.strIsHide,
+            CF_Alarm.strNodeDomain,
+            CF_Alarm.strTypeName,
+            CF_Alarm.strAlarmTypeDes,
+            CF_Alarm.nPushStatus,
+            CF_Alarm.strAlarmLevelDes,
+            CF_Alarm.nDomainNum
+            FROM
+            SM_ProjectArchitecture
+            INNER JOIN SM_ProjectTag ON SM_ProjectArchitecture.strDelFlag = '0'
+            AND SM_ProjectArchitecture.strProjectCode = SM_ProjectTag.strProjectCode
+            INNER JOIN CF_Alarm ON SM_ProjectTag.strName = CF_Alarm.strTagName
+            OR SM_ProjectTag.strName = CF_Alarm.strNodeDomain
+        </createView>
+        <rollback>
+            <createView fullDefinition="false" replaceIfExists="true" viewName="V_CF_Alarm">
+                SELECT
+                SM_ProjectArchitecture.strProjectCode,
+                SM_ProjectArchitecture.strName AS strProjectName,
+                CF_Alarm.ID,
+                CF_Alarm.nAlarmType,
+                CF_Alarm.nAlarmState,
+                CF_Alarm.nAlarmlevel,
+                CF_Alarm.strEventTime,
+                CF_Alarm.strTagName,
+                CF_Alarm.strTagDes,
+                CF_Alarm.strArea,
+                CF_Alarm.strDevice,
+                CF_Alarm.strUnit,
+                CF_Alarm.strMsgDes,
+                CF_Alarm.fAlarmlimit,
+                CF_Alarm.strAlarmValue,
+                CF_Alarm.strRecoveryTime,
+                CF_Alarm.strAckedTime,
+                CF_Alarm.strAckedComment,
+                CF_Alarm.nSource,
+                CF_Alarm.strIsHide,
+                CF_Alarm.strNodeDomain,
+                CF_Alarm.strTypeName,
+                CF_Alarm.strAlarmTypeDes,
+                CF_Alarm.nPushStatus,
+                CF_Alarm.strAlarmLevelDes
+                FROM
+                SM_ProjectArchitecture
+                INNER JOIN SM_ProjectTag ON SM_ProjectArchitecture.strDelFlag = '0'
+                AND SM_ProjectArchitecture.strProjectCode = SM_ProjectTag.strProjectCode
+                INNER JOIN CF_Alarm ON SM_ProjectTag.strName = CF_Alarm.strTagName
+                OR SM_ProjectTag.strName = CF_Alarm.strNodeDomain
+            </createView>
+            <dropColumn tableName="CF_AlarmHis" columnName="nDomainNum"/>
+            <dropColumn tableName="CF_Alarm" columnName="nDomainNum"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="v3.0.1.0" author="WangXun">
+        <tagDatabase tag="v3.0.1.0"/>
+    </changeSet>
+
+</databaseChangeLog>

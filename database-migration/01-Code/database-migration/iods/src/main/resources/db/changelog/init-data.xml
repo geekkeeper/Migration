@@ -1,0 +1,3017 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="now" value="GETDATE()" dbms="mssql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <changeSet author="WangXun" id="1574840791512-1">
+        <insert tableName="CF_NodeState">
+            <column name="ID" value="{1F990A66-B7F4-48E9-B005-89E9F3575798}"/>
+            <column name="nCPULoad" valueNumeric="15"/>
+            <column name="fTemperature" valueNumeric="48.0"/>
+            <column name="nMemoryLoad" valueNumeric="15"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="nNodeType" valueNumeric="0"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+            <column name="strSerialNum" value="0"/>
+            <column name="fNetworkALoad" valueNumeric="0.111724"/>
+            <column name="fNetworkBLoad" valueNumeric="0.0"/>
+        </insert>
+        <insert tableName="CF_NodeState">
+            <column name="ID" value="{8A6848E1-576A-47D3-920C-7411CC8D7223}"/>
+            <column name="nCPULoad" valueNumeric="40"/>
+            <column name="fTemperature" valueNumeric="27.0"/>
+            <column name="nMemoryLoad" valueNumeric="64"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="nNodeType" valueNumeric="0"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+            <column name="strSerialNum" value="0"/>
+            <column name="fNetworkALoad" valueNumeric="0.09854399999999999"/>
+            <column name="fNetworkBLoad" valueNumeric="0.09854399999999999"/>
+        </insert>
+        <rollback>
+            <delete tableName="CF_NodeState" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-2">
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{3260BD66-984E-4665-A01C-7AB92CCA1E66}"/>
+            <column name="nProcessID" valueNumeric="1292"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.MesQueueService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{365F64AC-CDEA-48DB-BCFB-136FF7A1AC0A}"/>
+            <column name="nProcessID" valueNumeric="8400"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="DatabaseService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{4CFC77AF-94E3-4A47-8AFE-203EC378BC7B}"/>
+            <column name="nProcessID" valueNumeric="6720"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="LogCalculateService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{5355B98C-4712-46BC-ABC3-139DB73D4CB7}"/>
+            <column name="nProcessID" valueNumeric="8256"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="NodeStateCalculateService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{55528FBE-A707-400B-B39C-1F8A1CA1EBBD}"/>
+            <column name="nProcessID" valueNumeric="4596"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.DataPushService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{57206401-4133-481D-AC56-680182C183AA}"/>
+            <column name="nProcessID" valueNumeric="6616"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="GTPlusAdjustTimeClient.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{57883148-AF8F-4736-98FC-E27188684A4F}"/>
+            <column name="nProcessID" valueNumeric="5236"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="NodeStateCalculateClient.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{5DD44734-CD31-4E9F-B59F-7DF9EB261D0A}"/>
+            <column name="nProcessID" valueNumeric="916"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.DynamicFeature.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{71736B69-B1E6-4A72-B82F-AEA54D53ACEC}"/>
+            <column name="nProcessID" valueNumeric="8204"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="GTPlusAdjustTimeClient.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{86171F72-548F-42A5-939F-300FCE01BAC3}"/>
+            <column name="nProcessID" valueNumeric="4000"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.WebAPIService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{88D35A2B-9AA6-4331-A2A8-C3C0124EC6EB}"/>
+            <column name="nProcessID" valueNumeric="2020"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="AlarmCalculateService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{9A1F87FD-AED3-499F-9496-BB29C06102A3}"/>
+            <column name="nProcessID" valueNumeric="1592"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.PollingService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{A5D2DAFB-71AF-4751-92E7-32DAA35AA6B1}"/>
+            <column name="nProcessID" valueNumeric="5876"/>
+            <column name="nNodePCID" valueNumeric="2"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="ISPlatform.Service.LogService.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{D2C75773-1D56-4C60-88CB-20818DF1A4CE}"/>
+            <column name="nProcessID" valueNumeric="8528"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="NodeStateCalculateClient.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <insert tableName="CF_ProcessState">
+            <column name="ID" value="{F842D906-90A0-4510-BC40-7B9EF847AC95}"/>
+            <column name="nProcessID" valueNumeric="2460"/>
+            <column name="nNodePCID" valueNumeric="1"/>
+            <column name="nState" valueNumeric="1"/>
+            <column name="strProcessName" value="GTPlusRDB.exe"/>
+            <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
+        </insert>
+        <rollback>
+            <delete tableName="CF_ProcessState" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-3">
+        <insert tableName="SM_Department">
+            <column name="ID" value="1"/>
+            <column name="Code" value="1"/>
+            <column name="Pcode" value="-1"/>
+            <column name="Name" value="×××集团"/>
+            <column name="Charge" value="3"/>
+            <column name="OrderNo" valueNumeric="0"/>
+            <column name="IsCompany" value="1"/>
+            <column name="IsProductionDept" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_Department" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-4">
+        <insert tableName="SM_GeneralSettings">
+            <column name="ID" value="42EAC5B6-2CEF-4603-8365-DD364C8A8AC1"/>
+            <column name="AlarmVoiceCycleNum" valueNumeric="3"/>
+            <column name="ConnInterruptTime" valueNumeric="5"/>
+            <column name="LogoutTime" valueNumeric="9999"/>
+            <column name="PassWordInValidTime" valueNumeric="9999"/>
+            <column name="NetworkRecordNumber" value=""/>
+            <column name="LoginBackGroundPicture" defaultOnNull="true"/>
+            <column name="MainLogoPicture" defaultOnNull="true"/>
+            <column name="CreateTime" valueDate="2019-04-22T14:46:03.693"/>
+            <column name="ModifiedTime" valueDate="2019-04-22T14:46:03.693"/>
+            <column name="HomeBackgroundPicture" defaultOnNull="true"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_GeneralSettings" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-5">
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="1"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Title"/>
+            <column name="FieldName" value="标题"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="10"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Describe"/>
+            <column name="FieldName" value="描述"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="11"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="DeptName"/>
+            <column name="FieldName" value="所属部门"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="12"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="13"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Name"/>
+            <column name="FieldName" value="姓名"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="14"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Sex"/>
+            <column name="FieldName" value="性别"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="15"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="WorkNum"/>
+            <column name="FieldName" value="工号"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="16"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Account"/>
+            <column name="FieldName" value="账号"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="17"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Duty"/>
+            <column name="FieldName" value="职务"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="18"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Position"/>
+            <column name="FieldName" value="职等"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="19"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="SuperiorName"/>
+            <column name="FieldName" value="上级人员"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="2"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ResourceType"/>
+            <column name="FieldName" value="功能类型"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="20"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="RoleName"/>
+            <column name="FieldName" value="所属角色"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="21"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Mobile"/>
+            <column name="FieldName" value="手机号码"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="22"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Email"/>
+            <column name="FieldName" value="邮箱地址"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="23"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="PersonStatus"/>
+            <column name="FieldName" value="人员状态"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="24"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="25"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="EnTitle"/>
+            <column name="FieldName" value="英文标题"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="26"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ResourceUrlApp"/>
+            <column name="FieldName" value="移动端资源地址"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="27"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ConfCodeVou"/>
+            <column name="FieldName" value="配置业务单据编号"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="28"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Platform"/>
+            <column name="FieldName" value="平台"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="29"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="OrderNo"/>
+            <column name="FieldName" value="序号"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="3"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ResourceUrl"/>
+            <column name="FieldName" value="资源地址"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="4"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Parameter"/>
+            <column name="FieldName" value="参数"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="5"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="IsHide"/>
+            <column name="FieldName" value="是否显示"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="6"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="OrderNo"/>
+            <column name="FieldName" value="序号"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="7"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="IsSysMenu"/>
+            <column name="FieldName" value="是否系统菜单"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="8"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <insert tableName="SM_ListFieldConfig">
+            <column name="ID" value="9"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Name"/>
+            <column name="FieldName" value="名称"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_ListFieldConfig" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-6">
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="0"/>
+            <column name="nOperateContentKey" value="0"/>
+            <column name="strOperateContent" value="其他"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="1"/>
+            <column name="nOperateContentKey" value="1"/>
+            <column name="strOperateContent" value="登录注销"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="10"/>
+            <column name="nOperateContentKey" value="10"/>
+            <column name="strOperateContent" value="置位"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="11"/>
+            <column name="nOperateContentKey" value="11"/>
+            <column name="strOperateContent" value="写模拟量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="12"/>
+            <column name="nOperateContentKey" value="12"/>
+            <column name="strOperateContent" value="写开关量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="14"/>
+            <column name="nOperateContentKey" value="14"/>
+            <column name="strOperateContent" value="报警操作"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="2"/>
+            <column name="nOperateContentKey" value="2"/>
+            <column name="strOperateContent" value="新增"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="3"/>
+            <column name="nOperateContentKey" value="3"/>
+            <column name="strOperateContent" value="修改"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="4"/>
+            <column name="nOperateContentKey" value="4"/>
+            <column name="strOperateContent" value="删除"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_OperateContent" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-7">
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="198"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value=""/>
+            <column name="ButtonID" value="btnResetPwd_M"/>
+            <column name="ButtonName" value="重置密码"/>
+            <column name="Remark" value="系统内置,勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="199"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_T"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="200"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_T"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="201"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_T"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="202"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="203"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnImpo_M"/>
+            <column name="ButtonName" value="导入"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="204"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddAttr_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="205"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditAttr_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="206"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveAttr_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="207"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteAttr_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="208"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadAttr_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="209"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnImpoAttr_M"/>
+            <column name="ButtonName" value="导入"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="210"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddConv_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="211"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditConv_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="212"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveConv_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="213"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteConv_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="214"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadConv_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="215"/>
+            <column name="SystemResourceDtlCode" value="MARTER"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnImpoConv_M"/>
+            <column name="ButtonName" value="导入"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="216"/>
+            <column name="SystemResourceDtlCode" value="MATTYPE"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="217"/>
+            <column name="SystemResourceDtlCode" value="MATTYPE"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSave_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="218"/>
+            <column name="SystemResourceDtlCode" value="MATTYPE"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="219"/>
+            <column name="SystemResourceDtlCode" value="MATTYPE"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="220"/>
+            <column name="SystemResourceDtlCode" value="MATTYPE"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnImpo_M"/>
+            <column name="ButtonName" value="导入"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="221"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="222"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="223"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="224"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="225"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddDtl_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="226"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditDtl_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="227"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteDtl_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="228"/>
+            <column name="SystemResourceDtlCode" value="Dict"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadDtl_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="229"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="230"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="231"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="232"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="233"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddDtl_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="234"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditDtl_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="235"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteDtl_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="236"/>
+            <column name="SystemResourceDtlCode" value="Unit"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadDtl_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="237"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="238"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="239"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="240"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="241"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddDtl_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="242"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveDtl_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="243"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteDtl_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="244"/>
+            <column name="SystemResourceDtlCode" value="Supplier"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadDtl_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="245"/>
+            <column name="SystemResourceDtlCode" value="WorkShift"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddWorkShift_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="246"/>
+            <column name="SystemResourceDtlCode" value="WorkShift"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditWorkShift_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="247"/>
+            <column name="SystemResourceDtlCode" value="WorkShift"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveWorkShift_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="248"/>
+            <column name="SystemResourceDtlCode" value="WorkShift"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteWorkShift_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="249"/>
+            <column name="SystemResourceDtlCode" value="WorkShift"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadWorkShift_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="250"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="251"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="252"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="253"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="254"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="255"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveMember_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="256"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteMember_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="257"/>
+            <column name="SystemResourceDtlCode" value="TeamLeader"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadMember_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="258"/>
+            <column name="SystemResourceDtlCode" value="ArrangePeriod"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAddAP_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="259"/>
+            <column name="SystemResourceDtlCode" value="ArrangePeriod"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditAP_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="260"/>
+            <column name="SystemResourceDtlCode" value="ArrangePeriod"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteAP_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="261"/>
+            <column name="SystemResourceDtlCode" value="ArrangePeriod"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnCA_M"/>
+            <column name="ButtonName" value="生成排班"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="262"/>
+            <column name="SystemResourceDtlCode" value="ArrangePeriod"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadAP_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="263"/>
+            <column name="SystemResourceDtlCode" value="ArrangeResult"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEditAR_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="264"/>
+            <column name="SystemResourceDtlCode" value="ArrangeResult"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeleteAR_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="265"/>
+            <column name="SystemResourceDtlCode" value="ArrangeResult"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnSaveAR_M"/>
+            <column name="ButtonName" value="保存"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="266"/>
+            <column name="SystemResourceDtlCode" value="ArrangeResult"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReloadAR_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="267"/>
+            <column name="SystemResourceDtlCode" value="Produce_Log"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="268"/>
+            <column name="SystemResourceDtlCode" value="Produce_Trend"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="269"/>
+            <column name="SystemResourceDtlCode" value="Produce_Report"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="270"/>
+            <column name="SystemResourceDtlCode" value="Produce_Gis"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="271"/>
+            <column name="SystemResourceDtlCode" value="Produce_Alarm"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="272"/>
+            <column name="SystemResourceDtlCode" value="Produce_FlowChart"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="273"/>
+            <column name="SystemResourceDtlCode" value="Produce_VideoSurveillance"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="274"/>
+            <column name="SystemResourceDtlCode" value="RunM_System_Alarm"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="275"/>
+            <column name="SystemResourceDtlCode" value="RunM_System_Log"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="276"/>
+            <column name="SystemResourceDtlCode" value="RunM_Node_Status"/>
+            <column name="ResourceUrl"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="31"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_T"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="32"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_T"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="33"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_T"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="34"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="35"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="36"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="37"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="38"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="39"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnBrowse_M"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="40"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_T"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="41"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_T"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="42"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_T"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="43"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnBrowse_T"/>
+            <column name="ButtonName" value="浏览"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="44"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="45"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="46"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="47"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="48"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAuthorize_M"/>
+            <column name="ButtonName" value="授权"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="49"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeptAuth_M"/>
+            <column name="ButtonName" value="部门授权"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="50"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnImpo_M"/>
+            <column name="ButtonName" value="导入"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="52"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAdd_M"/>
+            <column name="ButtonName" value="增加"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="53"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnEdit_M"/>
+            <column name="ButtonName" value="编辑"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="54"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDelete_M"/>
+            <column name="ButtonName" value="删除"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="55"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnReload_M"/>
+            <column name="ButtonName" value="刷新"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="56"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnAuthorize_M"/>
+            <column name="ButtonName" value="授权"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_PageButtonConfig">
+            <column name="ID" value="57"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ButtonID" value="btnDeptAuth_M"/>
+            <column name="ButtonName" value="部门授权"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_PageButtonConfig" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-8">
+        <insert tableName="SM_Person">
+            <column name="ID" value="1"/>
+            <column name="Code" value="system"/>
+            <column name="Name" value="system"/>
+            <column name="Sex" value="1"/>
+            <column name="WorkNum" value="system"/>
+            <column name="Account" value="system"/>
+            <column name="Password" value="e10adc3949ba59abbe56e057f20f883e"/>
+            <column name="DeptCode" value="-1"/>
+            <column name="CorpCode" value="-1"/>
+            <column name="Duty"/>
+            <column name="Position" valueNumeric="0"/>
+            <column name="Superior"/>
+            <column name="Mobile"/>
+            <column name="Email"/>
+            <column name="OrderNo" valueNumeric="-1"/>
+            <column name="PersonStatus" value="1"/>
+            <column name="DelFlag" value="0"/>
+            <column name="RandCode" valueNumeric="51104250"/>
+            <column name="LastPasswordChangeTime" valueDate="2019-01-14T19:40:49.65"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_Person" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-9">
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="10"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Alarm_RealTimeAlarm"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="11"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Alarm_AlarmSuppression"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="12"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Alarm_AlarmHiding"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="13"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Log"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="14"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_VideoMonitor"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="15"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Report"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="16"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Gis"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="17"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="RM_System_Alarm"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="18"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="RM_System_Log"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="19"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="RM_Node_Status"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="2"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower" value=""/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="20"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Report"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="21"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_AdvanceReport"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="22"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_VideoDeviceAccount"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="3"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower" value=""/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="4"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_ProjectArchitecture"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="5"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_ProjectGis"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="6"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_ProjectAlarmSet"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="8"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_FlowChart"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonDataPower">
+            <column name="ID" value="9"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="PM_Trend"/>
+            <column name="DataPower" value="2"/>
+            <column name="CustomPower"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_PersonDataPower" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-10">
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="671"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="52"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="672"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="53"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="673"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="54"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="674"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="55"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="675"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="56"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="676"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="PageButtonConfigID" valueNumeric="57"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="677"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="40"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="678"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="41"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="679"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="42"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="680"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="43"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="682"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="44"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="683"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="45"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="684"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="46"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="685"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="47"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="687"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="48"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="688"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="49"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="689"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="50"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="690"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="51"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <insert tableName="SM_PersonSysPower">
+            <column name="ID" value="692"/>
+            <column name="PersonCode" value="system"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="PageButtonConfigID" valueNumeric="198"/>
+            <column name="IsEnable"/>
+            <column name="strIsEnable"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_PersonSysPower" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-11">
+        <insert tableName="SM_ProjectArchitecture">
+            <column name="ID" value="1"/>
+            <column name="strProjectCode" value="Group"/>
+            <column name="strPProjectCode" value="-1"/>
+            <column name="strName" value="xxx集团"/>
+            <column name="nOrderNo" valueNumeric="0"/>
+            <column name="strIsFinalLeaf" value="0"/>
+            <column name="strDelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_ProjectArchitecture" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-12">
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="1"/>
+            <column name="strProjectSysPowerCode" value="FlowChart"/>
+            <column name="strButtonID" value="btnWrite_M"/>
+            <column name="strButtonName" value="写值"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="12"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnAffirmAll_M"/>
+            <column name="strButtonName" value="确认全部"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="13"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnAffirm_M"/>
+            <column name="strButtonName" value="确认"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="14"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnSuppress_M"/>
+            <column name="strButtonName" value="抑制"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="15"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnHide_M"/>
+            <column name="strButtonName" value="隐藏"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="17"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnSuppressCancel_M"/>
+            <column name="strButtonName" value="取消抑制"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="18"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnHideCancel_M"/>
+            <column name="strButtonName" value="取消隐藏"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="19"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnSuppressSet_M"/>
+            <column name="strButtonName" value="抑制设置"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="2"/>
+            <column name="strProjectSysPowerCode" value="FlowChart"/>
+            <column name="strButtonID" value="btnViewVideo_M"/>
+            <column name="strButtonName" value="查看视频"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="20"/>
+            <column name="strProjectSysPowerCode" value="Alarm"/>
+            <column name="strButtonID" value="btnHideSet_M"/>
+            <column name="strButtonName" value="隐藏设置"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="21"/>
+            <column name="strProjectSysPowerCode" value="ReportPlan"/>
+            <column name="strButtonID" value="btnView_M"/>
+            <column name="strButtonName" value="查看"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="22"/>
+            <column name="strProjectSysPowerCode" value="ReportPlan"/>
+            <column name="strButtonID" value="btnDelete_M"/>
+            <column name="strButtonName" value="删除"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="23"/>
+            <column name="strProjectSysPowerCode" value="ReportPlan"/>
+            <column name="strButtonID" value="btnDownLoad_M"/>
+            <column name="strButtonName" value="下载"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="24"/>
+            <column name="strProjectSysPowerCode" value="ReportPlan"/>
+            <column name="strButtonID" value="btnPrint_M"/>
+            <column name="strButtonName" value="打印"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="25"/>
+            <column name="strProjectSysPowerCode" value="ReportPlan"/>
+            <column name="strButtonID" value="btnExecute_T"/>
+            <column name="strButtonName" value="执行"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="3"/>
+            <column name="strProjectSysPowerCode" value="FlowChart"/>
+            <column name="strButtonID" value="btnPlayback_M"/>
+            <column name="strButtonName" value="回放"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="4"/>
+            <column name="strProjectSysPowerCode" value="Trend"/>
+            <column name="strButtonID" value="btnAdd_P"/>
+            <column name="strButtonName" value="设置公共趋势组"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="2"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="5"/>
+            <column name="strProjectSysPowerCode" value="Trend"/>
+            <column name="strButtonID" value="btnDelete_T"/>
+            <column name="strButtonName" value="删除"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="6"/>
+            <column name="strProjectSysPowerCode" value="Trend"/>
+            <column name="strButtonID" value="btnEdit_T"/>
+            <column name="strButtonName" value="编辑"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="7"/>
+            <column name="strProjectSysPowerCode" value="Trend"/>
+            <column name="strButtonID" value="btnAdd_M"/>
+            <column name="strButtonName" value="增加"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPageButtonConfig">
+            <column name="ID" value="8"/>
+            <column name="strProjectSysPowerCode" value="Trend"/>
+            <column name="strButtonID" value="btnDelete_M"/>
+            <column name="strButtonName" value="删除"/>
+            <column name="strRemark"/>
+            <column name="nPowerCodeType" valueNumeric="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_ProjectPageButtonConfig" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-13">
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="1"/>
+            <column name="strCode" value="FlowChart"/>
+            <column name="strName" value="流程图"/>
+            <column name="nOrderNo" valueNumeric="1"/>
+            <column name="nVirtualItemType" valueNumeric="2"/>
+            <column name="nIsCanPowerItem" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="2"/>
+            <column name="strCode" value="Alarm"/>
+            <column name="strName" value="生产报警"/>
+            <column name="nOrderNo" valueNumeric="2"/>
+            <column name="nVirtualItemType" valueNumeric="1"/>
+            <column name="nIsCanPowerItem" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="3"/>
+            <column name="strCode" value="ReportPlan"/>
+            <column name="strName" value="生产报表"/>
+            <column name="nOrderNo" valueNumeric="3"/>
+            <column name="nVirtualItemType" valueNumeric="2"/>
+            <column name="nIsCanPowerItem" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="4"/>
+            <column name="strCode" value="SuperReport"/>
+            <column name="strName" value="高级报表"/>
+            <column name="nOrderNo" valueNumeric="4"/>
+            <column name="nVirtualItemType" valueNumeric="2"/>
+            <column name="nIsCanPowerItem" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="5"/>
+            <column name="strCode" value="Trend"/>
+            <column name="strName" value="生产趋势"/>
+            <column name="nOrderNo" valueNumeric="5"/>
+            <column name="nVirtualItemType" valueNumeric="2"/>
+            <column name="nIsCanPowerItem" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="6"/>
+            <column name="strCode" value="Vedio"/>
+            <column name="strName" value="视频监视"/>
+            <column name="nOrderNo" valueNumeric="6"/>
+            <column name="nVirtualItemType" valueNumeric="2"/>
+            <column name="nIsCanPowerItem" valueNumeric="0"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="7"/>
+            <column name="strCode" value="GISMap"/>
+            <column name="strName" value="GIS地图"/>
+            <column name="nOrderNo" valueNumeric="7"/>
+            <column name="nVirtualItemType" valueNumeric="1"/>
+            <column name="nIsCanPowerItem" valueNumeric="1"/>
+        </insert>
+        <insert tableName="SM_ProjectPowerItem">
+            <column name="ID" value="8"/>
+            <column name="strCode" value="PMLog"/>
+            <column name="strName" value="生产日志"/>
+            <column name="nOrderNo" valueNumeric="8"/>
+            <column name="nVirtualItemType" valueNumeric="1"/>
+            <column name="nIsCanPowerItem" valueNumeric="1"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_ProjectPowerItem" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-14">
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="1"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Title"/>
+            <column name="FieldName" value="标题"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="10"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="WorkNum"/>
+            <column name="FieldName" value="工号"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="11"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Account"/>
+            <column name="FieldName" value="账号"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="12"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Duty"/>
+            <column name="FieldName" value="职务"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="13"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="PersonStatus"/>
+            <column name="FieldName" value="人员状态"/>
+            <column name="FieldType" value="2"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="14"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="EnTitle"/>
+            <column name="FieldName" value="英文标题"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="2"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ResourceType"/>
+            <column name="FieldName" value="功能类型"/>
+            <column name="FieldType" value="2"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="3"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="ResourceUrl"/>
+            <column name="FieldName" value="资源地址"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="4"/>
+            <column name="SystemResourceDtlCode" value="SM_SystemResource"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="5"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="6"/>
+            <column name="SystemResourceDtlCode" value="SM_Role"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Name"/>
+            <column name="FieldName" value="名称"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="7"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Code"/>
+            <column name="FieldName" value="编码"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="8"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Name"/>
+            <column name="FieldName" value="姓名"/>
+            <column name="FieldType" value="0"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <insert tableName="SM_QueryFieldConfig">
+            <column name="ID" value="9"/>
+            <column name="SystemResourceDtlCode" value="SM_Department"/>
+            <column name="ResourceUrl" value="NULL"/>
+            <column name="ResorceFile" value="NULL"/>
+            <column name="FieldID" value="Sex"/>
+            <column name="FieldName" value="性别"/>
+            <column name="FieldType" value="2"/>
+            <column name="Remark" value="系统内置，勿删勿改"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_QueryFieldConfig" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-15">
+        <insert tableName="SM_SyncObject">
+            <column name="ID" value="fad02c32-63b8-4a3c-b664-291c17930c16"/>
+            <column name="strObjectName" value="AppPush"/>
+            <column name="nStatus" valueNumeric="0"/>
+            <column name="dtLastLockTime" valueDate="2019-11-27T15:46:25"/>
+            <column name="dtLastUnlockTime" valueDate="2019-11-27T15:46:25"/>
+            <column name="ts" valueDate="2019-11-27T15:46:25"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SyncObject" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-16">
+        <insert tableName="SM_SysSetting">
+            <column name="ID" value="190cb417-19a5-4c14-b047-c8c82d45aex1"/>
+            <column name="strKey" value="userName"/>
+            <column name="strValue" value="wangzhenguo183173@hollysys.com"/>
+        </insert>
+        <insert tableName="SM_SysSetting">
+            <column name="ID" value="190cb417-19a5-4c14-b047-c8c82d45aex2"/>
+            <column name="strKey" value="password"/>
+            <column name="strValue" value="Www#5678"/>
+        </insert>
+        <insert tableName="SM_SysSetting">
+            <column name="ID" value="190cb417-19a5-4c14-b047-c8c82d45aex3"/>
+            <column name="strKey" value="fromEmailAddress"/>
+            <column name="strValue" value="wangzhenguo183173@hollysys.com"/>
+        </insert>
+        <insert tableName="SM_SysSetting">
+            <column name="ID" value="190cb417-19a5-4c14-b047-c8c82d45aex4"/>
+            <column name="strKey" value="toEmailAddress"/>
+            <column name="strValue" value="wangzhenguo183173@hollysys.com"/>
+        </insert>
+        <insert tableName="SM_SysSetting">
+            <column name="ID" value="190cb417-19a5-4c14-b047-c8c82d45aexx"/>
+            <column name="strKey" value="host"/>
+            <column name="strValue" value="smtp.hollysys.com"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SysSetting" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-17">
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="1"/>
+            <column name="Code" value="System"/>
+            <column name="PCode" value="-1"/>
+            <column name="Title" value="生产执行管理系统"/>
+            <column name="EnTitle" value="System"/>
+            <column name="OrderNo" valueNumeric="0"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="2"/>
+            <column name="Code" value="SystemM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="系统设置"/>
+            <column name="EnTitle" value="SystemM"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="3"/>
+            <column name="Code" value="PM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="生产监视"/>
+            <column name="EnTitle" value="ProductionMonitoring"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="4"/>
+            <column name="Code" value="RM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="运行管理"/>
+            <column name="EnTitle" value="RunManagement"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="5"/>
+            <column name="Code" value="PM_Alarm"/>
+            <column name="PCode" value="PM"/>
+            <column name="Title" value="生产报警"/>
+            <column name="EnTitle" value="ProductionAlarm"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResource" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-18">
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="44"/>
+            <column name="Code" value="SM_Department"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="组织架构组态"/>
+            <column name="EnTitle" value="Department"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Department"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="49"/>
+            <column name="Code" value="SM_Role"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="权限组态"/>
+            <column name="EnTitle" value="Role"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/RoleM"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="63"/>
+            <column name="Code" value="PM_Log"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产日志"/>
+            <column name="EnTitle" value="Log"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Log"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="64"/>
+            <column name="Code" value="PM_Trend"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产趋势"/>
+            <column name="EnTitle" value="Trend"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Trend"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="65"/>
+            <column name="Code" value="PM_Report"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产报表"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Report"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="66"/>
+            <column name="Code" value="PM_Gis"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="GIS地图"/>
+            <column name="EnTitle" value="Gis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/Gis.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="7"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="73"/>
+            <column name="Code" value="PM_FlowChart"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="流程图"/>
+            <column name="EnTitle" value="FlowChart"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/FlowChart.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="75"/>
+            <column name="Code" value="PM_VideoMonitor"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="视频监视"/>
+            <column name="EnTitle" value="VideoMonitor"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/VideoMonitor"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="76"/>
+            <column name="Code" value="RM_System_Alarm"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统报警"/>
+            <column name="EnTitle" value="SystemAlarm"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemAlarm"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="77"/>
+            <column name="Code" value="RM_System_Log"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统日志"/>
+            <column name="EnTitle" value="SystemLog"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemLog"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="79"/>
+            <column name="Code" value="RM_Node_Status"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="节点状态"/>
+            <column name="EnTitle" value="NodeStatus"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/NodeStatus"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="80"/>
+            <column name="Code" value="SM_ProjectArchitecture"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="项目架构组态"/>
+            <column name="EnTitle" value="ProjectArchitecture"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectArchitecture"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="81"/>
+            <column name="Code" value="SM_ProjectGis"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="GIS地图组态"/>
+            <column name="EnTitle" value="ProjectGis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectGis"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="82"/>
+            <column name="Code" value="PM_Alarm_RealTimeAlarm"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警查看"/>
+            <column name="EnTitle" value="AlarmView"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmView"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="84"/>
+            <column name="Code" value="PM_Alarm_AlarmSuppression"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警抑制"/>
+            <column name="EnTitle" value="AlarmSuppression"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmSuppression"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="85"/>
+            <column name="Code" value="PM_Alarm_AlarmHiding"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警隐藏"/>
+            <column name="EnTitle" value="AlarmHiding"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmHiding"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="86"/>
+            <column name="Code" value="SM_ProjectAlarmSet"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="通用设置组态"/>
+            <column name="EnTitle" value="ProjectAlarmSet"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectAlarmSet"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="88"/>
+            <column name="Code" value="SM_Report"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="生产报表组态"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Report"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="89"/>
+            <column name="Code" value="PM_AdvanceReport"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="高级报表"/>
+            <column name="EnTitle" value="AdvanceReport"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/AdvanceReport"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="90"/>
+            <column name="Code" value="SM_VideoDeviceAccount"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="视频账户组态"/>
+            <column name="EnTitle" value="VideoDevice"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/VideoDevice"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="9"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResourceDtl" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-19">
+        <insert tableName="SM_VideoDevDict">
+            <column name="ID" value="hk_1"/>
+            <column name="strDeviceType" value="海康"/>
+        </insert>
+        <insert tableName="SM_VideoDevDict">
+            <column name="ID" value="dh_1"/>
+            <column name="strDeviceType" value="大华"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_VideoDevDict" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-20">
+        <insert tableName="t_BD_Dict">
+            <column name="ID" value="1"/>
+            <column name="DictCode" value="MatType"/>
+            <column name="DictName" value="物料类别"/>
+            <column name="TypeCode" value="MatType"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="t_BD_Dict" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-21">
+        <insert tableName="t_BD_Unit">
+            <column name="ID" value="1"/>
+            <column name="UnitCode" value="length"/>
+            <column name="UnitName" value="长度"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_Unit">
+            <column name="ID" value="2"/>
+            <column name="UnitCode" value="time"/>
+            <column name="UnitName" value="时间"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_Unit">
+            <column name="ID" value="3"/>
+            <column name="UnitCode" value="weight"/>
+            <column name="UnitName" value="重量"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="t_BD_Unit" />
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840791512-22">
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="2"/>
+            <column name="UnitDtlCode" value="centimeter"/>
+            <column name="UnitDtlName" value="厘米"/>
+            <column name="UnitCode" value="length"/>
+            <column name="Symbol" value="cm"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="3"/>
+            <column name="UnitDtlCode" value="decimeter"/>
+            <column name="UnitDtlName" value="分米"/>
+            <column name="UnitCode" value="length"/>
+            <column name="Symbol" value="dm"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="9"/>
+            <column name="UnitDtlCode" value="gram"/>
+            <column name="UnitDtlName" value="克"/>
+            <column name="UnitCode" value="weight"/>
+            <column name="Symbol" value="g"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="8"/>
+            <column name="UnitDtlCode" value="hour"/>
+            <column name="UnitDtlName" value="小时"/>
+            <column name="UnitCode" value="time"/>
+            <column name="Symbol" value="h"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="10"/>
+            <column name="UnitDtlCode" value="kilogram"/>
+            <column name="UnitDtlName" value="千克"/>
+            <column name="UnitCode" value="weight"/>
+            <column name="Symbol" value="kg"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="5"/>
+            <column name="UnitDtlCode" value="kilometer"/>
+            <column name="UnitDtlName" value="千米"/>
+            <column name="UnitCode" value="length"/>
+            <column name="Symbol" value="km"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="4"/>
+            <column name="UnitDtlCode" value="meter"/>
+            <column name="UnitDtlName" value="米"/>
+            <column name="UnitCode" value="length"/>
+            <column name="Symbol" value="m"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="1"/>
+            <column name="UnitDtlCode" value="millimeter"/>
+            <column name="UnitDtlName" value="毫米"/>
+            <column name="UnitCode" value="length"/>
+            <column name="Symbol" value="mm"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="7"/>
+            <column name="UnitDtlCode" value="minute"/>
+            <column name="UnitDtlName" value="分钟"/>
+            <column name="UnitCode" value="time"/>
+            <column name="Symbol" value="m"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="6"/>
+            <column name="UnitDtlCode" value="second"/>
+            <column name="UnitDtlName" value="秒"/>
+            <column name="UnitCode" value="time"/>
+            <column name="Symbol" value="s"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <insert tableName="t_BD_UnitDtl">
+            <column name="ID" value="11"/>
+            <column name="UnitDtlCode" value="ton"/>
+            <column name="UnitDtlName" value="吨"/>
+            <column name="UnitCode" value="weight"/>
+            <column name="Symbol" value="t"/>
+            <column name="Remark" value="系统设置，请勿删除"/>
+            <column name="DelFlag" value="0"/>
+            <column name="Inputcode" value="admin"/>
+            <column name="Inputdate" valueDate="2018-06-27T10:14:41"/>
+            <column name="Deptcode" value="1"/>
+            <column name="Corpcode" value="1"/>
+            <column name="Modifycode" value="admin"/>
+            <column name="Modifydate" valueDate="2018-06-27T10:14:41"/>
+            <column name="FlowSts" valueNumeric="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="t_BD_UnitDtl" />
+        </rollback>
+    </changeSet>
+    <changeSet id="v3.0.0.0" author="WangXun">
+        <tagDatabase tag="v3.0.0.0"/>
+    </changeSet>
+</databaseChangeLog>

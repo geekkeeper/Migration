@@ -13,8 +13,70 @@
 	<name>iods</name>
 	<description>Demo project for Spring Boot</description>
 
-	<dependencies>
+	<!--工程属性及自定义属性-->
+	<properties>
+		<java.version>1.8</java.version>
+		<dbms>mssql</dbms>
+		<author>WangXun</author>
+		<current.time>${maven.build.timestamp}</current.time>
+		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+	</properties>
 
-	</dependencies>
-
+	<dependencies></dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<propertyFile>src/main/resources/db/config/liquibase-${dbms}.properties</propertyFile>
+					<!--数据库变更日志表-表名-->
+					<databaseChangeLogTableName>
+						VC_CHANGE_LOG
+					</databaseChangeLogTableName>
+					<!--数据库变更日志锁表-表名-->
+					<databaseChangeLogLockTableName>
+						VC_CHANGE_LOG_LOCK
+					</databaseChangeLogLockTableName>
+					<!--配置主变更文件:包含所有子变更项-->
+					<changeLogFile>
+						src/main/resources/db/changelog-master.xml
+					</changeLogFile>
+					<!--设置生产变更日志的作者-->
+					<changeSetAuthor>
+						${author}
+					</changeSetAuthor>
+					<!--生成数据库初始化结构-->
+					<!--<outputChangeLogFile>
+						src/main/resources/db/output/${current.time}-${dbms}-init-struct.xml
+					</outputChangeLogFile>-->
+					<!--生成数据库初始化数据-->
+					<diffTypes>
+						data
+					</diffTypes>
+					<outputFile>
+						src/main/resources/db/rollbackSql/${current.time}-${dbms}-rollback.sql
+					</outputFile>
+					<outputChangeLogFile>
+						src/main/resources/db/outputChangeLog/${current.time}-${dbms}-init-data.xml
+					</outputChangeLogFile>
+					<!--配置数据库比较差异文件输出位置-->
+					<diffChangeLogFile>
+						src/main/resources/db/diffChangeLog/${current.time}-${dbms}-different.xml
+					</diffChangeLogFile>
+					<!--配置迁移SQL输出位置-->
+					<migrationSqlOutputFile>
+						src/main/resources/db/updateSql/${current.time}-${dbms}-update.sql
+					</migrationSqlOutputFile>
+					<!--配置参数禁用弹出的对话框确认迁移在非本地数据库-->
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+					<outputFileEncoding>UTF-8</outputFileEncoding>
+					<outputDirectory>
+						src/main/resources/db/output
+					</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
