@@ -3,7 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="v3.0.0.1" author="Wangxun" dbms="mssql">
+    <changeSet id="1574956800000-1" author="Wangxun" dbms="mssql">
         <comment>修改SM_Person表OrderNo字段自增</comment>
         <createSequence sequenceName="SQ_PERSON_ORDERNO" startValue="1" incrementBy="1"/>
         <addDefaultValue tableName="SM_Person" columnName="OrderNo" defaultValueSequenceNext="SQ_PERSON_ORDERNO"/>
@@ -12,12 +12,12 @@
             <dropSequence sequenceName="SQ_PERSON_ORDERNO"/>
         </rollback>
     </changeSet>
-    <changeSet id="v3.0.0.1" author="Wangxun" dbms="mysql">
+    <changeSet id="1574956800000-1" author="Wangxun" dbms="mysql">
         <comment>修改SM_Person表OrderNo字段自增</comment>
         <!--mysql 的自增实现方式-->
     </changeSet>
 
-    <changeSet id="v3.0.0.2" author="Wangxun">
+    <changeSet id="1574956800000-2" author="Wangxun">
         <comment>修改工程标签表区域、装置、单元字段长度为128字节（64个汉字）</comment>
         <!--<dropDefaultValue columnName="strArea" tableName="SM_ProjectTag"/>
         <dropDefaultValue columnName="strDevice" tableName="SM_ProjectTag"/>-->
@@ -37,7 +37,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="v3.0.0.3" author="WangXun">
+    <changeSet id="1574956800000-3" author="WangXun">
         <addColumn tableName="CF_Alarm">
             <column name="nDomainNum" type="int" />
         </addColumn>

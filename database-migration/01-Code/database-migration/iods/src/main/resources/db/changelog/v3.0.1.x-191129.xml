@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet id="v3.0.1.1" author="WangXun">
+    <changeSet id="1574956800001-1" author="WangXun">
         <comment>SM_ProjectPageButtonConfig加入按钮配置</comment>
         <insert tableName="SM_ProjectPageButtonConfig">
             <column name="ID" value="32"/>
@@ -95,7 +95,7 @@
             </delete>
         </rollback>
     </changeSet>
-    <changeSet id="v3.0.1.2" author="WangXun">
+    <changeSet id="1574956800001-2" author="WangXun">
         <comment>修改视图:V_SM_RoleSysPower和V_SM_PersonSysPower</comment>
         <createView viewName="V_SM_RoleSysPower" replaceIfExists="true" >
             SELECT
@@ -126,7 +126,7 @@
             </createView>
         </rollback>
     </changeSet>
-    <changeSet id="v3.0.1.3" author="WangXun">
+    <changeSet id="1574956800001-3" author="WangXun">
         <createView viewName="V_SM_PersonSysPower" replaceIfExists="true" >
             SELECT
             a.ID,
@@ -186,7 +186,7 @@
             </createView>
         </rollback>
     </changeSet>
-    <changeSet id="v3.0.1.4" author="WangXun">
+    <changeSet id="1574956800001-4" author="WangXun">
         <comment>更新数据:SM_SystemResourceDtl</comment>
         <update tableName="SM_SystemResourceDtl" >
             <column name="Title" value="角色权限组态" />
@@ -209,7 +209,7 @@
             </update>
         </rollback>
     </changeSet>
-    <changeSet id="v3.0.1.5" author="WangXun">
+    <changeSet id="1574956800001-5" author="WangXun">
         <comment>清空表SM_PersonSysPower脏数据</comment>
         <delete tableName="SM_PersonSysPower" />
         <rollback/>

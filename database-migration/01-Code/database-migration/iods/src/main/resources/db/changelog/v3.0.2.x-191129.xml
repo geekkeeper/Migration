@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="WangXun" id="v3.0.2.1">
+    <changeSet author="WangXun" id="1574956800002-1">
         <createTable tableName="SM_ALARM_LEVEL_COLOUR">
             <column name="ID" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>
@@ -19,7 +19,7 @@
             <column name="LEVEL10_COLOUR" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="v3.0.2.2">
+    <changeSet author="WangXun" id="1574956800002-2">
         <createTable tableName="SM_TREND_GROUP">
             <column name="ID" remarks="主键" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>
@@ -31,7 +31,7 @@
             <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="TEXT"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="v3.0.2.3">
+    <changeSet author="WangXun" id="1574956800002-3">
         <createTable remarks="在线用户信息" tableName="SM_ONLINE_USER">
             <column name="ID" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>
@@ -46,7 +46,7 @@
             <column name="LOGIN_TIME" type="datetime"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="v3.0.2.4">
+    <changeSet author="WangXun" id="1574956800002-4">
         <createTable remarks="用户信息" tableName="SM_USER">
             <column name="ID" remarks="主键" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>
@@ -68,7 +68,7 @@
             <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="v3.0.2.5">
+    <changeSet author="WangXun" id="1574956800002-5">
         <createTable remarks="用户组下挂接的流程图" tableName="SM_USER_GROUP_GRAPH">
             <column name="ID" remarks="主键" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>
@@ -82,7 +82,7 @@
             <column defaultValueNumeric="0" name="WRITE_AUTHORITY" remarks="写权限" type="INT"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="v3.0.2.6">
+    <changeSet author="WangXun" id="1574956800002-6">
         <createTable remarks="用户组" tableName="SM_USER_GROUP">
             <column name="ID" remarks="主键" type="VARCHAR(50)">
                 <constraints primaryKey="true"/>

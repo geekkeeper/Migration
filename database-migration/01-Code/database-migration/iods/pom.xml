@@ -16,7 +16,7 @@
 	<!--工程属性及自定义属性-->
 	<properties>
 		<java.version>1.8</java.version>
-		<dbms>mysql</dbms>
+		<dbms>mssql</dbms>
 		<author>WangXun</author>
 		<current.time>${maven.build.timestamp}</current.time>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -72,9 +72,8 @@
 					<!--配置参数禁用弹出的对话框确认迁移在非本地数据库-->
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 					<outputFileEncoding>UTF-8</outputFileEncoding>
-					<outputDirectory>
-						src/main/resources/db/output
-					</outputDirectory>
+					<outputDirectory>src/main/resources/db/output</outputDirectory>
+					<rollbackTag>v3.0.1.0</rollbackTag>
 				</configuration>
 			</plugin>
 		</plugins>
