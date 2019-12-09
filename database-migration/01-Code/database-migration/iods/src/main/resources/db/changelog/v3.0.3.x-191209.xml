@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet id="v3.0.3.0" author="WangXun">
+		<comment>趋势组表添加版本列</comment>
+		<addColumn tableName="SM_TREND_GROUP">
+			<column name="VERSION" type="INT" remarks="版本" />
+		</addColumn>
+	</changeSet>
+	<changeSet id="v3.0.3.1" author="WangXun">
+		<comment>报警抑制表添加区域、装置、单元字段</comment>
+		<addColumn tableName="CF_FORBIDALARM">
+			<column name="TAG_AREA" type="nvarchar(128)" remarks="标签所属区域"/>
+			<column name="TAG_DEVICE" type="nvarchar(128)" remarks="标签所属装置"/>
+			<column name="TAG_UNIT" type="nvarchar(128)" remarks="标签所属单元"/>
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>

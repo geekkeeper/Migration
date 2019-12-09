@@ -1877,8 +1877,13 @@
     <changeSet author="WangXun" id="1574840696094-89">
         <addUniqueConstraint columnNames="strAccount" constraintName="UQ__SM_UserS__9C0CF01868C968C4" tableName="SM_UserSetting"/>
     </changeSet>
-    <changeSet author="WangXun" id="1574840696094-90">
+    <changeSet author="WangXun" id="1574840696094-90" dbms="mssql">
         <createIndex clustered="true" indexName="IX_CF_Alarm_C" tableName="CF_Alarm">
+            <column name="strTagName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-90" dbms="mysql">
+        <createIndex indexName="IX_CF_Alarm_C" tableName="CF_Alarm">
             <column name="strTagName"/>
         </createIndex>
     </changeSet>
@@ -1912,8 +1917,13 @@
             <column name="Account"/>
         </createIndex>
     </changeSet>
-    <changeSet author="WangXun" id="1574840696094-96">
+    <changeSet author="WangXun" id="1574840696094-96" dbms="mssql">
         <createIndex clustered="true" indexName="IX_SM_ProjectArchitecture_C" tableName="SM_ProjectArchitecture" unique="true">
+            <column name="strProjectCode"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-96" dbms="mysql">
+        <createIndex indexName="IX_SM_ProjectArchitecture_C" tableName="SM_ProjectArchitecture" unique="true">
             <column name="strProjectCode"/>
         </createIndex>
     </changeSet>
@@ -1944,8 +1954,13 @@
             <column name="strName"/>
         </createIndex>
     </changeSet>
-    <changeSet author="WangXun" id="1574840696094-102">
+    <changeSet author="WangXun" id="1574840696094-102" dbms="mssql">
         <createIndex clustered="true" indexName="IX_SM_ProjectTag_C" tableName="SM_ProjectTag" unique="true">
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-102" dbms="mysql">
+        <createIndex indexName="IX_SM_ProjectTag_C" tableName="SM_ProjectTag" unique="true">
             <column name="strName"/>
         </createIndex>
     </changeSet>
@@ -3416,7 +3431,6 @@
             CODE LEFT JOIN SM_Person AS h ON c.Superior = h.CODE;
         </createView>
     </changeSet>
-
     <changeSet author="WangXun" id="1574840696094-142">
         <createView fullDefinition="false" viewName="V_SM_PersonProjectPower">
             SELECT
@@ -3767,6 +3781,242 @@
             ) AS ff ON dd.Code = ff.Code2
         </createView>
     </changeSet>
+    <changeSet author="WangXun" id="1574840696094-146" dbms="mysql">
+        <createView fullDefinition="false" viewName="V_SM_PersonSuperiorRole">
+            SELECT
+            dd.ID,
+            dd.CODE,
+            dd.NAME,
+            dd.Account,
+            dd.CorpCode,
+            dd.DelFlag,
+            dd.DeptCode,
+            dd.Duty,
+            dd.Email,
+            dd.Mobile,
+            dd.PASSWORD,
+            dd.PersonStatus,
+            dd.Position,
+            dd.Sex,
+            dd.WorkNum,
+            dd.OrderNo,
+            dd.Superior,
+            dd.SuperiorName,
+            dd.DeptName,
+            ee.Code1,
+            RoleCode,
+            RoleName,
+            ff.Code2,
+            ff.DepartCode,
+            ff.DepartName
+            FROM
+            (
+            SELECT
+            c.ID,
+            c.CODE,
+            c.NAME,
+            c.Account,
+            c.CorpCode,
+            c.DelFlag,
+            c.DeptCode,
+            c.Duty,
+            c.Email,
+            c.Mobile,
+            c.PASSWORD,
+            c.PersonStatus,
+            c.Position,
+            c.Sex,
+            c.WorkNum,
+            c.OrderNo,
+            c.Superior,
+            d.NAME AS SuperiorName,
+            e.NAME AS DeptName
+            FROM
+            (
+            SELECT
+            ID,
+            CODE,
+            NAME,
+            Sex,
+            WorkNum,
+            Account,
+            PASSWORD,
+            DeptCode,
+            CorpCode,
+            Duty,
+            POSITION,
+            Superior,
+            Mobile,
+            Email,
+            OrderNo,
+            PersonStatus,
+            DelFlag,
+            RandCode,
+            LastPasswordChangeTime
+            FROM
+            SM_Person
+            WHERE
+            ( Account &lt;&gt; 'System' )
+            OR ( Account IS NULL )
+            ) AS c
+            LEFT OUTER JOIN SM_Person AS d ON c.Superior = d.
+            CODE LEFT OUTER JOIN SM_Department AS e ON c.DeptCode = e.CODE
+            ) AS dd
+            LEFT OUTER JOIN (
+            SELECT CODE AS
+            Code1,
+            INSERT (
+            (
+            SELECT
+            ',' + RoleCode
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS RoleCode,
+            c.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Role WHERE DelFlag = '0' ) AS c ON b.RoleCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = GROUP_CONCAT( aa.CODE, ',' )
+            ),
+            1,
+            1,
+            ''
+            ) AS RoleCode,
+            INSERT (
+            (
+            SELECT
+            ',' + RoleName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS RoleCode,
+            c.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Role WHERE DelFlag = '0' ) AS c ON b.RoleCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = aa.CODE
+            ORDER BY
+            RoleName
+            ),
+            1,
+            1,
+            ''
+            ) AS RoleName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c_2.CODE AS RoleCode,
+            c_2.NAME AS RoleName
+            FROM
+            SM_Person AS a
+            LEFT OUTER JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
+            LEFT OUTER JOIN ( SELECT ID, CODE, NAME, 'DESCRIBE', DelFlag FROM SM_Role WHERE ( DelFlag = '0' ) ) AS c_2 ON b.RoleCode = c_2.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS aa
+            GROUP BY
+            CODE
+            ) AS ee ON dd.CODE = ee.Code1
+            LEFT OUTER JOIN (
+            SELECT CODE AS
+            Code2,
+            INSERT (
+            (
+            SELECT
+            ',' + DepartCode
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS DepartCode,
+            c.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = GROUP_CONCAT( hh.CODE, ',' )
+            ),
+            1,
+            1,
+            ''
+            ) AS DepartCode,
+            INSERT (
+            (
+            SELECT
+            ',' + DepartName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c.CODE AS DepartCode,
+            c.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT JOIN ( SELECT * FROM SM_Department WHERE DelFlag = '0' ) AS c ON b.DepartCode = c.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS bb
+            WHERE
+            CODE = hh.CODE
+            ORDER BY
+            ',' + DepartName
+            ),
+            1,
+            1,
+            ''
+            ) AS DepartName
+            FROM
+            (
+            SELECT
+            a.CODE,
+            c_1.CODE AS DepartCode,
+            c_1.NAME AS DepartName
+            FROM
+            SM_Person AS a
+            LEFT OUTER JOIN SM_PersonDepart_Rel AS b ON a.CODE = b.PersonCode
+            LEFT OUTER JOIN (
+            SELECT
+            ID,
+            CODE,
+            Pcode,
+            NAME,
+            Charge,
+            OrderNo,
+            IsCompany,
+            IsProductionDept,
+            DelFlag
+            FROM
+            SM_Department
+            WHERE
+            ( DelFlag = '0' )
+            ) AS c_1 ON b.DepartCode = c_1.CODE
+            WHERE
+            a.DelFlag = '0'
+            ) AS hh
+            GROUP BY
+            CODE
+            ) AS ff ON dd.CODE = ff.Code2
+        </createView>
+    </changeSet>
     <changeSet author="WangXun" id="1574840696094-147">
         <createView fullDefinition="false" viewName="V_SM_PersonSysPower">
             SELECT
@@ -4043,7 +4293,6 @@
             LEFT OUTER JOIN t_deply AS b ON a.DeployID = b.Id
         </createView>
     </changeSet>
-
     <changeSet author="WangXun" id="1574840696094-157">
         <createView fullDefinition="false" viewName="V_SM_SystemResourceDtl">
             SELECT
@@ -4086,7 +4335,6 @@
             V_SM_SystemResourceRmisDtl
         </createView>
     </changeSet>
-
     <changeSet author="WangXun" id="1574840696094-158">
         <createView viewName="V_SM_SystemResourcePowerDtl">
             SELECT DISTINCT
@@ -4123,6 +4371,4 @@
             a.IsSysMenu &lt;&gt; '1')
         </createView>
     </changeSet>
-
-
 </databaseChangeLog>

@@ -110,4 +110,7 @@
             <column name="ACCREDIT10" remarks="权限10" type="INT"/>
         </createTable>
     </changeSet>
+    <changeSet id="v3.0.3.0" author="WangXun">
+        <tagDatabase tag="v3.0.3.0"/>
+    </changeSet>
 </databaseChangeLog>

@@ -3,7 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="v3.0.0.1" author="Wangxun">
+    <changeSet id="v3.0.0.1" author="Wangxun" dbms="mssql">
         <comment>修改SM_Person表OrderNo字段自增</comment>
         <createSequence sequenceName="SQ_PERSON_ORDERNO" startValue="1" incrementBy="1"/>
         <addDefaultValue tableName="SM_Person" columnName="OrderNo" defaultValueSequenceNext="SQ_PERSON_ORDERNO"/>
