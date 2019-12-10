@@ -18,6 +18,10 @@
 *.zip
 *.tar.gz
 *.rar
+*.idea
+*.iml
+*.mvn
+/spring-boot-study/01-Code/spring-boot-study/*/target
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
