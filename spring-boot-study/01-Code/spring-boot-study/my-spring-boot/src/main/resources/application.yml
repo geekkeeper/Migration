@@ -1,0 +1,20 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.21.50.60:3306/my_spring_boot?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: HiODS-9527
+    type: com.mysql.cj.jdbc.MysqlDataSource
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.xml
+    rollback-file: classpath:liquibase/rollback/rollback.sql
+    database-change-log-table: DATABASE_CHANGELOG
+    database-change-log-lock-table: DATABASE_CHANGELOG_LOCK
+    enabled: true
+    drop-first: false
+mybatis:
+  check-config-location: true
+  config-location: classpath:mybatis/config/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

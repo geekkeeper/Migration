@@ -24,6 +24,8 @@
 		<module>web-flux</module>
 		<module>thymeleaf</module>
 		<module>freemarker</module>
+		<module>mysql</module>
+		<module>my-spring-boot</module>
 	</modules>
 	<!--jar包的版本控制及管理-->
 	<dependencyManagement>

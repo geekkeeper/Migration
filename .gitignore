@@ -40,3 +40,8 @@ hs_err_pid*
 /spring-boot-study/01-Code/spring-boot-study/thymeleaf/*.iml
 /spring-boot-study/01-Code/spring-boot-study/web-flux/.mvn
 /spring-boot-study/01-Code/spring-boot-study/web-flux/target
+/spring-boot-study/01-Code/spring-boot-study/mysql/.mvn
+/spring-boot-study/01-Code/spring-boot-study/my-spring-boot/*.iml
+/spring-boot-study/01-Code/spring-boot-study/my-spring-boot/.mvn
+/spring-boot-study/01-Code/spring-boot-study/my-spring-boot/target
+/spring-boot-study/01-Code/spring-boot-study/mysql/target
