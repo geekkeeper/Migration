@@ -24,4 +24,10 @@
 			<column name="TAG_UNIT" type="nvarchar(128)" remarks="标签所属单元"/>
 		</addColumn>
 	</changeSet>
+	<changeSet id="1576054965000-4" author="WangXun">
+		<comment>用户表(SM_USER)添加备注(REMARK)字段</comment>
+		<addColumn tableName="SM_USER">
+			<column name="REMARK" type="nvarchar(128)" remarks="备注"/>
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>
