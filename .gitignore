@@ -29,7 +29,6 @@ hs_err_pid*
 /database-migration/01-Code/database-migration/*.iml
 /database-migration/01-Code/database-migration/iods/.mvn
 /database-migration/01-Code/database-migration/iods/src/main/resources/db/diffChangeLog
-/database-migration/01-Code/database-migration/iods/src/main/resources/db/output
 /database-migration/01-Code/database-migration/iods/src/main/resources/db/outputChangeLog
 /spring-boot-study/01-Code/spring-boot-study/.idea
 /spring-boot-study/01-Code/spring-boot-study/*.iml

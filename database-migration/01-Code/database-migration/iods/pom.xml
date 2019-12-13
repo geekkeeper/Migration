@@ -16,7 +16,7 @@
 	<!--工程属性及自定义属性-->
 	<properties>
 		<java.version>1.8</java.version>
-		<dbms>mysql</dbms>
+		<dbms>mssql</dbms>
 		<author>WangXun</author>
 		<current.time>${maven.build.timestamp}</current.time>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -49,18 +49,18 @@
 					</changeSetAuthor>
 					<!--生成数据库初始化结构-->
 					<!--<outputChangeLogFile>
-						src/main/resources/db/output/${current.time}-${dbms}-init-struct.xml
+						src/main/resources/db/outputChangeLog/${current.time}-${dbms}-init-struct.xml
 					</outputChangeLogFile>-->
 					<!--生成数据库初始化数据-->
 					<diffTypes>
 						data
 					</diffTypes>
-					<outputFile>
-						src/main/resources/db/rollbackSql/${current.time}-${dbms}-rollback.sql
-					</outputFile>
 					<outputChangeLogFile>
 						src/main/resources/db/outputChangeLog/${current.time}-${dbms}-init-data.xml
 					</outputChangeLogFile>
+					<outputFile>
+						src/main/resources/db/rollbackSql/${current.time}-${dbms}-rollback.sql
+					</outputFile>
 					<!--配置数据库比较差异文件输出位置-->
 					<diffChangeLogFile>
 						src/main/resources/db/diffChangeLog/${current.time}-${dbms}-different.xml
@@ -69,11 +69,12 @@
 					<migrationSqlOutputFile>
 						src/main/resources/db/updateSql/${current.time}-${dbms}-update.sql
 					</migrationSqlOutputFile>
+					<!--数据库变更文档生成目录-->
+					<outputDirectory>src/main/resources/db/output</outputDirectory>
 					<!--配置参数禁用弹出的对话框确认迁移在非本地数据库-->
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 					<outputFileEncoding>UTF-8</outputFileEncoding>
-					<outputDirectory>src/main/resources/db/output</outputDirectory>
-					<rollbackTag>v3.0.1.0</rollbackTag>
+					<rollbackTag>v1.0.0.0</rollbackTag>
 				</configuration>
 			</plugin>
 		</plugins>

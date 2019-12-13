@@ -2,6 +2,51 @@
 
   Maven插件封装了Liquibase的一些功能，功能如下：
 
+一、数据库变更(changelog)内容：
+
+| 对象类型 | 更新操作                     | mysql | SqlServer | Oracle | 说明 |
+| -------- | ---------------------------- | ----- | --------- | ------ | ---- |
+| column   | addAutoIncrement             |       |           |        |      |
+|          | addColumn                    |       |           |        |      |
+|          | addDefaultValue              |       |           |        |      |
+|          | addDefaultValue              |       |           |        |      |
+|          | addForeignKeyConstraint      |       |           |        |      |
+|          | addLookupTable               |       |           |        |      |
+|          | addNotNullConstraint         |       |           |        |      |
+|          | addPrimaryKey                |       |           |        |      |
+|          | addUniqueConstraint          |       |           |        |      |
+|          | alterSequence                |       |           |        |      |
+|          | createIndex                  |       |           |        |      |
+|          | createProcedure              |       |           |        |      |
+|          | createSequence               |       |           |        |      |
+|          | createTable                  |       |           |        |      |
+|          | createView                   |       |           |        |      |
+|          | delete                       |       |           |        |      |
+|          | dropAllForeignKeyConstraints |       |           |        |      |
+|          | dropColumn                   |       |           |        |      |
+|          | dropDefaultValue             |       |           |        |      |
+|          | dropForeignKeyConstraint     |       |           |        |      |
+|          | dropIndex                    |       |           |        |      |
+|          | dropNotNullConstraint        |       |           |        |      |
+|          | dropPrimaryKey               |       |           |        |      |
+|          | dropProcedure                |       |           |        |      |
+|          | dropSequence                 |       |           |        |      |
+|          | dropTable                    |       |           |        |      |
+|          | dropUniqueConstraint         |       |           |        |      |
+|          | dropView                     |       |           |        |      |
+|          | insert                       |       |           |        |      |
+|          | mergeColumns                 |       |           |        |      |
+|          | modifyDataType               |       |           |        |      |
+|          | renameColumn                 |       |           |        |      |
+|          | renameSequence               |       |           |        |      |
+|          | renameTable                  |       |           |        |      |
+|          | renameView                   |       |           |        |      |
+|          | setColumnRemarks             |       |           |        |      |
+|          | setTableRemarks              |       |           |        |      |
+|          | update                       |       |           |        |      |
+
+
+
 ## 一、Liquibase Maven 插件功能
 
 ### liquibase:help

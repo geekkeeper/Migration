@@ -6,62 +6,90 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.xunsoft</groupId>
 	<artifactId>integration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>integration</name>
 	<description>Demo project for Spring Boot</description>
-
+	<!--工程属性-->
 	<properties>
 		<java.version>1.8</java.version>
+		<dbms>mysql</dbms>
+		<!--设置作者-->
+		<author>WangXun</author>
+		<!--获取当前时间-->
+		<current.time>${maven.build.timestamp}</current.time>
+		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+		<!--工程编译资源编码格式-->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--工程输出文件编码格式-->
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-
+	<!--工程依赖的所有jar包-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
 		</dependency>
+		<!--spring boot默认架包-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+		<!--spring boot整合 web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--spring boot整合thymeleaf-->
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.1.1</version>
-		</dependency>
-
+		<!--spring boot 整合 devtools支持热加载-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!--spring boot整合 mybatis-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!--spring boot整合JDBC-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+		</dependency>
+		<!--sqlserver驱动-->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--Oracle驱动-->
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--mysql驱动-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--liquibase 核心包:数据库版本维护-->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+		<!--spring boot整合单元测试-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -74,14 +102,67 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
+			<!--Liquibase 插件-->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.8.2</version>
+				<configuration>
+					<!--liquibase配置文件-->
+					<propertyFile>src/main/resources/config/jdbc-${dbms}.properties</propertyFile>
+					<!--允许配置文件重载属性：true/false-->
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<!--数据库变更日志表名-->
+					<databaseChangeLogTableName>DATABASE_CHANGE_LOG</databaseChangeLogTableName>
+					<!--数据库变更锁表名-->
+					<databaseChangeLogLockTableName>DATABASE_CHANGE_LOG_LOCK</databaseChangeLogLockTableName>
+					<!--变更日志文件-->
+					<changeLogFile>src/main/resources/liquibase/changelog-master.xml</changeLogFile>
+					<!--数据变更文档输出目录-->
+					<outputDirectory>src/main/resources/liquibase/output</outputDirectory>
+					<!--迁移SQL输出(更新/回滚)-->
+					<migrationSqlOutputFile>src/main/resources/liquibase/update/${current.time}-${dbms}-update.sql</migrationSqlOutputFile>
+					<!--回滚SQL输出-->
+					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
+					<!--数据库逆向生成变更日志-->
+					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.xml</outputChangeLogFile>
+					<!--俩数据库比较生成差异文件-->
+					<diffChangeLogFile>src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml</diffChangeLogFile>
+					<!--输出文件的编码格式-->
+					<outputFileEncoding>UTF-8</outputFileEncoding>
+					<!--操作非本地数据库提示-->
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+					<!--设置变更集作者名称-->
+					<changeSetAuthor>${author}</changeSetAuthor>
+					<!--设置回滚标识-->
+					<rollbackTag>v1.0.0.0</rollbackTag>
+				</configuration>
+			</plugin>
+			<!--MyBatis Generator 插件-->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<configuration>
+					<configurationFile>src/main/resources/config/generatorConfig.xml</configurationFile>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+				<executions>
+					<execution>
+						<id>Generate MyBatis Artifacts</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

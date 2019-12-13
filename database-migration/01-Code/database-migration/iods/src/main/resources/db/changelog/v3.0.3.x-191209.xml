@@ -5,7 +5,7 @@
 	<changeSet id="1575883800000-1" author="WangXun">
 		<comment>趋势组表添加版本列</comment>
 		<addColumn tableName="SM_TREND_GROUP">
-			<column name="VERSION" type="INT" remarks="版本" />
+			<column name="VERSION" type="INT" remarks="版本"/>
 		</addColumn>
 	</changeSet>
 	<changeSet id="1575883800000-2" author="WangXun">
@@ -29,5 +29,133 @@
 		<addColumn tableName="SM_USER">
 			<column name="REMARK" type="nvarchar(128)" remarks="备注"/>
 		</addColumn>
+	</changeSet>
+	<changeSet id="1576202400000-5" author="GongPei">
+		<comment>添加SM_ProjectPageButtonConfig初始化数据</comment>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="41"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAdd_T"/>
+			<column name="strButtonName" value="增加"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="42"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnEdit_T"/>
+			<column name="strButtonName" value="编辑"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="43"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnDelete_T"/>
+			<column name="strButtonName" value="删除"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="44"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAdd_M"/>
+			<column name="strButtonName" value="增加"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="45"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnEdit_M"/>
+			<column name="strButtonName" value="编辑"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="46"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnDelete_M"/>
+			<column name="strButtonName" value="删除"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="47"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAuthorize_M"/>
+			<column name="strButtonName" value="授权"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="48"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnImpo_M"/>
+			<column name="strButtonName" value="导入"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="49"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnExpo_M"/>
+			<column name="strButtonName" value="导出"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="50"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnResetPwd_M"/>
+			<column name="strButtonName" value="重置密码"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<rollback>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=41</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=42</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=43</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=44</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=45</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=46</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=47</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=48</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=49</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=50</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576202400000-6" author="GongPei">
+		<comment>更新SM_Department表Code='1'的数据Charge='system'</comment>
+		<update tableName="SM_Department">
+			<column name="Charge" value="system"/>
+			<where>Code='1'</where>
+		</update>
+		<rollback>
+			<update tableName="SM_Department">
+				<column name="Charge" value="3"/>
+				<where>Code='1'</where>
+			</update>
+		</rollback>
 	</changeSet>
 </databaseChangeLog>
