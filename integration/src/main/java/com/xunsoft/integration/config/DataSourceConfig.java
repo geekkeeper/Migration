@@ -1,7 +1,6 @@
 package com.xunsoft.integration.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +15,7 @@ import javax.sql.DataSource;
  * @Description:
  */
 @Configuration
-@PropertySource(value = "/config/liquibase-config.properties",ignoreResourceNotFound = true)
+@PropertySource(value = "/liquibase/config/liquibase-mysql.properties",ignoreResourceNotFound = true)
 public class DataSourceConfig {
     @Value("driverClassName")
     private String driverClassName;

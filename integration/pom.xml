@@ -111,7 +111,7 @@
 				<version>3.8.2</version>
 				<configuration>
 					<!--liquibase配置文件-->
-					<propertyFile>src/main/resources/config/jdbc-${dbms}.properties</propertyFile>
+					<propertyFile>src/main/resources/liquibase/config/liquibase-${dbms}.properties</propertyFile>
 					<!--允许配置文件重载属性：true/false-->
 					<propertyFileWillOverride>true</propertyFileWillOverride>
 					<!--数据库变更日志表名-->
@@ -122,9 +122,11 @@
 					<changeLogFile>src/main/resources/liquibase/changelog-master.xml</changeLogFile>
 					<!--数据变更文档输出目录-->
 					<outputDirectory>src/main/resources/liquibase/output</outputDirectory>
-					<!--迁移SQL输出(更新/回滚)-->
+					<!--迁移SQL输出(更新)-->
 					<migrationSqlOutputFile>src/main/resources/liquibase/update/${current.time}-${dbms}-update.sql</migrationSqlOutputFile>
-					<!--回滚SQL输出-->
+					<!--迁移SQL输出(回滚)-->
+					<migrationSqlOutputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</migrationSqlOutputFile>
+					<!--指定将来回滚SQL文件的输出路径-->
 					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
 					<!--数据库逆向生成变更日志-->
 					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.xml</outputChangeLogFile>
@@ -164,5 +166,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources/MyBatis/config</directory>
+				<includes>
+					<include>
+						*.properties
+					</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>

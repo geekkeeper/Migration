@@ -53,6 +53,9 @@
             <column name="nPushStatus" type="int"/>
             <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
         </createTable>
+        <rollback>
+
+        </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-2" >
         <createTable remarks="生产报警信息" tableName="CF_AlarmHis">

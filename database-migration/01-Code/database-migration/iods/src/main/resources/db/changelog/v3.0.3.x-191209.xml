@@ -158,4 +158,20 @@
 			</update>
 		</rollback>
 	</changeSet>
+	<changeSet id="1576571280000-7" author="ShiWeiChen">
+		<comment>添加索引</comment>
+		<createIndex tableName="CF_ALARMHIS" indexName="IX_CF_ALARMHIS_strEventTime">
+			<column name="strEventTime"/>
+		</createIndex>
+		<rollback>
+			<dropIndex tableName="CF_ALARMHIS" indexName="IX_CF_ALARMHIS_strEventTime"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576571280000-8" author="ShiWeiChen">
+		<comment>添加索引</comment>
+		<createIndex tableName="SM_LOG" indexName="IX_SM_LOG_strOperateTime">
+			<column name=" strOperateTime"/>
+		</createIndex>
+		<dropIndex tableName="SM_LOG" indexName="IX_SM_LOG_strOperateTime"/>
+	</changeSet>
 </databaseChangeLog>

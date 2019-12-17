@@ -1,6 +1,6 @@
 #spring:
 #  profiles:
-#    include: classpath:config/liquibase-config.properties
+#    include: classpath:config/liquibase-mysql.properties
 #  datasource:
 #    driver-class-name: ${jdbc.driverClass}
 #    url: ${jdbc.url}
@@ -12,4 +12,4 @@
 #    database-change-log-lock-table: ${databaseChangeLogLockTableName}
 spring:
   config:
-    path: classpath:config/liquibase-config.properties
+    path: classpath:config/liquibase-mysql.properties

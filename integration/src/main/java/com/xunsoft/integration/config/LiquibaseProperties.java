@@ -10,9 +10,9 @@ import org.springframework.context.annotation.PropertySource;
  * @Description:
  */
 @Configuration
-@PropertySource(value = "/config/liquibase-config.properties",ignoreResourceNotFound = true)
+@PropertySource(value = {"classpath:liquibase/config/liquibase-mysql.properties"},ignoreResourceNotFound = true)
 public class LiquibaseProperties {
-    @Value("driverclassname")
+    @Value("driverClassName")
     private String driverClassName;
     @Value("url")
     private String url;
