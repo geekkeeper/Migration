@@ -174,4 +174,33 @@
 		</createIndex>
 		<dropIndex tableName="SM_LOG" indexName="IX_SM_LOG_strOperateTime"/>
 	</changeSet>
+
+	<changeSet id="1576662006000-9" author="ShiWeiChen">
+		<comment>修改sm_user表字段数据类型</comment>
+		<modifyDataType tableName="SM_USER" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<modifyDataType tableName="SM_USER" columnName="USERNAME " newDataType="varchar(80)"/>
+		<modifyDataType tableName="SM_USER" columnName="REMARK " newDataType="varchar(150)"/>
+		<rollback>
+			<modifyDataType tableName="SM_USER" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+			<modifyDataType tableName="SM_USER" columnName="USERNAME " newDataType="varchar(50)"/>
+			<modifyDataType tableName="SM_USER" columnName="REMARK " newDataType="varchar(128)"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576662006000-10" author="ShiWeiChen">
+		<comment>修改sm_user_group表字段数据类型</comment>
+		<modifyDataType tableName="sm_user_group" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<rollback>
+			<modifyDataType tableName="sm_user_group" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576662006000-11" author="ShiWeiChen">
+		<comment>修改sm_user_group_graph表字段数据类型</comment>
+		<modifyDataType tableName="sm_user_group_graph" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<modifyDataType tableName="sm_user_group_graph" columnName="GRAPH_NAME " newDataType="varchar(80)"/>
+		<rollback>
+			<modifyDataType tableName="sm_user_group_graph" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+			<modifyDataType tableName="sm_user_group_graph" columnName="GRAPH_NAME " newDataType="varchar(50)"/>
+		</rollback>
+	</changeSet>
+
 </databaseChangeLog>

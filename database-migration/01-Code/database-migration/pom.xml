@@ -25,6 +25,7 @@
 
 	<modules>
 		<module>iods</module>
+		<module>huide</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies></dependencies>
