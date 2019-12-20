@@ -1,7 +1,8 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 	<changeSet author="WangXun" id="1576561645670-1">
 		<comment>新建令牌记录表(OAUTH_ACCESS_TOKEN)</comment>
 		<createTable tableName="OAUTH_ACCESS_TOKEN" remarks="令牌记录表">
@@ -143,6 +144,7 @@
 			<column name="PASSWORD" type="varchar(255)" remarks="密码">
 				<constraints nullable="false" notNullConstraintName="NU_AM_USER_PASSWORD"/>
 			</column>
+			<column name="DEPART_NAME" type="varchar(50)" remarks="部门名称"/>
 			<column name="NICK_NAME" type="varchar(50)" remarks="昵称"/>
 			<column name="WORK_NO" type="varchar(50)" remarks="工号"/>
 			<column name="EMAIL" type="varchar(50)" remarks="邮箱"/>
@@ -156,6 +158,25 @@
 			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
 			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
 		</createTable>
+		<insert tableName="AM_USER">
+			<column name="ID" value="1000"/>
+			<column name="EXTERN_ID"/>
+			<column name="USERNAME" value="admin"/>
+			<column name="PASSWORD" value="123456"/>
+			<column name="DEPART_NAME"/>
+			<column name="NICK_NAME" value="超级管理员"/>
+			<column name="WORK_NO" value="admin"/>
+			<column name="EMAIL"/>
+			<column name="WECHAT"/>
+			<column name="PHONE"/>
+			<column name="ONLINE" value="N"/>
+			<column name="DELETE" value="N"/>
+			<column name="ENABLE" value="Y"/>
+			<column name="CREATE_TIME" valueDate="2019-12-19T10:28:37"/>
+			<column name="CREATE_BY" value="-1"/>
+			<column name="UPDATE_TIME"/>
+			<column name="UPDATE_BY"/>
+		</insert>
 	</changeSet>
 	<changeSet author="WangXun" id="1576561645670-10">
 		<comment>创建用户角色关系表(AM_USER_ROLE)</comment>
@@ -168,8 +189,8 @@
 		</createTable>
 	</changeSet>
 	<changeSet author="WangXun" id="1576636121375-11">
-		<comment>创建字典表(AM_DICTIONARY)</comment>
-		<createTable tableName="AM_DICTIONARY" remarks="字典表">
+		<comment>创建字典表(SC_DICTIONARY)</comment>
+		<createTable tableName="SC_DICTIONARY" remarks="字典表">
 			<column name="ID" type="varchar(32)" remarks="字典标号">
 				<constraints primaryKey="true" primaryKeyName="PK_AM_DICTIONARY_ID"/>
 			</column>
@@ -243,6 +264,16 @@
 			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
 			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
 			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1576655370008-15">
+		<comment>自定义导航表(AM_NAVIGATION)</comment>
+		<createTable tableName="AM_NAVIGATION">
+			<column name="ID" type="varchar(32)" remarks="导航编号">
+				<constraints primaryKey="true" primaryKeyName="PK_NAVIGATION_ID"/>
+			</column>
+			<column name="MODULE_ID" type="varchar(32)" remarks="模块编号"/>
+			<column name="PARENT_ID" type="varchar(32)" remarks="父模块编号"/>
 		</createTable>
 	</changeSet>
 </databaseChangeLog>
