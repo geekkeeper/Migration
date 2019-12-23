@@ -1,0 +1,116 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="WangXun" id="1574956800002-1">
+        <createTable tableName="SM_ALARM_LEVEL_COLOUR">
+            <column name="ID" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="LEVEL1_COLOUR" type="BIGINT"/>
+            <column name="LEVEL2_COLOUR" type="BIGINT"/>
+            <column name="LEVEL3_COLOUR" type="BIGINT"/>
+            <column name="LEVEL4_COLOUR" type="BIGINT"/>
+            <column name="LEVEL5_COLOUR" type="BIGINT"/>
+            <column name="LEVEL6_COLOUR" type="BIGINT"/>
+            <column name="LEVEL7_COLOUR" type="BIGINT"/>
+            <column name="LEVEL8_COLOUR" type="BIGINT"/>
+            <column name="LEVEL9_COLOUR" type="BIGINT"/>
+            <column name="LEVEL10_COLOUR" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574956800002-2">
+        <createTable tableName="SM_TREND_GROUP">
+            <column name="ID" remarks="主键" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="TREND_GROUP_NAME" remarks="趋势组名" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" remarks="用户名，可以为NULL，为NULL则为公共趋势组" type="VARCHAR(50)"/>
+            <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574956800002-3">
+        <createTable remarks="在线用户信息" tableName="SM_ONLINE_USER">
+            <column name="ID" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="GROUP_NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_ID" type="INT"/>
+            <column name="LOGIN_TIME" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574956800002-4">
+        <createTable remarks="用户信息" tableName="SM_USER">
+            <column name="ID" remarks="主键" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" remarks="用户名" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" remarks="密码" type="VARCHAR(50)"/>
+            <column name="CREATE_BY" remarks="创建人" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="修改人" type="VARCHAR(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574956800002-5">
+        <createTable remarks="用户组下挂接的流程图" tableName="SM_USER_GROUP_GRAPH">
+            <column name="ID" remarks="主键" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GRAPH_NAME" remarks="流程图名称" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="WRITE_AUTHORITY" remarks="写权限" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574956800002-6">
+        <createTable remarks="用户组" tableName="SM_USER_GROUP">
+            <column name="ID" remarks="主键" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名称" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="创建人" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="修改人" type="VARCHAR(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+            <column name="ACCREDIT1" remarks="权限1" type="INT"/>
+            <column name="ACCREDIT2" remarks="权限2" type="INT"/>
+            <column name="ACCREDIT3" remarks="权限3" type="INT"/>
+            <column name="ACCREDIT4" remarks="权限4" type="INT"/>
+            <column name="ACCREDIT5" remarks="权限5" type="INT"/>
+            <column name="ACCREDIT6" remarks="权限6" type="INT"/>
+            <column name="ACCREDIT7" remarks="权限7" type="INT"/>
+            <column name="ACCREDIT8" remarks="权限8" type="INT"/>
+            <column name="ACCREDIT9" remarks="权限9" type="INT"/>
+            <column name="ACCREDIT10" remarks="权限10" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="v3.0.3.0" author="WangXun">
+        <tagDatabase tag="v3.0.3.0"/>
+    </changeSet>
+</databaseChangeLog>

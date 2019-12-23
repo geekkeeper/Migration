@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="WangXun" id="1576722731408-1">
+        <insert tableName="AM_USER">
+            <column name="ID" value="1000"/>
+            <column name="EXTERN_ID"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="123456"/>
+            <column name="DEPART_NAME"/>
+            <column name="NICK_NAME" value="超级管理员"/>
+            <column name="WORK_NO" value="admin"/>
+            <column name="EMAIL"/>
+            <column name="WECHAT"/>
+            <column name="PHONE"/>
+            <column name="ONLINE" value="N"/>
+            <column name="DELETE" value="N"/>
+            <column name="ENABLE" value="Y"/>
+            <column name="SUPER" value="Y"/>
+            <column name="CREATE_TIME" valueDate="2019-12-19T10:28:37"/>
+            <column name="CREATE_BY" value="-1"/>
+            <column name="UPDATE_TIME"/>
+            <column name="UPDATE_BY"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

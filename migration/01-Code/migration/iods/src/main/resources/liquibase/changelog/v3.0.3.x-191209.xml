@@ -1,0 +1,206 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet id="1575883800000-1" author="WangXun">
+		<comment>趋势组表添加版本列</comment>
+		<addColumn tableName="SM_TREND_GROUP">
+			<column name="VERSION" type="INT" remarks="版本"/>
+		</addColumn>
+	</changeSet>
+	<changeSet id="1575883800000-2" author="WangXun">
+		<comment>报警抑制表添加区域、装置、单元字段</comment>
+		<addColumn tableName="CF_FORBIDALARM">
+			<column name="TAG_AREA" type="nvarchar(128)" remarks="标签所属区域"/>
+			<column name="TAG_DEVICE" type="nvarchar(128)" remarks="标签所属装置"/>
+			<column name="TAG_UNIT" type="nvarchar(128)" remarks="标签所属单元"/>
+		</addColumn>
+	</changeSet>
+	<changeSet id="1575883800000-3" author="WangXun">
+		<comment>报警隐藏表添加区域、装置、单元字段</comment>
+		<addColumn tableName="CF_HIDEALARM">
+			<column name="TAG_AREA" type="nvarchar(128)" remarks="标签所属区域"/>
+			<column name="TAG_DEVICE" type="nvarchar(128)" remarks="标签所属装置"/>
+			<column name="TAG_UNIT" type="nvarchar(128)" remarks="标签所属单元"/>
+		</addColumn>
+	</changeSet>
+	<changeSet id="1576054965000-4" author="WangXun">
+		<comment>用户表(SM_USER)添加备注(REMARK)字段</comment>
+		<addColumn tableName="SM_USER">
+			<column name="REMARK" type="nvarchar(128)" remarks="备注"/>
+		</addColumn>
+	</changeSet>
+	<changeSet id="1576202400000-5" author="GongPei">
+		<comment>添加SM_ProjectPageButtonConfig初始化数据</comment>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="41"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAdd_T"/>
+			<column name="strButtonName" value="增加"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="42"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnEdit_T"/>
+			<column name="strButtonName" value="编辑"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="43"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnDelete_T"/>
+			<column name="strButtonName" value="删除"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="1"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="44"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAdd_M"/>
+			<column name="strButtonName" value="增加"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="45"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnEdit_M"/>
+			<column name="strButtonName" value="编辑"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="46"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnDelete_M"/>
+			<column name="strButtonName" value="删除"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="47"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnAuthorize_M"/>
+			<column name="strButtonName" value="授权"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="48"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnImpo_M"/>
+			<column name="strButtonName" value="导入"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="49"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnExpo_M"/>
+			<column name="strButtonName" value="导出"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<insert tableName="SM_ProjectPageButtonConfig">
+			<column name="ID" value="50"/>
+			<column name="strProjectSysPowerCode" value="SM_Department"/>
+			<column name="strButtonID" value="btnResetPwd_M"/>
+			<column name="strButtonName" value="重置密码"/>
+			<column name="strRemark" value="系统内置,勿删勿改"/>
+			<column name="nPowerCodeType" valueNumeric="0"/>
+		</insert>
+		<rollback>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=41</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=42</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=43</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=44</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=45</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=46</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=47</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=48</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=49</where>
+			</delete>
+			<delete tableName="SM_ProjectPageButtonConfig">
+				<where>ID=50</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576202400000-6" author="GongPei">
+		<comment>更新SM_Department表Code='1'的数据Charge='system'</comment>
+		<update tableName="SM_Department">
+			<column name="Charge" value="system"/>
+			<where>Code='1'</where>
+		</update>
+		<rollback>
+			<update tableName="SM_Department">
+				<column name="Charge" value="3"/>
+				<where>Code='1'</where>
+			</update>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576571280000-7" author="ShiWeiChen">
+		<comment>添加索引</comment>
+		<createIndex tableName="CF_ALARMHIS" indexName="IX_CF_ALARMHIS_strEventTime">
+			<column name="strEventTime"/>
+		</createIndex>
+		<rollback>
+			<dropIndex tableName="CF_ALARMHIS" indexName="IX_CF_ALARMHIS_strEventTime"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576571280000-8" author="ShiWeiChen">
+		<comment>添加索引</comment>
+		<createIndex tableName="SM_LOG" indexName="IX_SM_LOG_strOperateTime">
+			<column name=" strOperateTime"/>
+		</createIndex>
+		<dropIndex tableName="SM_LOG" indexName="IX_SM_LOG_strOperateTime"/>
+	</changeSet>
+
+	<changeSet id="1576662006000-9" author="ShiWeiChen">
+		<comment>修改sm_user表字段数据类型</comment>
+		<modifyDataType tableName="SM_USER" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<modifyDataType tableName="SM_USER" columnName="USERNAME " newDataType="varchar(80)"/>
+		<modifyDataType tableName="SM_USER" columnName="REMARK " newDataType="varchar(150)"/>
+		<rollback>
+			<modifyDataType tableName="SM_USER" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+			<modifyDataType tableName="SM_USER" columnName="USERNAME " newDataType="varchar(50)"/>
+			<modifyDataType tableName="SM_USER" columnName="REMARK " newDataType="varchar(128)"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576662006000-10" author="ShiWeiChen">
+		<comment>修改sm_user_group表字段数据类型</comment>
+		<modifyDataType tableName="sm_user_group" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<rollback>
+			<modifyDataType tableName="sm_user_group" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+		</rollback>
+	</changeSet>
+	<changeSet id="1576662006000-11" author="ShiWeiChen">
+		<comment>修改sm_user_group_graph表字段数据类型</comment>
+		<modifyDataType tableName="sm_user_group_graph" columnName="GROUP_NAME" newDataType="varchar(80)"/>
+		<modifyDataType tableName="sm_user_group_graph" columnName="GRAPH_NAME " newDataType="varchar(80)"/>
+		<rollback>
+			<modifyDataType tableName="sm_user_group_graph" columnName="GROUP_NAME" newDataType="varchar(50)"/>
+			<modifyDataType tableName="sm_user_group_graph" columnName="GRAPH_NAME " newDataType="varchar(50)"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

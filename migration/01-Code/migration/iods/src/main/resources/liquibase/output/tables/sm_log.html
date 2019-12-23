@@ -1,0 +1,210 @@
+<html><head><meta charset="utf-8"/><title>Changes affecting table "sm_log"</title><LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><SCRIPT type="text/javascript">function windowTitle(){    parent.document.title="Changes affecting table 'sm_log'";}</SCRIPT></head><body BGCOLOR="white" onload="windowTitle();"><H2>Changes affecting table "sm_log"</H2>
+<P><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN=1><FONT SIZE="+2">
+<B>Table Description</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+日志表</TD>
+</TR>
+</TABLE>
+<P><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN=4><FONT SIZE="+2">
+<B>Current Columns</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(50 BYTE)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.id.html">ID</A></TD>
+<TD VALIGN="top">
+</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(100 BYTE)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.stroperater.html">strOperater</A></TD>
+<TD VALIGN="top">
+创建人</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+DATETIME</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.stroperatetime.html">strOperateTime</A></TD>
+<TD VALIGN="top">
+创建时间</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+INT(10)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.nlogsource.html">nLogSource</A></TD>
+<TD VALIGN="top">
+日志来源 生产日志 = 1,系统日志 = 2,DCS日志 = 3</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+INT(10)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.noperatecontentkey.html">nOperateContentKey</A></TD>
+<TD VALIGN="top">
+其他0，登录注销1、新增2、删除3、修改4，置位 = 10,写模拟量值 = 11,</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+INT(10)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.nstatus.html">nStatus</A></TD>
+<TD VALIGN="top">
+状态 1成功  0失败</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(50 BYTE)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strip.html">strIP</A></TD>
+<TD VALIGN="top">
+ip</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(64 BYTE)</TD>
+<TD VALIGN="top">
+NOT NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strlabelname.html">strLabelName</A></TD>
+<TD VALIGN="top">
+标签名</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(128 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strlabeldescribe.html">strLabelDescribe</A></TD>
+<TD VALIGN="top">
+标签描述</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(64 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strarea.html">strArea</A></TD>
+<TD VALIGN="top">
+区域，为DCS日志设计</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(64 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strdevice.html">strDevice</A></TD>
+<TD VALIGN="top">
+装置，为DCS日志设计</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(64 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strunit.html">strUnit</A></TD>
+<TD VALIGN="top">
+单元,为DCS日志设计</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(255 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.stroperateroute.html">strOperateRoute</A></TD>
+<TD VALIGN="top">
+页面编码或者流程图id</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(255 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strprecontent.html">strPreContent</A></TD>
+<TD VALIGN="top">
+修改前值</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(255 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.straftercontent.html">strafterContent</A></TD>
+<TD VALIGN="top">
+修改后值</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+VARCHAR(255 BYTE)</TD>
+<TD VALIGN="top">
+NULL</TD>
+<TD VALIGN="top">
+<A HREF="../columns/hiodsdb.sm_log.strcontent.html">strContent</A></TD>
+<TD VALIGN="top">
+日志详情</TD>
+</TR>
+</TABLE>
+<P><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN=3><FONT SIZE="+2">
+<B>Current Table Indexes</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+Non-Unique </TD>
+<TD VALIGN="top">
+IX_SM_Log</TD>
+<TD VALIGN="top">
+hiodsdb.strOperateTime</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD VALIGN="top">
+Primary Key </TD>
+<TD VALIGN="top">
+PRIMARY</TD>
+<TD VALIGN="top">
+hiodsdb.ID</TD>
+</TR>
+</TABLE>
+<p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Pending Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Past Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><hr>Generated: 19-12-23 上午9:34<BR>Against: root@172.21.48.50 @ jdbc:mysql://172.21.50.60:3306/HiODSDB?serverTimezone=GMT%2B8 (Default Schema: HiODSDB)<BR>Change Log: src/main/resources/liquibase/changelog-master.xml<BR><BR>Generated By: <a href='http://www.liquibase.org' target='_TOP'>Liquibase 3.8.2</a></body></html>

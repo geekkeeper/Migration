@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	<property name="version-id" value="v1.0.0.0"/>
+
+	<changeSet id="${version-id}" author="WangXun">
+		<tagDatabase tag="${version-id}"/>
+	</changeSet>
+	<include file="changelog/20191217-v1.0.0.0.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
