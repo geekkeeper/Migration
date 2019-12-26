@@ -87,7 +87,8 @@
 | 权限管理 | authority management | AM_  |                                |
 | 系统配置 | system configuration | SC_  |                                |
 | 版本控制 | database version     | DV_  | 如：DV_CHANGE_LOG （变更日志） |
-| 数据管理 | data management      | DM_  |                                |
+| 生产监视 | monitoring system    | MS_  |                                |
+| 基础数据 | basic data           | BD_  |                                |
 
 - **建议：**表名也用于相关索引、约束、主键等命名，因此为了避免相关对象命名长度超过限制，**建议表名长度不要超过20。**
 - **建议：**表的命名方式建议采用MOUDLE_ENTITY方式。MOUDLE表示数据库对象所属的系统、模块名或者主题分类的缩写。ENTITY表示目的表代表的实体名称。
