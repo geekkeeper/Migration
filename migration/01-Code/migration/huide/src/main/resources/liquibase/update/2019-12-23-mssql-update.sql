@@ -33,7 +33,7 @@ GO
 INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('v1.0.0.0', 'WangXun', 'src/main/resources/liquibase/changelog-master.xml', GETDATE(), 1, '8:388ce887c8f2ab23d6aa90d054d4aa3c', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365', 'v1.0.0.0')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-1::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-1::WangXun
 -- 新建令牌记录表(OAUTH_ACCESS_TOKEN)
 CREATE TABLE OAUTH_ACCESS_TOKEN (TOKEN_ID varchar(32) NOT NULL, TOKEN varchar(MAX), AUTHENTICATION_ID varchar(32), CLIENT_ID varchar(32), USER_NAME varchar(32), AUTHENTICATION varchar(MAX), REFRESH_TOKEN varchar(32), CONSTRAINT PK_OAUTH_ACCESS_TOKEN PRIMARY KEY (TOKEN_ID))
 GO
@@ -62,10 +62,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'OAUTH_ACCESS_TOKEN'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.OAUTH_ACCESS_TOKEN'; DECLARE @ColumnName SYSNAME set @ColumnName = N'REFRESH_TOKEN'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'刷新令牌';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-1', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 2, '8:2068a72752ad0908f0a03986a04b94ed', 'createTable tableName=OAUTH_ACCESS_TOKEN', N'新建令牌记录表(OAUTH_ACCESS_TOKEN)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-1', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 2, '8:2068a72752ad0908f0a03986a04b94ed', 'createTable tableName=OAUTH_ACCESS_TOKEN', N'新建令牌记录表(OAUTH_ACCESS_TOKEN)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-2::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-2::WangXun
 -- 新建授权客户端(OAUTH_CLIENT_DETAILS)
 CREATE TABLE OAUTH_CLIENT_DETAILS (CLIENT_ID varchar(32) NOT NULL, RESOURCE_IDS varchar(32), CLIENT_SECRET varchar(255), SCOPE varchar(32), AUTHORIZED_GRANT_TYPES varchar(50), WEB_SERVER_REDIRECT_URI varchar(255), AUTHORITIES varchar(32), ACCESS_TOKEN_VALIDITY varchar(11), REFRESH_TOKEN_VALIDITY varchar(11), ADDITIONAL_INFORMATION varchar(512), CREATE_TIME datetime, ARCHIVED varchar(11), TRUSTED varchar(11), AUTOAPPROVE varchar(11), CONSTRAINT PK_OAUTH_CLIENT_DETAILS PRIMARY KEY (CLIENT_ID))
 GO
@@ -115,10 +115,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'OAUTH_CLIENT_DETAILS'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.OAUTH_CLIENT_DETAILS'; DECLARE @ColumnName SYSNAME set @ColumnName = N'AUTOAPPROVE'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'是否自动Approval操作';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-2', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 3, '8:776a86cf43842f9099ad9c1035abfbd1', 'createTable tableName=OAUTH_CLIENT_DETAILS', N'新建授权客户端(OAUTH_CLIENT_DETAILS)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-2', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 3, '8:776a86cf43842f9099ad9c1035abfbd1', 'createTable tableName=OAUTH_CLIENT_DETAILS', N'新建授权客户端(OAUTH_CLIENT_DETAILS)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-3::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-3::WangXun
 -- 新建令牌刷新表(OAUTH_REFRESH_TOKEN)
 CREATE TABLE OAUTH_REFRESH_TOKEN (TOKEN_ID varchar(32) NOT NULL, TOKEN varchar(MAX), AUTHENTICATION varchar(MAX), CREATE_TIME datetime, CONSTRAINT PK_OAUTH_REFRESH_TOKEN PRIMARY KEY (TOKEN_ID))
 GO
@@ -138,10 +138,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'OAUTH_REFRESH_TOKEN'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.OAUTH_REFRESH_TOKEN'; DECLARE @ColumnName SYSNAME set @ColumnName = N'CREATE_TIME'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'创建时间';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-3', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 4, '8:77db726d2e0282d406a2a15f55cd49be', 'createTable tableName=OAUTH_REFRESH_TOKEN', N'新建令牌刷新表(OAUTH_REFRESH_TOKEN)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-3', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 4, '8:77db726d2e0282d406a2a15f55cd49be', 'createTable tableName=OAUTH_REFRESH_TOKEN', N'新建令牌刷新表(OAUTH_REFRESH_TOKEN)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-4::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-4::WangXun
 -- 新建系统模块表(AM_MODULE)
 CREATE TABLE AM_MODULE (ID varchar(32) NOT NULL, APP_ID varchar(32), PARENT_ID varchar(32), NAME varchar(50) NOT NULL, URL varchar(512), METHOD varchar(8), ICON varchar(32), LEVEL varchar(32), ENABLE char(1) CONSTRAINT DF_AM_MODULE_ENABLE DEFAULT 'Y', [ORDER] int, CREATE_TIME datetime, CREATE_BY varchar(32), UPDATE_TIME datetime, UPDATE_BY varchar(32), CONSTRAINT PK_AM_MODULE PRIMARY KEY (ID))
 GO
@@ -191,10 +191,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_MODULE'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_MODULE'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_BY'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改人';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-4', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 5, '8:59f3e28b487cb115aba74071b4e9b58b', 'createTable tableName=AM_MODULE', N'新建系统模块表(AM_MODULE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-4', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 5, '8:59f3e28b487cb115aba74071b4e9b58b', 'createTable tableName=AM_MODULE', N'新建系统模块表(AM_MODULE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-5::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-5::WangXun
 -- 新建模块行为表(AM_MODULE_ACTION)
 CREATE TABLE AM_MODULE_ACTION (ID varchar(32) NOT NULL, MODULE_ID varchar(32), NAME varchar(50), CODE varchar(32), URL varchar(512), METHOD varchar(8), CREATE_TIME datetime, CREATE_BY varchar(32), UPDATE_TIME datetime, UPDATE_BY varchar(32), CONSTRAINT PK_AM_MODULE_ACTION PRIMARY KEY (ID))
 GO
@@ -232,10 +232,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_MODULE_ACTION'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_MODULE_ACTION'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_BY'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改人';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-5', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 6, '8:c284eea975417f0d089db5ec99de684e', 'createTable tableName=AM_MODULE_ACTION', N'新建模块行为表(AM_MODULE_ACTION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-5', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 6, '8:c284eea975417f0d089db5ec99de684e', 'createTable tableName=AM_MODULE_ACTION', N'新建模块行为表(AM_MODULE_ACTION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-6::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-6::WangXun
 -- 新建模块字段表(AM_MODULE_FIELD)
 CREATE TABLE AM_MODULE_FIELD (ID varchar(32) NOT NULL, MODULE_ID varchar(32), NAME varchar(50), CODE varchar(32), CREATE_TIME datetime, CREATE_BY varchar(32), UPDATE_TIME datetime, UPDATE_BY varchar(32), CONSTRAINT PK_AM_MODULE_FIELD PRIMARY KEY (ID))
 GO
@@ -267,10 +267,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_MODULE_FIELD'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_MODULE_FIELD'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_BY'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改人';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-6', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 7, '8:e1bc3ae115c182842afa6b786250bc4d', 'createTable tableName=AM_MODULE_FIELD', N'新建模块字段表(AM_MODULE_FIELD)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-6', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 7, '8:e1bc3ae115c182842afa6b786250bc4d', 'createTable tableName=AM_MODULE_FIELD', N'新建模块字段表(AM_MODULE_FIELD)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-7::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-7::WangXun
 -- 新建角色表(AM_ROLE)
 CREATE TABLE AM_ROLE (ID varchar(32) NOT NULL, TYPE varchar(32), CODE varchar(32), NAME varchar(50), REMARK varchar(255), CREATE_TIME datetime, CREATE_BY varchar(32), UPDATE_TIME datetime, UPDATE_BY varchar(32), CONSTRAINT PK_AM_ROLE PRIMARY KEY (ID))
 GO
@@ -305,10 +305,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_ROLE'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_ROLE'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_BY'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改人';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-7', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 8, '8:e3886c101a752de23be3ae65ea97d3e2', 'createTable tableName=AM_ROLE', N'新建角色表(AM_ROLE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-7', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 8, '8:e3886c101a752de23be3ae65ea97d3e2', 'createTable tableName=AM_ROLE', N'新建角色表(AM_ROLE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-8::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-8::WangXun
 -- 新建角色资源表(AM_ROLE_RESOURCE)
 CREATE TABLE AM_ROLE_RESOURCE (ID varchar(32) NOT NULL, RESOURCE_TYPE char(1), RESOURCE_ID varchar(32), ROLE_ID varchar(32), CONSTRAINT PK_AM_ROLE_RESOURCE PRIMARY KEY (ID))
 GO
@@ -328,10 +328,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_ROLE_RESOURCE'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_ROLE_RESOURCE'; DECLARE @ColumnName SYSNAME set @ColumnName = N'ROLE_ID'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'角色编号';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-8', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 9, '8:44797fda82b83d38f1dba1e8b0978e31', 'createTable tableName=AM_ROLE_RESOURCE', N'新建角色资源表(AM_ROLE_RESOURCE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-8', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 9, '8:44797fda82b83d38f1dba1e8b0978e31', 'createTable tableName=AM_ROLE_RESOURCE', N'新建角色资源表(AM_ROLE_RESOURCE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-9::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-9::WangXun
 -- 新建用户表(AM_USER)
 CREATE TABLE AM_USER (ID varchar(32) NOT NULL, EXTERN_ID varchar(32), USERNAME varchar(32) NOT NULL, PASSWORD varchar(255) NOT NULL, DEPART_NAME varchar(50), NICK_NAME varchar(50), WORK_NO varchar(50), EMAIL varchar(50), WECHAT varchar(50), PHONE varchar(32), ONLINE char(1) CONSTRAINT DF_AM_USER_ONLINE DEFAULT 'N', [DELETE] char(1) CONSTRAINT DF_AM_USER_DELETE DEFAULT 'N', ENABLE char(1) CONSTRAINT DF_AM_USER_ENABLE DEFAULT 'Y', CREATE_TIME datetime, CREATE_BY varchar(32), UPDATE_TIME datetime, UPDATE_BY varchar(32), CONSTRAINT PK_AM_USER PRIMARY KEY (ID), CONSTRAINT UQ_AM_USER_USERNAME UNIQUE (USERNAME))
 GO
@@ -393,10 +393,10 @@ GO
 INSERT INTO AM_USER (ID, EXTERN_ID, USERNAME, PASSWORD, DEPART_NAME, NICK_NAME, WORK_NO, EMAIL, WECHAT, PHONE, ONLINE, [DELETE], ENABLE, CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY) VALUES ('1000', NULL, 'admin', '123456', NULL, N'超级管理员', 'admin', NULL, NULL, NULL, 'N', 'N', 'Y', '2019-12-19T10:28:37', '-1', NULL, NULL)
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-9', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 10, '8:2b5251a84037b2f1952479aa5d7022de', 'createTable tableName=AM_USER; insert tableName=AM_USER', N'新建用户表(AM_USER)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-9', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 10, '8:2b5251a84037b2f1952479aa5d7022de', 'createTable tableName=AM_USER; insert tableName=AM_USER', N'新建用户表(AM_USER)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576561645670-10::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576561645670-10::WangXun
 -- 创建用户角色关系表(AM_USER_ROLE)
 CREATE TABLE AM_USER_ROLE (ID varchar(32) NOT NULL, ROLE_ID varchar(32), USER_ID varchar(32), CONSTRAINT PK_AM_USER_ROLE PRIMARY KEY (ID))
 GO
@@ -413,10 +413,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_USER_ROLE'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_USER_ROLE'; DECLARE @ColumnName SYSNAME set @ColumnName = N'USER_ID'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'用户编号';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-10', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 11, '8:8d69e582748845905087858cebaa2725', 'createTable tableName=AM_USER_ROLE', N'创建用户角色关系表(AM_USER_ROLE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576561645670-10', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 11, '8:8d69e582748845905087858cebaa2725', 'createTable tableName=AM_USER_ROLE', N'创建用户角色关系表(AM_USER_ROLE)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576636121375-11::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576636121375-11::WangXun
 -- 创建字典表(SC_DICTIONARY)
 CREATE TABLE SC_DICTIONARY (ID varchar(32) NOT NULL, APP_ID varchar(32) NOT NULL, NAME varchar(50) NOT NULL, VALUE varchar(50) NOT NULL, FIXED char(1) CONSTRAINT DF_AM_DICTIONARY_FIXED DEFAULT 'Y', CREATE_BY varchar(32), CREATE_TIME datetime, UPDATE_BY varchar(32), UPDATE_TIME datetime, CONSTRAINT PK_AM_DICTIONARY_ID PRIMARY KEY (ID))
 GO
@@ -451,10 +451,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'SC_DICTIONARY'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.SC_DICTIONARY'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_TIME'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改时间';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576636121375-11', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 12, '8:5d4888f071dfc56ea098eeab292be446', 'createTable tableName=SC_DICTIONARY', N'创建字典表(SC_DICTIONARY)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576636121375-11', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 12, '8:5d4888f071dfc56ea098eeab292be446', 'createTable tableName=SC_DICTIONARY', N'创建字典表(SC_DICTIONARY)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576655370008-12::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576655370008-12::WangXun
 -- 创建组件表(SC_WIDGET)
 CREATE TABLE SC_WIDGET (ID varchar(32) NOT NULL, NAME varchar(32) NOT NULL, URL varchar(512), TEMPLATE varchar(64), CONTENT_JSON varchar(256), WIDTH int, POSITION char(1), STYLE varchar(512), CREATE_BY varchar(32), CREATE_TIME datetime, UPDATE_BY varchar(32), UPDATE_TIME datetime, CONSTRAINT PK_SC_WIDGET_ID PRIMARY KEY (ID))
 GO
@@ -498,10 +498,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'SC_WIDGET'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.SC_WIDGET'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_TIME'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改时间';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-12', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 13, '8:74b569a4760b3de4e1dc0f0c361b3251', 'createTable tableName=SC_WIDGET', N'创建组件表(SC_WIDGET)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-12', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 13, '8:74b569a4760b3de4e1dc0f0c361b3251', 'createTable tableName=SC_WIDGET', N'创建组件表(SC_WIDGET)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576655370008-13::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576655370008-13::WangXun
 -- 创建组件配置表(SC_WIDGET_CONFIG)
 CREATE TABLE SC_WIDGET_CONFIG (ID varchar(32) NOT NULL, WIDGET_ID varchar(32), WIDGET_NAME varchar(50), USER_ID varchar(32), ROLE_ID varchar(32), POSITION char(1), WIDTH int, [ORDER] int, CONSTRAINT PK_WIDGET_CONFIG_ID PRIMARY KEY (ID))
 GO
@@ -533,10 +533,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'SC_WIDGET_CONFIG'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.SC_WIDGET_CONFIG'; DECLARE @ColumnName SYSNAME set @ColumnName = N'ORDER'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'真实排序码';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-13', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 14, '8:705f68439c8bd2951c8a7656e3101709', 'createTable tableName=SC_WIDGET_CONFIG', N'创建组件配置表(SC_WIDGET_CONFIG)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-13', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 14, '8:705f68439c8bd2951c8a7656e3101709', 'createTable tableName=SC_WIDGET_CONFIG', N'创建组件配置表(SC_WIDGET_CONFIG)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576655370008-14::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576655370008-14::WangXun
 -- 创建应用表(AM_APPLICATION)
 CREATE TABLE AM_APPLICATION (ID varchar(32) NOT NULL, CLIENT_ID varchar(32) NOT NULL, NAME varchar(50) NOT NULL, ENABLE char(1) CONSTRAINT DF_APPLICATION_ENABLE DEFAULT 'Y', REMARK varchar(128), CREATE_BY varchar(32), CREATE_TIME datetime, UPDATE_BY varchar(32), UPDATE_TIME datetime, CONSTRAINT PK_APPLICATION_ID PRIMARY KEY (ID))
 GO
@@ -568,10 +568,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_APPLICATION'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_APPLICATION'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_TIME'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改时间';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-14', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 15, '8:3d953bb41e87dfb9737dceefed1e4169', 'createTable tableName=AM_APPLICATION', N'创建应用表(AM_APPLICATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-14', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 15, '8:3d953bb41e87dfb9737dceefed1e4169', 'createTable tableName=AM_APPLICATION', N'创建应用表(AM_APPLICATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576655370008-15::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576655370008-15::WangXun
 -- 自定义导航表(AM_NAVIGATION)
 CREATE TABLE AM_NAVIGATION (ID varchar(32) NOT NULL, MODULE_ID varchar(32), PARENT_ID varchar(32), CONSTRAINT PK_NAVIGATION_ID PRIMARY KEY (ID))
 GO
@@ -585,10 +585,10 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_NAVIGATION'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_NAVIGATION'; DECLARE @ColumnName SYSNAME set @ColumnName = N'PARENT_ID'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'父模块编号';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-15', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 16, '8:06a194c12882217525aded583d1b70b9', 'createTable tableName=AM_NAVIGATION', N'自定义导航表(AM_NAVIGATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576655370008-15', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 16, '8:06a194c12882217525aded583d1b70b9', 'createTable tableName=AM_NAVIGATION', N'自定义导航表(AM_NAVIGATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
--- Changeset src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml::1576897209245-16::WangXun
+-- Changeset src/main/resources/liquibase/changelog/20191217-authority-manage.xml::1576897209245-16::WangXun
 -- 角色数据表(AM_NAVIGATION)
 CREATE TABLE AM_MODULE_DATA (ID varchar(32) NOT NULL, FIELD_CODE varchar(32) NOT NULL, CONDITION char(1) NOT NULL, VALUE_TYPE char(1), FIRST_VALUE varchar(32), SECOND_VALUE varchar(32), CREATE_BY varchar(32), CREATE_TIME datetime, UPDATE_BY varchar(32), UPDATE_TIME datetime, CONSTRAINT PK_AM_DATA_ID PRIMARY KEY (ID))
 GO
@@ -623,7 +623,7 @@ GO
 DECLARE @TableName SYSNAME set @TableName = N'AM_MODULE_DATA'; DECLARE @FullTableName SYSNAME set @FullTableName = N'dbo.AM_MODULE_DATA'; DECLARE @ColumnName SYSNAME set @ColumnName = N'UPDATE_TIME'; DECLARE @MS_DescriptionValue NVARCHAR(3749); SET @MS_DescriptionValue = N'修改时间';DECLARE @MS_Description NVARCHAR(3749) set @MS_Description = NULL; SET @MS_Description = (SELECT CAST(Value AS NVARCHAR(3749)) AS [MS_Description] FROM sys.extended_properties AS ep WHERE ep.major_id = OBJECT_ID(@FullTableName) AND ep.minor_id=COLUMNPROPERTY(ep.major_id, @ColumnName, 'ColumnId') AND ep.name = N'MS_Description'); IF @MS_Description IS NULL BEGIN EXEC sys.sp_addextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END ELSE BEGIN EXEC sys.sp_updateextendedproperty @name  = N'MS_Description', @value = @MS_DescriptionValue, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = @TableName, @level2type = N'COLUMN', @level2name = @ColumnName; END
 GO
 
-INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576897209245-16', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-v1.0.0.0.xml', GETDATE(), 17, '8:b9fc38be982b9c81b4a521669faccbfa', 'createTable tableName=AM_MODULE_DATA', N'角色数据表(AM_NAVIGATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
+INSERT INTO DV_CHANGE_LOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1576897209245-16', 'WangXun', 'src/main/resources/liquibase/changelog/20191217-authority-manage.xml', GETDATE(), 17, '8:b9fc38be982b9c81b4a521669faccbfa', 'createTable tableName=AM_MODULE_DATA', N'角色数据表(AM_NAVIGATION)', 'EXECUTED', NULL, NULL, '3.8.2', '7067582365')
 GO
 
 -- Release Database Lock

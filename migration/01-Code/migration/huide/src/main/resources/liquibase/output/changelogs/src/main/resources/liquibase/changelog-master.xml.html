@@ -1,4 +1,9 @@
-<html><body><pre>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+    <body>
+		<pre>
 &lt;?xml version="1.1" encoding="UTF-8" standalone="no"?&gt;
 &lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,5 +14,9 @@
 		&lt;tagDatabase tag="${version-id}"/&gt;
 	&lt;/changeSet&gt;
 	&lt;include file="changelog/20191217-v1.0.0.0.xml" relativeToChangelogFile="true"/&gt;
+	&lt;!--&lt;include file="changelog/20191225-basic-data.xml" relativeToChangelogFile="true"/&gt;
+	&lt;include file="changelog/20191226-material-manage.xml" relativeToChangelogFile="true"/&gt;--&gt;
 &lt;/databaseChangeLog&gt;
-</pre></body></html>
+		</pre>
+    </body>
+</html>

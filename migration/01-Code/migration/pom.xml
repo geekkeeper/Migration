@@ -12,6 +12,7 @@
 	<modules>
 		<module>iods</module>
 		<module>huide</module>
+		<module>huayou</module>
 	</modules>
 
 	<properties>
@@ -64,10 +65,10 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>3.8.2</version>
 				<configuration>
+					<!--允许配置文件重载属性：true/false-->
+					<propertyFileWillOverride>false</propertyFileWillOverride>
 					<!--liquibase配置文件-->
 					<propertyFile>src/main/resources/liquibase/config/liquibase-${dbms}.properties</propertyFile>
-					<!--允许配置文件重载属性：true/false-->
-					<propertyFileWillOverride>true</propertyFileWillOverride>
 					<!--数据库变更日志表名-->
 					<databaseChangeLogTableName>DV_CHANGE_LOG</databaseChangeLogTableName>
 					<!--数据库变更锁表名-->
@@ -82,9 +83,11 @@
 					<!--<migrationSqlOutputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</migrationSqlOutputFile>-->
 					<!--指定将来回滚SQL文件的输出路径-->
 					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
-					<!--<diffTypes>data</diffTypes>-->
+					<!--生成数据库变更集类型：data-->
+					<diffTypes>data</diffTypes>
 					<!--数据库逆向生成变更日志-->
-					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.xml</outputChangeLogFile>
+					<!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.sql</outputChangeLogFile>-->
+					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>
 					<!--俩数据库比较生成差异文件-->
 					<diffChangeLogFile>src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml</diffChangeLogFile>
 					<!--输出文件的编码格式-->
@@ -93,6 +96,9 @@
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 					<!--设置变更集作者名称-->
 					<changeSetAuthor>${author}</changeSetAuthor>
+					<!--<rollbackCount>1</rollbackCount>-->
+					<!--<rollbackTag>v1.0.0.0</rollbackTag>-->
+					<!--<rollbackDate>2019-12-15</rollbackDate>-->
 				</configuration>
 			</plugin>
 		</plugins>
