@@ -1,0 +1,182 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<!--物料管理:收料打料-->
+	<!--质检工票表(MM_INSPECT_TICKET)-->
+	<changeSet author="WangXun" id="1577339343000-1">
+		<comment>新建质检工票表(MM_INSPECT_TICKET)</comment>
+		<createTable tableName="MM_INSPECT_TICKET" remarks="质检工票表">
+			<column name="ID" type="varchar(32)" remarks="工票编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INSPECT_TICKET_ID"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--质检工票明细表(MM_INSPECT_TICKET_DETAIL)-->
+	<changeSet author="WangXun" id="1577339343000-2">
+		<comment>新建质检工票明细表(MM_INSPECT_TICKET_DETAIL)</comment>
+		<createTable tableName="MM_INSPECT_TICKET_DETAIL" remarks="质检工票明细表">
+			<column name="ID" type="varchar(32)" remarks="明细编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INSPECT_TICKET_DETAIL_ID"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--储蓄槽信息表(MM_STORAGE_TANK)-->
+	<changeSet author="WangXun" id="1577339343000-3">
+		<comment>新建储蓄槽信息表(MM_STORAGE_TANK)</comment>
+		<createTable tableName="MM_STORAGE_TANK" remarks="储蓄槽信息表">
+			<column name="ID" type="varchar(32)" remarks="储蓄槽编号">
+				<constraints primaryKey="true" primaryKeyName="PK_STORAGE_TANK_ID"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--物料信息表(MM_MATERIAL)-->
+	<changeSet author="WangXun" id="1577339343000-4">
+		<comment>新建物料表(MM_MATERIAL)</comment>
+		<createTable tableName="MM_MATERIAL" remarks="物料信息表">
+			<column name="ID" type="varchar(32)" remarks="物料编号">
+				<constraints primaryKey="true" primaryKeyName="PK_MATERIAL_ID"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--收货任务表(MM_RECEIVING_TASK)-->
+	<changeSet author="WangXun" id="1577339343000-5">
+		<comment>新建收货任务表(MM_RECEIVING_TASK)</comment>
+		<createTable tableName="MM_RECEIVING_TASK" remarks="收货任务">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_RECEIVING_TASK_ID"/>
+			</column>
+			<column name="ORDER_ID" type="varchar(32)" remarks="订单编号"/>
+			<column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号"/>
+			<column name="MATERIAL_UNIT" type="varchar(32)" remarks="物料计量单位"/>
+			<column name="COUNT" type="float" remarks="送货数量"/>
+			<column name="ESTIMATED_TIME" type="datetime" remarks="预计送达时间"/>
+			<column name="CARRIER" type="varchar(32)" remarks="承运人"/>
+			<column name="TRANSPORT_WAY" type="char(1)" remarks="运输方式"/>
+			<column name="AGENT_ID" type="varchar(32)" remarks="载体信息"/>
+			<column name="STATUS" type="char(1)" remarks="任务状态:1-等待发货,2-运送中,3-等待确认,4-打料中"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--收货记录表(MM_RECEIVING_RECORD)-->
+	<changeSet author="WangXun" id="1577339343000-6">
+		<comment>新建收货记录表(MM_RECEIVING_RECORD)</comment>
+		<createTable tableName="MM_RECEIVING_RECORD" remarks="收货记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_RECEIVING_RECORD_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="任务编号"/>
+			<column name="ARRIVE_TIME" type="datetime" remarks="送达时间"/>
+			<column name="COUNT" type="float" remarks="收货数量"/>
+			<column name="RECEIVER" type="varchar(32)" remarks="收货人"/>
+			<column name="RECEIPT_TIME" type="datetime" remarks="收货时间"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+		</createTable>
+	</changeSet>
+	<!--质检任务表(MM_INSPECTION_TASK)-->
+	<changeSet author="WangXun" id="1577339343000-7">
+		<comment>新建质检任务表(MM_INSPECTION_TASK)</comment>
+		<createTable tableName="MM_INSPECTION_TASK" remarks="质检任务表">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INSPECTION_TASK_ID"/>
+			</column>
+			<column name="ORDER_ID" type="varchar(32)" remarks="订单编号"/>
+			<column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号"/>
+			<column name="WORK_TICKET_ID" type="varchar(32)" remarks="工票号"/>
+			<column name="REMARK" type="varchar(30)" remarks="描述"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--质检记录表(MM_INSPECTION_RECORD)-->
+	<changeSet author="WangXun" id="1577339343000-8">
+		<comment>新建质检明细表(MM_INSPECTION_RECORD)</comment>
+		<createTable tableName="MM_INSPECTION_RECORD" remarks="质检记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INSPECTION_DETAIL_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="质检任务编号"/>
+			<column name="INSPECT_ORDER" type="int" remarks="检验次序"/>
+			<column name="RESULT" type="varchar(32)" remarks="检验结果"/>
+			<column name="IMAGE" type="varchar(50)" remarks="留存照片"/>
+			<column name="INSPECTOR" type="varchar(32)" remarks="检验员编号"/>
+			<column name="START_TIME" type="datetime" remarks="开始时间"/>
+			<column name="END_TIME" type="datetime" remarks="结束时间"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+		</createTable>
+	</changeSet>
+	<!--打料任务表(MM_LOAD_MATERIAL_TASK)-->
+	<changeSet author="WangXun" id="1577339343000-9">
+		<comment>新建打料任务表(MM_LOAD_MATERIAL_TASK)</comment>
+		<createTable tableName="MM_LOAD_MATERIAL_TASK" remarks="打料任务表">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_LOAD_MATERIAL_TASK_ID"/>
+			</column>
+			<column name="STORAGE_ID" type="varchar(32)" remarks="储罐编号"/>
+			<column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号"/>
+			<column name="LOADER" type="varchar(32)" remarks="打料人"/>
+			<column name="LOAD_COUNT" type="float" remarks="打料量"/>
+			<column name="STATUS" type="char(1)" remarks="任务状态"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--收料任务表(MM_CHARGE_TASK)-->
+	<changeSet author="WangXun" id="1577339343000-10">
+		<comment>新建收料任务表(MM_CHARGE_TASK)</comment>
+		<createTable tableName="MM_INCOME_MATERIAL_TASK" remarks="收料任务表">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INCOME_MATERIAL_TASK_ID"/>
+			</column>
+			<column name="STORAGE_ID" type="varchar(32)" remarks="储罐编号"/>
+			<column name="MATERIAL_ID" type="int" remarks="物料编号"/>
+			<column name="INCOMER" type="int" remarks="收料人"/>
+			<column name="INCOME_COUNT" type="float" remarks="收料量"/>
+			<column name="STATUS" type="char(1)" remarks="任务状态"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--打料记录表(MM_LOAD_MATERIAL_RECORD)-->
+	<changeSet author="WangXun" id="1577339343000-11">
+		<comment>新建打料记录表(MM_LOAD_MATERIAL_RECORD)</comment>
+		<createTable tableName="MM_LOAD_MATERIAL_RECORD" remarks="打料记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_LOAD_MATERIAL_RECORD_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="打料任务编号"/>
+			<column name="start_time" type="datetime" remarks="开始时间"/>
+			<column name="end_time" type="datetime" remarks="结束时间"/>
+			<column name="LOAD_COUNT" type="float" remarks="实际打料量"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+		</createTable>
+	</changeSet>
+	<!--收料记录表(MM_INCOME_MATERIAL_RECORD)-->
+	<changeSet author="WangXun" id="1577339343000-12">
+		<comment>新建收料记录表(MM_INCOME_MATERIAL_RECORD)</comment>
+		<createTable tableName="MM_INCOME_MATERIAL_RECORD" remarks="收料记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_INCOME_MATERIAL_RECORD_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="收料任务编号"/>
+			<column name="start_time" type="datetime" remarks="开始时间"/>
+			<column name="end_time" type="datetime" remarks="结束时间"/>
+			<column name="INCOME_COUNT" type="float" remarks="实际收料量"/>
+			<column name="REMARK" type="varchar(30)" remarks="备注信息"/>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,195 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<!--基础数据模块-->
+	<!--字典表：1月4日后删除词表-->
+	<changeSet id="1576425600000-88" author="WangXun">
+		<comment>创建字典表(BD_DICTIONARY)</comment>
+		<createTable tableName="BD_DICTIONARY" remarks="字典表">
+			<column name="ID" type="varchar(32)" remarks="字典编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_ID"/>
+			</column>
+			<column name="CODE" type="varchar(64)" remarks="字典编码">
+				<constraints nullable="false" notNullConstraintName="NU_DICTIONARY_VALUE"/>
+			</column>
+			<column name="NAME" type="varchar(64)" remarks="字典名">
+				<constraints nullable="false" notNullConstraintName="NU_DICTIONARY_NAME"/>
+			</column>
+			<column name="VALUE" type="varchar(64)" remarks="字典值">
+				<constraints nullable="false" notNullConstraintName="NU_DICTIONARY_VALUE"/>
+			</column>
+			<column name="APP_ID" type="varchar(32)" remarks="应用编号"/>
+			<column name="FIXED" type="char(1)" remarks="是否固定值:Y-固定值,N-可变值"
+					defaultValue="Y" defaultValueConstraintName="DF_DICTIONARY_FIXED"/>
+			<column name="DELETE_TAG" type="char(1)" remarks="是否已删除:Y-已删除,N-未删除"
+					defaultValue="N" defaultValueConstraintName="DF_DICTIONARY_DELETE_TAG"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+	<!--字典键表(BD_DICTIONARY_KEY)-->
+	<changeSet id="1576425600000-1" author="WangXun" >
+		<comment>创建字典键表</comment>
+		<createTable tableName="BD_DICTIONARY_KEY" remarks="字典键表">
+			<column name="ID" type="varchar(32)" remarks="键编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_TYPE_ID"/>
+			</column>
+			<column name="CODE" type="varchar(32)" remarks="键编码"/>
+			<column name="NAME" type="varchar(20)" remarks="键名称">
+				<constraints nullable="false" notNullConstraintName="NU_TYPE_NAME"/>
+			</column>
+			<column name="APP_ID" type="varchar(32)" remarks="应用编号"/>
+			<column name="REMARK" type="varchar(64)" remarks="描述"/>
+			<column name="DELETE_TAG" type="char(1)" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
+					defaultValue="N" defaultValueConstraintName="DF_TYPE_DELETE_TAG"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+	<!--字典条目表(BD_DICTIONARY_ITEM)-->
+	<changeSet id="1576425600000-2" author="WangXun" >
+		<comment>创建字典条目表(BD_DICTIONARY_ITEM)</comment>
+		<createTable tableName="BD_DICTIONARY_ITEM" remarks="字典条目表">
+			<column name="ID" type="varchar(32)" remarks="条目编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_ITEM_ID"/>
+			</column>
+			<column name="KEY_ID" type="varchar(32)" remarks="键编号">
+				<constraints nullable="false" notNullConstraintName="NU_ITEM_TYPE_ID"/>
+			</column>
+			<column name="CODE" type="varchar(32)" remarks="值编码"/>
+			<column name="VALUE" type="varchar(64)" remarks="值">
+				<constraints nullable="false" notNullConstraintName="NU_ITEM_VALUE"/>
+			</column>
+			<column name="REMARK" type="varchar(64)" remarks="描述"/>
+			<column name="ORDER_NO" type="int" remarks="排序编号"/>
+			<column name="FIXED" type="char(1)" remarks="是否固定值:Y-固定值,N-可变值"
+					defaultValue="N" defaultValueConstraintName="DF_ITEM_FIXED"/>
+			<column name="DELETE_TAG" type="char(1)" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
+					defaultValue="N" defaultValueConstraintName="DF_ITEM_DELETE_TAG"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+	<!--人员表(BD_Person)-->
+	<changeSet id="1576425600000-3" author="WangXun" >
+		<comment>新建人员表(BD_Person)</comment>
+		<createTable tableName="BD_PERSON" remarks="人员表">
+			<column name="ID"  type="varchar(32)" remarks="人员编号">
+				<constraints primaryKey="true" primaryKeyName="PK_PERSON_ID"/>
+			</column>
+			<column name="USERNAME" type="varchar(32)" remarks="人员名称">
+				<constraints nullable="false" notNullConstraintName="NU_PERSON_USERNAME" unique="true" uniqueConstraintName="UQ_PERSON_USERNAME"/>
+			</column>
+			<column name="GENDER" type="char(1)" remarks="性别:M-男,F-女,U-未知"
+					defaultValue="U" defaultValueConstraintName="DF_PERSON_GENDER"/>
+			<column name="ADDRESS" type="varchar(32)" remarks="住址"/>
+			<column name="ORIGIN" type="varchar(32)" remarks="户籍"/>
+			<column name="IDENTITY_CARD" type="varchar(18)" remarks="身份证"/>
+			<column name="WORK_NO" type="varchar(32)" remarks="工号"/>
+			<column name="EMAIL" type="varchar(32)" remarks="邮箱"/>
+			<column name="WECHAT" type="varchar(32)" remarks="微信"/>
+			<column name="PHONE" type="varchar(16)" remarks="办公电话"/>
+			<column name="MOBILE" type="varchar(16)" remarks="移动电话"/>
+			<column name="BIRTHDAY" type="datetime" remarks="生日"/>
+			<column name="DELETE_TAG" type="char(1)" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
+					defaultValue="N" defaultValueConstraintName="DF_Person_DELETE_TAG"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--语言表(BD_LANGUAGE)-->
+	<changeSet id="1576425600000-4" author="WangXun" >
+		<comment>新建语言表(BD_LANGUAGE)</comment>
+		<createTable tableName="BD_LANGUAGE" remarks="语言表">
+			<column name="ID" type="varchar(32)" remarks="语言编号">
+				<constraints primaryKey="true" primaryKeyName="PK_LANGUAGE_ID"/>
+			</column>
+			<column name="CODE" type="varchar(20)" remarks="语言编码">
+				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CODE"
+							 unique="true" uniqueConstraintName="UQ_LANGUAGE_CODE"/>
+			</column>
+			<column name="REMARK" type="varchar(30)" remarks="描述"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+		<insert tableName="BD_LANGUAGE">
+			<column name="ID" value="LA_1000001"/>
+			<column name="CODE" value="zh_cn"/>
+			<column name="REMARK" value="中文（中华人民共和国）"/>
+			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
+		</insert>
+		<insert tableName="BD_LANGUAGE">
+			<column name="ID" value="LA_1000002"/>
+			<column name="CODE" value="en"/>
+			<column name="REMARK" value="英语（标准）"/>
+			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
+		</insert>
+		<insert tableName="BD_LANGUAGE">
+			<column name="ID" value="LA_1000003"/>
+			<column name="CODE" value="ru"/>
+			<column name="REMARK" value="俄语（标准）"/>
+			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
+		</insert>
+		<insert tableName="BD_LANGUAGE">
+			<column name="ID" value="LA_1000004"/>
+			<column name="CODE" value="fr"/>
+			<column name="REMARK" value="法语（标准）"/>
+			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
+		</insert>
+	</changeSet>
+	<!--内容表(BD_CONTENT)-->
+	<changeSet id="1576425600000-5" author="WangXun" >
+		<comment>新建内容表(BD_CONTENT)</comment>
+		<createTable tableName="BD_CONTENT" remarks="内容表">
+			<column name="ID" type="varchar(32)" remarks="内容编号">
+				<constraints primaryKey="true" primaryKeyName="PK_CONTENT_ID"/>
+			</column>
+			<column name="CODE" type="varchar(30)" remarks="内容编码">
+				<constraints nullable="false" notNullConstraintName="NU_CONTENT_CODE"/>
+			</column>
+			<column name="DEFAULT_CONTENT" type="varchar(64)" remarks="默认内容">
+				<constraints nullable="false" notNullConstraintName="NU_CONTENT_DEFAULT_CONTENT"/>
+			</column>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--语言内容表(BD_LANGUAGE_CONTENT)-->
+	<changeSet id="1576425600000-6" author="WangXun" >
+		<comment>新建语言内容表(BD_LANGUAGE_CONTENT)</comment>
+		<createTable tableName="BD_LANGUAGE_CONTENT" remarks="语言内容表">
+			<column name="ID" type="varchar(32)" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_LANGUAGE_CONTENT_ID"/>
+			</column>
+			<column name="CONTENT_CODE" type="varchar(30)" remarks="内容编码">
+				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT_CONTENT_ID"/>
+			</column>
+			<column name="LANGUAGE_ID" type="varchar(32)" remarks="语言编号">
+				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT_LANGUAGE_ID"/>
+			</column>
+			<column name="LANGUAGE_CONTENT" type="varchar(64)" remarks="语言内容">
+				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT"/>
+			</column>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

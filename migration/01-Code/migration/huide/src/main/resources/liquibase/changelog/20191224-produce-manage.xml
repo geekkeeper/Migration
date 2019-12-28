@@ -1,0 +1,218 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<!--生产管理(PM):生产计划、车间库管理-->
+	<!--产品信息表(PM_PRODUCE_TASK)-->
+	<changeSet id="1577116800000-1" author="WangXun">
+		<comment>新建产品信息表(PM_PRODUCT)</comment>
+		<createTable tableName="PM_PRODUCT" remarks="产品信息表">
+			<column name="ID" type="varchar(32)" remarks="产品编号">
+				<constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ID"/>
+			</column>
+			<column name="NAME" type="varchar(50)" remarks="产品名称"/>
+			<column name="TYPE" type="char(1)" remarks="生产类型:0-常规产品,1-定制产品"/>
+			<column name="SPECIFICATION" type="varchar(20)" remarks="产品规格"/>
+			<column name="UNIT" type="varchar(20)" remarks="单位"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+    <!--工艺路线表(PM_TECHNICS_COURSE)-->
+	<changeSet id="1577116800000-2" author="WangXun">
+		<comment>新建工艺路线表(PM_TECHNICS_COURSE)</comment>
+		<createTable tableName="PM_TECHNICS_COURSE" remarks="工艺路线表">
+			<column name="ID" type="varchar(32)" remarks="路线编号">
+				<constraints primaryKey="true" primaryKeyName="PK_TECHNICS_COURSE_ID"/>
+			</column>
+			<column name="NAME" type="varchar(32)" remarks="路线名称"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+    <!--路线明细表(PM_COURSE_DETAIL)-->
+	<changeSet id="1577116800000-3" author="WangXun">
+		<comment>新建路线明细表(PM_COURSE_DETAIL)</comment>
+		<createTable tableName="PM_COURSE_DETAIL" remarks="路线明细表">
+			<column name="ID" type="varchar(32)" remarks="明细编号">
+				<constraints primaryKey="true" primaryKeyName="PK_COURSE_DETAIL_ID"/>
+			</column>
+			<column name="COURSE_ID" type="varchar(32)" remarks="路线编号"/>
+			<column name="PLANT_ID" type="varchar(32)" remarks="车间编号"/>
+			<column name="OPERATOR" type="varchar(32)" remarks="操作人"/>
+			<column name="EXECUTE_TIME" type="datetime" remarks="执行时间"/>
+			<column name="PRIORITY" type="int" remarks="优先级"/>
+			<column name="START_TIME" type="datetime" remarks="计划开工时间"/>
+			<column name="END_TIME" type="datetime" remarks="计划完工时间"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+    <!--生产任务表(PM_PRODUCE_TASK)-->
+	<changeSet id="1577116800000-4" author="WangXun">
+		<comment>新建生产任务表(PM_PRODUCE_TASK)</comment>
+		<createTable tableName="PM_PRODUCE_TASK" remarks="生产任务表">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_PRODUCE_TASK_ID"/>
+			</column>
+			<column name="PRODUCT_ID" type="varchar(32)" remarks="产品编号"/>
+			<column name="PRODUCE_TYPE" type="char(1)" remarks="生产类型:0-常规产品,1-定制产品"/>
+			<column name="COUNT" type="float" remarks="生产数量"/>
+			<column name="STATUS" type="char(1)" remarks="任务状态"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+
+	<!--任务下发记录表(PM_ISSUED_RECORD)-->
+	<!--<changeSet id="1577116800000-5" author="WangXun">
+		<comment>新建任务下发记录表(PM_ISSUED_RECORD)</comment>
+		<createTable tableName="PM_ISSUED_RECORD" remarks="任务下发记录表">
+			<column name="ID" type="varchar(32)" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_PRODUCE_TASK_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="生产任务编号"/>
+			<column name="TEAM_ID" type="varchar(32)" remarks="班组编号"/>
+			<column name="ISSUED_BY" type="varchar(32)" remarks="下发人"/>
+			<column name="ISSUED_TIME" type="datetime" remarks="下发时间"/>
+		</createTable>
+	</changeSet>-->
+
+    <!--工序计划表(PM_WORK_PRODUCE_PLAN)-->
+	<changeSet id="1577116800000-6" author="WangXun">
+		<comment>新建工序计划表(PM_WORK_PRODUCE_PLAN)</comment>
+		<createTable tableName="PM_WORK_PRODUCE_PLAN" remarks="工序计划表">
+			<column name="ID" type="varchar(32)" remarks="计划编号">
+				<constraints primaryKey="true" primaryKeyName="PK_work_produce_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="生产任务编号"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--生产工票表(PM_PRODUCE_TICKET)-->
+	<changeSet id="1577116800000-7" author="WangXun">
+		<comment>新建生产工票表(PM_PRODUCE_TICKET)</comment>
+		<createTable tableName="PM_PRODUCE_TICKET" remarks="生产工票表">
+			<column name="ID" type="varchar(32)" remarks="工票编号">
+				<constraints primaryKey="true" primaryKeyName="PK_PRODUCE_TICKET_ID"/>
+			</column>
+			<column name="WORK_PRODUCE_PLAN_ID" type="varchar(32)" remarks="工序计划编号"/>
+			<column name="AUDITOR" type="varchar(32)" remarks="审核人"/>
+			<column name="AUDIT_TIME" type="datetime" remarks="审核时间"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--检验任务表(PM_CHECKOUT_TASK)-->
+	<changeSet id="1577116800000-8" author="WangXun">
+		<comment>新建检验任务表(PM_CHECKOUT_TASK)</comment>
+		<createTable tableName="PM_CHECKOUT_TASK" remarks="检验任务表">
+			<column name="ID" type="varchar(32)" remarks="任务编号">
+				<constraints primaryKey="true" primaryKeyName="PK_CHECKOUT_TASK_ID"/>
+			</column>
+			<column name="TICKET_ID" type="varchar(32)" remarks="生产工票编号">
+				<constraints nullable="false" notNullConstraintName="NU_CHECKOUT_TASK_TICKET_ID"/>
+			</column>
+			<column name="INSPECTOR" type="varchar(32)" remarks="检验员"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+	<!--检验记录表(PM_CHECKOUT_RECORD)-->
+	<changeSet id="1577116800000-9" author="WangXun">
+		<comment>新建检验记录表(PM_CHECKOUT_RECORD)</comment>
+		<createTable tableName="PM_CHECKOUT_RECORD" remarks="检验记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_CHECKOUT_RECORD_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="检验任务编号">
+				<constraints nullable="false" notNullConstraintName="NU_CHECKOUT_RECORD_TASK_ID"/>
+			</column>
+			<column name="RESULT" type="char(1)" remarks="检验结果"/>
+			<column name="INSPECTOR" type="varchar(32)" remarks="检验员"/>
+			<column name="START_TIME" type="datetime" remarks="开始时间"/>
+			<column name="END_TIME" type="datetime" remarks="结束时间"/>
+		</createTable>
+	</changeSet>
+    <!--领料任务表(PM_REQUISITION_TASK)-->
+    <changeSet id="1577116800000-10" author="WangXun">
+        <comment>新建领料任务表(PM_REQUISITION_TASK)</comment>
+        <createTable tableName="PM_REQUISITION_TASK" remarks="领料任务表">
+            <column name="ID" type="varchar(32)" remarks="任务编号">
+                <constraints primaryKey="true" primaryKeyName="PK_REQUISITION_TASK_ID"/>
+            </column>
+            <column name="TASK_ID" type="varchar(32)" remarks="生产任务编号">
+                <constraints nullable="false" notNullConstraintName="NU_PICKING_TASK_TASK_ID"/>
+            </column>
+            <column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号"/>
+            <column name="SPECIFICATION" type="char(1)" remarks="规格"/>
+            <column name="UINT" type="char(1)" remarks="单位"/>
+            <column name="COUNT" type="float" remarks="计划数量"/>
+            <column name="HANDLER" type="varchar(32)" remarks="领料员"/>
+            <column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+            <column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+            <column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+            <column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+        </createTable>
+    </changeSet>
+	<!--入库记录表(PM_ENTRY_STORAGE_RECORD)-->
+	<changeSet id="1577116800000-11" author="WangXun">
+		<comment>新建入库记录表(PM_ENTRY_STORAGE_RECORD)</comment>
+		<createTable tableName="PM_ENTRY_STORAGE_RECORD" remarks="入库记录表">
+			<column name="ID" type="varchar(32)" remarks="记录编号">
+				<constraints primaryKey="true" primaryKeyName="PK_ENTRY_STORAGE_ID"/>
+			</column>
+			<column name="TASK_ID" type="varchar(32)" remarks="领料任务编号">
+				<constraints nullable="false" notNullConstraintName="NU_ENTRY_PLANT_TASK_ID"/>
+			</column>
+			<column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号">
+				<constraints nullable="false" notNullConstraintName="NU_ENTRY_PLANT_MATERIAL_ID"/>
+			</column>
+			<column name="STORAGE_ID" type="varchar(32)" remarks="仓库编号"/>
+			<column name="SPECIFICATION" type="varchar(32)" remarks="实际规格"/>
+			<column name="UINT" type="char(1)" remarks="单位"/>
+			<column name="COUNT" type="varchar(32)" remarks="实际数量"/>
+			<column name="HANDLER" type="varchar(32)" remarks="领料员"/>
+			<column name="START_TIME" type="datetime" remarks="计划开工日期"/>
+			<column name="END_TIME" type="datetime" remarks="计划完工日期"/>
+		</createTable>
+	</changeSet>
+	<!--物料库存表(PM_MATERIAL_STOCK)-->
+	<changeSet id="1577116800000-12" author="WangXun" >
+		<comment>新建物料库存表(PM_MATERIAL_STOCK)</comment>
+		<createTable tableName="PM_MATERIAL_STOCK" remarks="物料库存表">
+			<column name="ID" type="varchar(32)" remarks="库存编号">
+				<constraints primaryKey="true" primaryKeyName="PK_MATERIAL_STOCK_ID"/>
+			</column>
+			<column name="MATERIAL_ID" type="varchar(32)" remarks="物料编号">
+				<constraints nullable="false" notNullConstraintName="NU_MATERIAL_STOCK_MATERIAL_ID"/>
+			</column>
+			<column name="SPECIFICATION" type="varchar(32)" remarks="物料规格"/>
+			<column name="UNIT" type="varchar(32)" remarks="单位"/>
+			<column name="AMOUNT" type="float" remarks="总数"/>
+			<column name="REMARK" type="varchar(64)" remarks="描述"/>
+			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>
