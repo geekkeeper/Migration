@@ -13,6 +13,7 @@
 		<module>iods</module>
 		<module>huide</module>
 		<module>huayou</module>
+		<module>spadger</module>
 	</modules>
 
 	<properties>
@@ -84,10 +85,10 @@
 					<!--指定将来回滚SQL文件的输出路径-->
 					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
 					<!--生成数据库变更集类型：data-->
-					<diffTypes>data</diffTypes>
+					<!--<diffTypes>data</diffTypes>-->
 					<!--数据库逆向生成变更日志-->
-					<!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.sql</outputChangeLogFile>-->
-					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>
+					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.yml</outputChangeLogFile>
+					<!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>-->
 					<!--俩数据库比较生成差异文件-->
 					<diffChangeLogFile>src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml</diffChangeLogFile>
 					<!--输出文件的编码格式-->

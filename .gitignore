@@ -140,3 +140,4 @@ fabric.properties
 /migration/01-Code/migration/huayou/src/main/resources/liquibase/output
 /migration/01-Code/migration/huayou/src/main/resources/liquibase/rollback
 /migration/01-Code/migration/huayou/src/main/resources/liquibase/update
+/migration/01-Code/migration/huide/src/main/resources/liquibase/output

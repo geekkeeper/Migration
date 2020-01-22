@@ -3,9 +3,11 @@
 				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-	<include file="changelog/20191216-basic-data.xml" relativeToChangelogFile="true"/>
-	<include file="changelog/20191217-authority-manage.xml" relativeToChangelogFile="true"/>
-	<include file="changelog/20191218-system-config.xml" relativeToChangelogFile="true"/>
-	<include file="changelog/20191224-produce-manage.xml" relativeToChangelogFile="true"/>
-	<include file="changelog/20191226-material-manage.xml" relativeToChangelogFile="true"/>
+	<!--全局属性：通用数据类型、数据库兼容配置-->
+	<include file="common-property.xml" relativeToChangelogFile="true"/>
+
+	<include file="changelog/basic-data/20191216-basic-data.xml" relativeToChangelogFile="true"/>
+	<include file="changelog/authority-manage/20191217-authority-manage.xml" relativeToChangelogFile="true"/>
+	<include file="changelog/system-config/20191218-system-config.xml" relativeToChangelogFile="true"/>
+	<include file="changelog/produce-monitor/20200117-alarm-manage.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
