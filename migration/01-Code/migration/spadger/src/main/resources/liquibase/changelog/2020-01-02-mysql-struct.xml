@@ -1,0 +1,2154 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet author="WangXun" id="1577927826258-1">
+		<createTable tableName="act_evt_log">
+			<column autoIncrement="true" name="LOG_NR_" type="BIGINT">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TYPE_" type="VARCHAR(64)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column defaultValueComputed="CURRENT_TIMESTAMP(3)" name="TIME_STAMP_" type="timestamp">
+				<constraints nullable="false"/>
+			</column>
+			<column name="USER_ID_" type="VARCHAR(255)"/>
+			<column name="DATA_" type="LONGBLOB"/>
+			<column name="LOCK_OWNER_" type="VARCHAR(255)"/>
+			<column name="LOCK_TIME_" type="timestamp"/>
+			<column defaultValueNumeric="0" name="IS_PROCESSED_" type="TINYINT(3)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-2">
+		<createTable tableName="act_ge_bytearray">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="DEPLOYMENT_ID_" type="VARCHAR(64)"/>
+			<column name="BYTES_" type="LONGBLOB"/>
+			<column name="GENERATED_" type="TINYINT(3)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-3">
+		<createTable tableName="act_ge_property">
+			<column name="NAME_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="VALUE_" type="VARCHAR(300)"/>
+			<column name="REV_" type="INT"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-4">
+		<createTable tableName="act_hi_actinst">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ACT_ID_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="CALL_PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="ACT_NAME_" type="VARCHAR(255)"/>
+			<column name="ACT_TYPE_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ASSIGNEE_" type="VARCHAR(255)"/>
+			<column name="START_TIME_" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="END_TIME_" type="datetime"/>
+			<column name="DURATION_" type="BIGINT"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-5">
+		<createTable tableName="act_hi_attachment">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="USER_ID_" type="VARCHAR(255)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="DESCRIPTION_" type="VARCHAR(4000)"/>
+			<column name="TYPE_" type="VARCHAR(255)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="URL_" type="VARCHAR(4000)"/>
+			<column name="CONTENT_ID_" type="VARCHAR(64)"/>
+			<column name="TIME_" type="datetime"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-6">
+		<createTable tableName="act_hi_comment">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TYPE_" type="VARCHAR(255)"/>
+			<column name="TIME_" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="USER_ID_" type="VARCHAR(255)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="ACTION_" type="VARCHAR(255)"/>
+			<column name="MESSAGE_" type="VARCHAR(4000)"/>
+			<column name="FULL_MSG_" type="LONGBLOB"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-7">
+		<createTable tableName="act_hi_detail">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TYPE_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="ACT_INST_ID_" type="VARCHAR(64)"/>
+			<column name="NAME_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="VAR_TYPE_" type="VARCHAR(255)"/>
+			<column name="REV_" type="INT"/>
+			<column name="TIME_" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="BYTEARRAY_ID_" type="VARCHAR(64)"/>
+			<column name="DOUBLE_" type="DOUBLE"/>
+			<column name="LONG_" type="BIGINT"/>
+			<column name="TEXT_" type="VARCHAR(4000)"/>
+			<column name="TEXT2_" type="VARCHAR(4000)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-8">
+		<createTable tableName="act_hi_identitylink">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="GROUP_ID_" type="VARCHAR(255)"/>
+			<column name="TYPE_" type="VARCHAR(255)"/>
+			<column name="USER_ID_" type="VARCHAR(255)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-9">
+		<createTable tableName="act_hi_procinst">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="BUSINESS_KEY_" type="VARCHAR(255)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="START_TIME_" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="END_TIME_" type="datetime"/>
+			<column name="DURATION_" type="BIGINT"/>
+			<column name="START_USER_ID_" type="VARCHAR(255)"/>
+			<column name="START_ACT_ID_" type="VARCHAR(255)"/>
+			<column name="END_ACT_ID_" type="VARCHAR(255)"/>
+			<column name="SUPER_PROCESS_INSTANCE_ID_" type="VARCHAR(64)"/>
+			<column name="DELETE_REASON_" type="VARCHAR(4000)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-10">
+		<createTable tableName="act_hi_taskinst">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column name="TASK_DEF_KEY_" type="VARCHAR(255)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="PARENT_TASK_ID_" type="VARCHAR(64)"/>
+			<column name="DESCRIPTION_" type="VARCHAR(4000)"/>
+			<column name="OWNER_" type="VARCHAR(255)"/>
+			<column name="ASSIGNEE_" type="VARCHAR(255)"/>
+			<column name="START_TIME_" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CLAIM_TIME_" type="datetime"/>
+			<column name="END_TIME_" type="datetime"/>
+			<column name="DURATION_" type="BIGINT"/>
+			<column name="DELETE_REASON_" type="VARCHAR(4000)"/>
+			<column name="PRIORITY_" type="INT"/>
+			<column name="DUE_DATE_" type="datetime"/>
+			<column name="FORM_KEY_" type="VARCHAR(255)"/>
+			<column name="CATEGORY_" type="VARCHAR(255)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-11">
+		<createTable tableName="act_hi_varinst">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="NAME_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="VAR_TYPE_" type="VARCHAR(100)"/>
+			<column name="REV_" type="INT"/>
+			<column name="BYTEARRAY_ID_" type="VARCHAR(64)"/>
+			<column name="DOUBLE_" type="DOUBLE"/>
+			<column name="LONG_" type="BIGINT"/>
+			<column name="TEXT_" type="VARCHAR(4000)"/>
+			<column name="TEXT2_" type="VARCHAR(4000)"/>
+			<column name="CREATE_TIME_" type="datetime"/>
+			<column name="LAST_UPDATED_TIME_" type="datetime"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-12">
+		<createTable tableName="act_procdef_info">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="INFO_JSON_ID_" type="VARCHAR(64)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-13">
+		<createTable tableName="act_re_deployment">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="CATEGORY_" type="VARCHAR(255)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+			<column name="DEPLOY_TIME_" type="timestamp"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-14">
+		<createTable tableName="act_re_model">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="KEY_" type="VARCHAR(255)"/>
+			<column name="CATEGORY_" type="VARCHAR(255)"/>
+			<column name="CREATE_TIME_" type="timestamp"/>
+			<column name="LAST_UPDATE_TIME_" type="timestamp"/>
+			<column name="VERSION_" type="INT"/>
+			<column name="META_INFO_" type="VARCHAR(4000)"/>
+			<column name="DEPLOYMENT_ID_" type="VARCHAR(64)"/>
+			<column name="EDITOR_SOURCE_VALUE_ID_" type="VARCHAR(64)"/>
+			<column name="EDITOR_SOURCE_EXTRA_VALUE_ID_" type="VARCHAR(64)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-15">
+		<createTable tableName="act_re_procdef">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="CATEGORY_" type="VARCHAR(255)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="KEY_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="VERSION_" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DEPLOYMENT_ID_" type="VARCHAR(64)"/>
+			<column name="RESOURCE_NAME_" type="VARCHAR(4000)"/>
+			<column name="DGRM_RESOURCE_NAME_" type="VARCHAR(4000)"/>
+			<column name="DESCRIPTION_" type="VARCHAR(4000)"/>
+			<column name="HAS_START_FORM_KEY_" type="TINYINT(3)"/>
+			<column name="HAS_GRAPHICAL_NOTATION_" type="TINYINT(3)"/>
+			<column name="SUSPENSION_STATE_" type="INT"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-16">
+		<createTable tableName="act_ru_event_subscr">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="EVENT_TYPE_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="EVENT_NAME_" type="VARCHAR(255)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="ACTIVITY_ID_" type="VARCHAR(64)"/>
+			<column name="CONFIGURATION_" type="VARCHAR(255)"/>
+			<column defaultValueComputed="CURRENT_TIMESTAMP(3)" name="CREATED_" type="timestamp">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-17">
+		<createTable tableName="act_ru_execution">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="BUSINESS_KEY_" type="VARCHAR(255)"/>
+			<column name="PARENT_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column name="SUPER_EXEC_" type="VARCHAR(64)"/>
+			<column name="ACT_ID_" type="VARCHAR(255)"/>
+			<column name="IS_ACTIVE_" type="TINYINT(3)"/>
+			<column name="IS_CONCURRENT_" type="TINYINT(3)"/>
+			<column name="IS_SCOPE_" type="TINYINT(3)"/>
+			<column name="IS_EVENT_SCOPE_" type="TINYINT(3)"/>
+			<column name="SUSPENSION_STATE_" type="INT"/>
+			<column name="CACHED_ENT_STATE_" type="INT"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="LOCK_TIME_" type="timestamp"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-18">
+		<createTable tableName="act_ru_identitylink">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="GROUP_ID_" type="VARCHAR(255)"/>
+			<column name="TYPE_" type="VARCHAR(255)"/>
+			<column name="USER_ID_" type="VARCHAR(255)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-19">
+		<createTable tableName="act_ru_job">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="TYPE_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="LOCK_EXP_TIME_" type="timestamp"/>
+			<column name="LOCK_OWNER_" type="VARCHAR(255)"/>
+			<column name="EXCLUSIVE_" type="BIT(1)"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="PROCESS_INSTANCE_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column name="RETRIES_" type="INT"/>
+			<column name="EXCEPTION_STACK_ID_" type="VARCHAR(64)"/>
+			<column name="EXCEPTION_MSG_" type="VARCHAR(4000)"/>
+			<column name="DUEDATE_" type="timestamp"/>
+			<column name="REPEAT_" type="VARCHAR(255)"/>
+			<column name="HANDLER_TYPE_" type="VARCHAR(255)"/>
+			<column name="HANDLER_CFG_" type="VARCHAR(4000)"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-20">
+		<createTable tableName="act_ru_task">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_DEF_ID_" type="VARCHAR(64)"/>
+			<column name="NAME_" type="VARCHAR(255)"/>
+			<column name="PARENT_TASK_ID_" type="VARCHAR(64)"/>
+			<column name="DESCRIPTION_" type="VARCHAR(4000)"/>
+			<column name="TASK_DEF_KEY_" type="VARCHAR(255)"/>
+			<column name="OWNER_" type="VARCHAR(255)"/>
+			<column name="ASSIGNEE_" type="VARCHAR(255)"/>
+			<column name="DELEGATION_" type="VARCHAR(64)"/>
+			<column name="PRIORITY_" type="INT"/>
+			<column name="CREATE_TIME_" type="timestamp"/>
+			<column name="DUE_DATE_" type="datetime"/>
+			<column name="CATEGORY_" type="VARCHAR(255)"/>
+			<column name="SUSPENSION_STATE_" type="INT"/>
+			<column defaultValue="" name="TENANT_ID_" type="VARCHAR(255)"/>
+			<column name="FORM_KEY_" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-21">
+		<createTable tableName="act_ru_variable">
+			<column name="ID_" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REV_" type="INT"/>
+			<column name="TYPE_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="NAME_" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="EXECUTION_ID_" type="VARCHAR(64)"/>
+			<column name="PROC_INST_ID_" type="VARCHAR(64)"/>
+			<column name="TASK_ID_" type="VARCHAR(64)"/>
+			<column name="BYTEARRAY_ID_" type="VARCHAR(64)"/>
+			<column name="DOUBLE_" type="DOUBLE"/>
+			<column name="LONG_" type="BIGINT"/>
+			<column name="TEXT_" type="VARCHAR(4000)"/>
+			<column name="TEXT2_" type="VARCHAR(4000)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-22">
+		<createTable remarks="附件" tableName="base_attachment">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="name" remarks="名称" type="VARCHAR(200)"/>
+			<column name="path" remarks="本地路径" type="VARCHAR(500)"/>
+			<column name="fileSize" remarks="文件大小" type="BIGINT UNSIGNED">
+				<constraints nullable="false"/>
+			</column>
+			<column name="downloadCount" remarks="下载次数" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="fileType" remarks="文件类型" type="VARCHAR(20)"/>
+			<column name="businessDocId" remarks="业务单据主键" type="VARCHAR(100)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+			<column name="attachmentCategoryId" remarks="附件类别主键" type="VARCHAR(128)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-23">
+		<createTable remarks="附件类别" tableName="base_attachment_category">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="name" remarks="名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="sortIndex" remarks="排序号" type="TINYINT(3)"/>
+			<column name="visible" remarks="是否再UI显示" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-24">
+		<createTable remarks="附件类别分类" tableName="base_attachment_category_classification">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="parentId" remarks="父Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="visible" remarks="是否再UI显示" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-25">
+		<createTable remarks="附件类别分类关系" tableName="base_attachment_category_of_classification">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="categoryId" remarks="附件类别主键" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="categoryClassificationId" remarks="附件类别分类主键" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="required" remarks="是否必输" type="BIT(1)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-26">
+		<createTable remarks="数据字典项" tableName="base_data_dictionary">
+			<column name="id" remarks="主键" type="VARCHAR(100)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="parentId" remarks="父Id" type="VARCHAR(100)"/>
+			<column name="dataDictionaryCategoryId" remarks="数据字典主键" type="VARCHAR(100)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="sortIndex" remarks="排序号" type="TINYINT(3)"/>
+			<column defaultValueNumeric="1" name="deleted" remarks="逻辑删除   0：未删除，1：已删除" type="INT"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-27">
+		<createTable remarks="数据字典" tableName="base_data_dictionary_category">
+			<column name="id" remarks="主键" type="VARCHAR(100)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="parentId" remarks="父id" type="VARCHAR(100)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="visible" remarks="是否UI显示" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-28">
+		<createTable remarks="导出模板" tableName="base_export_template">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="name" remarks="名称" type="VARCHAR(200)"/>
+			<column name="path" remarks="模板路径" type="VARCHAR(200)"/>
+			<column name="templateCategoryId" remarks="模板类别Id" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-29">
+		<createTable remarks="扩展字段定义" tableName="base_extend_field_definition">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="json" remarks="json定义" type="LONGTEXT"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-30">
+		<createTable remarks="扩展字段值" tableName="base_extend_field_value">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="evalue" remarks="值" type="VARCHAR(4000)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-31">
+		<createTable remarks="假期设置" tableName="base_holiday_set">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="cdate" remarks="日期" type="datetime">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="wk" remarks="是否假期" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-32">
+		<createTable remarks="信息公告" tableName="base_information">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="title" remarks="标题" type="VARCHAR(50)"/>
+			<column name="summary" remarks="摘要" type="VARCHAR(200)"/>
+			<column name="content" remarks="内容" type="VARCHAR(4000)"/>
+			<column name="linkUrl" remarks="链接地址" type="VARCHAR(200)"/>
+			<column name="classificationId" remarks="分类" type="VARCHAR(50)"/>
+			<column name="type" remarks="类别" type="VARCHAR(50)"/>
+			<column name="status" remarks="状态" type="VARCHAR(50)"/>
+			<column name="statusDate" remarks="状态日期" type="datetime"/>
+			<column name="statusOperator" remarks="状态操作人" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-33">
+		<createTable remarks="信息公告分类" tableName="base_information_classification">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="parentId" remarks="父Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(400)"/>
+			<column name="showFields" remarks="显示字段" type="VARCHAR(400)"/>
+			<column name="type" remarks="类别" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-34">
+		<createTable remarks="系统日志" tableName="base_log">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="userId" remarks="用户主键" type="VARCHAR(50)"/>
+			<column name="operation" remarks="操作" type="VARCHAR(200)"/>
+			<column name="method" remarks="请求方法" type="VARCHAR(500)"/>
+			<column name="params" remarks="输入参数" type="VARCHAR(1000)"/>
+			<column name="result" remarks="执行结果（成功、失败）" type="VARCHAR(20)"/>
+			<column name="errorMessage" remarks="错误内容" type="VARCHAR(1000)"/>
+			<column name="errorStackTrace" remarks="错误堆栈" type="VARCHAR(4000)"/>
+			<column name="executeTime" remarks="执行时间" type="datetime"/>
+			<column name="duration" remarks="执行时长(毫秒)" type="BIGINT UNSIGNED"/>
+			<column name="ip" remarks="IP地址" type="VARCHAR(20)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-35">
+		<createTable remarks="菜单导航" tableName="base_navigation">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="parentId" remarks="父Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="title" remarks="标题" type="VARCHAR(50)"/>
+			<column name="path" remarks="路径" type="VARCHAR(200)"/>
+			<column name="icon" remarks="图标" type="VARCHAR(200)"/>
+			<column name="component" remarks="组件地址" type="VARCHAR(200)"/>
+			<column name="requiredPermissionId" remarks="关联的权限主键" type="VARCHAR(50)"/>
+			<column name="show" remarks="是否显示再导航菜单" type="TINYINT(3)"/>
+			<column name="keepAlive" remarks="vue router-view keepAlive" type="TINYINT(3)"/>
+			<column name="layoutType" remarks="布局类型（暂未使用)" type="TINYINT(3)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="sortIndex" remarks="排序号" type="INT"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-36">
+		<createTable remarks="消息" tableName="base_notification">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="title" remarks="标题" type="VARCHAR(200)"/>
+			<column name="content" remarks="内容" type="VARCHAR(4000)"/>
+			<column name="url" remarks="详细地址" type="VARCHAR(100)"/>
+			<column name="source" remarks="来源" type="VARCHAR(50)"/>
+			<column name="targetType" remarks="发送到类型(all : 全部,user:单个人)" type="VARCHAR(50)"/>
+			<column name="targetTos" remarks="发送到用户主键（多个用“;&quot;分隔)" type="VARCHAR(4000)"/>
+			<column name="read" remarks="是否已读" type="TINYINT(3)"/>
+			<column name="readDate" remarks="已读日期" type="datetime"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-37">
+		<createTable remarks="组织机构" tableName="base_organization">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="parentId" remarks="父Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="address" remarks="地址" type="VARCHAR(200)"/>
+			<column name="postNO" remarks="邮编" type="VARCHAR(45)"/>
+			<column name="type" remarks="类型(0:系统组织机构，不允许删除，可修改 1：普通组织机构，无删除、修改限制）" type="TINYINT(3)"/>
+			<column name="organizationCategoryId" remarks="组织机构类型（数据字典，参照：base_organizationcategory）" type="VARCHAR(50)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-38">
+		<createTable remarks="权限" tableName="base_permission">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="parentId" remarks="父id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="sortIndex" remarks="排序值" type="INT"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-39">
+		<createTable remarks="岗位" tableName="base_role">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="organizationId" remarks="组织机构Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="type" remarks="类型(0:系统岗位，不允许删除，可修改 1：普通岗位，无删除、修改限制）" type="TINYINT(3)"/>
+			<column name="roleCategoryId" remarks="岗位类型（数据字典，参照：base_rolecategory）" type="VARCHAR(50)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-40">
+		<createTable remarks="岗位数据权限" tableName="base_role_data_permission">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="dataPermissionId" remarks="组织机构Id" type="VARCHAR(50)"/>
+			<column name="roleId" remarks="岗位Id" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-41">
+		<createTable remarks="岗位权限" tableName="base_role_permission">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="permissionId" remarks="权限Id" type="VARCHAR(50)"/>
+			<column name="roleId" remarks="岗位Id" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-42">
+		<createTable remarks="定时任务" tableName="base_schedule_job">
+			<column name="id" remarks="任务id" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="name" remarks="名称" type="VARCHAR(50)"/>
+			<column name="beanName" remarks="spring bean名称" type="VARCHAR(200)"/>
+			<column name="methodName" remarks="方法名" type="VARCHAR(100)"/>
+			<column name="params" remarks="参数" type="VARCHAR(2000)"/>
+			<column name="cronExpression" remarks="cron表达式" type="VARCHAR(100)"/>
+			<column name="status" remarks="任务状态  0：正常  1：暂停" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(255)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-43">
+		<createTable remarks="定时任务日志" tableName="base_schedule_job_log">
+			<column name="id" remarks="任务日志id" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="jobId" remarks="任务id" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="jobName" remarks="任务名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="beanName" remarks="spring bean名称" type="VARCHAR(200)"/>
+			<column name="methodName" remarks="方法名" type="VARCHAR(100)"/>
+			<column name="params" remarks="参数" type="VARCHAR(2000)"/>
+			<column name="duration" remarks="耗时(单位：毫秒)" type="BIGINT"/>
+			<column name="result" remarks="任务状态    0：成功    1：失败" type="VARCHAR(50)"/>
+			<column name="errorMessage" remarks="错误内容" type="VARCHAR(1000)"/>
+			<column name="errorStackTrace" remarks="错误堆栈" type="VARCHAR(4000)"/>
+			<column name="executeTime" remarks="执行时间" type="datetime"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-44">
+		<createTable remarks="流水号" tableName="base_sequence_number">
+			<column autoIncrement="true" name="ID" remarks="主键" type="INT">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="Code" remarks="编码" type="VARCHAR(50)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="Prefix" remarks="前缀" type="VARCHAR(50)"/>
+			<column name="DateType" remarks="类别" type="VARCHAR(8)"/>
+			<column name="Infix" remarks="中缀" type="VARCHAR(50)"/>
+			<column name="IndexLength" remarks="长度" type="INT"/>
+			<column name="Suffix" remarks="后缀" type="VARCHAR(50)"/>
+			<column name="MaxDate" remarks="最大日期" type="VARCHAR(8)"/>
+			<column name="MaxIndex" remarks="最大值" type="INT"/>
+			<column name="CurrentMaxValue" remarks="当前最大值" type="TEXT"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-45">
+		<createTable remarks="配置项" tableName="base_setting">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="value" remarks="值" type="VARCHAR(1000)"/>
+			<column name="name" remarks="名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-46">
+		<createTable remarks="用户" tableName="base_user">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="name" remarks="名称" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="age" remarks="年龄" type="INT"/>
+			<column name="birthday" remarks="出生日期" type="date"/>
+			<column name="loginId" remarks="登陆名" type="VARCHAR(45)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="loginPassword" remarks="登陆密码" type="VARCHAR(128)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="activited" remarks="是否启用" type="BIT(1)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="mobile" remarks="手机" type="VARCHAR(45)"/>
+			<column name="email" remarks="邮箱" type="VARCHAR(45)"/>
+			<column name="weixin" remarks="微信" type="VARCHAR(45)"/>
+			<column name="token" remarks="外部访问秘钥" type="VARCHAR(500)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(200)"/>
+			<column name="lastLoginTime" remarks="最后登陆时间" type="datetime"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="shouldChangePassword" remarks="是否应修改密码(逻辑未实现)" type="BIT(1)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-47">
+		<createTable remarks="用户岗位关系" tableName="base_user_role">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="userId" remarks="用户Id" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="roleId" remarks="岗位iId" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-48">
+		<createTable tableName="persistent_logins">
+			<column name="username" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="series" type="VARCHAR(64)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="token" type="VARCHAR(64)">
+				<constraints nullable="false"/>
+			</column>
+			<column defaultValueComputed="CURRENT_TIMESTAMP" name="last_used" type="timestamp">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-49">
+		<createTable remarks="机房审批" tableName="pl_computer_room_apply_header">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="requesterDeptId" remarks="申请部门" type="VARCHAR(50)"/>
+			<column name="requesterId" remarks="申请人" type="VARCHAR(50)"/>
+			<column name="requesterMobile" remarks="申请人电话" type="VARCHAR(50)"/>
+			<column name="requestDate" remarks="申请时间" type="datetime"/>
+			<column name="systemName" remarks="系统名称" type="VARCHAR(50)"/>
+			<column name="equipmentIp" remarks="IP地址" type="VARCHAR(50)"/>
+			<column name="equipmentName" remarks="设备名称" type="VARCHAR(50)"/>
+			<column name="equipmentModel" remarks="设备型号" type="VARCHAR(50)"/>
+			<column name="equipmentAddress" remarks="机柜号（或操作地点）" type="VARCHAR(50)"/>
+			<column name="equipmentResponsibleMr" remarks="设备责任人" type="VARCHAR(50)"/>
+			<column name="operationStepDesc" remarks="具体维护操作步骤描述" type="VARCHAR(400)"/>
+			<column name="effectScopeDesc" remarks="影响范围" type="VARCHAR(400)"/>
+			<column name="targetDesc" remarks="达到目的" type="VARCHAR(400)"/>
+			<column name="maintainStartTime" remarks="维护开始时间" type="datetime"/>
+			<column name="maintainEndTime" remarks="维护结束时间" type="datetime"/>
+			<column name="maintainRemark" remarks="备注" type="VARCHAR(400)"/>
+			<column name="maintainResultRemark" remarks="维护结果描述" type="VARCHAR(400)"/>
+			<column name="deptMr" remarks="部门经理" type="VARCHAR(50)"/>
+			<column name="requesterDeptName" remarks="申请部门名称" type="VARCHAR(100)"/>
+			<column name="requesterName" remarks="申请人姓名" type="VARCHAR(50)"/>
+			<column name="deptMrName" remarks="部门经理姓名" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-50">
+		<createTable remarks="机房审批-维护人员" tableName="pl_computer_room_apply_maintain_info">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="headerId" remarks="机房审批单Id" type="VARCHAR(50)"/>
+			<column name="name" remarks="姓名" type="VARCHAR(50)"/>
+			<column name="companyName" remarks="工作单位" type="VARCHAR(50)"/>
+			<column name="linkMode" remarks="联系方式" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(50)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-51">
+		<createTable remarks="页面生成展示-主" tableName="pl_loan_demo">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="customerCode" remarks="客户编码" type="VARCHAR(50)"/>
+			<column name="customerName" remarks="客户名称" type="VARCHAR(50)"/>
+			<column name="customerCardNO" remarks="身份证号" type="VARCHAR(50)"/>
+			<column name="loanTermCount" remarks="整形输入" type="INT"/>
+			<column name="loanMoneyAmount" remarks="数字输入" type="DECIMAL(16, 2)"/>
+			<column name="originalLoanMoneyAmount" remarks="金额输入" type="DECIMAL(16, 2)"/>
+			<column name="financeFamilyTotalAsset" remarks="金额输入-万" type="DECIMAL(16, 2)"/>
+			<column name="financeReturnMoneyLoanRate" remarks="百分比输入" type="DECIMAL(16, 2)"/>
+			<column name="loanApplyDate" remarks="日期输入" type="datetime"/>
+			<column name="loanApplySumbitDate" remarks="日期时间输入" type="datetime"/>
+			<column name="trackingPersonInfoMRId" remarks="人员弹出选择" type="VARCHAR(50)"/>
+			<column name="sexId" remarks="性别" type="VARCHAR(50)"/>
+			<column name="maritalStatusIds" remarks="婚姻状况" type="VARCHAR(200)"/>
+			<column name="educationalLevelIds" remarks="学历" type="VARCHAR(200)"/>
+			<column name="jobId" remarks="职务-radio" type="VARCHAR(50)"/>
+			<column name="socialSecurityId" remarks="树形单选" type="VARCHAR(50)"/>
+			<column name="companyWorkTermIds" remarks="树形多选" type="VARCHAR(200)"/>
+			<column name="activited" remarks="是否可用" type="BIT(1)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(400)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-52">
+		<createTable remarks="页面生成展示-子" tableName="pl_loan_demo_detail">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="loanDocId" remarks="页面生成展示-主" type="VARCHAR(50)"/>
+			<column name="customerCode" remarks="客户编码" type="VARCHAR(50)"/>
+			<column name="customerName" remarks="客户名称" type="VARCHAR(50)"/>
+			<column name="customerCardNO" remarks="身份证号" type="VARCHAR(50)"/>
+			<column name="loanTermCount" remarks="整形输入" type="INT"/>
+			<column name="loanMoneyAmount" remarks="数字输入" type="DECIMAL(16, 2)"/>
+			<column name="originalLoanMoneyAmount" remarks="金额输入" type="DECIMAL(16, 2)"/>
+			<column name="financeFamilyTotalAsset" remarks="金额输入-万" type="DECIMAL(16, 2)"/>
+			<column name="financeReturnMoneyLoanRate" remarks="百分比输入" type="DECIMAL(16, 2)"/>
+			<column name="loanApplyDate" remarks="日期输入" type="datetime"/>
+			<column name="loanApplySumbitDate" remarks="日期时间输入" type="datetime"/>
+			<column name="trackingPersonInfoMRId" remarks="人员弹出选择" type="VARCHAR(50)"/>
+			<column name="sexId" remarks="性别" type="VARCHAR(50)"/>
+			<column name="maritalStatusIds" remarks="婚姻状况" type="VARCHAR(200)"/>
+			<column name="educationalLevelIds" remarks="学历" type="VARCHAR(200)"/>
+			<column name="jobId" remarks="职务-radio" type="VARCHAR(50)"/>
+			<column name="socialSecurityId" remarks="树形单选" type="VARCHAR(50)"/>
+			<column name="companyWorkTermIds" remarks="树形多选" type="VARCHAR(200)"/>
+			<column name="activited" remarks="是否可用" type="BIT(1)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(400)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-53">
+		<createTable remarks="借款单" tableName="pl_loan_doc">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="customerCode" remarks="客户编号" type="VARCHAR(50)"/>
+			<column name="customerName" remarks="客户名称" type="VARCHAR(50)"/>
+			<column name="customerCardNO" remarks="身份证号" type="VARCHAR(50)"/>
+			<column name="loanTermCount" remarks="整形输入" type="INT"/>
+			<column name="loanMoneyAmount" remarks="数字输入" type="DECIMAL(10, 2)"/>
+			<column name="originalLoanMoneyAmount" remarks="金额输入" type="DECIMAL(10, 2)"/>
+			<column name="financeFamilyTotalAsset" remarks="金额输入-万" type="DECIMAL(10, 2)"/>
+			<column name="financeReturnMoneyLoanRate" remarks="百分比输入" type="DECIMAL(10, 2)"/>
+			<column name="loanApplyDate" remarks="日期输入" type="datetime"/>
+			<column name="loanApplySumbitDate" remarks="日期时间输入" type="datetime"/>
+			<column name="trackingPersonInfoMRId" remarks="人员弹出选择" type="VARCHAR(50)"/>
+			<column name="time1" remarks="时间输入1" type="VARCHAR(50)"/>
+			<column name="time2" remarks="时间输入2" type="VARCHAR(50)"/>
+			<column name="sexId" remarks="性别" type="VARCHAR(50)"/>
+			<column name="maritalStatusIds" remarks="婚姻状况" type="VARCHAR(200)"/>
+			<column name="educationalLevelIds" remarks="学历" type="VARCHAR(200)"/>
+			<column name="jobId" remarks="职务-radio" type="VARCHAR(200)"/>
+			<column name="socialSecurityId" remarks="树形单选" type="VARCHAR(50)"/>
+			<column name="companyWorkTermIds" remarks="树形多选" type="VARCHAR(500)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+			<column name="activited" remarks="评估价格" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-54">
+		<createTable remarks="关联人信息" tableName="pl_loan_enter_customerrelation">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="loanDocId" remarks="申请单" type="VARCHAR(50)"/>
+			<column name="customerName" remarks="客户名称" type="VARCHAR(50)"/>
+			<column name="customerCardNO" remarks="身份证号" type="VARCHAR(50)"/>
+			<column name="loanTermCount" remarks="整形输入" type="INT"/>
+			<column name="loanMoneyAmount" remarks="数字输入" type="DECIMAL(10, 2)"/>
+			<column name="originalLoanMoneyAmount" remarks="金额输入" type="DECIMAL(10, 2)"/>
+			<column name="financeFamilyTotalAsset" remarks="金额输入-万" type="DECIMAL(10, 2)"/>
+			<column name="financeReturnMoneyLoanRate" remarks="百分比输入" type="DECIMAL(10, 2)"/>
+			<column name="loanApplyDate" remarks="日期输入" type="datetime"/>
+			<column name="loanApplySumbitDate" remarks="日期时间输入" type="datetime"/>
+			<column name="trackingPersonInfoMRId" remarks="人员弹出选择" type="VARCHAR(50)"/>
+			<column name="sexId" remarks="性别" type="VARCHAR(50)"/>
+			<column name="maritalStatusIds" remarks="婚姻状况" type="VARCHAR(200)"/>
+			<column name="educationalLevelIds" remarks="学历" type="VARCHAR(200)"/>
+			<column name="jobId" remarks="职务-radio" type="VARCHAR(200)"/>
+			<column name="socialSecurityId" remarks="树形单选" type="VARCHAR(50)"/>
+			<column name="companyWorkTermIds" remarks="树形多选" type="VARCHAR(500)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+			<column name="activited" remarks="评估价格" type="BIT(1)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-55">
+		<createTable tableName="qrtz_blob_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="BLOB_DATA" type="BLOB"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-56">
+		<createTable tableName="qrtz_calendars">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="CALENDAR_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="CALENDAR" type="BLOB">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-57">
+		<createTable tableName="qrtz_cron_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="CRON_EXPRESSION" type="VARCHAR(120)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TIME_ZONE_ID" type="VARCHAR(80)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-58">
+		<createTable tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="ENTRY_ID" type="VARCHAR(95)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="INSTANCE_NAME" type="VARCHAR(200)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="FIRED_TIME" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="SCHED_TIME" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PRIORITY" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="STATE" type="VARCHAR(16)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="JOB_NAME" type="VARCHAR(200)"/>
+			<column name="JOB_GROUP" type="VARCHAR(200)"/>
+			<column name="IS_NONCONCURRENT" type="VARCHAR(1)"/>
+			<column name="REQUESTS_RECOVERY" type="VARCHAR(1)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-59">
+		<createTable tableName="qrtz_job_details">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="JOB_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="JOB_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(250)"/>
+			<column name="JOB_CLASS_NAME" type="VARCHAR(250)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="IS_DURABLE" type="VARCHAR(1)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="IS_NONCONCURRENT" type="VARCHAR(1)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="IS_UPDATE_DATA" type="VARCHAR(1)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="REQUESTS_RECOVERY" type="VARCHAR(1)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="JOB_DATA" type="BLOB"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-60">
+		<createTable tableName="qrtz_locks">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="LOCK_NAME" type="VARCHAR(40)">
+				<constraints primaryKey="true"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-61">
+		<createTable tableName="qrtz_paused_trigger_grps">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-62">
+		<createTable tableName="qrtz_scheduler_state">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="INSTANCE_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="LAST_CHECKIN_TIME" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CHECKIN_INTERVAL" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-63">
+		<createTable tableName="qrtz_simple_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="REPEAT_COUNT" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="REPEAT_INTERVAL" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TIMES_TRIGGERED" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-64">
+		<createTable tableName="qrtz_simprop_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="STR_PROP_1" type="VARCHAR(512)"/>
+			<column name="STR_PROP_2" type="VARCHAR(512)"/>
+			<column name="STR_PROP_3" type="VARCHAR(512)"/>
+			<column name="INT_PROP_1" type="INT"/>
+			<column name="INT_PROP_2" type="INT"/>
+			<column name="LONG_PROP_1" type="BIGINT"/>
+			<column name="LONG_PROP_2" type="BIGINT"/>
+			<column name="DEC_PROP_1" type="DECIMAL(13, 4)"/>
+			<column name="DEC_PROP_2" type="DECIMAL(13, 4)"/>
+			<column name="BOOL_PROP_1" type="VARCHAR(1)"/>
+			<column name="BOOL_PROP_2" type="VARCHAR(1)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-65">
+		<createTable tableName="qrtz_triggers">
+			<column name="SCHED_NAME" type="VARCHAR(120)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="TRIGGER_GROUP" type="VARCHAR(200)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="JOB_NAME" type="VARCHAR(200)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="JOB_GROUP" type="VARCHAR(200)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(250)"/>
+			<column name="NEXT_FIRE_TIME" type="BIGINT"/>
+			<column name="PREV_FIRE_TIME" type="BIGINT"/>
+			<column name="PRIORITY" type="INT"/>
+			<column name="TRIGGER_STATE" type="VARCHAR(16)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TRIGGER_TYPE" type="VARCHAR(8)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="START_TIME" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="END_TIME" type="BIGINT"/>
+			<column name="CALENDAR_NAME" type="VARCHAR(200)"/>
+			<column name="MISFIRE_INSTR" type="SMALLINT"/>
+			<column name="JOB_DATA" type="BLOB"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-66">
+		<createTable remarks="草稿" tableName="wf_draft">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+			<column name="processDefinationKey" remarks="流程定义key" type="VARCHAR(50)"/>
+			<column name="businessId" remarks="业务单据Id" type="VARCHAR(50)"/>
+			<column name="origiator" remarks="申请人" type="VARCHAR(50)"/>
+			<column name="saveDate" remarks="保存日期" type="datetime"/>
+			<column name="folio" remarks="显示名称" type="VARCHAR(500)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-67">
+		<createTable remarks="工作流程流程实例" tableName="wf_processinst">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="processDefinationKey" remarks="流程定义Key" type="VARCHAR(50)"/>
+			<column name="businessId" remarks="业务单据id" type="VARCHAR(50)"/>
+			<column name="origiator" remarks="发起人Id" type="VARCHAR(50)"/>
+			<column name="startDate" remarks="发起时间" type="datetime"/>
+			<column name="saveDate" remarks="保存时间" type="datetime"/>
+			<column name="endDate" remarks="结束时间" type="datetime"/>
+			<column name="folio" remarks="描述" type="VARCHAR(500)"/>
+			<column name="status" remarks="状态（Draft:草稿;Approving:审批中;Finished:审批完成;ReRequest:驳回申请人;Declined:拒绝;Canceled:撤销;Error:错误;Suspend:挂起）"
+					type="VARCHAR(50)"/>
+			<column name="originalStatus" remarks="初始状态" type="VARCHAR(50)"/>
+			<column name="remark" remarks="备注" type="VARCHAR(500)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建时间" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改时间" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-68">
+		<createTable remarks="工作流审批历史" tableName="wf_processinsthistory">
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="processInstId" remarks="流程实例Id" type="VARCHAR(50)"/>
+			<column name="taskId" remarks="任务Id" type="VARCHAR(50)"/>
+			<column name="actId" remarks="任务结点Id" type="VARCHAR(50)"/>
+			<column name="actName" remarks="任务结点名称" type="VARCHAR(50)"/>
+			<column name="actUserSource" remarks="办理人来源(asignee:办理 :,delegate:委派 ,redirect:转办，claim:签收)" type="VARCHAR(50)"/>
+			<column name="actUserId" remarks="办理人" type="VARCHAR(50)"/>
+			<column name="doAction" remarks="审批操作" type="VARCHAR(50)"/>
+			<column name="actionDate" remarks="审批时间" type="datetime"/>
+			<column name="result" remarks="审批结果" type="VARCHAR(50)"/>
+			<column name="remark" remarks="审批意见" type="VARCHAR(500)"/>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(32)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="最后修改人" type="VARCHAR(32)"/>
+			<column name="gmtUpdatedOn" remarks="最后修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="行版本" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-69">
+		<createTable remarks="任务授权" tableName="wf_task_agent">
+			<column name="assignee" remarks="授权人" type="VARCHAR(50)"/>
+			<column name="attorney" remarks="被授权人" type="VARCHAR(50)"/>
+			<column name="startTime" remarks="开始日期" type="datetime"/>
+			<column name="endTime" remarks="结束日期" type="datetime"/>
+			<column name="processDefinitionKey" remarks="流程定义" type="VARCHAR(50)"/>
+			<column name="status" remarks="状态" type="VARCHAR(50)"/>
+			<column name="id" remarks="主键" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="gmtCreatedBy" remarks="创建人" type="VARCHAR(50)"/>
+			<column name="gmtCreatedOn" remarks="创建日期" type="datetime"/>
+			<column name="gmtUpdatedBy" remarks="修改人" type="VARCHAR(50)"/>
+			<column name="gmtUpdatedOn" remarks="修改日期" type="datetime"/>
+			<column name="gmtVersion" remarks="锁版本" type="INT"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-70">
+		<addUniqueConstraint columnNames="KEY_, VERSION_, TENANT_ID_" constraintName="ACT_UNIQ_PROCDEF" tableName="act_re_procdef"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-71">
+		<createIndex indexName="ACT_FK_BYTEARR_DEPL" tableName="act_ge_bytearray">
+			<column name="DEPLOYMENT_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-72">
+		<createIndex indexName="ACT_FK_EVENT_EXEC" tableName="act_ru_event_subscr">
+			<column name="EXECUTION_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-73">
+		<createIndex indexName="ACT_FK_EXE_PARENT" tableName="act_ru_execution">
+			<column name="PARENT_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-74">
+		<createIndex indexName="ACT_FK_EXE_PROCDEF" tableName="act_ru_execution">
+			<column name="PROC_DEF_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-75">
+		<createIndex indexName="ACT_FK_EXE_PROCINST" tableName="act_ru_execution">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-76">
+		<createIndex indexName="ACT_FK_EXE_SUPER" tableName="act_ru_execution">
+			<column name="SUPER_EXEC_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-77">
+		<createIndex indexName="ACT_FK_IDL_PROCINST" tableName="act_ru_identitylink">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-78">
+		<createIndex indexName="ACT_FK_INFO_JSON_BA" tableName="act_procdef_info">
+			<column name="INFO_JSON_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-79">
+		<createIndex indexName="ACT_FK_JOB_EXCEPTION" tableName="act_ru_job">
+			<column name="EXCEPTION_STACK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-80">
+		<createIndex indexName="ACT_FK_MODEL_DEPLOYMENT" tableName="act_re_model">
+			<column name="DEPLOYMENT_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-81">
+		<createIndex indexName="ACT_FK_MODEL_SOURCE" tableName="act_re_model">
+			<column name="EDITOR_SOURCE_VALUE_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-82">
+		<createIndex indexName="ACT_FK_MODEL_SOURCE_EXTRA" tableName="act_re_model">
+			<column name="EDITOR_SOURCE_EXTRA_VALUE_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-83">
+		<createIndex indexName="ACT_FK_TASK_EXE" tableName="act_ru_task">
+			<column name="EXECUTION_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-84">
+		<createIndex indexName="ACT_FK_TASK_PROCDEF" tableName="act_ru_task">
+			<column name="PROC_DEF_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-85">
+		<createIndex indexName="ACT_FK_TASK_PROCINST" tableName="act_ru_task">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-86">
+		<createIndex indexName="ACT_FK_TSKASS_TASK" tableName="act_ru_identitylink">
+			<column name="TASK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-87">
+		<createIndex indexName="ACT_FK_VAR_BYTEARRAY" tableName="act_ru_variable">
+			<column name="BYTEARRAY_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-88">
+		<createIndex indexName="ACT_FK_VAR_EXE" tableName="act_ru_variable">
+			<column name="EXECUTION_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-89">
+		<createIndex indexName="ACT_FK_VAR_PROCINST" tableName="act_ru_variable">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-90">
+		<createIndex indexName="ACT_IDX_ATHRZ_PROCEDEF" tableName="act_ru_identitylink">
+			<column name="PROC_DEF_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-91">
+		<createIndex indexName="ACT_IDX_EVENT_SUBSCR_CONFIG_" tableName="act_ru_event_subscr">
+			<column name="CONFIGURATION_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-92">
+		<createIndex indexName="ACT_IDX_EXEC_BUSKEY" tableName="act_ru_execution">
+			<column name="BUSINESS_KEY_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-93">
+		<createIndex indexName="ACT_IDX_HI_ACT_INST_END" tableName="act_hi_actinst">
+			<column name="END_TIME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-94">
+		<createIndex indexName="ACT_IDX_HI_ACT_INST_EXEC" tableName="act_hi_actinst">
+			<column name="EXECUTION_ID_"/>
+			<column name="ACT_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-95">
+		<createIndex indexName="ACT_IDX_HI_ACT_INST_PROCINST" tableName="act_hi_actinst">
+			<column name="PROC_INST_ID_"/>
+			<column name="ACT_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-96">
+		<createIndex indexName="ACT_IDX_HI_ACT_INST_START" tableName="act_hi_actinst">
+			<column name="START_TIME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-97">
+		<createIndex indexName="ACT_IDX_HI_DETAIL_ACT_INST" tableName="act_hi_detail">
+			<column name="ACT_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-98">
+		<createIndex indexName="ACT_IDX_HI_DETAIL_NAME" tableName="act_hi_detail">
+			<column name="NAME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-99">
+		<createIndex indexName="ACT_IDX_HI_DETAIL_PROC_INST" tableName="act_hi_detail">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-100">
+		<createIndex indexName="ACT_IDX_HI_DETAIL_TASK_ID" tableName="act_hi_detail">
+			<column name="TASK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-101">
+		<createIndex indexName="ACT_IDX_HI_DETAIL_TIME" tableName="act_hi_detail">
+			<column name="TIME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-102">
+		<createIndex indexName="ACT_IDX_HI_IDENT_LNK_PROCINST" tableName="act_hi_identitylink">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-103">
+		<createIndex indexName="ACT_IDX_HI_IDENT_LNK_TASK" tableName="act_hi_identitylink">
+			<column name="TASK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-104">
+		<createIndex indexName="ACT_IDX_HI_IDENT_LNK_USER" tableName="act_hi_identitylink">
+			<column name="USER_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-105">
+		<createIndex indexName="ACT_IDX_HI_PROCVAR_NAME_TYPE" tableName="act_hi_varinst">
+			<column name="NAME_"/>
+			<column name="VAR_TYPE_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-106">
+		<createIndex indexName="ACT_IDX_HI_PROCVAR_PROC_INST" tableName="act_hi_varinst">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-107">
+		<createIndex indexName="ACT_IDX_HI_PROCVAR_TASK_ID" tableName="act_hi_varinst">
+			<column name="TASK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-108">
+		<createIndex indexName="ACT_IDX_HI_PRO_INST_END" tableName="act_hi_procinst">
+			<column name="END_TIME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-109">
+		<createIndex indexName="ACT_IDX_HI_PRO_I_BUSKEY" tableName="act_hi_procinst">
+			<column name="BUSINESS_KEY_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-110">
+		<createIndex indexName="ACT_IDX_HI_TASK_INST_PROCINST" tableName="act_hi_taskinst">
+			<column name="PROC_INST_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-111">
+		<createIndex indexName="ACT_IDX_IDENT_LNK_GROUP" tableName="act_ru_identitylink">
+			<column name="GROUP_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-112">
+		<createIndex indexName="ACT_IDX_IDENT_LNK_USER" tableName="act_ru_identitylink">
+			<column name="USER_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-113">
+		<createIndex indexName="ACT_IDX_TASK_CREATE" tableName="act_ru_task">
+			<column name="CREATE_TIME_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-114">
+		<createIndex indexName="ACT_IDX_VARIABLE_TASK_ID" tableName="act_ru_variable">
+			<column name="TASK_ID_"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-115">
+		<createIndex indexName="IDX_QRTZ_FT_INST_JOB_REQ_RCVRY" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="INSTANCE_NAME"/>
+			<column name="REQUESTS_RECOVERY"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-116">
+		<createIndex indexName="IDX_QRTZ_FT_JG" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="JOB_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-117">
+		<createIndex indexName="IDX_QRTZ_FT_J_G" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="JOB_NAME"/>
+			<column name="JOB_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-118">
+		<createIndex indexName="IDX_QRTZ_FT_TG" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-119">
+		<createIndex indexName="IDX_QRTZ_FT_TRIG_INST_NAME" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="INSTANCE_NAME"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-120">
+		<createIndex indexName="IDX_QRTZ_FT_T_G" tableName="qrtz_fired_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_NAME"/>
+			<column name="TRIGGER_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-121">
+		<createIndex indexName="IDX_QRTZ_J_GRP" tableName="qrtz_job_details">
+			<column name="SCHED_NAME"/>
+			<column name="JOB_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-122">
+		<createIndex indexName="IDX_QRTZ_J_REQ_RECOVERY" tableName="qrtz_job_details">
+			<column name="SCHED_NAME"/>
+			<column name="REQUESTS_RECOVERY"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-123">
+		<createIndex indexName="IDX_QRTZ_T_C" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="CALENDAR_NAME"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-124">
+		<createIndex indexName="IDX_QRTZ_T_G" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-125">
+		<createIndex indexName="IDX_QRTZ_T_J" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="JOB_NAME"/>
+			<column name="JOB_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-126">
+		<createIndex indexName="IDX_QRTZ_T_JG" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="JOB_GROUP"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-127">
+		<createIndex indexName="IDX_QRTZ_T_NEXT_FIRE_TIME" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="NEXT_FIRE_TIME"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-128">
+		<createIndex indexName="IDX_QRTZ_T_NFT_MISFIRE" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="MISFIRE_INSTR"/>
+			<column name="NEXT_FIRE_TIME"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-129">
+		<createIndex indexName="IDX_QRTZ_T_NFT_ST" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_STATE"/>
+			<column name="NEXT_FIRE_TIME"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-130">
+		<createIndex indexName="IDX_QRTZ_T_NFT_ST_MISFIRE" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="MISFIRE_INSTR"/>
+			<column name="NEXT_FIRE_TIME"/>
+			<column name="TRIGGER_STATE"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-131">
+		<createIndex indexName="IDX_QRTZ_T_NFT_ST_MISFIRE_GRP" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="MISFIRE_INSTR"/>
+			<column name="NEXT_FIRE_TIME"/>
+			<column name="TRIGGER_GROUP"/>
+			<column name="TRIGGER_STATE"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-132">
+		<createIndex indexName="IDX_QRTZ_T_N_G_STATE" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_GROUP"/>
+			<column name="TRIGGER_STATE"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-133">
+		<createIndex indexName="IDX_QRTZ_T_N_STATE" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_NAME"/>
+			<column name="TRIGGER_GROUP"/>
+			<column name="TRIGGER_STATE"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-134">
+		<createIndex indexName="IDX_QRTZ_T_STATE" tableName="qrtz_triggers">
+			<column name="SCHED_NAME"/>
+			<column name="TRIGGER_STATE"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-135">
+		<createIndex indexName="biz_idx" tableName="base_attachment">
+			<column name="attachmentCategoryId"/>
+			<column name="businessDocId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-136">
+		<createIndex indexName="fk_pl_computer_room_apply_maintain_info_headerId_idx" tableName="pl_computer_room_apply_maintain_info">
+			<column name="headerId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-137">
+		<createIndex indexName="fk_pl_loan_demo_detail_loanDocId_idx" tableName="pl_loan_demo_detail">
+			<column name="loanDocId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-138">
+		<createIndex indexName="id_source" tableName="base_notification">
+			<column name="source"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-139">
+		<createIndex indexName="idx_base_role_data_permission_roleId" tableName="base_role_data_permission">
+			<column name="roleId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-140">
+		<createIndex indexName="idx_base_role_permission_roleId" tableName="base_role_permission">
+			<column name="roleId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-141">
+		<createIndex indexName="idx_base_user_role_roleId" tableName="base_user_role">
+			<column name="roleId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-142">
+		<createIndex indexName="idx_base_user_role_userId" tableName="base_user_role">
+			<column name="userId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-143">
+		<createIndex indexName="idx_processInstId" tableName="wf_processinsthistory">
+			<column name="processInstId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-144">
+		<createIndex indexName="job_id" tableName="base_schedule_job_log">
+			<column name="jobId"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-145">
+		<createIndex indexName="username" tableName="persistent_logins">
+			<column name="username"/>
+		</createIndex>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-146">
+		<addForeignKeyConstraint baseColumnNames="PROC_DEF_ID_" baseTableName="act_ru_identitylink" constraintName="ACT_FK_ATHRZ_PROCEDEF"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_procdef" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-147">
+		<addForeignKeyConstraint baseColumnNames="DEPLOYMENT_ID_" baseTableName="act_ge_bytearray" constraintName="ACT_FK_BYTEARR_DEPL"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_deployment" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-148">
+		<addForeignKeyConstraint baseColumnNames="EXECUTION_ID_" baseTableName="act_ru_event_subscr" constraintName="ACT_FK_EVENT_EXEC"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-149">
+		<addForeignKeyConstraint baseColumnNames="PARENT_ID_" baseTableName="act_ru_execution" constraintName="ACT_FK_EXE_PARENT" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-150">
+		<addForeignKeyConstraint baseColumnNames="PROC_DEF_ID_" baseTableName="act_ru_execution" constraintName="ACT_FK_EXE_PROCDEF"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_procdef" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-151">
+		<addForeignKeyConstraint baseColumnNames="PROC_INST_ID_" baseTableName="act_ru_execution" constraintName="ACT_FK_EXE_PROCINST"
+								 deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-152">
+		<addForeignKeyConstraint baseColumnNames="SUPER_EXEC_" baseTableName="act_ru_execution" constraintName="ACT_FK_EXE_SUPER" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-153">
+		<addForeignKeyConstraint baseColumnNames="PROC_INST_ID_" baseTableName="act_ru_identitylink" constraintName="ACT_FK_IDL_PROCINST"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-154">
+		<addForeignKeyConstraint baseColumnNames="INFO_JSON_ID_" baseTableName="act_procdef_info" constraintName="ACT_FK_INFO_JSON_BA"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ge_bytearray" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-155">
+		<addForeignKeyConstraint baseColumnNames="PROC_DEF_ID_" baseTableName="act_procdef_info" constraintName="ACT_FK_INFO_PROCDEF"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_procdef" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-156">
+		<addForeignKeyConstraint baseColumnNames="EXCEPTION_STACK_ID_" baseTableName="act_ru_job" constraintName="ACT_FK_JOB_EXCEPTION"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ge_bytearray" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-157">
+		<addForeignKeyConstraint baseColumnNames="DEPLOYMENT_ID_" baseTableName="act_re_model" constraintName="ACT_FK_MODEL_DEPLOYMENT"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_deployment" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-158">
+		<addForeignKeyConstraint baseColumnNames="EDITOR_SOURCE_VALUE_ID_" baseTableName="act_re_model" constraintName="ACT_FK_MODEL_SOURCE"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ge_bytearray" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-159">
+		<addForeignKeyConstraint baseColumnNames="EDITOR_SOURCE_EXTRA_VALUE_ID_" baseTableName="act_re_model"
+								 constraintName="ACT_FK_MODEL_SOURCE_EXTRA" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT"
+								 onUpdate="RESTRICT" referencedColumnNames="ID_" referencedTableName="act_ge_bytearray" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-160">
+		<addForeignKeyConstraint baseColumnNames="EXECUTION_ID_" baseTableName="act_ru_task" constraintName="ACT_FK_TASK_EXE" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-161">
+		<addForeignKeyConstraint baseColumnNames="PROC_DEF_ID_" baseTableName="act_ru_task" constraintName="ACT_FK_TASK_PROCDEF" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_re_procdef" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-162">
+		<addForeignKeyConstraint baseColumnNames="PROC_INST_ID_" baseTableName="act_ru_task" constraintName="ACT_FK_TASK_PROCINST" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-163">
+		<addForeignKeyConstraint baseColumnNames="TASK_ID_" baseTableName="act_ru_identitylink" constraintName="ACT_FK_TSKASS_TASK" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_task" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-164">
+		<addForeignKeyConstraint baseColumnNames="BYTEARRAY_ID_" baseTableName="act_ru_variable" constraintName="ACT_FK_VAR_BYTEARRAY"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ge_bytearray" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-165">
+		<addForeignKeyConstraint baseColumnNames="EXECUTION_ID_" baseTableName="act_ru_variable" constraintName="ACT_FK_VAR_EXE" deferrable="false"
+								 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-166">
+		<addForeignKeyConstraint baseColumnNames="PROC_INST_ID_" baseTableName="act_ru_variable" constraintName="ACT_FK_VAR_PROCINST"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_"
+								 referencedTableName="act_ru_execution" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-167">
+		<addForeignKeyConstraint baseColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" baseTableName="qrtz_blob_triggers"
+								 constraintName="qrtz_blob_triggers_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT"
+								 onUpdate="RESTRICT" referencedColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" referencedTableName="qrtz_triggers"
+								 validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-168">
+		<addForeignKeyConstraint baseColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" baseTableName="qrtz_cron_triggers"
+								 constraintName="qrtz_cron_triggers_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT"
+								 onUpdate="RESTRICT" referencedColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" referencedTableName="qrtz_triggers"
+								 validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-169">
+		<addForeignKeyConstraint baseColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" baseTableName="qrtz_simple_triggers"
+								 constraintName="qrtz_simple_triggers_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT"
+								 onUpdate="RESTRICT" referencedColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" referencedTableName="qrtz_triggers"
+								 validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-170">
+		<addForeignKeyConstraint baseColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" baseTableName="qrtz_simprop_triggers"
+								 constraintName="qrtz_simprop_triggers_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT"
+								 onUpdate="RESTRICT" referencedColumnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" referencedTableName="qrtz_triggers"
+								 validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-171">
+		<addForeignKeyConstraint baseColumnNames="SCHED_NAME,JOB_NAME,JOB_GROUP" baseTableName="qrtz_triggers" constraintName="qrtz_triggers_ibfk_1"
+								 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+								 referencedColumnNames="SCHED_NAME,JOB_NAME,JOB_GROUP" referencedTableName="qrtz_job_details" validate="true"/>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-172">
+		<createView fullDefinition="false" remarks="VIEW" viewName="act_id_group">select `r`.`id` AS `ID_`,NULL AS `REV_`,`r`.`name` AS
+			`NAME_`,`r`.`type` AS `TYPE_` from `jrtech`.`base_role` `r`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-173">
+		<createView fullDefinition="false" remarks="VIEW" viewName="act_id_info">select `u`.`id` AS `ID_`,0 AS `REV_`,NULL AS `USER_ID_`,NULL AS
+			`TYPE_`,NULL AS `KEY_`,NULL AS `VALUE_`,`u`.`loginPassword` AS `PASSWORD_`,NULL AS `PARENT_ID_` from `jrtech`.`base_user` `u`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-174">
+		<createView fullDefinition="false" remarks="VIEW" viewName="act_id_membership">select `sr`.`userId` AS `USER_ID_`,`sr`.`roleId` AS `GROUP_ID_`
+			from `jrtech`.`base_user_role` `sr`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-175">
+		<createView fullDefinition="false" remarks="VIEW" viewName="act_id_user">select `au`.`loginId` AS `ID_`,0 AS `REV_`,`au`.`name` AS `FIRST_`,''
+			AS `LAST_`,`au`.`email` AS `EMAIL_`,'' AS `PWD_`,'' AS `PICTURE_ID_` from `jrtech`.`base_user` `au`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-176">
+		<createView fullDefinition="false" remarks="VIEW" viewName="base_v_group_department">select `aa`.`id` AS `id`,`aa`.`parentId` AS
+			`parentId`,`aa`.`name` AS `name`,`aa`.`remark` AS `remark`,`aa`.`address` AS `address`,`aa`.`postNO` AS `postNO`,`aa`.`type` AS
+			`type`,`aa`.`organizationCategoryId` AS `organizationCategoryId`,`aa`.`gmtCreatedBy` AS `gmtCreatedBy`,`aa`.`gmtCreatedOn` AS
+			`gmtCreatedOn`,`aa`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`aa`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`aa`.`gmtVersion` AS
+			`gmtVersion`,`aa`.`departmentId` AS `departmentId`,(select `jrtech`.`base_organization`.`name` from `jrtech`.`base_organization` where
+			(`jrtech`.`base_organization`.`id` = `aa`.`departmentId`)) AS `departmentName` from (select `a`.`id` AS `id`,`a`.`parentId` AS
+			`parentId`,`a`.`name` AS `name`,`a`.`remark` AS `remark`,`a`.`address` AS `address`,`a`.`postNO` AS `postNO`,`a`.`type` AS
+			`type`,`a`.`organizationCategoryId` AS `organizationCategoryId`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS
+			`gmtCreatedOn`,`a`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS
+			`gmtVersion`,`BASE_GETORGANIZATIONOFDEPARTMENTID`(`a`.`id`) AS `departmentId` from `jrtech`.`base_organization` `a`) `aa`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-177">
+		<createView fullDefinition="false" remarks="VIEW" viewName="base_v_role_group_department">select `a`.`id` AS `id`,`a`.`organizationId` AS
+			`organizationId`,`a`.`name` AS `name`,`a`.`remark` AS `remark`,`a`.`type` AS `type`,`a`.`roleCategoryId` AS
+			`roleCategoryId`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS
+			`gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion`,`b`.`id` AS `groupId`,`b`.`name` AS
+			`groupName`,`b`.`departmentId` AS `departmentId`,`b`.`departmentName` AS `departmentName` from (`jrtech`.`base_role` `a` left join
+			`jrtech`.`base_v_group_department` `b` on((`a`.`organizationId` = `b`.`id`)))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-178">
+		<createView fullDefinition="false" remarks="VIEW" viewName="base_v_schedule_job_full">select `a`.`id` AS `id`,`a`.`name` AS
+			`name`,`a`.`beanName` AS `beanName`,`a`.`methodName` AS `methodName`,`a`.`params` AS `params`,`a`.`cronExpression` AS
+			`cronExpression`,`a`.`status` AS `status`,`a`.`remark` AS `remark`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS
+			`gmtCreatedOn`,`a`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion`,`b`.`result` AS
+			`lastLogResult`,`b`.`executeTime` AS `lastLogExecuteTime` from (`jrtech`.`base_schedule_job` `a` left join (select `aa`.`id` AS
+			`id`,`aa`.`jobId` AS `jobId`,`aa`.`jobName` AS `jobName`,`aa`.`beanName` AS `beanName`,`aa`.`methodName` AS `methodName`,`aa`.`params` AS
+			`params`,`aa`.`duration` AS `duration`,`aa`.`result` AS `result`,`aa`.`errorMessage` AS `errorMessage`,`aa`.`errorStackTrace` AS
+			`errorStackTrace`,`aa`.`executeTime` AS `executeTime`,`aa`.`gmtCreatedBy` AS `gmtCreatedBy`,`aa`.`gmtCreatedOn` AS
+			`gmtCreatedOn`,`aa`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`aa`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`aa`.`gmtVersion` AS `gmtVersion` from
+			(`jrtech`.`base_schedule_job_log` `aa` join (select `jrtech`.`base_schedule_job_log`.`jobId` AS
+			`jobId`,max(`jrtech`.`base_schedule_job_log`.`id`) AS `maxId` from `jrtech`.`base_schedule_job_log` group by
+			`jrtech`.`base_schedule_job_log`.`jobId`) `bb` on((`aa`.`id` = `bb`.`maxId`)))) `b` on((`a`.`id` = `b`.`jobId`)))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-179">
+		<createView fullDefinition="false" remarks="VIEW" viewName="base_v_user_group_department">select `a`.`id` AS `id`,`a`.`name` AS
+			`name`,`a`.`age` AS `age`,`a`.`birthday` AS `birthday`,`a`.`loginId` AS `loginId`,`a`.`loginPassword` AS `loginPassword`,`a`.`activited`
+			AS `activited`,`a`.`mobile` AS `mobile`,`a`.`email` AS `email`,`a`.`remark` AS `remark`,`a`.`lastLoginTime` AS
+			`lastLoginTime`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS
+			`gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion`,`a`.`shouldChangePassword` AS
+			`shouldChangePassword`,`c`.`roleCategoryId` AS `roleCategoryId`,`c`.`groupId` AS `groupId`,`c`.`groupName` AS
+			`groupName`,`c`.`departmentId` AS `departmentId`,`c`.`departmentName` AS `departmentName` from ((`jrtech`.`base_user` `a` join
+			`jrtech`.`base_user_role` `b` on((`a`.`id` = `b`.`userId`))) join `jrtech`.`base_v_role_group_department` `c` on((`b`.`roleId` =
+			`c`.`id`)))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-180">
+		<createView fullDefinition="false" remarks="VIEW" viewName="pl_v_loan_doc_full">select `a`.`id` AS `id`,`a`.`customerCode` AS
+			`customerCode`,`a`.`customerName` AS `customerName`,`a`.`customerCardNO` AS `customerCardNO`,`a`.`loanTermCount` AS
+			`loanTermCount`,`a`.`loanMoneyAmount` AS `loanMoneyAmount`,`a`.`originalLoanMoneyAmount` AS
+			`originalLoanMoneyAmount`,`a`.`financeFamilyTotalAsset` AS `financeFamilyTotalAsset`,`a`.`financeReturnMoneyLoanRate` AS
+			`financeReturnMoneyLoanRate`,`a`.`loanApplyDate` AS `loanApplyDate`,`a`.`loanApplySumbitDate` AS
+			`loanApplySumbitDate`,`a`.`trackingPersonInfoMRId` AS `trackingPersonInfoMRId`,`a`.`sexId` AS `sexId`,`a`.`jobId` AS
+			`jobId`,`a`.`maritalStatusIds` AS `maritalStatusIds`,`a`.`educationalLevelIds` AS `educationalLevelIds`,`a`.`socialSecurityId` AS
+			`socialSecurityId`,`a`.`companyWorkTermIds` AS `companyWorkTermIds`,`a`.`activited` AS `activited`,`a`.`gmtCreatedBy` AS
+			`gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS
+			`gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion`,`a`.`remark` AS `remark`,`a`.`time1` AS `time1`,`a`.`time2` AS `time2`,`c`.`name` AS
+			`trackingPersonInfoMRName` from (`jrtech`.`pl_loan_doc` `a` left join `jrtech`.`base_v_user_group_department` `c`
+			on(((`a`.`trackingPersonInfoMRId` = `c`.`id`) and (`c`.`roleCategoryId` = 'base_rolecategory_trackingpersoninfomr'))))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-181">
+		<createView fullDefinition="false" remarks="VIEW" viewName="wf_task_agent_full">select `a`.`assignee` AS `assignee`,`a`.`attorney` AS
+			`attorney`,`BASE_GETUSERDISPLAYNAME`(`a`.`attorney`) AS `attorneyName`,`a`.`startTime` AS `startTime`,`a`.`endTime` AS
+			`endTime`,`a`.`processDefinitionKey` AS `processDefinitionKey`,(select `jrtech`.`act_re_model`.`NAME_` from `jrtech`.`act_re_model` where
+			(`jrtech`.`act_re_model`.`KEY_` = `a`.`processDefinitionKey`)) AS `processDefinitionName`,`a`.`status` AS `status`,`a`.`id` AS
+			`id`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS `gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS
+			`gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion` from `jrtech`.`wf_task_agent` `a`
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-182">
+		<createView fullDefinition="false" remarks="VIEW" viewName="wf_v_processdef">select `a`.`ID_` AS `id`,`a`.`NAME_` AS `name`,`a`.`KEY_` AS
+			`key`,`a`.`CATEGORY_` AS `category`,json_unquote(json_extract(`a`.`META_INFO_`,'$.procInstStartUrl')) AS
+			`procInstStartUrl`,json_unquote(json_extract(`a`.`META_INFO_`,'$.procInstStartRePerm')) AS
+			`procInstStartRequiredPermissionId`,json_unquote(json_extract(`a`.`META_INFO_`,'$.procInstDraftUrl')) AS
+			`procInstDraftUrl`,json_unquote(json_extract(`a`.`META_INFO_`,'$.procInstViewUrl')) AS
+			`procInstViewUrl`,json_unquote(json_extract(`a`.`META_INFO_`,'$.description')) AS `description` from `jrtech`.`act_re_model` `a`
+		</createView>
+	</changeSet>
+    <changeSet author="WangXun" id="1577927826258-183">
+        <createView fullDefinition="false" remarks="VIEW" viewName="wf_v_todotask">select `a`.`ID_` AS `taskId`,`a`.`PROC_INST_ID_` AS
+            `processInstId`,`a`.`TASK_DEF_KEY_` AS `taskActId`,`a`.`NAME_` AS `taskActName`,`a`.`ASSIGNEE_` AS `taskAssignee`,`i`.`USER_ID` AS
+            `taskCandidate`,`a`.`CREATE_TIME_` AS `taskCreateDate`,`a`.`FORM_KEY_` AS `taskFormKey`,`a`.`DELEGATION_` AS
+            `DELEGATION_ID`,`a`.`DESCRIPTION_` AS `DESCRIPTION`,`a`.`DUE_DATE_` AS `DUE_DATE` from (`jrtech`.`act_ru_task` `a` left join (select
+            distinct `u`.`TASK_ID_` AS `TASK_ID_`,`u`.`USER_ID` AS `USER_ID` from (select `i`.`TASK_ID_` AS `TASK_ID_`,`i`.`USER_ID_` AS `USER_ID`
+            from (`jrtech`.`act_ru_identitylink` `i` join `jrtech`.`act_ru_task` `t`) where ((`i`.`TASK_ID_` is not null) and (`i`.`USER_ID_` is not
+            null) and (`i`.`TASK_ID_` = `t`.`ID_`) and isnull(`t`.`ASSIGNEE_`) and (`i`.`TYPE_` = 'candidate')) union select `i`.`TASK_ID_` AS
+            `TASK_ID_`,`r`.`USER_ID_` AS `USER_ID` from ((`jrtech`.`act_ru_identitylink` `i` join `jrtech`.`act_id_membership` `r`) join
+            `jrtech`.`act_ru_task` `t`) where ((`i`.`TASK_ID_` is not null) and (`i`.`GROUP_ID_` is not null) and (`i`.`TASK_ID_` = `t`.`ID_`) and
+            isnull(`t`.`ASSIGNEE_`) and (`i`.`TYPE_` = 'candidate') and (`i`.`GROUP_ID_` = `r`.`GROUP_ID_`))) `u`) `i` on((`a`.`ID_` =
+            `i`.`TASK_ID_`)))
+        </createView>
+    </changeSet>
+	<changeSet author="WangXun" id="1577927826258-184">
+		<createView fullDefinition="false" remarks="VIEW" viewName="wf_v_processinst_full">select `a`.`id` AS `id`,`a`.`processDefinationKey` AS
+			`processDefinationKey`,`b`.`name` AS `processDefinationName`,`b`.`procInstStartUrl` AS `procInstStartUrl`,`b`.`procInstDraftUrl` AS
+			`procInstDraftUrl`,`b`.`procInstViewUrl` AS `procInstViewUrl`,`a`.`businessId` AS `businessId`,`a`.`origiator` AS
+			`origiator`,`BASE_GETUSERDISPLAYNAME`(`a`.`origiator`) AS `origiatorName`,`a`.`startDate` AS `startDate`,`a`.`saveDate` AS
+			`saveDate`,`a`.`endDate` AS `endDate`,`a`.`folio` AS `folio`,`a`.`originalStatus` AS `originalStatus`,`a`.`status` AS
+			`status`,`a`.`remark` AS `remark`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS
+			`gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion` from ((`jrtech`.`wf_processinst` `a` join
+			`jrtech`.`wf_v_processdef` `b` on((`a`.`processDefinationKey` = `b`.`key`))) left join `jrtech`.`wf_v_todotask` `d` on((`a`.`id` =
+			`d`.`processInstId`)))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-185">
+		<createView fullDefinition="false" remarks="VIEW" viewName="wf_v_processinst_tracking">select `aaa`.`id` AS `id`,`aaa`.`processInstId` AS
+			`processInstId`,`aaa`.`actUserId` AS `taskActUserId`,`aaa`.`actUserName` AS `taskActUserName`,`aaa`.`actId` AS `taskActId`,`aaa`.`actName`
+			AS `taskActName`,`aaa`.`doAction` AS `taskDoAction`,`aaa`.`result` AS `taskResult`,`aaa`.`remark` AS `taskRemark`,`aaa`.`startDate` AS
+			`taskStartDate`,`aaa`.`endDate` AS `taskEndDate`,`aaa`.`status` AS `taskStatus`,`bbb`.`processDefinationKey` AS
+			`processDefinationKey`,`bbb`.`processDefinationName` AS `processDefinationName`,`bbb`.`procInstStartUrl` AS
+			`procInstStartUrl`,`bbb`.`procInstDraftUrl` AS `procInstDraftUrl`,`bbb`.`procInstViewUrl` AS `procInstViewUrl`,`bbb`.`businessId` AS
+			`businessId`,`bbb`.`origiator` AS `origiator`,`bbb`.`origiatorName` AS `origiatorName`,`bbb`.`startDate` AS `startDate`,`bbb`.`saveDate`
+			AS `saveDate`,`bbb`.`endDate` AS `endDate`,`bbb`.`folio` AS `folio`,`bbb`.`originalStatus` AS `originalStatus`,`bbb`.`status` AS
+			`status`,`bbb`.`remark` AS `remark` from (((select -(1) AS `id`,`a`.`id` AS `processInstId`,`a`.`origiator` AS
+			`actUserId`,`BASE_GETUSERDISPLAYNAME`(`a`.`origiator`) AS `actUserName`,'enter' AS `actId`,'进件' AS `actName`,'Submit' AS `doAction`,'提交'
+			AS `result`,`a`.`remark` AS `remark`,`a`.`saveDate` AS `startDate`,`a`.`startDate` AS `endDate`,'已提交' AS `status` from
+			`jrtech`.`wf_processinst` `a`) union select `a`.`id` AS `id`,`a`.`processInstId` AS `processInstId`,`a`.`actUserId` AS
+			`actUserId`,`BASE_GETUSERDISPLAYNAME`(`a`.`actUserId`) AS `actUserName`,`a`.`actId` AS `actId`,`a`.`actName` AS `actName`,`a`.`doAction`
+			AS `doAction`,`a`.`result` AS `result`,`a`.`remark` AS `remark`,NULL AS `startDate`,`a`.`actionDate` AS `endDate`,'已办结' AS `status` from
+			`jrtech`.`wf_processinsthistory` `a` union all select `a`.`taskId` AS `id`,`a`.`processInstId` AS `ProcessInstId`,(case when
+			isnull(`a`.`taskCandidate`) then `a`.`taskAssignee` else `a`.`taskCandidate` end) AS `actUserId`,`BASE_GETUSERDISPLAYNAME`((case when
+			isnull(`a`.`taskCandidate`) then `a`.`taskAssignee` else `a`.`taskCandidate` end)) AS `actUserName`,`a`.`taskActId` AS
+			`actId`,`a`.`taskActName` AS `actName`,'' AS `doAction`,(case when isnull(`a`.`taskCandidate`) then '待办理' else '待签收' end) AS `result`,''
+			AS `remark`,`a`.`taskCreateDate` AS `startDate`,NULL AS `endDate`,(case when isnull(`a`.`taskCandidate`) then '待办理' else '待签收' end) AS
+			`status` from `jrtech`.`wf_v_todotask` `a`) `aaa` join `jrtech`.`wf_v_processinst_full` `bbb` on((`aaa`.`processInstId` = `bbb`.`id`)))
+		</createView>
+	</changeSet>
+	<changeSet author="WangXun" id="1577927826258-186">
+		<createView fullDefinition="false" remarks="VIEW" viewName="wf_v_task_full">select `d`.`taskId` AS `id`,`a`.`processDefinationKey` AS
+			`processDefinationKey`,`a`.`processDefinationName` AS `processDefinationName`,`a`.`procInstStartUrl` AS
+			`procInstStartUrl`,`a`.`procInstDraftUrl` AS `procInstDraftUrl`,`a`.`procInstViewUrl` AS `procInstViewUrl`,`a`.`businessId` AS
+			`businessId`,`a`.`origiator` AS `origiator`,`a`.`origiatorName` AS `origiatorName`,`a`.`startDate` AS `startDate`,`a`.`saveDate` AS
+			`saveDate`,`a`.`endDate` AS `endDate`,`a`.`folio` AS `folio`,`a`.`originalStatus` AS `originalStatus`,`a`.`status` AS
+			`status`,`a`.`remark` AS `remark`,`a`.`gmtCreatedBy` AS `gmtCreatedBy`,`a`.`gmtCreatedOn` AS `gmtCreatedOn`,`a`.`gmtUpdatedBy` AS
+			`gmtUpdatedBy`,`a`.`gmtUpdatedOn` AS `gmtUpdatedOn`,`a`.`gmtVersion` AS `gmtVersion`,`d`.`taskId` AS `taskId`,`d`.`processInstId` AS
+			`processInstId`,`d`.`taskActId` AS `taskActId`,`d`.`taskActName` AS `taskActName`,`d`.`taskAssignee` AS
+			`taskAssignee`,`BASE_GETUSERDISPLAYNAME`(`d`.`taskAssignee`) AS `taskAssigneeName`,`d`.`taskCandidate` AS
+			`taskCandidate`,`BASE_GETUSERDISPLAYNAME`(`d`.`taskCandidate`) AS `taskCandidateName`,`d`.`taskCreateDate` AS
+			`taskCreateDate`,`d`.`taskFormKey` AS `taskFormKey` from (`jrtech`.`wf_v_processinst_full` `a` join `jrtech`.`wf_v_todotask` `d`
+			on((`a`.`id` = `d`.`processInstId`)))
+		</createView>
+	</changeSet>
+
+</databaseChangeLog>
