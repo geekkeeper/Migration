@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<include file="changelog/2020-01-02-mysql-struct.xml" relativeToChangelogFile="true"/>
+	<changeSet id="001" author="WangXun">
+		<sqlFile path="changelog/2020-01-02-mysql-data.sql" relativeToChangelogFile="true"/>
+	</changeSet>
+</databaseChangeLog>
