@@ -1,5 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 	<!--权限管理模块-->
 	<!--新建令牌记录表(OAUTH_ACCESS_TOKEN)-->
@@ -7,9 +9,9 @@
 		<comment>新建令牌记录表(OAUTH_ACCESS_TOKEN)</comment>
 		<createTable tableName="OAUTH_ACCESS_TOKEN" remarks="令牌记录表">
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
-				<constraints primaryKey="true" primaryKeyName="PK_ACCESS_ID" />
+				<constraints primaryKey="true" primaryKeyName="PK_ACCESS_ID"/>
 			</column>
-			<column name="TOKEN" type="varchar(8000)" remarks="令牌" />
+			<column name="TOKEN" type="varchar(8000)" remarks="令牌"/>
 			<column name="AUTHENTICATION_ID" type="varchar(32)" remarks="认证编号" />
 			<column name="CLIENT_ID" type="varchar(32)" remarks="客户端编号" />
 			<column name="USER_NAME" type="varchar(32)" remarks="用户名" />
@@ -172,24 +174,26 @@
 		<comment>新建模块列表(AM_MODULE_LIST)</comment>
 		<createTable tableName="AM_MODULE_LIST" remarks="模块列表">
 			<column name="ID" type="${id}" remarks="列表编号">
-				<constraints primaryKey="true" primaryKeyName="PK_LIST_ID" />
+				<constraints primaryKey="true" primaryKeyName="PK_LIST_ID"/>
 			</column>
 			<column name="MODULE_ID" type="${id}" remarks="模块编号">
-				<constraints nullable="false" notNullConstraintName="NU_LIST_MODULE_ID" />
+				<constraints nullable="false" notNullConstraintName="NU_LIST_MODULE_ID"/>
 			</column>
 			<column name="NAME" type="${name}" remarks="列表名称">
-				<constraints nullable="false" notNullConstraintName="NU_LIST_NAME" />
+				<constraints nullable="false" notNullConstraintName="NU_LIST_NAME"/>
 			</column>
-			<column name="CODE" type="${code}" remarks="列表编码" />
-			<column name="URL" type="${url}" remarks="列表URL" />
+			<column name="CODE" type="${code}" remarks="列表编码"/>
+			<column name="CUSTOM_DESKTOP_TAG" type="${boolean}" remarks="自定义桌面标识"/>
+			<column name="CUSTOM_DESKTOP_ID" type="${id}" remarks="自定义桌面编号"/>
+			<column name="URL" type="${url}" remarks="列表URL"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除" defaultValue="N"
-				defaultValueConstraintName="DF_MODULE_LIST_DELETE_TAG" />
+					defaultValueConstraintName="DF_MODULE_LIST_DELETE_TAG"/>
 			<column name="DIRECTIVITY" type="${boolean}" remarks="方向标识:‘Y’-正向，‘N’-反向" defaultValue="Y"
-				defaultValueConstraintName="DF_MODULE_LIST_DIRECTIVITY" />
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间" />
-			<column name="CREATE_BY" type="${id}" remarks="创建人" />
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间" />
-			<column name="UPDATE_BY" type="${id}" remarks="修改人" />
+					defaultValueConstraintName="DF_MODULE_LIST_DIRECTIVITY"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 		</createTable>
 	</changeSet>
 	<!--新建模块列表字段表(AM_LIST_FIELD)-->
@@ -304,5 +308,4 @@
 			</column>
 		</createTable>
 	</changeSet>
-
 </databaseChangeLog>
