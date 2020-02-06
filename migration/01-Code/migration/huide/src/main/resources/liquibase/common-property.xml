@@ -16,13 +16,27 @@
 	<!--布尔-->
 	<property global="true" name="boolean" value="char(1)" />
 	<!--类型-->
-	<property global="true" name="type" value="char(1)" />
+	<property global="true" name="type" value="int" />
 	<!--时间、日期、日期时间-->
 	<property global="true" name="datetime" value="datetime" />
 	<!--等级-->
 	<property global="true" name="level" value="smallint" />
 	<!--排序-->
 	<property global="true" name="sort" value="int" />
+	<!--Json-->
+	<property global="true" name="json" value="varchar(1024)" />
+	<!--周期-->
+	<property global="true" name="cycle" value="int" />
+	<!--端口-->
+	<property global="true" name="port" value="int" />
+	<!--经纬度-->
+	<property global="true" name="longitude_latitude" value="decimal(10,7)" />
+	<!--表达式-->
+	<property global="true" name="expression" value="varchar(512)" />
+	<!--金额-->
+	<property global="true" name="money" value="decimal(18,2)" />
+	<!--颜色-->
+	<property global="true" name="color" value="char(7)" />
 	<!--*****************************通用数据类型*******************************-->
 	<!--*****************************数据库兼容配置******************************-->
 	<property global="true" name="current_time" value="now()" dbms="mysql" />
