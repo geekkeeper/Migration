@@ -3,233 +3,234 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="WangXun" id="1580976637730-17">
-        <createTable remarks="GIS位置信息" tableName="PM_GIS_POSITION">
-            <column name="ID" remarks="位置编号" type="varchar(32)">
+        <createTable tableName="PM_GIS_POSITION" remarks="GIS位置信息表">
+            <column name="ID" type="${id}" remarks="位置编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_POSITION"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="LONGITUDE" remarks="经度" type="decimal(10, 7)">
+            <column name="LONGITUDE" type="${longitude_latitude}" remarks="经度">
                 <constraints nullable="false"/>
             </column>
-            <column name="LATITUDE" remarks="维度" type="decimal(10, 7)">
+            <column name="LATITUDE" type="${longitude_latitude}" remarks="维度">
                 <constraints nullable="false"/>
             </column>
-            <column name="ICON" remarks="位置图标" type="varchar(512)"/>
-            <column name="DISPLAY_TYPE" remarks="显示方式" type="int"/>
-            <column name="DELETE_TAG" remarks="删除标识:N-未删除、Y-已删除" type="char(1)"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
+            <column name="ICON" type="${url}" remarks="位置图标"/>
+            <column name="DISPLAY_TYPE" type="${type}" remarks="显示方式"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-18">
-        <createTable remarks="GIS位置标签关系表" tableName="PM_GIS_TAG">
-            <column name="ID" remarks="gis标签编号" type="varchar(32)">
+        <createTable tableName="PM_GIS_TAG" remarks="GIS位置标签关系表">
+            <column name="ID" type="${id}" remarks="gis标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_TAG"/>
             </column>
-            <column name="POSITION_ID" remarks="位置编号" type="varchar(32)">
+            <column name="POSITION_ID" type="${id}" remarks="位置编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROJECT_TAG_ID" remarks="项目标签编号" type="varchar(32)">
+            <column name="PROJECT_TAG_ID" type="${id}" remarks="项目标签编号">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-19">
-        <createTable remarks="项目架构" tableName="PM_PROJECT_ARCHITECTURE">
-            <column name="ID" remarks="项目编号" type="varchar(32)">
+        <createTable tableName="PM_PROJECT_ARCHITECTURE" remarks="项目架构信息表">
+            <column name="ID" type="${id}" remarks="项目编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_ARCHITECTURE"/>
             </column>
-            <column name="NAME" remarks="项目名称" type="varchar(64)">
+            <column name="NAME" type="${name}" remarks="项目名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="PARENT_ID" remarks="父级编号" type="varchar(32)"/>
-            <column name="LEVEL" remarks="层级编号" type="smallint"/>
-            <column name="SORT_INDEX" remarks="排序编号:同级排序" type="int"/>
-            <column defaultValue="N" defaultValueConstraintName="DF__PM_PROJEC__DELET__1411F17C" name="DELETE_TAG"
-                    remarks="删除标识:N-未删除、Y-已删除" type="char(1)">
+            <column name="PARENT_ID" type="${id}" remarks="父级编号"/>
+            <column name="LEVEL" type="${level}" remarks="层级编号"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"
+                    defaultValueConstraintName="DF_PROJECT_ARCHITECTURE_DELETE_TAG">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="N" defaultValueConstraintName="DF__PM_PROJEC__SYSTE__131DCD43" name="SYSTEMATIC"
-                    remarks="系统的:Y-是系统的、N-自定义" type="char(1)">
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统的:Y-是系统的、N-自定义" defaultValue="N"
+                    defaultValueConstraintName="DF_PROJECT_ARCHITECTURE_SYSTEMATIC">
                 <constraints nullable="false"/>
             </column>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
-            <column name="REMARK" remarks="备注信息,描述信息" type="varchar(256)"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-20">
-        <createTable remarks="项目流程图关系表" tableName="PM_PROJECT_FLOW_CHART">
-            <column name="ID" remarks="项目流程图编号" type="varchar(32)">
+        <createTable tableName="PM_PROJECT_FLOW_CHART" remarks="项目流程图关系表">
+            <column name="ID" type="${id}" remarks="项目流程图编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_FLOW_CHART"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="FLOW_CHART_ID" remarks="流程图编号" type="varchar(32)">
+            <column name="FLOW_CHART_ID" type="${id}" remarks="流程图编号">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-21">
-        <createTable remarks="项目报表关系表" tableName="PM_PROJECT_REPORT">
-            <column name="ID" remarks="项目报表编号" type="varchar(32)">
+        <createTable tableName="PM_PROJECT_REPORT" remarks="项目报表关系表">
+            <column name="ID" type="${id}" remarks="项目报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_REPORT"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="REPORT_PLAN_ID" remarks="报表计划编号" type="varchar(32)">
+            <column name="REPORT_PLAN_ID" type="${id}" remarks="报表计划编号">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-22">
-        <createTable remarks="项目标签关系表" tableName="PM_PROJECT_TAG">
-            <column name="ID" remarks="项目标签编号" type="varchar(32)">
+        <createTable tableName="PM_PROJECT_TAG" remarks="项目标签关系表">
+            <column name="ID" type="${id}" remarks="项目标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_TAG"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="TAG_NAME" remarks="标签名称" type="varchar(64)">
+            <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_CODE" remarks="GT工程编码" type="varchar(32)">
+            <column name="GT_CODE" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-23">
-        <createTable remarks="报表计划" tableName="PM_REPORT_PLAN">
-            <column name="ID" remarks="报表计划编号" type="varchar(32)">
+        <createTable tableName="PM_REPORT_PLAN" remarks="报表计划信息表">
+            <column name="ID" type="${id}" remarks="报表计划编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_REPORT_PLAN"/>
             </column>
-            <column name="REPORT_TEMPLATE_ID" remarks="报表模板编号" type="varchar(32)"/>
-            <column name="NAME" remarks="报表计划名称" type="varchar(64)"/>
-            <column name="REPORT_TYPE" remarks="报表类型" type="int"/>
-            <column name="SEND_PRINTER" remarks="是否发送打印机" type="char(1)"/>
-            <column name="PRINT_CYCLE" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年" type="int"/>
-            <column name="MONTH" remarks="月份，1到12" type="int"/>
-            <column name="DAY" remarks="日，1到31" type="int"/>
-            <column name="HOUR" remarks="时，0到23" type="int"/>
-            <column name="MINUTE" remarks="分 0到59" type="int"/>
-            <column name="MONTH_NUMBER" remarks="第几个月，为季度报表用" type="int"/>
-            <column name="WEEK_NUMBER" remarks="周几，1到7，为周报用" type="int"/>
-            <column name="REMARK" remarks="备注信息,描述信息" type="varchar(256)"/>
-            <column name="DELETE_TAG" remarks="删除标识:N-未删除、Y-已删除" type="char(1)"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
+            <column name="REPORT_TEMPLATE_ID" type="${id}" remarks="报表模板编号"/>
+            <column name="NAME" type="${name}" remarks="报表计划名称"/>
+            <column name="REPORT_TYPE" type="${type}" remarks="报表类型"/>
+            <column name="SEND_PRINTER" type="${boolean}" remarks="是否发送打印机:Y-是,N-否" defaultValue="N"/>
+            <column name="PRINT_CYCLE" type="${cycle}" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年"/>
+            <column name="MONTH" type="int" remarks="月份，1到12"/>
+            <column name="DAY" type="int" remarks="日，1到31"/>
+            <column name="HOUR" type="int" remarks="时，0到23"/>
+            <column name="MINUTE" type="int" remarks="分 0到59"/>
+            <column name="MONTH_NUMBER" type="int" remarks="第几个月，为季度报表用"/>
+            <column name="WEEK_NUMBER" type="int" remarks="周几，1到7，为周报用"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-24">
-        <createTable remarks="高级报表" tableName="PM_SUPER_REPORT">
-            <column name="ID" remarks="高级报表编号" type="varchar(32)">
+        <createTable tableName="PM_SUPER_REPORT" remarks="高级报表信息表">
+            <column name="ID" type="${id}" remarks="高级报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_SUPER_REPORT"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="NAME" remarks="高级报表名称" type="varchar(64)">
+            <column name="NAME" type="${name}" remarks="高级报表名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="RESOURCE_URL" remarks="资源地址" type="varchar(512)"/>
-            <column name="USERNAME" remarks="高级报表用户" type="varchar(64)"/>
-            <column name="PASSWORD" remarks="高级报表密码" type="varchar(64)"/>
-            <column name="MANUFACTURER_CODE" remarks="厂商编码" type="varchar(32)"/>
-            <column name="REMARK" remarks="备注信息,描述信息" type="varchar(256)"/>
-            <column name="SORT_INDEX" remarks="排序编号:同级排序" type="int"/>
-            <column defaultValue="N" defaultValueConstraintName="DF__PM_SUPER___DELET__18D6A699" name="DELETE_TAG"
-                    remarks="删除标识:N-未删除、Y-已删除" type="char(1)"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
+            <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
+            <column name="USERNAME" type="${name}" remarks="高级报表用户"/>
+            <column name="PASSWORD" type="${password}" remarks="高级报表密码"/>
+            <column name="MANUFACTURER_CODE" type="${code}" remarks="厂商编码"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"
+                    defaultValueConstraintName="DF_SUPER_REPORT_DELETE_TAG"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-25">
-        <createTable remarks="趋势信息" tableName="PM_TREND">
-            <column name="ID" remarks="趋势编号" type="varchar(32)">
+        <createTable tableName="PM_TREND" remarks="趋势信息表">
+            <column name="ID" type="${id}" remarks="趋势编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND"/>
             </column>
-            <column name="TREND_GROUP_TAG_ID" remarks="趋势组标签编号" type="varchar(32)">
+            <column name="TREND_GROUP_TAG_ID" type="${id}" remarks="趋势组标签编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="COLOR" remarks="趋势颜色" type="char(7)"/>
-            <column name="HIGHEST" remarks="显示上限" type="int"/>
-            <column name="LOWEST" remarks="显示下线" type="int"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
+            <column name="COLOR" type="${COLOR}" remarks="趋势颜色"/>
+            <column name="HIGHEST" type="int" remarks="显示上限"/>
+            <column name="LOWEST" type="int" remarks="显示下线"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-26">
-        <createTable remarks="趋势组" tableName="PM_TREND_GROUP">
-            <column name="ID" remarks="趋势组编号" type="varchar(32)">
+        <createTable tableName="PM_TREND_GROUP" remarks="趋势组信息表">
+            <column name="ID" type="${id}" remarks="趋势组编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="NAME" remarks="趋势组名称" type="varchar(64)">
+            <column name="NAME" type="${name}" remarks="趋势组名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="SORT_INDEX" remarks="排序编号:同级排序" type="int"/>
-            <column name="TYPE" remarks="趋势组类型" type="int"/>
-            <column defaultValue="N" defaultValueConstraintName="DF__PM_TREND___DELET__1BB31344" name="DELETE_TAG"
-                    remarks="删除标识:N-未删除、Y-已删除" type="char(1)"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
-            <column name="REMARK" remarks="备注信息,描述信息" type="varchar(256)"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
+            <column name="TYPE" type="${type}" remarks="趋势组类型"/>
+            <column name="DELETE_TAG" type="${boolean}"
+                    remarks="删除标识:N-未删除、Y-已删除" defaultValue="N" defaultValueConstraintName="DF_TREND_DELETE_TAG"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-27">
-        <createTable remarks="趋势组标签关系表" tableName="PM_TREND_GROUP_TAG">
-            <column name="ID" remarks="趋势组标签编号" type="varchar(32)">
+        <createTable tableName="PM_TREND_GROUP_TAG" remarks="趋势组标签关系表">
+            <column name="ID" type="${id}" remarks="趋势组标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP_TAG"/>
             </column>
-            <column name="TREND_GROUP_ID" remarks="趋势组编号" type="varchar(32)">
+            <column name="TREND_GROUP_ID" type="${id}" remarks="趋势组编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROJECT_TAG_ID" remarks="项目标签编号" type="varchar(32)">
+            <column name="PROJECT_TAG_ID" type="${id}" remarks="项目标签编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="TREND_ID" remarks="趋势编号" type="varchar(32)">
+            <column name="TREND_ID" type="${id}" remarks="趋势编号">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-28">
-        <createTable remarks="视频账户信息" tableName="PM_VIDEO_ACCOUNT">
-            <column name="ID" remarks="视频帐户编号" type="varchar(32)">
+        <createTable tableName="PM_VIDEO_ACCOUNT" remarks="视频账户信息表">
+            <column name="ID" type="${id}" remarks="视频帐户编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_VIDEO_ACCOUNT"/>
             </column>
-            <column name="PROJECT_ID" remarks="项目编号" type="varchar(32)">
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="NAME" remarks="视频帐户名称" type="varchar(64)"/>
-            <column name="VIDEO_DEVICE_TYPE" remarks="视频设备类型" type="int"/>
-            <column name="SERIAL_NUMBER" remarks="序列号" type="varchar(32)"/>
-            <column name="REMARK" remarks="备注信息,描述信息" type="varchar(256)"/>
-            <column name="CONNECT_JSON" remarks="连接信息" type="varchar(512)"/>
-            <column name="SORT_INDEX" remarks="排序编号:同级排序" type="int"/>
-            <column defaultValue="N" defaultValueConstraintName="DF__PM_VIDEO___DELET__1D9B5BB6" name="DELETE_TAG"
-                    remarks="删除标识:N-未删除、Y-已删除" type="char(1)"/>
-            <column name="CREATE_BY" remarks="创建人" type="varchar(32)"/>
-            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
-            <column name="UPDATE_BY" remarks="修改人" type="varchar(32)"/>
-            <column name="UPDATE_TIME" remarks="修改时间" type="datetime"/>
+            <column name="NAME" type="${name}" remarks="视频帐户名称"/>
+            <column name="VIDEO_DEVICE_TYPE" type="${type}" remarks="视频设备类型"/>
+            <column name="SERIAL_NUMBER" type="${code}" remarks="序列号"/>
+            <column name="CONNECT_JSON" type="${json}" remarks="连接信息"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
+            <column name="DELETE_TAG" type="${boolean}"
+                    remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"
+                    defaultValueConstraintName="DF_VIDEO_ACCOUNT_DELETE_TAG"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

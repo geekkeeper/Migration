@@ -28,19 +28,23 @@
 	<!--周期-->
 	<property global="true" name="cycle" value="int" />
 	<!--端口-->
-	<property global="true" name="port" value="int" />
+	<property global="true" name="port" value="int"/>
 	<!--经纬度-->
-	<property global="true" name="longitude_latitude" value="decimal(10,7)" />
+	<property global="true" name="longitude_latitude" value="decimal(10,7)"/>
 	<!--表达式-->
-	<property global="true" name="expression" value="varchar(512)" />
+	<property global="true" name="expression" value="varchar(512)"/>
 	<!--金额-->
-	<property global="true" name="money" value="decimal(18,2)" />
+	<property global="true" name="money" value="decimal(18,2)"/>
 	<!--颜色-->
-	<property global="true" name="color" value="char(7)" />
+	<property global="true" name="color" value="char(7)"/>
+	<!--盘符-->
+	<property global="true" name="drive" value="char(1)"/>
+	<!--密码-->
+	<property global="true" name="password" value="varchar(64)"/>
 	<!--*****************************通用数据类型*******************************-->
 	<!--*****************************数据库兼容配置******************************-->
-	<property global="true" name="current_time" value="now()" dbms="mysql" />
-	<property global="true" name="current_time" value="GETDATE()" dbms="mssql" />
-	<property global="true" name="current_time" value="sysdate" dbms="oracle" />
+	<property global="true" name="current_time" value="now()" dbms="mysql"/>
+	<property global="true" name="current_time" value="GETDATE()" dbms="mssql"/>
+	<property global="true" name="current_time" value="sysdate" dbms="oracle"/>
 	<!--*****************************数据库兼容配置******************************-->
 </databaseChangeLog>
