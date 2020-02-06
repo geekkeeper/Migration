@@ -141,3 +141,10 @@ fabric.properties
 /migration/01-Code/migration/huayou/src/main/resources/liquibase/rollback
 /migration/01-Code/migration/huayou/src/main/resources/liquibase/update
 /migration/01-Code/migration/huide/src/main/resources/liquibase/output
+/Hollysys-iODS
+/migration/01-Code/migration/.idea
+/migration/01-Code/migration/huayou/*.iml
+/migration/01-Code/migration/huide/*.iml
+/migration/01-Code/migration/iods/*.iml
+/migration/01-Code/migration/*.iml
+/migration/01-Code/migration/spadger/*.iml

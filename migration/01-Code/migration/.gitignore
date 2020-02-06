@@ -42,3 +42,5 @@ buildNumber.properties
 !/.idea/
 .gitignore
 huide/src/main/resources/liquibase/outputChangeLog/
+!/migration.iml
+/migration.iml
