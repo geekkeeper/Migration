@@ -7,6 +7,8 @@
 	<property global="true" name="id" value="varchar(32)" />
 	<!--编号-->
 	<property global="true" name="code" value="varchar(32)" />
+	<!--值-->
+	<property global="true" name="value" value="varchar(64)"/>
 	<!--名称-->
 	<property global="true" name="name" value="varchar(64)" />
 	<!--路径-->
@@ -41,6 +43,17 @@
 	<property global="true" name="drive" value="char(1)"/>
 	<!--密码-->
 	<property global="true" name="password" value="varchar(64)"/>
+	<!--密钥-->
+	<property global="true" name="secret" value="varchar(256)"/>
+	<!--邮箱-->
+	<property global="true" name="email" value="varchar(32)"/>
+	<!--工号-->
+	<property global="true" name="work_no" value="varchar(32)"/>
+	<!--电话-->
+	<property global="true" name="phone" value="varchar(11)"/>
+	<!--微信-->
+	<property global="true" name="wechat" value="varchar(11)"/>
+
 	<!--*****************************通用数据类型*******************************-->
 	<!--*****************************数据库兼容配置******************************-->
 	<property global="true" name="current_time" value="now()" dbms="mysql"/>
