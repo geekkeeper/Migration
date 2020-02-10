@@ -4,21 +4,79 @@
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 	<!--系统组态模块-->
-	<!--组件表-->
-	<changeSet author="WangXun" id="1576598400000-1">
+	<changeSet author="Sun YiWen" id="1580800591839-1">
+		<comment>创建桌面表(SC_DESKTOP)</comment>
+		<createTable tableName="SC_DESKTOP" remarks="桌面表">
+			<column name="ID" type="${id}" remarks="桌面编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DESKTOP_ID"/>
+			</column>
+			<column name="NAME" type="${name}" remarks="桌面名称"/>
+			<column name="REMARK" type="${remark}" remarks="桌面描述"/>
+			<column name="LAYOUT_ID" type="${id}" remarks="布局编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+
+	<!-- 桌面组件表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-2">
+		<comment>创建桌面组件表(SC_DESKTOP_WIDGET)</comment>
+		<createTable tableName="SC_DESKTOP_WIDGET" remarks="桌面组件表">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DESKTOP_WIDGET_ID"/>
+			</column>
+			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="WIDGET_ID" type="${id}" remarks="组件编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="WIDGET_NAME" type="${name}" remarks="组件自定义名称"/>
+			<column name="WIDGET_POSITION" type="${position}" remarks="组件在桌面布局中的位置"/>
+		</createTable>
+	</changeSet>
+
+	<!-- 布局表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-3">
+		<comment>创建布局表(SC_LAYOUT)</comment>
+		<createTable tableName="SC_LAYOUT" remarks="布局表">
+			<column name="ID" type="${id}" remarks="布局编号">
+				<constraints primaryKey="true" primaryKeyName="PK_LAYOUT_ID"/>
+			</column>
+			<column name="NAME" type="${name}" remarks="布局名称"/>
+			<column name="REMARK" type="${remark}" remarks="布局描述"/>
+			<column name="PATTERN_JSON" type="${json}" remarks="布局形态JSON">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+		</createTable>
+	</changeSet>
+
+	<!-- 组件表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-4">
 		<comment>创建组件表(SC_WIDGET)</comment>
 		<createTable tableName="SC_WIDGET" remarks="组件表">
 			<column name="ID" type="${id}" remarks="组件编号">
-				<constraints primaryKey="true" primaryKeyName="PK_SC_WIDGET_ID"/>
+				<constraints primaryKey="true" primaryKeyName="PK_WIDGET_ID"/>
 			</column>
 			<column name="NAME" type="${name}" remarks="组件名称">
-				<constraints nullable="false" notNullConstraintName="NU_WIDGET_NAME"/>
+				<constraints nullable="false"/>
 			</column>
 			<column name="URL" type="${url}" remarks="组件URL"/>
+			<column name="DATA_SOURCE" type="varchar(32)" remarks="组件数据来源，api-数据来源于api接口，html-数据来源于html页面">
+				<constraints nullable="false"/>
+			</column>
 			<column name="TEMPLATE" type="varchar(64)" remarks="模板"/>
 			<column name="CONTENT_JSON" type="${json}" remarks="详情JSON"/>
 			<column name="WIDTH" type="varchar(8)" remarks="宽度"/>
-			<column name="POSITION" type="varchar(64)" remarks="位置，L-左，R-右 "/>
+			<column name="POSITION" type="${position}" remarks="位置，L-左，R-右 "/>
 			<column name="STYLE" type="varchar(512)" remarks="样式"/>
 			<column name="ORDER_NO" type="${sort}" remarks="排序码"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
@@ -29,26 +87,58 @@
 			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
-	<!--组件配置表-->
-	<changeSet author="WangXun" id="1576598400000-2">
-		<comment>创建组件配置表(SC_WIDGET_CONFIG)</comment>
-		<createTable tableName="SC_WIDGET_CONFIG" remarks="组件配置表">
-			<column name="ID" type="${id}" remarks="配置编号">
-				<constraints primaryKey="true" primaryKeyName="PK_WIDGET_CONFIG_ID"/>
+
+	<!-- 用户桌面表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-5">
+		<comment>创建用户桌面表(SC_USER_DESKTOP)</comment>
+		<createTable tableName="SC_USER_DESKTOP" remarks="用户桌面表">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_USER_DESKTOP_ID"/>
 			</column>
-			<column name="WIDGET_ID" type="${id}" remarks="组件编号"/>
-			<column name="WIDGET_NAME" type="${name}" remarks="自定义名称"/>
-			<column name="USER_ID" type="${id}" remarks="用户编号"/>
-			<column name="ROLE_ID" type="${id}" remarks="角色编号"/>
-			<column name="POSITION" type="varchar(64)" remarks="位置，L-左，R-右"/>
-			<column name="WIDTH" type="varchar(8)" remarks="宽度"/>
-			<column name="ORDER_NO" type="${sort}" remarks="排序码"/>
-			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
-					defaultValue="N" defaultValueConstraintName="DF_WIDGET_CONFIG_DELETE_TAG"/>
-			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+			<column name="USER_ID" type="${id}" remarks="用户编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ADMIN_ASSIGN" type="${boolean}" remarks="管理员指派标识，Y-管理员指派；N-用户自定义">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<!-- 用户默认桌面表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-6">
+		<comment>创建用户默认桌面表(SC_USER_DEFAULT_DESKTOP)</comment>
+		<createTable tableName="SC_USER_DEFAULT_DESKTOP" remarks="用户默认桌面表">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_DEFAULT_USER_DESKTOP"/>
+			</column>
+			<column name="USER_ID" type="${id}" remarks="用户编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ADMIN_ASSIGN" type="${boolean}" remarks="管理员指派标识，Y-管理员指派；N-用户自定义">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<!-- 角色桌面表 -->
+	<changeSet author="Sun YiWen" id="1580800591839-7">
+		<comment>创建角色桌面表(SC_ROLE_DESKTOP)</comment>
+		<createTable tableName="SC_ROLE_DESKTOP" remarks="角色桌面表">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_ROLE_DESKTOP_ID"/>
+			</column>
+			<column name="ROLE_ID" type="${id}" remarks="角色编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">
+				<constraints nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
 </databaseChangeLog>
