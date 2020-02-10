@@ -37,7 +37,7 @@
 				<constraints nullable="false"/>
 			</column>
 			<column name="WIDGET_NAME" type="${name}" remarks="组件自定义名称"/>
-			<column name="WIDGET_POSITION" type="${position}" remarks="组件在桌面布局中的位置"/>
+			<column name="WIDGET_POSITION" type="${id}" remarks="组件在桌面布局中的位置"/>
 		</createTable>
 	</changeSet>
 
@@ -71,14 +71,14 @@
 				<constraints nullable="false"/>
 			</column>
 			<column name="URL" type="${url}" remarks="组件URL"/>
-			<column name="DATA_SOURCE" type="varchar(32)" remarks="组件数据来源，api-数据来源于api接口，html-数据来源于html页面">
+			<column name="DATA_SOURCE" type="${url}" remarks="组件数据来源，api-数据来源于api接口，html-数据来源于html页面">
 				<constraints nullable="false"/>
 			</column>
-			<column name="TEMPLATE" type="varchar(64)" remarks="模板"/>
+			<column name="TEMPLATE" type="${value}" remarks="模板"/>
 			<column name="CONTENT_JSON" type="${json}" remarks="详情JSON"/>
-			<column name="WIDTH" type="varchar(8)" remarks="宽度"/>
-			<column name="POSITION" type="${position}" remarks="位置，L-左，R-右 "/>
-			<column name="STYLE" type="varchar(512)" remarks="样式"/>
+			<column name="WIDTH" type="${width}" remarks="宽度"/>
+			<column name="POSITION" type="${id}" remarks="位置，L-左，R-右 "/>
+			<column name="STYLE" type="${expression}" remarks="样式"/>
 			<column name="ORDER_NO" type="${sort}" remarks="排序码"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
 					defaultValue="N" defaultValueConstraintName="DF_WIDGET_DELETE_TAG"/>
