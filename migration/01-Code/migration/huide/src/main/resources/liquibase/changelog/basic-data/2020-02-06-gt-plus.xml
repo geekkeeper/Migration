@@ -7,7 +7,10 @@
             <column name="ID" type="${id}" remarks="报警服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_ALARM_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="报警服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_ALARM_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -18,6 +21,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="char(1)" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-2">
@@ -25,7 +30,10 @@
             <column name="ID" type="${id}" remarks="算法服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_ALGORITHM_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="报警服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_ALGORITHM_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
