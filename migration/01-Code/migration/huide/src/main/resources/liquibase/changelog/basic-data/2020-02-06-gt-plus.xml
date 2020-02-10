@@ -21,7 +21,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
-            <column name="REDUNDANCY_NAME" type="char(1)" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
@@ -30,7 +30,7 @@
             <column name="ID" type="${id}" remarks="算法服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_ALGORITHM_SERVICE"/>
             </column>
-            <column name="CODE" type="${code}" remarks="报警服务编码">
+            <column name="CODE" type="${code}" remarks="算法服务编码">
                 <constraints unique="true" uniqueConstraintName="UQ_ALGORITHM_SERVICE_CODE"/>
             </column>
             <column name="NODE_CODE" type="${code}" remarks="节点编码">
@@ -44,6 +44,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-3">
@@ -51,7 +53,10 @@
             <column name="ID" type="${id}" remarks="云采服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_CLOUD_COLLECTION_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="云采服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_CLOUD_COLLECTION_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -62,6 +67,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-4">
@@ -69,9 +76,14 @@
             <column name="ID" type="${id}" remarks="数采服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_DATA_COLLECTION_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="数采服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_DATA_COLLECTION_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
+            <column name="RTDB_SERVICE_CODE" type="${code}" remarks="实时库服务编码"/>
+            <column name="HDB_SERVICE_CODE" type="${code}" remarks="历史库服务编码"/>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
             <column name="NAME" type="${name}" remarks="服务名称">
                 <constraints nullable="false"/>
@@ -80,12 +92,17 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-5">
         <createTable tableName="GT_FLOW_CAHRT" remarks="流程图信息表">
             <column name="ID" type="${id}" remarks="流程图编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_FLOW_CAHRT"/>
+            </column>
+            <column name="CODE" type="${code}" remarks="流程图编码">
+                <constraints unique="true" uniqueConstraintName="UQ_GRAPH_CODE"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${id}" remarks="GT工程编码">
                 <constraints nullable="false"/>
@@ -102,8 +119,8 @@
             <column name="ID" type="${id}" remarks="历史库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_HDB_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
-                <constraints nullable="false"/>
+            <column name="CODE" type="${code}" remarks="历史库服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_HDB_SERVICE_CODE"/>
             </column>
             <column name="NAME" type="${name}" remarks="服务名称"/>
             <column name="ALIAS" type="${name}" remarks="服务别名">
@@ -113,9 +130,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
-            <column name="STORAGE_CYCLE" type="${cycle}" remarks="存储周期"/>
-            <column name="STORAGE_CYCLE_TYPE" type="${type}" remarks="周期类型"/>
+            <column name="STORAGE_LIFE" type="${cycle}" remarks="保存期(天)"/>
             <column name="STORAGE_DRIVE" type="${drive}" remarks="存储盘符"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-7">
@@ -123,7 +141,10 @@
             <column name="ID" type="${id}" remarks="日志服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_LOG_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="日志服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_LOG_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -134,6 +155,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-8">
@@ -144,20 +167,23 @@
             <column name="NAME" type="${name}" remarks="节点名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="CODE" type="${code}" remarks="节点编码"/>
+            <column name="CODE" type="${code}" remarks="节点编码">
+                <constraints nullable="false"/>
+            </column>
             <column name="GT_PROJECT_GUID" type="${id}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="RTDB_SERVICE_ID" type="${id}" remarks="实时库服务编号"/>
-            <column name="CLOUD_COLLECTION_ID" type="${id}" remarks="云采服务编号"/>
-            <column name="LOG_SERVICE_ID" type="${id}" remarks="日志服务编号"/>
-            <column name="TIME_SERVICE_ID" type="${id}" remarks="校时服务编号"/>
-            <column name="RDB_SERVICE_ID" type="${id}" remarks="关系库服务编号"/>
-            <column name="NODE_STATE_ID" type="${id}" remarks="节点状态服务编号"/>
-            <column name="ALARM_SERVICE_ID" type="${id}" remarks="报警服务编号"/>
-            <column name="ALGORITHM_ID" type="${id}" remarks="算法服务编号"/>
-            <column name="DATA_COLLECTION_ID" type="${id}" remarks="数采服务编号"/>
-            <column name="REPORT_PRINT_ID" type="${id}" remarks="报表服务编号"/>
+            <column name="HDB_SERVICE_CODE" type="${id}" remarks="历史库服务编码"/>
+            <column name="RTDB_SERVICE_CODE" type="${id}" remarks="实时库服务编码"/>
+            <column name="CLOUD_COLLECTION_CODE" type="${id}" remarks="云采服务编码"/>
+            <column name="LOG_SERVICE_CODE" type="${id}" remarks="日志服务编码"/>
+            <column name="TIME_SERVICE_CODE" type="${id}" remarks="校时服务编码"/>
+            <column name="RDB_SERVICE_CODE" type="${id}" remarks="关系库服务编码"/>
+            <column name="NODE_STATE_CODE" type="${id}" remarks="节点状态服务编码"/>
+            <column name="ALARM_SERVICE_CODE" type="${id}" remarks="报警服务编码"/>
+            <column name="ALGORITHM_SERVICE_CODE" type="${id}" remarks="算法服务编码"/>
+            <column name="DATA_COLLECTION_CODE" type="${id}" remarks="数采服务编码"/>
+            <column name="REPORT_PRINT_CODE" type="${id}" remarks="报表服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-9">
@@ -165,7 +191,10 @@
             <column name="ID" type="${id}" remarks="节点状态服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_NODE_STATE_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="节点状态服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_NODE_STATE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -176,18 +205,20 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-10">
         <createTable tableName="GT_PROJECT" remarks="GT_Plus组态工程信息表">
             <column name="ID" type="${id}" remarks="GT工程编号">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="PK_GT_PROJECT"/>
             </column>
             <column name="NAME" type="${name}" remarks="GT工程名称">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${id}" remarks="GT工程编码">
-                <constraints primaryKey="true" primaryKeyName="PK_GT_PROJECT"/>
+                <constraints unique="true" uniqueConstraintName="UQ_GT_PROJECT_GUID"/>
             </column>
         </createTable>
     </changeSet>
@@ -196,7 +227,10 @@
             <column name="ID" type="${id}" remarks="关系库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_RDB_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="关系库服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_RDB_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -207,6 +241,11 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
+            <column name="DATABASE_TYPE" type="${type}" remarks="数据库类型:0-SQL server,1-MySQL,2-Oracle">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-12">
@@ -214,7 +253,10 @@
             <column name="ID" type="${id}" remarks="报表服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_REPORT_PRINT_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="报表服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_REPORT_PRINT_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -225,6 +267,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-13">
@@ -247,7 +291,10 @@
             <column name="ID" type="${id}" remarks="实时库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_RTDB_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="实时库服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_RTDB_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="HDB_SERVICE_ID" type="${id}" remarks="历史库服务编号"/>
@@ -259,6 +306,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
+            <column name="ENABLE_COMPRESSION" type="${boolean}" remarks="启用压缩算法"/>
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-15">
@@ -272,7 +322,7 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="RTDB_SERVICE_ID" type="${id}" remarks="实时库服务编号"/>
+            <column name="RTDB_SERVICE_CODE" type="${id}" remarks="实时库服务编码"/>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
             <column name="AREA" type="varchar(128)" remarks="区域"/>
             <column name="DEVICE" type="varchar(128)" remarks="装置"/>
@@ -284,11 +334,14 @@
         <addPrimaryKey columnNames="TAG_NAME, GT_CODE" constraintName="PK_GT_TAG" tableName="GT_TAG"/>
     </changeSet>
     <changeSet author="WangXun" id="1580976637730-16">
-        <createTable tableName="GT_TIME_SERVICE" remarks="校时服务信息表">
+        <createTable tableName="GT_TIME_SYNC_SERVICE" remarks="校时服务信息表">
             <column name="ID" type="${id}" remarks="校时服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_TIME_SERVICE"/>
             </column>
-            <column name="NODE_ID" type="${id}" remarks="节点编号">
+            <column name="CODE" type="${code}" remarks="校时服务编码">
+                <constraints unique="true" uniqueConstraintName="TIME_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="服务别名"/>
@@ -299,6 +352,11 @@
                 <constraints nullable="false"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
+            <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
+            <column name="SYNC_TYPE" type="${type}" remarks="校时类型:0-系统校时，1-云校时，2-NTP校时，3-B码校时，4-FM197校时，5-GPS校时">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
