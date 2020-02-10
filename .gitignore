@@ -148,3 +148,4 @@ fabric.properties
 /migration/01-Code/migration/iods/*.iml
 /migration/01-Code/migration/*.iml
 /migration/01-Code/migration/spadger/*.iml
+/migration/01-Code/migration/huide/src/main/resources/liquibase/changelog/system-config/20191218-system-config.xml
