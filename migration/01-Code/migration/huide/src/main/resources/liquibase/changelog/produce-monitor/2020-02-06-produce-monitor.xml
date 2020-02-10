@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="WangXun" id="1580976637730-17">
+    <changeSet author="WangXun" id="1581337040000-1">
         <createTable tableName="PM_GIS_POSITION" remarks="GIS位置信息表">
             <column name="ID" type="${id}" remarks="位置编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_POSITION"/>
@@ -25,7 +25,7 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-18">
+    <changeSet author="WangXun" id="1581337040000-2">
         <createTable tableName="PM_GIS_TAG" remarks="GIS位置标签关系表">
             <column name="ID" type="${id}" remarks="gis标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_TAG"/>
@@ -38,7 +38,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-19">
+    <changeSet author="WangXun" id="1581337040000-3">
         <createTable tableName="PM_PROJECT_ARCHITECTURE" remarks="项目架构信息表">
             <column name="ID" type="${id}" remarks="项目编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_ARCHITECTURE"/>
@@ -64,7 +64,7 @@
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-20">
+    <changeSet author="WangXun" id="1581337040000-4">
         <createTable tableName="PM_PROJECT_FLOW_CHART" remarks="项目流程图关系表">
             <column name="ID" type="${id}" remarks="项目流程图编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_FLOW_CHART"/>
@@ -77,7 +77,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-21">
+    <changeSet author="WangXun" id="1581337040000-5">
         <createTable tableName="PM_PROJECT_REPORT" remarks="项目报表关系表">
             <column name="ID" type="${id}" remarks="项目报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_REPORT"/>
@@ -90,7 +90,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-22">
+    <changeSet author="WangXun" id="1581337040000-6">
         <createTable tableName="PM_PROJECT_TAG" remarks="项目标签关系表">
             <column name="ID" type="${id}" remarks="项目标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_TAG"/>
@@ -106,7 +106,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-23">
+    <changeSet author="WangXun" id="1581337040000-7">
         <createTable tableName="PM_REPORT_PLAN" remarks="报表计划信息表">
             <column name="ID" type="${id}" remarks="报表计划编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_REPORT_PLAN"/>
@@ -130,7 +130,7 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-24">
+    <changeSet author="WangXun" id="1581337040000-8">
         <createTable tableName="PM_SUPER_REPORT" remarks="高级报表信息表">
             <column name="ID" type="${id}" remarks="高级报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_SUPER_REPORT"/>
@@ -155,7 +155,7 @@
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-25">
+    <changeSet author="WangXun" id="1581337040000-9">
         <createTable tableName="PM_TREND" remarks="趋势信息表">
             <column name="ID" type="${id}" remarks="趋势编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND"/>
@@ -172,7 +172,7 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-26">
+    <changeSet author="WangXun" id="1581337040000-10">
         <createTable tableName="PM_TREND_GROUP" remarks="趋势组信息表">
             <column name="ID" type="${id}" remarks="趋势组编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP"/>
@@ -194,7 +194,7 @@
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-27">
+    <changeSet author="WangXun" id="1581337040000-11">
         <createTable tableName="PM_TREND_GROUP_TAG" remarks="趋势组标签关系表">
             <column name="ID" type="${id}" remarks="趋势组标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP_TAG"/>
@@ -210,7 +210,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="WangXun" id="1580976637730-28">
+    <changeSet author="WangXun" id="1581337040000-12">
         <createTable tableName="PM_VIDEO_ACCOUNT" remarks="视频账户信息表">
             <column name="ID" type="${id}" remarks="视频帐户编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_VIDEO_ACCOUNT"/>
@@ -231,6 +231,17 @@
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1581337040000-13">
+        <createTable tableName="pm_report_record" remarks="报表记录表">
+            <column name="id" type="${id}" remarks="报表记录编号"/>
+            <column name="project_id" type="${id}" remarks="项目编号"/>
+            <column name="report_plan_id" type="${id}" remarks="报表计划编号"/>
+            <column name="report_name" type="${name}" remarks="报表名称"/>
+            <column name="generate_type" type="${type}" remarks="生成方式"/>
+            <column name="generate_time" type="${datetime}" remarks="生成时间"/>
+            <column name="executor" type="${id}" remarks="执行人"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
