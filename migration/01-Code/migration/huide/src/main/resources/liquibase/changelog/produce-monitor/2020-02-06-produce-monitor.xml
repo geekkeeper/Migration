@@ -218,9 +218,8 @@
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="NAME" type="${name}" remarks="视频帐户名称"/>
-            <column name="VIDEO_DEVICE_TYPE" type="${type}" remarks="视频设备类型"/>
-            <column name="SERIAL_NUMBER" type="${code}" remarks="序列号"/>
+            <column name="NAME" type="${name}" remarks="视频设备名称"/>
+            <column name="DEVICE_TYPE_CODE" type="${code}" remarks="视频设备类型"/>
             <column name="CONNECT_JSON" type="${json}" remarks="连接信息"/>
             <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
             <column name="DELETE_TAG" type="${boolean}"
