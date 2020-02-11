@@ -1,7 +1,13 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <property name="isnull" value="ISNULL" dbms="mssql"/>
+    <property name="isnull" value="IFNULL" dbms="mysql"/>
+    <property name="isnull" value="NVL" dbms="oracle"/>
+    <property name="len" value="LEN" dbms="mssql"/>
+    <property name="len" value="LENGTH" dbms="mysql"/>
+    <property name="len" value="LENGTH" dbms="oracle"/>
     <!--报警备份表-->
     <changeSet author="WangXun" id="1581416841954-1">
         <createTable remarks="报警备份表" tableName="CF_ALARM_BACKUP">
@@ -599,7 +605,8 @@
     </changeSet>
     <!--创建视图V_SM_Log-->
     <changeSet author="WangXun" id="1581416841954-24">
-        <createView fullDefinition="false" viewName="V_SM_Log">SELECT
+        <createView fullDefinition="false" viewName="V_SM_Log">
+            SELECT
             A.ID,
             A.strOperater,
             A.strOperateTime,
@@ -620,9 +627,9 @@
             CASE
 
             WHEN A.nLogSource = 1 THEN
-            ISNULL( B_1.Title, N'' )
+            ${isnull}( B_1.Title, N'' )
             WHEN A.nLogSource = 2 THEN
-            ISNULL( B_1.Title, N'' )
+            ${isnull}( B_1.Title, N'' )
             WHEN A.nLogSource = 3 THEN
             ''
             END AS strOperateRouteName,
@@ -635,7 +642,7 @@
 
             WHEN A.nLogSource = 1
             AND nStatus = 0
-            AND LEN( A.strContent ) = 0 THEN
+            AND ${len}( A.strContent ) = 0 THEN
             '失败'
             WHEN A.nLogSource = 1
             AND nStatus = 1
@@ -653,21 +660,21 @@
             END AS strOperateContent,
             CASE
 
-            WHEN LEN( A.strArea ) &gt;
+            WHEN ${len}( A.strArea ) &gt;
             0 THEN
-            A.strArea ELSE ISNULL( D.strArea, N'' )
+            A.strArea ELSE ${isnull}( D.strArea, N'' )
             END AS strArea,
             CASE
 
-            WHEN LEN( A.strDevice ) &gt;
+            WHEN ${len}( A.strDevice ) &gt;
             0 THEN
-            A.strDevice ELSE ISNULL( D.strDevice, N'' )
+            A.strDevice ELSE ${isnull}( D.strDevice, N'' )
             END AS strDevice,
             CASE
 
-            WHEN LEN( A.strUnit ) &gt;
+            WHEN ${len}( A.strUnit ) &gt;
             0 THEN
-            A.strUnit ELSE ISNULL( D.strUnit, N'' )
+            A.strUnit ELSE ${isnull}( D.strUnit, N'' )
             END AS strUnit
             FROM
             SM_Log AS A
