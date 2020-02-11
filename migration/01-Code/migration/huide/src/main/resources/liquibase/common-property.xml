@@ -7,6 +7,8 @@
 	<property global="true" name="id" value="varchar(32)" />
 	<!--编号-->
 	<property global="true" name="code" value="varchar(32)" />
+	<!--值-->
+	<property global="true" name="value" value="varchar(64)"/>
 	<!--名称-->
 	<property global="true" name="name" value="varchar(64)" />
 	<!--路径-->
@@ -16,17 +18,56 @@
 	<!--布尔-->
 	<property global="true" name="boolean" value="char(1)" />
 	<!--类型-->
-	<property global="true" name="type" value="char(1)" />
+	<property global="true" name="type" value="int" />
 	<!--时间、日期、日期时间-->
 	<property global="true" name="datetime" value="datetime" />
 	<!--等级-->
-	<property global="true" name="level" value="smallint" />
+	<property global="true" name="level" value="smallint"/>
 	<!--排序-->
-	<property global="true" name="sort" value="int" />
+	<property global="true" name="sort" value="int"/>
+	<!--Json-->
+	<property global="true" name="json" value="varchar(1024)"/>
+	<!--周期-->
+	<property global="true" name="cycle" value="int"/>
+	<!--端口-->
+	<property global="true" name="port" value="int"/>
+	<!--串口号-->
+	<property global="true" name="serial" value="int"/>
+	<!--波特率-->
+	<property global="true" name="baud" value="int"/>
+	<!--经纬度-->
+	<property global="true" name="longitude_latitude" value="decimal(10,7)"/>
+	<!--表达式-->
+	<property global="true" name="expression" value="varchar(512)"/>
+	<!--金额-->
+	<property global="true" name="money" value="decimal(18,2)"/>
+	<!--颜色-->
+	<property global="true" name="color" value="char(7)"/>
+	<!--盘符-->
+	<property global="true" name="drive" value="char(1)"/>
+	<!--密码-->
+	<property global="true" name="password" value="varchar(64)"/>
+	<!--密钥-->
+	<property global="true" name="secret" value="varchar(256)"/>
+	<!--邮箱-->
+	<property global="true" name="email" value="varchar(32)"/>
+	<!--工号-->
+	<property global="true" name="work_no" value="varchar(32)"/>
+	<!--电话-->
+	<property global="true" name="phone" value="varchar(11)"/>
+	<!--微信-->
+	<property global="true" name="wechat" value="varchar(11)"/>
+	<!--宽度高度-->
+	<property global="true" name="width" value="varchar(8)"/>
+	<!--IP地址-->
+	<property global="true" name="ip" value="varchar(23)"/>
+	<!--位数-->
+	<property global="true" name="digit" value="varchar(23)"/>
+
 	<!--*****************************通用数据类型*******************************-->
 	<!--*****************************数据库兼容配置******************************-->
-	<property global="true" name="current_time" value="now()" dbms="mysql" />
-	<property global="true" name="current_time" value="GETDATE()" dbms="mssql" />
-	<property global="true" name="current_time" value="sysdate" dbms="oracle" />
+	<property global="true" name="current_time" value="now()" dbms="mysql"/>
+	<property global="true" name="current_time" value="GETDATE()" dbms="mssql"/>
+	<property global="true" name="current_time" value="sysdate" dbms="oracle"/>
 	<!--*****************************数据库兼容配置******************************-->
 </databaseChangeLog>

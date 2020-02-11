@@ -77,27 +77,32 @@
 					<!--变更日志文件-->
 					<changeLogFile>src/main/resources/liquibase/changelog-master.xml</changeLogFile>
 					<!--数据变更文档输出目录-->
-					<outputDirectory>src/main/resources/liquibase/output</outputDirectory>
-					<!--迁移SQL输出(更新)-->
-					<migrationSqlOutputFile>src/main/resources/liquibase/update/${current.time}-${dbms}-update.sql</migrationSqlOutputFile>
-					<!--迁移SQL输出(回滚)-->
-					<!--<migrationSqlOutputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</migrationSqlOutputFile>-->
-					<!--指定将来回滚SQL文件的输出路径-->
-					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
-					<!--生成数据库变更集类型：data-->
-					<!--<diffTypes>data</diffTypes>-->
-					<!--数据库逆向生成变更日志-->
-					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.yml</outputChangeLogFile>
-					<!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>-->
-					<!--俩数据库比较生成差异文件-->
-					<diffChangeLogFile>src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml</diffChangeLogFile>
-					<!--输出文件的编码格式-->
-					<outputFileEncoding>UTF-8</outputFileEncoding>
-					<!--操作非本地数据库提示-->
-					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-					<!--设置变更集作者名称-->
-					<changeSetAuthor>${author}</changeSetAuthor>
-					<!--<rollbackCount>1</rollbackCount>-->
+                    <outputDirectory>src/main/resources/liquibase/output</outputDirectory>
+                    <!--迁移SQL输出(更新)-->
+                    <migrationSqlOutputFile>src/main/resources/liquibase/update/${current.time}-${dbms}-update.sql
+                    </migrationSqlOutputFile>
+                    <!--迁移SQL输出(回滚)-->
+                    <!--<migrationSqlOutputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</migrationSqlOutputFile>-->
+                    <!--指定将来回滚SQL文件的输出路径-->
+                    <outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
+                    <!--生成数据库变更集类型：data-->
+                    <!--<diffTypes>data</diffTypes>-->
+                    <!--数据库逆向生成变更日志-->
+                    <outputChangeLogFile>
+                        src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.xml
+                    </outputChangeLogFile>
+                    <!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>-->
+                    <!--俩数据库比较生成差异文件-->
+                    <diffChangeLogFile>
+                        src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml
+                    </diffChangeLogFile>
+                    <!--输出文件的编码格式-->
+                    <outputFileEncoding>UTF-8</outputFileEncoding>
+                    <!--操作非本地数据库提示-->
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <!--设置变更集作者名称-->
+                    <changeSetAuthor>${author}</changeSetAuthor>
+                    <!--<rollbackCount>1</rollbackCount>-->
 					<!--<rollbackTag>v1.0.0.0</rollbackTag>-->
 					<!--<rollbackDate>2019-12-15</rollbackDate>-->
 				</configuration>

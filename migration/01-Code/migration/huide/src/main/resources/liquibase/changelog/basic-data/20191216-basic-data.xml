@@ -85,10 +85,10 @@
 				<constraints nullable="false" notNullConstraintName="NU_ITEM_TYPE_ID"/>
 			</column>
 			<column name="CODE" type="${code}" remarks="值编码"/>
-			<column name="VALUE" type="varchar(64)" remarks="值">
+			<column name="VALUE" type="${value}" remarks="值">
 				<constraints nullable="false" notNullConstraintName="NU_ITEM_VALUE"/>
 			</column>
-			<column name="REMARK" type="varchar(64)" remarks="描述"/>
+			<column name="REMARK" type="${remark}" remarks="描述"/>
 			<column name="SORT_INDEX" type="${sort}" remarks="排序编号"/>
 			<column name="SYSTEMATIC" type="${boolean}" remarks="是否固定值:Y-固定值,N-可变值"
 					defaultValue="N" defaultValueConstraintName="DF_ITEM_SYSTEMATIC"/>
@@ -325,10 +325,10 @@
 			<column name="ADDRESS" type="varchar(32)" remarks="住址"/>
 			<column name="ORIGIN" type="varchar(32)" remarks="户籍"/>
 			<column name="IDENTITY_CARD" type="char(18)" remarks="身份证"/>
-			<column name="WORK_NO" type="varchar(32)" remarks="工号"/>
-			<column name="EMAIL" type="varchar(32)" remarks="邮箱"/>
-			<column name="WECHAT" type="varchar(32)" remarks="微信"/>
-			<column name="PHONE" type="varchar(16)" remarks="移动电话"/>
+			<column name="WORK_NO" type="${work_no}" remarks="工号"/>
+			<column name="EMAIL" type="${email}" remarks="邮箱"/>
+			<column name="WECHAT" type="${wechat}" remarks="微信"/>
+			<column name="PHONE" type="${phone}" remarks="移动电话"/>
 			<column name="TELEPHONE" type="varchar(16)" remarks="固定电话"/>
 			<column name="BIRTHDAY" type="${datetime}" remarks="生日"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"

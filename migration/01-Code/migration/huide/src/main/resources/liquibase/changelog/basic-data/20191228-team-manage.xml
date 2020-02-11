@@ -9,38 +9,38 @@
 	<changeSet id="1577520480000-1" author="WangXun">
 		<comment>创建班组信息表(BD_TEAM)</comment>
 		<createTable tableName="BD_TEAM" remarks="班组信息表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_TEAM_ID"/>
 			</column>
-			<column name="CODE" type="varchar(32)" remarks="班组编码">
+			<column name="CODE" type="${code}" remarks="班组编码">
 				<constraints nullable="false" notNullConstraintName="NU_TEAM_CODE"/>
 			</column>
-			<column name="NAME" type="varchar(64)" remarks="班组名称">
+			<column name="NAME" type="${name}" remarks="班组名称">
 				<constraints nullable="false" notNullConstraintName="NU_TEAM_NAME"/>
 			</column>
-			<column name="LEADER" type="varchar(32)" remarks="班组长"/>
-			<column name="IMAGE" type="varchar(64)" remarks="班组照片"/>
-			<column name="STATUS" type="char(1)" remarks="班组状态:0-待岗,1-上岗"
+			<column name="LEADER" type="${id}" remarks="班组长"/>
+			<column name="IMAGE" type="${url}" remarks="班组照片"/>
+			<column name="STATUS" type="${boolean}" remarks="班组状态:0-待岗,1-上岗"
 					defaultValue="0" defaultValueConstraintName="DF_TEAM_STATUS"/>
-			<column name="DELETE_TAG" type="char(1)" remarks="是否已删除:Y-已删除,N-未删除"
+			<column name="DELETE_TAG" type="${boolean}" remarks="是否已删除:Y-已删除,N-未删除"
 					defaultValue="N" defaultValueConstraintName="DF_TEAM_DELETE_TAG"/>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
 	<!--班组成员关系表(BD_TEAM_USER)-->
 	<changeSet id="1577520480000-2" author="WangXun">
 		<comment>创建班组成员关系表(BD_TEAM_USER)</comment>
 		<createTable tableName="BD_TEAM_USER" remarks="班组成员关系表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_TEAM_USER_ID"/>
 			</column>
-			<column name="TEAM_ID" type="varchar(32)" remarks="班组编号">
+			<column name="TEAM_ID" type="${id}" remarks="班组编号">
 				<constraints nullable="false" notNullConstraintName="NU_TEAM_USER_TEAM_ID"/>
 			</column>
-			<column name="USER_ID" type="varchar(64)" remarks="用户编号">
+			<column name="USER_ID" type="${id}" remarks="用户编号">
 				<constraints nullable="false" notNullConstraintName="NU_TEAM_USER_USER_ID"/>
 			</column>
 		</createTable>
@@ -49,89 +49,89 @@
 	<changeSet id="1577520480000-3" author="WangXun">
 		<comment>创建班次表(BD_DUTY_TYPE)</comment>
 		<createTable tableName="BD_DUTY_TYPE" remarks="班次表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_DUTY_TYPE_ID"/>
 			</column>
-			<column name="CODE" type="varchar(32)" remarks="班次编码">
+			<column name="CODE" type="${code}" remarks="班次编码">
 				<constraints nullable="false" notNullConstraintName="NU_DUTY_TYPE_CODE"/>
 			</column>
-			<column name="NAME" type="varchar(64)" remarks="班次名称"/>
-			<column name="START_TIME" type="time" remarks="开始时间"/>
-			<column name="END_TIME" type="time" remarks="结束时间"/>
-			<column name="REMARK" type="varchar(128)" remarks="备注信息"/>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="NAME" type="${name}" remarks="班次名称"/>
+			<column name="START_TIME" type="${datetime}" remarks="开始时间"/>
+			<column name="END_TIME" type="${datetime}" remarks="结束时间"/>
+			<column name="REMARK" type="${remark}" remarks="备注信息"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
 	<!--排班周期表(BD_SCHEDULING_CYCLE)-->
 	<changeSet id="1577520480000-4" author="WangXun">
 		<comment>创建排班周期表(BD_SCHEDULING_CYCLE)</comment>
 		<createTable tableName="BD_SCHEDULING_CYCLE" remarks="排班周期表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_SCHEDULING_CYCLE_ID"/>
 			</column>
-			<column name="START_DATE" type="datetime" remarks="开始日期">
+			<column name="START_DATE" type="${datetime}" remarks="开始日期">
 				<constraints nullable="false" notNullConstraintName="NU_CYCLE_START_DATE"/>
 			</column>
-			<column name="END_DATE" type="datetime" remarks="结束日期">
+			<column name="END_DATE" type="${datetime}" remarks="结束日期">
 				<constraints nullable="false" notNullConstraintName="NU_CYCLE_END_DATE"/>
 			</column>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
 	<!--排班计划表(BD_SCHEDULING_PLAN)-->
 	<changeSet id="1577520480000-5" author="WangXun">
 		<comment>创建排班计划表(BD_SCHEDULING_PLAN)</comment>
 		<createTable tableName="BD_SCHEDULING_PLAN" remarks="排班计划表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_SCHEDULING_PLAN_ID"/>
 			</column>
-			<column name="CYCLE_ID" type="varchar(32)" remarks="班次编号">
+			<column name="CYCLE_ID" type="${id}" remarks="班次编号">
 				<constraints nullable="false" notNullConstraintName="NU_SCHEDULING_CYCLE_TYPE_ID"/>
 			</column>
-			<column name="DUTY_TYPE_ID" type="varchar(32)" remarks="班次编号">
+			<column name="DUTY_TYPE_ID" type="${id}" remarks="班次编号">
 				<constraints nullable="false" notNullConstraintName="NU_SCHEDULING_CYCLE_TYPE_ID"/>
 			</column>
-			<column name="TEAM_ID" type="varchar(32)" remarks="班组编号">
+			<column name="TEAM_ID" type="${id}" remarks="班组编号">
 				<constraints nullable="false" notNullConstraintName="NU_SCHEDULING_CYCLE_TEAM_ID"/>
 			</column>
-			<column name="WORK_DATE" type="datetime" remarks="工作日期"/>
-			<column name="IS_HOLIDAY" type="char(1)" remarks="是否是节假日:Y-是,N-否"/>
-			<column name="REMARK" type="varchar(128)" remarks="备注信息"/>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="WORK_DATE" type="${datetime}" remarks="工作日期"/>
+			<column name="IS_HOLIDAY" type="${boolean}" remarks="是否是节假日:Y-是,N-否"/>
+			<column name="REMARK" type="${remark}" remarks="备注信息"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
 	<!--交接班记录表(BD_SHIFT_RECORD)-->
 	<changeSet id="1577520480000-6" author="WangXun">
 		<comment>创建交接班记录表(BD_SHIFT_RECORD)</comment>
 		<createTable tableName="BD_SHIFT_RECORD" remarks="交接班记录表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_SHIFT_RECORD_ID"/>
 			</column>
-			<column name="DUTY_TYPE_ID" type="varchar(32)" remarks="班次编号">
+			<column name="DUTY_TYPE_ID" type="${id}" remarks="班次编号">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_TYPE_ID"/>
 			</column>
-			<column name="LAST_TEAM_ID" type="varchar(32)" remarks="上班编号">
+			<column name="LAST_TEAM_ID" type="${id}" remarks="上班编号">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_LAST_ID"/>
 			</column>
-			<column name="WATCHKEEPER" type="varchar(32)" remarks="交班人">
+			<column name="WATCHKEEPER" type="${id}" remarks="交班人">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_WATCHKEEPER"/>
 			</column>
-			<column name="THIS_TEAM_ID" type="varchar(32)" remarks="本班编号">
+			<column name="THIS_TEAM_ID" type="${id}" remarks="本班编号">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_THIS_ID"/>
 			</column>
-			<column name="SUCCESSOR" type="varchar(32)" remarks="接班人">
+			<column name="SUCCESSOR" type="${id}" remarks="接班人">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_SUCCESSOR"/>
 			</column>
-			<column name="SHIFT_TIME" type="datetime" remarks="交接时间">
+			<column name="SHIFT_TIME" type="${datetime}" remarks="交接时间">
 				<constraints nullable="false" notNullConstraintName="NU_SHIFT_RECORD_SHIFT_TIME"/>
 			</column>
 		</createTable>
@@ -140,17 +140,17 @@
 	<changeSet id="1577520480000-7" author="WangXun">
 		<comment>创建交接内容表(BD_SHIFT_CONTENT)</comment>
 		<createTable tableName="BD_SHIFT_CONTENT" remarks="交接内容表">
-			<column name="ID" type="varchar(32)" remarks="编号">
+			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_BD_SHIFT_CONTENT_ID"/>
 			</column>
-			<column name="SHIFT_RECORD_ID" type="varchar(32)" remarks="交接记录编号"/>
-			<column name="CONTENT" type="varchar(128)" remarks="内容"/>
+			<column name="SHIFT_RECORD_ID" type="${id}" remarks="交接记录编号"/>
+			<column name="CONTENT" type="${remark}" remarks="内容"/>
 
 
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
 </databaseChangeLog>
