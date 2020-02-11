@@ -382,6 +382,55 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="0"/>
+            <column name="nOperateContentKey" value="0"/>
+            <column name="strOperateContent" value="其他"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="1"/>
+            <column name="nOperateContentKey" value="1"/>
+            <column name="strOperateContent" value="登录注销"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="10"/>
+            <column name="nOperateContentKey" value="10"/>
+            <column name="strOperateContent" value="置位"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="11"/>
+            <column name="nOperateContentKey" value="11"/>
+            <column name="strOperateContent" value="写模拟量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="12"/>
+            <column name="nOperateContentKey" value="12"/>
+            <column name="strOperateContent" value="写开关量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="14"/>
+            <column name="nOperateContentKey" value="14"/>
+            <column name="strOperateContent" value="报警操作"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="2"/>
+            <column name="nOperateContentKey" value="2"/>
+            <column name="strOperateContent" value="新增"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="3"/>
+            <column name="nOperateContentKey" value="3"/>
+            <column name="strOperateContent" value="修改"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="4"/>
+            <column name="nOperateContentKey" value="4"/>
+            <column name="strOperateContent" value="删除"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_OperateContent"/>
+            <dropTable tableName="SM_OperateContent"/>
+        </rollback>
     </changeSet>
     <!--项目标签表-->
     <changeSet author="WangXun" id="1581416841954-14">
@@ -518,6 +567,70 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="1"/>
+            <column name="Code" value="System"/>
+            <column name="PCode" value="-1"/>
+            <column name="Title" value="生产执行管理系统"/>
+            <column name="EnTitle" value="System"/>
+            <column name="OrderNo" valueNumeric="0"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="2"/>
+            <column name="Code" value="SystemM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="系统设置"/>
+            <column name="EnTitle" value="SystemM"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="3"/>
+            <column name="Code" value="PM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="生产监视"/>
+            <column name="EnTitle" value="ProductionMonitoring"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="4"/>
+            <column name="Code" value="RM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="运行管理"/>
+            <column name="EnTitle" value="RunManagement"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="5"/>
+            <column name="Code" value="PM_Alarm"/>
+            <column name="PCode" value="PM"/>
+            <column name="Title" value="生产报警"/>
+            <column name="EnTitle" value="ProductionAlarm"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResource"/>
+            <dropTable tableName="SM_SystemResource"/>
+        </rollback>
     </changeSet>
     <!--系统资源详细表-->
     <changeSet author="WangXun" id="1581416841954-21">
@@ -549,6 +662,350 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="44"/>
+            <column name="Code" value="SM_Department"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="组织架构组态"/>
+            <column name="EnTitle" value="Department"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Department"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="49"/>
+            <column name="Code" value="SM_Role"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="权限组态"/>
+            <column name="EnTitle" value="Role"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/RoleM"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="63"/>
+            <column name="Code" value="PM_Log"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产日志"/>
+            <column name="EnTitle" value="Log"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Log"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="64"/>
+            <column name="Code" value="PM_Trend"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产趋势"/>
+            <column name="EnTitle" value="Trend"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Trend"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="65"/>
+            <column name="Code" value="PM_Report"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产报表"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Report"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="66"/>
+            <column name="Code" value="PM_Gis"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="GIS地图"/>
+            <column name="EnTitle" value="Gis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/Gis.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="7"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="73"/>
+            <column name="Code" value="PM_FlowChart"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="流程图"/>
+            <column name="EnTitle" value="FlowChart"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/FlowChart.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="75"/>
+            <column name="Code" value="PM_VideoMonitor"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="视频监视"/>
+            <column name="EnTitle" value="VideoMonitor"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/VideoMonitor"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="76"/>
+            <column name="Code" value="RM_System_Alarm"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统报警"/>
+            <column name="EnTitle" value="SystemAlarm"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemAlarm"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="77"/>
+            <column name="Code" value="RM_System_Log"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统日志"/>
+            <column name="EnTitle" value="SystemLog"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemLog"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="79"/>
+            <column name="Code" value="RM_Node_Status"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="节点状态"/>
+            <column name="EnTitle" value="NodeStatus"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/NodeStatus"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="80"/>
+            <column name="Code" value="SM_ProjectArchitecture"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="项目架构组态"/>
+            <column name="EnTitle" value="ProjectArchitecture"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectArchitecture"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="81"/>
+            <column name="Code" value="SM_ProjectGis"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="GIS地图组态"/>
+            <column name="EnTitle" value="ProjectGis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectGis"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="82"/>
+            <column name="Code" value="PM_Alarm_RealTimeAlarm"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警查看"/>
+            <column name="EnTitle" value="AlarmView"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmView"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="84"/>
+            <column name="Code" value="PM_Alarm_AlarmSuppression"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警抑制"/>
+            <column name="EnTitle" value="AlarmSuppression"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmSuppression"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="85"/>
+            <column name="Code" value="PM_Alarm_AlarmHiding"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警隐藏"/>
+            <column name="EnTitle" value="AlarmHiding"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmHiding"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="86"/>
+            <column name="Code" value="SM_ProjectAlarmSet"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="通用设置组态"/>
+            <column name="EnTitle" value="ProjectAlarmSet"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectAlarmSet"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="88"/>
+            <column name="Code" value="SM_Report"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="生产报表组态"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Report"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="89"/>
+            <column name="Code" value="PM_AdvanceReport"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="高级报表"/>
+            <column name="EnTitle" value="AdvanceReport"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/AdvanceReport"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="90"/>
+            <column name="Code" value="SM_VideoDeviceAccount"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="视频账户组态"/>
+            <column name="EnTitle" value="VideoDevice"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/VideoDevice"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="9"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResourceDtl"/>
+            <dropTable tableName="SM_SystemResourceDtl"/>
+        </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-22">
         <createTable tableName="SM_SystemResourceRmisDtl">
