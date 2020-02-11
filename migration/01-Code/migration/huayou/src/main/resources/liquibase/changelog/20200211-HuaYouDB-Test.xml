@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!--系统报警表-->
@@ -332,7 +332,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="USERNAME" remarks="用户名，可以为NULL，为NULL则为公共趋势组" type="varchar(80)"/>
-            <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="varchar(MAX)"/>
+            <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="varchar(8000)"/>
             <column name="VERSION" remarks="版本" type="int"/>
         </createTable>
     </changeSet>

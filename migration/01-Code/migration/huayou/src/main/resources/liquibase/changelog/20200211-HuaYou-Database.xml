@@ -489,7 +489,7 @@
     </changeSet>
     <!--报警操作描述表-->
     <changeSet author="WangXun" id="1581396439438-19">
-        <createTable remarks="报警操作描述表" tableName="ALARM_OPERATE_DESCRIPTION">
+        <createTable remarks="报警操作描述表" tableName="SM_ALARM_OPERATE_DESCRIPTION">
             <column name="ID" remarks="报警操作描述编号" type="varchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_OPERATE_ID"/>
             </column>
