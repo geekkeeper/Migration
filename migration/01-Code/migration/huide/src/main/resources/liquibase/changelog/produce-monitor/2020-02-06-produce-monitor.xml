@@ -233,7 +233,7 @@
         </createTable>
     </changeSet>
     <changeSet author="WangXun" id="1581337040000-13">
-        <createTable tableName="pm_report_record" remarks="报表记录表">
+        <createTable tableName="PM_REPORT_RECORD" remarks="报表记录表">
             <column name="id" type="${id}" remarks="报表记录编号"/>
             <column name="project_id" type="${id}" remarks="项目编号"/>
             <column name="report_plan_id" type="${id}" remarks="报表计划编号"/>
