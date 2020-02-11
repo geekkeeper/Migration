@@ -146,6 +146,7 @@
             <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
                 <constraints nullable="false"/>
             </column>
+            <column name="ALARM_LEVER" type="int" remarks="报警等级"/>
             <column name="strTagName" remarks="标签名称" type="nvarchar(100)">
                 <constraints nullable="false"/>
             </column>
@@ -158,6 +159,7 @@
             <column name="strForbidTime" remarks="抑制时间" type="datetime">
                 <constraints nullable="false"/>
             </column>
+            <column name="Forbid_DESCRIPITION" type="varchar(128)" remarks="抑制说明"/>
             <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
             <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
             <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
