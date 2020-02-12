@@ -20,7 +20,7 @@
 		<java.version>1.8</java.version>
 		<dbms>mssql</dbms>
 		<!--设置作者-->
-		<author>WangXun</author>
+		<author>Sun YiWen</author>
 		<!--获取当前时间-->
 		<current.time>${maven.build.timestamp}</current.time>
 		<!--时间格式化模式-->
