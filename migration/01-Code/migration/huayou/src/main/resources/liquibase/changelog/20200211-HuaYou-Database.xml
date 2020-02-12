@@ -159,7 +159,7 @@
             <column name="strForbidTime" remarks="抑制时间" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="Forbid_DESCRIPITION" type="varchar(128)" remarks="抑制说明"/>
+            <column name="FORBID_DESCRIPTION" type="varchar(256)" remarks="抑制说明"/>
             <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
             <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
             <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
@@ -545,7 +545,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_OPERATE_ID"/>
             </column>
             <column name="TYPE" type="char(1)" remarks="操作类型:1-确认报警;2-抑制报警;3-确认或抑制报警"/>
-            <column name="DESCRIPITION" type="varchar(100)" remarks="说明内容"/>
+            <column name="DESCRIPTION" type="varchar(256)" remarks="说明内容"/>
         </createTable>
     </changeSet>
     <!--系统资源表-->
