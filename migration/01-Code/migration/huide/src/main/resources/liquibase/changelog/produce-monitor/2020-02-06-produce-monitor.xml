@@ -113,6 +113,7 @@
             </column>
             <column name="REPORT_TEMPLATE_ID" type="${id}" remarks="报表模板编号"/>
             <column name="NAME" type="${name}" remarks="报表计划名称"/>
+            <column name="REPORT_PRINT_SERVICE_CODE" type="${code}" remarks="报表计划服务编码"/>
             <column name="REPORT_TYPE" type="${type}" remarks="报表类型"/>
             <column name="SEND_PRINTER" type="${boolean}" remarks="是否发送打印机:Y-是,N-否" defaultValue="N"/>
             <column name="PRINT_CYCLE" type="${cycle}" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年"/>

@@ -325,10 +325,10 @@
             <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="NAME" type="${name}" remarks="服务名称"/>
-            <column name="ALIAS" type="${name}" remarks="服务别名">
+            <column name="NAME" type="${name}" remarks="服务名称">
                 <constraints nullable="false"/>
             </column>
+            <column name="ALIAS" type="${name}" remarks="服务别名"/>
             <column name="PORT" type="${port}" remarks="通讯端口">
                 <constraints nullable="false"/>
             </column>
