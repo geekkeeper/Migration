@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="1574956800000-1" author="WangXun" dbms="mssql">
         <comment>修改SM_Person表OrderNo字段自增</comment>
@@ -34,10 +34,10 @@
     </changeSet>
     <changeSet id="1574956800000-3" author="WangXun">
         <addColumn tableName="CF_Alarm">
-            <column name="nDomainNum" type="int" />
+            <column name="nDomainNum" type="int"/>
         </addColumn>
         <addColumn tableName="CF_AlarmHis">
-            <column name="nDomainNum" type="int" />
+            <column name="nDomainNum" type="int"/>
         </addColumn>
         <createView fullDefinition="false" replaceIfExists="true" viewName="V_CF_Alarm">
             SELECT

@@ -1,0 +1,1196 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <property name="isnull" value="ISNULL" dbms="mssql"/>
+    <property name="isnull" value="IFNULL" dbms="mysql"/>
+    <property name="isnull" value="NVL" dbms="oracle"/>
+    <property name="len" value="LEN" dbms="mssql"/>
+    <property name="len" value="LENGTH" dbms="mysql"/>
+    <property name="len" value="LENGTH" dbms="oracle"/>
+    <!--报警备份表-->
+    <changeSet author="WangXun" id="1581416841954-1">
+        <createTable remarks="报警备份表" tableName="CF_ALARM_BACKUP">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_CF_ALARM_BACKUP"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级别" type="int"/>
+            <column name="strEventTime" remarks="报警时间" type="datetime"/>
+            <column name="strTagName" remarks="标签名称" type="varchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strMsgDes" remarks="报警描述" type="varchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警阀值" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警实时值" type="varchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复时间" type="datetime"/>
+            <column name="strAckedTime" remarks="确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="恢复内容" type="varchar(255)"/>
+            <column name="nSource" remarks="报警来源" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strNodeDomain" type="varchar(255)"/>
+            <column name="strTypeName" remarks="报警类型" type="varchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="varchar(60)"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="varchar(30)"/>
+            <column name="nDomainNum" type="int"/>
+        </createTable>
+        <createIndex indexName="IX_ALARMHIS_strEventTime" tableName="CF_ALARM_BACKUP">
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <!--生产报警表-->
+    <changeSet author="WangXun" id="1581416841954-2">
+        <createTable remarks="生产报警表" tableName="CF_Alarm">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_CF_ALARM_ID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级别" type="int"/>
+            <column name="strEventTime" remarks="报警时间" type="datetime"/>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(128)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strMsgDes" remarks="报警描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警阀值" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警实时值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复时间" type="datetime"/>
+            <column name="strAckedTime" remarks="确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="恢复内容" type="nvarchar(255)"/>
+            <column name="nSource" remarks="报警来源" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strNodeDomain" type="nvarchar(255)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+            <column name="nDomainNum" type="int"/>
+        </createTable>
+        <createIndex indexName="IX_Alarm_TagName" tableName="CF_Alarm">
+            <column name="strTagName"/>
+        </createIndex>
+        <createIndex indexName="IX_CF_Alarm_Soft" tableName="CF_Alarm">
+            <column name="nAlarmState"/>
+            <column name="nAlarmlevel"/>
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <!--历史报警表-->
+    <changeSet author="WangXun" id="1581416841954-3">
+        <createTable remarks="历史报警表" tableName="CF_AlarmHis">
+            <column name="ID" remarks="主键" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_HISTORY_ID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级别" type="int"/>
+            <column name="strEventTime" remarks="报警时间" type="datetime"/>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strMsgDes" remarks="报警描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警阀值" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警实时值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复时间" type="datetime"/>
+            <column name="strAckedTime" remarks="确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="恢复内容" type="nvarchar(255)"/>
+            <column name="nSource" remarks="报警来源" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strNodeDomain" type="nvarchar(255)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="nPushStatus" type="int"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+            <column name="nDomainNum" type="int"/>
+        </createTable>
+        <createIndex indexName="IX_CF_ALARMHIS_strEventTime" tableName="CF_AlarmHis">
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <!--报警抑制表-->
+    <changeSet author="WangXun" id="1581416841954-4">
+        <createTable remarks="报警抑制表" tableName="CF_ForbidAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_FBALARMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALARM_LEVER" type="int" remarks="报警等级"/>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperater" remarks="操作人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strForbidTime" remarks="抑制时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Forbid_DESCRIPITION" type="varchar(128)" remarks="抑制说明"/>
+            <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
+            <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
+            <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
+        </createTable>
+    </changeSet>
+    <!--报警隐藏表-->
+    <changeSet author="WangXun" id="1581416841954-5">
+        <createTable remarks="报警隐藏表" tableName="CF_HideAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_HDALARMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagName" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperater" remarks="操作人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strHideTime" remarks="隐藏时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
+            <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
+            <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
+        </createTable>
+    </changeSet>
+    <!--节点状态表-->
+    <changeSet author="WangXun" id="1581416841954-6">
+        <createTable remarks="节点状态表" tableName="CF_NodeState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_NODESTATEID"/>
+            </column>
+            <column name="nCPULoad" remarks="CPU负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fTemperature" remarks="温度" type="float(53)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nMemoryLoad" remarks="内存负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodeType" remarks="节点类型（0普通节点，1网闸安全侧，2网闸开放侧，3云卡）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号" type="int"/>
+            <column name="strStateTime" remarks="更新时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strSerialNum" remarks="网闸序列号" type="nvarchar(20)"/>
+            <column name="fNetworkALoad" type="float(53)"/>
+            <column name="fNetworkBLoad" type="float(53)"/>
+        </createTable>
+    </changeSet>
+    <!--进程状态表-->
+    <changeSet author="WangXun" id="1581416841954-7">
+        <createTable remarks="进程状态表" tableName="CF_ProcessState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PROCESSSTATEID"/>
+            </column>
+            <column name="nProcessID" remarks="进程ID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号&#9;关联表CF_NodeState" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProcessName" remarks="进程名" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strStateTime" remarks="更新时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--服务状态表-->
+    <changeSet author="WangXun" id="1581416841954-8">
+        <createTable remarks="服务状态表" tableName="CF_ServiceState">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SERVICESTATEID"/>
+            </column>
+            <column name="nNodePCID" remarks="PC号&#9;关联CF_ProcessState" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nState" remarks="状态 -1:初始化  0：不正常  1:正常  2:部分正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strServiceName" remarks="服务名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strProcessName" remarks="进程名称&#9;关联CF_ProcessState" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--系统报警表-->
+    <changeSet author="WangXun" id="1581416841954-9">
+        <createTable remarks="系统报警表" tableName="CF_SysAlarm">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_HIDENALERMID"/>
+            </column>
+            <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int"/>
+            <column name="nAlarmState" remarks="报警状态" type="int"/>
+            <column name="nAlarmlevel" remarks="报警级" type="int"/>
+            <column name="strEventTime" remarks="事件发生事件" type="datetime"/>
+            <column name="strTagName" remarks="标签名" type="nvarchar(100)"/>
+            <column name="strTagDes" remarks="标签描述" type="nvarchar(100)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strMsgDes" remarks="事件信息描述" type="nvarchar(100)"/>
+            <column name="fAlarmlimit" remarks="报警限" type="float(53)"/>
+            <column name="strAlarmValue" remarks="报警时刻值" type="nvarchar(30)"/>
+            <column name="strRecoveryTime" remarks="恢复事件" type="datetime"/>
+            <column name="strAckedTime" remarks="报警确认时间" type="datetime"/>
+            <column name="strAckedComment" remarks="报警确认信息" type="nvarchar(255)"/>
+            <column name="nSource" remarks="来源 1:DCS 2:ODS生产 3:ODS设备" type="int"/>
+            <column name="strIsHide" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成" type="char(1)"/>
+            <column name="strTypeName" remarks="报警类型" type="nvarchar(10)"/>
+            <column name="strAlarmTypeDes" remarks="报警类型描述" type="nvarchar(60)"/>
+            <column name="strAlarmLevelDes" remarks="报警级别描述" type="nvarchar(30)"/>
+        </createTable>
+        <createIndex indexName="IX_SysAlarm" tableName="CF_SysAlarm">
+            <column name="nAlarmState"/>
+            <column name="nAlarmlevel"/>
+            <column name="strEventTime"/>
+        </createIndex>
+    </changeSet>
+    <!--报警级别颜色表-->
+    <changeSet author="WangXun" id="1581416841954-10">
+        <createTable tableName="SM_ALARM_LEVEL_COLOUR" remarks="报警级别颜色表">
+            <column name="ID" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ALARM_LEVEL_COLOUR"/>
+            </column>
+            <column name="LEVEL1_COLOUR" type="bigint"/>
+            <column name="LEVEL2_COLOUR" type="bigint"/>
+            <column name="LEVEL3_COLOUR" type="bigint"/>
+            <column name="LEVEL4_COLOUR" type="bigint"/>
+            <column name="LEVEL5_COLOUR" type="bigint"/>
+            <column name="LEVEL6_COLOUR" type="bigint"/>
+            <column name="LEVEL7_COLOUR" type="bigint"/>
+            <column name="LEVEL8_COLOUR" type="bigint"/>
+            <column name="LEVEL9_COLOUR" type="bigint"/>
+            <column name="LEVEL10_COLOUR" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <!--日志表-->
+    <changeSet author="WangXun" id="1581416841954-11">
+        <createTable remarks="日志表" tableName="SM_Log">
+            <column name="ID" remarks="自增序号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_NLOGID"/>
+            </column>
+            <column name="strOperater" remarks="创建人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strOperateTime" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nLogSource" remarks="日志来源 生产日志 = 1,系统日志 = 2,DCS日志 = 3" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nOperateContentKey" remarks="其他0，登录注销1、新增2、删除3、修改4，置位 = 10,写模拟量值 = 11," type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nStatus" remarks="状态 1成功  0失败" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strIP" remarks="ip" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strLabelName" remarks="标签名" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="strLabelDescribe" remarks="标签描述" type="nvarchar(128)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(64)"/>
+            <column name="strOperateRoute" remarks="页面编码或者流程图id" type="nvarchar(255)"/>
+            <column name="strPreContent" remarks="修改前值" type="nvarchar(255)"/>
+            <column name="strafterContent" remarks="修改后值" type="nvarchar(255)"/>
+            <column name="strContent" remarks="日志详情" type="nvarchar(255)"/>
+        </createTable>
+        <createIndex indexName="IX_LOG_OPERATE_TIME" tableName="SM_Log">
+            <column name="strOperateTime"/>
+        </createIndex>
+    </changeSet>
+    <!--在线用户表-->
+    <changeSet author="WangXun" id="1581416841954-12">
+        <createTable remarks="在线用户表" tableName="SM_ONLINE_USER">
+            <column name="ID" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_ONLINE_USER"/>
+            </column>
+            <column name="GROUP_NAME" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_ID" type="int"/>
+            <column name="LOGIN_TIME" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <!--操作类型字典表-->
+    <changeSet author="WangXun" id="1581416841954-13">
+        <createTable remarks="操作类型字典表" tableName="SM_OperateContent">
+            <column name="ID" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nOperateContentKey" remarks="操作类型的key" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_OperateContent"/>
+            </column>
+            <column name="strOperateContent" remarks="操作类型key对应的汉字" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="0"/>
+            <column name="nOperateContentKey" value="0"/>
+            <column name="strOperateContent" value="其他"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="1"/>
+            <column name="nOperateContentKey" value="1"/>
+            <column name="strOperateContent" value="登录注销"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="10"/>
+            <column name="nOperateContentKey" value="10"/>
+            <column name="strOperateContent" value="置位"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="11"/>
+            <column name="nOperateContentKey" value="11"/>
+            <column name="strOperateContent" value="写模拟量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="12"/>
+            <column name="nOperateContentKey" value="12"/>
+            <column name="strOperateContent" value="写开关量值"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="14"/>
+            <column name="nOperateContentKey" value="14"/>
+            <column name="strOperateContent" value="报警操作"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="2"/>
+            <column name="nOperateContentKey" value="2"/>
+            <column name="strOperateContent" value="新增"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="3"/>
+            <column name="nOperateContentKey" value="3"/>
+            <column name="strOperateContent" value="修改"/>
+        </insert>
+        <insert tableName="SM_OperateContent">
+            <column name="ID" value="4"/>
+            <column name="nOperateContentKey" value="4"/>
+            <column name="strOperateContent" value="删除"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_OperateContent"/>
+            <dropTable tableName="SM_OperateContent"/>
+        </rollback>
+    </changeSet>
+    <!--项目标签表-->
+    <changeSet author="WangXun" id="1581416841954-14">
+        <createTable tableName="SM_ProjectTag" remarks="项目标签表">
+            <column name="ID" remarks="标签节点ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_TAG_ID"/>
+            </column>
+            <column name="strID" remarks="标签组态ID" type="nvarchar(80)"/>
+            <column name="strName" remarks="标签节点名称" type="nvarchar(70)">
+                <constraints unique="true" uniqueConstraintName="UQ_PROJECT_TAG_NAME"/>
+            </column>
+            <column name="strDescription" remarks="标签节点描述" type="nvarchar(300)"/>
+            <column name="strArea" remarks="区域，为DCS日志设计" type="nvarchar(128)"/>
+            <column name="strDevice" remarks="装置，为DCS日志设计" type="nvarchar(128)"/>
+            <column name="strUnit" remarks="单元,为DCS日志设计" type="nvarchar(128)"/>
+            <column name="strProjectCode" remarks="标签节点父节点编码" type="nvarchar(50)"/>
+            <column name="nOrderNo" remarks="标签节点序号" type="int"/>
+            <column name="nTagType" remarks="标签节点类型（0：普通标签，1：特殊标签）" type="int"/>
+            <column name="strResourceUrl" remarks="标签节点资源地址" type="nvarchar(1000)"/>
+            <column name="strGTGuid" remarks="标签归属工程标识" type="nvarchar(50)"/>
+            <column name="strGTPC" remarks="标签归属PC" type="nvarchar(50)"/>
+            <column name="strGTDomain" remarks="标签归属MACS域号" type="nvarchar(50)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectTag_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nTagDataType" remarks="标签数据类型：开关，模拟" type="int"/>
+        </createTable>
+        <createIndex indexName="IX_SM_ProjectTag_C" tableName="SM_ProjectTag">
+            <column name="strName"/>
+        </createIndex>
+    </changeSet>
+    <!--趋势组表-->
+    <changeSet author="WangXun" id="1581416841954-15">
+        <createTable tableName="SM_TREND_GROUP" remarks="趋势组表">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_TREND_GROUP"/>
+            </column>
+            <column name="TREND_GROUP_NAME" remarks="趋势组名" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" remarks="用户名，可以为NULL，为NULL则为公共趋势组" type="varchar(80)"/>
+            <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="varchar(4000)"/>
+            <column name="VERSION" remarks="版本" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--用户表-->
+    <changeSet author="WangXun" id="1581416841954-16">
+        <createTable remarks="用户表" tableName="SM_USER">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_USER"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="varchar(80)"/>
+            <column name="USERNAME" remarks="用户名" type="varchar(80)"/>
+            <column name="PASSWORD" remarks="密码" type="varchar(50)"/>
+            <column name="CREATE_BY" remarks="创建人" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="修改人" type="varchar(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+            <column name="REMARK" remarks="备注" type="varchar(150)"/>
+        </createTable>
+    </changeSet>
+    <!--用户组表-->
+    <changeSet author="WangXun" id="1581416841954-17">
+        <createTable remarks="用户组表" tableName="SM_USER_GROUP">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_USER_GROUP"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名称" type="varchar(80)"/>
+            <column name="CREATE_BY" remarks="创建人" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="修改人" type="varchar(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+            <column name="ACCREDIT1" remarks="权限1" type="int"/>
+            <column name="ACCREDIT2" remarks="权限2" type="int"/>
+            <column name="ACCREDIT3" remarks="权限3" type="int"/>
+            <column name="ACCREDIT4" remarks="权限4" type="int"/>
+            <column name="ACCREDIT5" remarks="权限5" type="int"/>
+            <column name="ACCREDIT6" remarks="权限6" type="int"/>
+            <column name="ACCREDIT7" remarks="权限7" type="int"/>
+            <column name="ACCREDIT8" remarks="权限8" type="int"/>
+            <column name="ACCREDIT9" remarks="权限9" type="int"/>
+            <column name="ACCREDIT10" remarks="权限10" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--用户组流程图表-->
+    <changeSet author="WangXun" id="1581416841954-18">
+        <createTable remarks="用户组流程图表" tableName="SM_USER_GROUP_GRAPH">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_USER_GROUP_GRAPH"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="varchar(80)"/>
+            <column name="GRAPH_NAME" remarks="流程图名称" type="varchar(80)"/>
+            <column defaultValueConstraintName="DF_SM_USER_GROUP_GRAPH_WRITE_AUTHORITY" defaultValueNumeric="0"
+                    name="WRITE_AUTHORITY" remarks="写权限" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--报警操作描述表-->
+    <changeSet author="WangXun" id="1581396439438-19">
+        <createTable remarks="报警操作描述表" tableName="SM_ALARM_OPERATE_DESCRIPTION">
+            <column name="ID" remarks="报警操作描述编号" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_OPERATE_ID"/>
+            </column>
+            <column name="TYPE" type="char(1)" remarks="操作类型:1-确认报警;2-抑制报警;3-确认或抑制报警"/>
+            <column name="DESCRIPITION" type="varchar(80)" remarks="说明内容"/>
+        </createTable>
+    </changeSet>
+    <!--系统资源表-->
+    <changeSet author="WangXun" id="1581416841954-20">
+        <createTable tableName="SM_SystemResource" remarks="系统资源表">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCE"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PCode" type="nvarchar(50)"/>
+            <column name="Title" type="nvarchar(50)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__36B12243" name="DelFlag"
+                    type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="1"/>
+            <column name="Code" value="System"/>
+            <column name="PCode" value="-1"/>
+            <column name="Title" value="生产执行管理系统"/>
+            <column name="EnTitle" value="System"/>
+            <column name="OrderNo" valueNumeric="0"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="2"/>
+            <column name="Code" value="SystemM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="系统设置"/>
+            <column name="EnTitle" value="SystemM"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="3"/>
+            <column name="Code" value="PM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="生产监视"/>
+            <column name="EnTitle" value="ProductionMonitoring"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="4"/>
+            <column name="Code" value="RM"/>
+            <column name="PCode" value="System"/>
+            <column name="Title" value="运行管理"/>
+            <column name="EnTitle" value="RunManagement"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResource">
+            <column name="ID" value="5"/>
+            <column name="Code" value="PM_Alarm"/>
+            <column name="PCode" value="PM"/>
+            <column name="Title" value="生产报警"/>
+            <column name="EnTitle" value="ProductionAlarm"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResource"/>
+            <dropTable tableName="SM_SystemResource"/>
+        </rollback>
+    </changeSet>
+    <!--系统资源详细表-->
+    <changeSet author="WangXun" id="1581416841954-21">
+        <createTable tableName="SM_SystemResourceDtl" remarks="系统资源详细表">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCEDTL"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title" type="nvarchar(50)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="ResourceType" type="char(1)"/>
+            <column name="ResourceUrl" type="nvarchar(1000)"/>
+            <column name="ResourceUrlApp" type="nvarchar(100)"/>
+            <column name="Parameter" type="nvarchar(200)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column name="ConfCodeVou" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__398D8EEE" name="DelFlag"
+                    type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="44"/>
+            <column name="Code" value="SM_Department"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="组织架构组态"/>
+            <column name="EnTitle" value="Department"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Department"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="49"/>
+            <column name="Code" value="SM_Role"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="权限组态"/>
+            <column name="EnTitle" value="Role"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/RoleM"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="63"/>
+            <column name="Code" value="PM_Log"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产日志"/>
+            <column name="EnTitle" value="Log"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Log"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="64"/>
+            <column name="Code" value="PM_Trend"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产趋势"/>
+            <column name="EnTitle" value="Trend"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Trend"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="65"/>
+            <column name="Code" value="PM_Report"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="生产报表"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/Report"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="66"/>
+            <column name="Code" value="PM_Gis"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="GIS地图"/>
+            <column name="EnTitle" value="Gis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/Gis.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="7"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="73"/>
+            <column name="Code" value="PM_FlowChart"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="流程图"/>
+            <column name="EnTitle" value="FlowChart"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/html/FlowChart.html"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="75"/>
+            <column name="Code" value="PM_VideoMonitor"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="视频监视"/>
+            <column name="EnTitle" value="VideoMonitor"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/VideoMonitor"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="76"/>
+            <column name="Code" value="RM_System_Alarm"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统报警"/>
+            <column name="EnTitle" value="SystemAlarm"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemAlarm"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="77"/>
+            <column name="Code" value="RM_System_Log"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="系统日志"/>
+            <column name="EnTitle" value="SystemLog"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/SystemLog"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="2"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="79"/>
+            <column name="Code" value="RM_Node_Status"/>
+            <column name="SystemResourceCode" value="RM"/>
+            <column name="Title" value="节点状态"/>
+            <column name="EnTitle" value="NodeStatus"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/RM/NodeStatus"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="80"/>
+            <column name="Code" value="SM_ProjectArchitecture"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="项目架构组态"/>
+            <column name="EnTitle" value="ProjectArchitecture"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectArchitecture"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="81"/>
+            <column name="Code" value="SM_ProjectGis"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="GIS地图组态"/>
+            <column name="EnTitle" value="ProjectGis"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectGis"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="5"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="82"/>
+            <column name="Code" value="PM_Alarm_RealTimeAlarm"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警查看"/>
+            <column name="EnTitle" value="AlarmView"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmView"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="1"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="84"/>
+            <column name="Code" value="PM_Alarm_AlarmSuppression"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警抑制"/>
+            <column name="EnTitle" value="AlarmSuppression"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmSuppression"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="3"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="85"/>
+            <column name="Code" value="PM_Alarm_AlarmHiding"/>
+            <column name="SystemResourceCode" value="PM_Alarm"/>
+            <column name="Title" value="报警隐藏"/>
+            <column name="EnTitle" value="AlarmHiding"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="PM/Alarm/AlarmHiding"/>
+            <column name="ResourceUrlApp"/>
+            <column name="Parameter"/>
+            <column name="OrderNo" valueNumeric="4"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="86"/>
+            <column name="Code" value="SM_ProjectAlarmSet"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="通用设置组态"/>
+            <column name="EnTitle" value="ProjectAlarmSet"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/ProjectAlarmSet"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="6"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="88"/>
+            <column name="Code" value="SM_Report"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="生产报表组态"/>
+            <column name="EnTitle" value="Report"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/Report"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="1"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="89"/>
+            <column name="Code" value="PM_AdvanceReport"/>
+            <column name="SystemResourceCode" value="PM"/>
+            <column name="Title" value="高级报表"/>
+            <column name="EnTitle" value="AdvanceReport"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/PM/AdvanceReport"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="8"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <insert tableName="SM_SystemResourceDtl">
+            <column name="ID" value="90"/>
+            <column name="Code" value="SM_VideoDeviceAccount"/>
+            <column name="SystemResourceCode" value="SystemM"/>
+            <column name="Title" value="视频账户组态"/>
+            <column name="EnTitle" value="VideoDevice"/>
+            <column name="ResourceType" value="0"/>
+            <column name="ResourceUrl" value="/SM/VideoDevice"/>
+            <column name="ResourceUrlApp" value=""/>
+            <column name="Parameter" value=""/>
+            <column name="OrderNo" valueNumeric="9"/>
+            <column name="IsHide" value="1"/>
+            <column name="IsSysMenu" value="3"/>
+            <column name="Platform" value="0"/>
+            <column name="ConfCodeVou" value="1"/>
+            <column name="DelFlag" value="0"/>
+        </insert>
+        <rollback>
+            <delete tableName="SM_SystemResourceDtl"/>
+            <dropTable tableName="SM_SystemResourceDtl"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-22">
+        <createTable tableName="SM_SystemResourceRmisDtl">
+            <column name="ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SM_SYSTEMRESOURCERMISDTL"/>
+            </column>
+            <column name="Code" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SystemResourceCode" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DeployID" type="int"/>
+            <column name="Title" type="nvarchar(100)"/>
+            <column name="EnTitle" type="nvarchar(50)"/>
+            <column name="ResourceType" type="char(1)"/>
+            <column name="Parameter" type="nvarchar(200)"/>
+            <column name="OrderNo" type="int"/>
+            <column name="IsHide" type="char(1)"/>
+            <column name="IsSysMenu" type="char(1)"/>
+            <column name="Platform" type="char(1)"/>
+            <column name="ConfCodeVou" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DelFlag" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ExternalNetwork" type="nvarchar(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1574840696094-23">
+        <createTable tableName="t_deply">
+            <column name="Id" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_T_DEPLY"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(64)"/>
+            <column name="type" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sort" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pid" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RTDBServer" type="nvarchar(64)"/>
+        </createTable>
+    </changeSet>
+    <!--创建视图V_SM_Log-->
+    <changeSet author="WangXun" id="1581416841954-24">
+        <createView fullDefinition="false" viewName="V_SM_Log">
+            SELECT
+            A.ID,
+            A.strOperater,
+            A.strOperateTime,
+            A.strLabelName,
+            A.strLabelDescribe,
+            A.nLogSource,
+            A.nStatus,
+            CASE
+
+            WHEN A.nLogSource = 1 THEN
+            'iODS'
+            WHEN A.nLogSource = 2 THEN
+            '系统日志'
+            WHEN A.nLogSource = 3 THEN
+            'DCS' ELSE ''
+            END AS strLogSourceName,
+            A.strOperateRoute,
+            CASE
+
+            WHEN A.nLogSource = 1 THEN
+            ${isnull}( B_1.Title, N'' )
+            WHEN A.nLogSource = 2 THEN
+            ${isnull}( B_1.Title, N'' )
+            WHEN A.nLogSource = 3 THEN
+            ''
+            END AS strOperateRouteName,
+            CASE
+
+            WHEN A.nLogSource = 3 THEN
+            0 ELSE A.nOperateContentKey
+            END AS nOperateContentKey,
+            CASE
+
+            WHEN A.nLogSource = 1
+            AND nStatus = 0
+            AND ${len}( A.strContent ) = 0 THEN
+            '失败'
+            WHEN A.nLogSource = 1
+            AND nStatus = 1
+            AND ( A.nOperateContentKey = 11 OR A.nOperateContentKey = 12 ) THEN
+            ( '由' + A.strPreContent + '改为' + A.strafterContent )
+            WHEN A.nLogSource = 1
+            AND nStatus = 1
+            AND A.nOperateContentKey = 10 THEN
+            ( '置为' + A.strafterContent + ',脉冲时间为' + A.strPreContent + '毫秒' ) ELSE A.strContent
+            END AS strContent,
+            CASE
+
+            WHEN A.nLogSource = 3 THEN
+            '其他' ELSE C.strOperateContent
+            END AS strOperateContent,
+            CASE
+
+            WHEN ${len}( A.strArea ) &gt;
+            0 THEN
+            A.strArea ELSE ${isnull}( D.strArea, N'' )
+            END AS strArea,
+            CASE
+
+            WHEN ${len}( A.strDevice ) &gt;
+            0 THEN
+            A.strDevice ELSE ${isnull}( D.strDevice, N'' )
+            END AS strDevice,
+            CASE
+
+            WHEN ${len}( A.strUnit ) &gt;
+            0 THEN
+            A.strUnit ELSE ${isnull}( D.strUnit, N'' )
+            END AS strUnit
+            FROM
+            SM_Log AS A
+            LEFT OUTER JOIN (
+            SELECT
+            ID,
+            Code,
+            PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            '' AS ResourceUrl,
+            '' AS Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResource UNION
+            SELECT
+            ID,
+            Code,
+            SystemResourceCode AS PCode,
+            OrderNo,
+            Title,
+            EnTitle,
+            DelFlag,
+            IsSysMenu,
+            '' AS Type,
+            ResourceUrl,
+            Parameter,
+            IsHide,
+            '' AS ExternalNetwork
+            FROM
+            SM_SystemResourceDtl UNION
+            SELECT
+            a.ID,
+            a.Code,
+            a.SystemResourceCode AS PCode,
+            a.OrderNo,
+            a.Title,
+            a.EnTitle,
+            a.DelFlag,
+            a.IsSysMenu,
+            b.type,
+            b.path AS ResourceUrl,
+            a.Parameter,
+            a.IsHide,
+            a.ExternalNetwork
+            FROM
+            SM_SystemResourceRmisDtl AS a
+            LEFT OUTER JOIN t_deply AS b ON a.DeployID = b.Id
+            ) AS B_1 ON A.strOperateRoute = B_1.Code
+            AND A.nLogSource = 2
+            LEFT OUTER JOIN SM_OperateContent AS C ON C.nOperateContentKey = A.nOperateContentKey
+            LEFT OUTER JOIN SM_ProjectTag AS D ON D.strName = A.strLabelName
+        </createView>
+    </changeSet>
+</databaseChangeLog>

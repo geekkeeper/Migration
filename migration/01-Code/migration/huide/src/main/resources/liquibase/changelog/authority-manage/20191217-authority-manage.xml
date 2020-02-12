@@ -107,16 +107,37 @@
 			<column name="CODE" type="${code}" remarks="行为编码">
 				<constraints nullable="false" notNullConstraintName="NU_COMMON_ACTION_CODE" />
 			</column>
-			<column name="NAME" type="${name}" remarks="行为名称" />
+			<column name="NAME" type="${name}" remarks="行为名称"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除" defaultValue="N"
-				defaultValueConstraintName="DF_COMMON_ACTION_DELETE_TAG" />
+					defaultValueConstraintName="DF_COMMON_ACTION_DELETE_TAG"/>
 			<column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-自定义的" defaultValue="N"
-				defaultValueConstraintName="DF_COMMON_ACTION_SYSTEMATIC" />
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间" />
-			<column name="CREATE_BY" type="${id}" remarks="创建人" />
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间" />
-			<column name="UPDATE_BY" type="${id}" remarks="修改人" />
+					defaultValueConstraintName="DF_COMMON_ACTION_SYSTEMATIC"/>
+			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
+			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 		</createTable>
+		<insert tableName="AM_COMMON_ACTION">
+			<column name="ID" value="1219523606180663298"/>
+			<column name="CODE" value="add"/>
+			<column name="NAME" value="新增"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="SYSTEMATIC" value="Y"/>
+		</insert>
+		<insert tableName="AM_COMMON_ACTION">
+			<column name="ID" value="1219523652636774401"/>
+			<column name="CODE" value="update"/>
+			<column name="NAME" value="编辑"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="SYSTEMATIC" value="Y"/>
+		</insert>
+		<insert tableName="AM_COMMON_ACTION">
+			<column name="ID" value="1219523695066353665"/>
+			<column name="CODE" value="delete"/>
+			<column name="NAME" value="删除"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="SYSTEMATIC" value="Y"/>
+		</insert>
 	</changeSet>
 	<!--新建系统模块表(AM_MODULE)-->
 	<changeSet id="1576561645670-7" author="WangXun">

@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="1574956800001-1" author="WangXun">
         <comment>SM_ProjectPageButtonConfig加入按钮配置</comment>
@@ -97,7 +97,7 @@
     </changeSet>
     <changeSet id="1574956800001-2" author="WangXun">
         <comment>修改视图:V_SM_RoleSysPower和V_SM_PersonSysPower</comment>
-        <createView viewName="V_SM_RoleSysPower" replaceIfExists="true" >
+        <createView viewName="V_SM_RoleSysPower" replaceIfExists="true">
             SELECT
             a.ID,
             a.RoleCode,
@@ -127,7 +127,7 @@
         </rollback>
     </changeSet>
     <changeSet id="1574956800001-3" author="WangXun">
-        <createView viewName="V_SM_PersonSysPower" replaceIfExists="true" >
+        <createView viewName="V_SM_PersonSysPower" replaceIfExists="true">
             SELECT
             a.ID,
             a.SystemResourceDtlCode,
@@ -188,21 +188,21 @@
     </changeSet>
     <changeSet id="1574956800001-4" author="WangXun">
         <comment>更新数据:SM_SystemResourceDtl</comment>
-        <update tableName="SM_SystemResourceDtl" >
-            <column name="Title" value="角色权限组态" />
+        <update tableName="SM_SystemResourceDtl">
+            <column name="Title" value="角色权限组态"/>
             <where>
                 Code = 'SM_Role'
             </where>
         </update>
-        <update tableName="SM_SystemResourceDtl" >
-            <column name="Title" value="角色权限组态" />
+        <update tableName="SM_SystemResourceDtl">
+            <column name="Title" value="角色权限组态"/>
             <where>
                 Code = 'SM_Role'
             </where>
         </update>
         <rollback>
-            <update tableName="SM_SystemResourceDtl" >
-                <column name="Title" value="权限组态" />
+            <update tableName="SM_SystemResourceDtl">
+                <column name="Title" value="权限组态"/>
                 <where>
                     Code = 'SM_Role'
                 </where>
@@ -211,7 +211,7 @@
     </changeSet>
     <changeSet id="1574956800001-5" author="WangXun">
         <comment>清空表SM_PersonSysPower脏数据</comment>
-        <delete tableName="SM_PersonSysPower" />
+        <delete tableName="SM_PersonSysPower"/>
         <rollback/>
     </changeSet>
     <changeSet id="v3.0.2.0" author="WangXun">

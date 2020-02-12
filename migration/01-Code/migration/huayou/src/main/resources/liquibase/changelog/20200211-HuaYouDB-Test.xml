@@ -1,0 +1,418 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--系统报警表-->
+    <changeSet author="WangXun" id="1581396439438-1">
+        <createTable remarks="系统报警表" tableName="SYSTEM_ALARM">
+            <column name="ID" remarks="系统报警编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_SYSTEM_ALARM_ID"/>
+            </column>
+            <column name="TYPE" type="int" remarks="报警类型"/>
+            <column name="Type_Name" type="nvarchar(10)" remarks="报警类型名称"/>
+            <column name="Type_description" type="nvarchar(60)" remarks="报警类型描述"/>
+            <column name="STATE" type="int" remarks="报警状态"/>
+            <column name="LEVEL" type="int" remarks="报警级别"/>
+            <column name="LEVEL_DESCRIPTION" type="nvarchar(30)" remarks="报警级别描述"/>
+            <column name="ALARM_TIME" type="datetime" remarks="报警时间"/>
+            <column name="DESCRIPTION" type="nvarchar(100)" remarks="报警描述"/>
+            <column name="LIMIT" type="float(53)" remarks="报警阀值"/>
+            <column name="VALUE" type="nvarchar(30)" remarks="报警实时值"/>
+            <column name="SOURCE" type="int" remarks="报警来源"/>
+            <column name="TAG_NAME" type="nvarchar(100)" remarks="标签名称"/>
+            <column name="TAG_DESCRIPTION" type="nvarchar(128)" remarks="标签描述"/>
+            <column name="TAG_AREA" type="nvarchar(64)" remarks="标签所属区域"/>
+            <column name="TAG_DEVICE" type="nvarchar(64)" remarks="标签所属装置"/>
+            <column name="TAG_UNIT" type="nvarchar(64)" remarks="标签所属单元"/>
+            <column name="IS_HIDE" type="char(1)" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成"/>
+            <column name="RECOVERY_TIME" type="datetime" remarks="恢复时间"/>
+            <column name="CONFIRM_TIME" remarks="报警确认时间" type="datetime"/>
+            <column name="CONFIRM_CONTENT" remarks="报警确认信息" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--生产报警表-->
+    <changeSet author="WangXun" id="1581396439438-2">
+        <createTable tableName="ALARM" remarks="生产报警表">
+            <column name="ID" remarks="报警编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_ID"/>
+            </column>
+            <column name="TYPE" type="int" remarks="报警类型"/>
+            <column name="Type_Name" type="nvarchar(10)" remarks="报警类型名称"/>
+            <column name="Type_description" type="nvarchar(60)" remarks="报警类型描述"/>
+            <column name="STATE" type="int" remarks="报警状态"/>
+            <column name="LEVEL" type="int" remarks="报警级别"/>
+            <column name="LEVEL_DESCRIPTION" type="nvarchar(30)" remarks="报警级别描述"/>
+            <column name="ALARM_TIME" type="datetime" remarks="报警时间"/>
+            <column name="DESCRIPTION" type="nvarchar(100)" remarks="报警描述"/>
+            <column name="LIMIT" type="float(53)" remarks="报警阀值"/>
+            <column name="VALUE" type="nvarchar(30)" remarks="报警实时值"/>
+            <column name="SOURCE" type="int" remarks="报警来源"/>
+            <column name="TAG_NAME" type="nvarchar(100)" remarks="标签名称"/>
+            <column name="TAG_DESCRIPTION" type="nvarchar(128)" remarks="标签描述"/>
+            <column name="TAG_AREA" type="nvarchar(64)" remarks="标签所属区域"/>
+            <column name="TAG_DEVICE" type="nvarchar(64)" remarks="标签所属装置"/>
+            <column name="TAG_UNIT" type="nvarchar(64)" remarks="标签所属单元"/>
+            <column name="IS_HIDE" type="char(1)" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成"/>
+            <column name="RECOVERY_TIME" type="datetime" remarks="恢复时间"/>
+            <column name="RECOVERY_CONTENT" type="nvarchar(255)" remarks="恢复内容"/>
+            <column name="CONFIRM_TIME" type="datetime" remarks="确认时间"/>
+            <column name="PUSH_STATUS" type="int"/>
+            <column name="NODE_DOMAIN" type="nvarchar(255)" remarks="节点域"/>
+            <column name="DOMAIN_NUM" type="int" remarks="域号"/>
+        </createTable>
+    </changeSet>
+    <!--历史报警表-->
+    <changeSet author="WangXun" id="1581396439438-3">
+        <createTable tableName="ALARM_HISTORY" remarks="历史报警表">
+            <column name="ID" remarks="报警编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_HISTORY_ALARM_ID"/>
+            </column>
+            <column name="TYPE" type="int" remarks="报警类型"/>
+            <column name="Type_Name" type="nvarchar(10)" remarks="报警类型名称"/>
+            <column name="Type_description" type="nvarchar(60)" remarks="报警类型描述"/>
+            <column name="STATE" type="int" remarks="报警状态"/>
+            <column name="LEVEL" type="int" remarks="报警级别"/>
+            <column name="LEVEL_DESCRIPTION" type="nvarchar(30)" remarks="报警级别描述"/>
+            <column name="ALARM_TIME" type="datetime" remarks="报警时间"/>
+            <column name="DESCRIPTION" type="nvarchar(100)" remarks="报警描述"/>
+            <column name="LIMIT" type="float(53)" remarks="报警阀值"/>
+            <column name="VALUE" type="nvarchar(30)" remarks="报警实时值"/>
+            <column name="SOURCE" type="int" remarks="报警来源"/>
+            <column name="TAG_NAME" type="nvarchar(100)" remarks="标签名称"/>
+            <column name="TAG_DESCRIPTION" type="nvarchar(128)" remarks="标签描述"/>
+            <column name="TAG_AREA" type="nvarchar(64)" remarks="标签所属区域"/>
+            <column name="TAG_DEVICE" type="nvarchar(64)" remarks="标签所属装置"/>
+            <column name="TAG_UNIT" type="nvarchar(64)" remarks="标签所属单元"/>
+            <column name="IS_HIDE" type="char(1)" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成"/>
+            <column name="RECOVERY_TIME" type="datetime" remarks="恢复时间"/>
+            <column name="RECOVERY_CONTENT" type="nvarchar(255)" remarks="恢复内容"/>
+            <column name="CONFIRM_TIME" type="datetime" remarks="确认时间"/>
+            <column name="PUSH_STATUS" type="int"/>
+            <column name="NODE_DOMAIN" type="nvarchar(255)" remarks="节点域"/>
+            <column name="DOMAIN_NUM" type="int" remarks="域号"/>
+        </createTable>
+    </changeSet>
+    <!--报警备份表-->
+    <changeSet author="WangXun" id="1581396439438-4">
+        <createTable tableName="ALARM_BACKUP" remarks="报警备份表">
+            <column name="ID" remarks="报警编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_BACKUP_ID"/>
+            </column>
+            <column name="TYPE" type="int" remarks="报警类型"/>
+            <column name="Type_Name" type="nvarchar(10)" remarks="报警类型名称"/>
+            <column name="Type_description" type="nvarchar(60)" remarks="报警类型描述"/>
+            <column name="STATE" type="int" remarks="报警状态"/>
+            <column name="LEVEL" type="int" remarks="报警级别"/>
+            <column name="LEVEL_DESCRIPTION" type="nvarchar(30)" remarks="报警级别描述"/>
+            <column name="ALARM_TIME" type="datetime" remarks="报警时间"/>
+            <column name="DESCRIPTION" type="nvarchar(100)" remarks="报警描述"/>
+            <column name="LIMIT" type="float(53)" remarks="报警阀值"/>
+            <column name="VALUE" type="nvarchar(30)" remarks="报警实时值"/>
+            <column name="SOURCE" type="int" remarks="报警来源"/>
+            <column name="TAG_NAME" type="nvarchar(100)" remarks="标签名称"/>
+            <column name="TAG_DESCRIPTION" type="nvarchar(128)" remarks="标签描述"/>
+            <column name="TAG_AREA" type="nvarchar(64)" remarks="标签所属区域"/>
+            <column name="TAG_DEVICE" type="nvarchar(64)" remarks="标签所属装置"/>
+            <column name="TAG_UNIT" type="nvarchar(64)" remarks="标签所属单元"/>
+            <column name="IS_HIDE" type="char(1)" remarks="是否隐藏后产生0：非隐藏后生产 1：隐藏后生成"/>
+            <column name="RECOVERY_TIME" type="datetime" remarks="恢复时间"/>
+            <column name="RECOVERY_CONTENT" type="nvarchar(255)" remarks="恢复内容"/>
+            <column name="CONFIRM_TIME" type="datetime" remarks="确认时间"/>
+            <column name="PUSH_STATUS" type="int"/>
+            <column name="NODE_DOMAIN" type="nvarchar(255)" remarks="节点域"/>
+            <column name="DOMAIN_NUM" type="int" remarks="域号"/>
+        </createTable>
+    </changeSet>
+    <!--报警抑制表-->
+    <changeSet author="WangXun" id="1581396439438-5">
+        <createTable remarks="报警抑制表" tableName="ALARM_FORBID">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_FBALARMID"/>
+            </column>
+            <column name="ALARM_TYPE" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALARM_LEVER" remarks="报警等级" type="int"/>
+            <column name="TAG_NAME" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_DESCRIPTION" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
+            <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
+            <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
+            <column name="EXECUTOR" remarks="执行人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FORBID_TIME" remarks="抑制时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FORBID_DESCRIPITION" type="nvarchar(100)" remarks="抑制说明"/>
+        </createTable>
+    </changeSet>
+    <!--报警隐藏表-->
+    <changeSet author="WangXun" id="1581396439438-6">
+        <createTable remarks="报警隐藏表" tableName="ALARM_HIDE">
+            <column name="ID" remarks="主键ID" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_HIDE_ID"/>
+            </column>
+            <column name="ALARM_TYPE" remarks="报警类型（上限，上上限......）" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_NAME" remarks="标签名称" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_DESCRIPTION" remarks="标签描述" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(128)"/>
+            <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(128)"/>
+            <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(128)"/>
+            <column name="EXECUTOR" remarks="执行人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HIDE_TIME" remarks="隐藏时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--节点状态表-->
+    <changeSet author="WangXun" id="1581396439438-7">
+        <createTable remarks="节点状态表" tableName="NODE_STATE">
+            <column name="ID" type="nvarchar(50)" remarks="节点状态编号">
+                <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_ID"/>
+            </column>
+            <column name="CPU_LOAD" remarks="CPU负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEMPERATURE" remarks="温度" type="float(53)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MEMORY_LOAD" remarks="内存负荷" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_STATE" remarks="节点状态 -1:初始化  0：不正常  1:正常" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_TYPE" remarks="节点类型:0-普通节点,1-网闸安全侧,2-网闸开放侧,3-云卡" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_PCID" remarks="节点PC号" type="int"/>
+            <column name="UPDATE_TIME" remarks="节点状态更新时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERIAL_NUMBER" remarks="网闸序列号" type="nvarchar(20)"/>
+            <column name="NETWORKA_LOAD" remarks="网络A负荷" type="float(53)"/>
+            <column name="NETWORKB_LOAD" remarks="网络B负荷" type="float(53)"/>
+        </createTable>
+    </changeSet>
+    <!--进程状态表-->
+    <changeSet author="WangXun" id="1581396439438-8">
+        <createTable remarks="进程状态表" tableName="PROCESS_STATE">
+            <column name="ID" remarks="进程状态编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_PROCESS_STATE_ID"/>
+            </column>
+            <column name="PROCESS_ID" type="int" remarks="进程编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_PCID" type="int" remarks="节点PC编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROCESS_STATE" type="int" remarks="进程状态 -1:初始化  0：不正常  1:正常">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROCESS_NAME" type="nvarchar(100)" remarks="进程名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_TIME" type="datetime" remarks="进程状态更新时间">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--服务状态表-->
+    <changeSet author="WangXun" id="1581396439438-9">
+        <createTable remarks="服务状态表" tableName="SERVICE_STATE">
+            <column name="ID" type="nvarchar(50)" remarks="服务状态编号">
+                <constraints primaryKey="true" primaryKeyName="PK_SERVICE_STATE_ID"/>
+            </column>
+            <column name="NODE_PCID" remarks="节点PC号" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVICE_STATE" type="int" remarks="服务状态:1-初始化,0-不正常,1-正常,2-部分正常">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVICE_NAME" type="nvarchar(100)" remarks="服务名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROCESS_NAME" type="nvarchar(100)" remarks="进程名称">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--报警等级颜色-->
+    <changeSet author="WangXun" id="1581396439438-10">
+        <createTable remarks="报警等级颜色" tableName="ALARM_LEVEL_COLOUR">
+            <column name="ID" remarks="编号" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_LEVEL_COLOUR_ID"/>
+            </column>
+            <column name="LEVEL1_COLOUR" remarks="一级报警颜色" type="bigint"/>
+            <column name="LEVEL2_COLOUR" remarks="二级报警颜色" type="bigint"/>
+            <column name="LEVEL3_COLOUR" remarks="三级报警颜色" type="bigint"/>
+            <column name="LEVEL4_COLOUR" remarks="四级报警颜色" type="bigint"/>
+            <column name="LEVEL5_COLOUR" remarks="五级报警颜色" type="bigint"/>
+            <column name="LEVEL6_COLOUR" remarks="六级报警颜色" type="bigint"/>
+            <column name="LEVEL7_COLOUR" remarks="七级报警颜色" type="bigint"/>
+            <column name="LEVEL8_COLOUR" remarks="八级报警颜色" type="bigint"/>
+            <column name="LEVEL9_COLOUR" remarks="九级报警颜色" type="bigint"/>
+            <column name="LEVEL10_COLOUR" remarks="十级报警颜色" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <!--日志表-->
+    <changeSet author="WangXun" id="1581396439438-11">
+        <createTable remarks="日志表" tableName="LOG">
+            <column name="ID" remarks="日志编号" type="nvarchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_LOG_ID"/>
+            </column>
+            <column name="LOG_TYPE" type="int" remarks="日志类型:生产日志 = 1,系统日志 = 2,DCS日志 = 3">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_TYPE" type="int" remarks="操作类型：其他0，登录注销1、新增2、删除3、修改4，置位 = 10,写模拟量值 = 11">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BEFORE_VALUE" remarks="操作前值" type="nvarchar(255)"/>
+            <column name="AFTER_VALUE" remarks="操作后值" type="nvarchar(255)"/>
+            <column name="LOG_DETAIL" remarks="日志详情" type="nvarchar(255)"/>
+            <column name="OPERATE_RESULT" type="int" remarks="操作结果: 1成功  0失败">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP_ADDRESS" remarks="ip" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_NAME" remarks="标签名" type="nvarchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_DESCRIPTION" remarks="标签描述" type="nvarchar(128)"/>
+            <column name="TAG_AREA" remarks="标签所属区域" type="nvarchar(64)"/>
+            <column name="TAG_DEVICE" remarks="标签所属装置" type="nvarchar(64)"/>
+            <column name="TAG_UNIT" remarks="标签所属单元" type="nvarchar(64)"/>
+            <column name="OPERATE_ROUTE" remarks="页面编码或者流程图id" type="nvarchar(255)"/>
+            <column name="CREATE_BY" remarks="创建人" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" type="datetime" remarks="创建时间">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--在线用户信息-->
+    <changeSet author="WangXun" id="1581396439438-12">
+        <createTable remarks="在线用户信息" tableName="ONLINE_USER">
+            <column name="ID" remarks="在线用户编号" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ONLINE_USER_ID"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名称" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" remarks="用户名" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NODE_ID" remarks="节点编号" type="int"/>
+            <column name="LOGIN_TIME" remarks="登录时间" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <!--趋势组表-->
+    <changeSet author="WangXun" id="1581396439438-13">
+        <createTable remarks="趋势组表" tableName="TREND_GROUP">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_TREND_GROUP_ID"/>
+            </column>
+            <column name="TREND_GROUP_NAME" remarks="趋势组名" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" remarks="用户名，可以为NULL，为NULL则为公共趋势组" type="varchar(80)"/>
+            <column name="GROUP_INFO" remarks="Json串，存储趋势组内标签名、曲线颜色" type="varchar(8000)"/>
+            <column name="VERSION" remarks="版本" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--用户表-->
+    <changeSet author="WangXun" id="1581396439438-14">
+        <createTable remarks="用户表" tableName="USER">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_USER_ID"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="varchar(80)"/>
+            <column name="USERNAME" remarks="用户名" type="varchar(80)"/>
+            <column name="PASSWORD" remarks="密码" type="varchar(50)"/>
+            <column name="CREATE_BY" remarks="创建人" type="varchar(50)"/>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime"/>
+            <column name="MODIFY_BY" remarks="修改人" type="varchar(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+            <column name="REMARK" remarks="备注" type="varchar(150)"/>
+        </createTable>
+    </changeSet>
+    <!--用户组表-->
+    <changeSet author="WangXun" id="1581396439438-15">
+        <createTable remarks="用户组表" tableName="USER_GROUP">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_USER_GROUP_ID"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名称" type="varchar(80)"/>
+            <column name="ACCREDIT1" remarks="权限1" type="int"/>
+            <column name="ACCREDIT2" remarks="权限2" type="int"/>
+            <column name="ACCREDIT3" remarks="权限3" type="int"/>
+            <column name="ACCREDIT4" remarks="权限4" type="int"/>
+            <column name="ACCREDIT5" remarks="权限5" type="int"/>
+            <column name="ACCREDIT6" remarks="权限6" type="int"/>
+            <column name="ACCREDIT7" remarks="权限7" type="int"/>
+            <column name="ACCREDIT8" remarks="权限8" type="int"/>
+            <column name="ACCREDIT9" remarks="权限9" type="int"/>
+            <column name="ACCREDIT10" remarks="权限10" type="int"/>
+            <column name="CREATE_BY" remarks="创建人" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="创建时间" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="修改人" type="varchar(50)"/>
+            <column name="MODIFY_TIME" remarks="修改时间" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <!--用户组流程图表-->
+    <changeSet author="WangXun" id="1581396439438-16">
+        <createTable remarks="用户组流程图表" tableName="USER_GROUP_GRAPH">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_USER_GROUP_GRAPH_ID"/>
+            </column>
+            <column name="GROUP_NAME" remarks="用户组名" type="varchar(80)"/>
+            <column name="GRAPH_NAME" remarks="流程图名称" type="varchar(80)"/>
+            <column defaultValueConstraintName="DF_SM_USER_GROUP_GRAPH_WRITE_AUTHORITY" defaultValueNumeric="0"
+                    name="WRITE_AUTHORITY" remarks="写权限" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--报警操作描述表-->
+    <changeSet author="WangXun" id="1581396439438-17">
+        <createTable remarks="报警操作描述表" tableName="ALARM_OPERATE_DESCRIPTION">
+            <column name="ID" remarks="报警操作描述编号" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_OPERATE_ID"/>
+            </column>
+            <column name="TYPE" type="char(1)" remarks="操作类型:1-确认报警;2-抑制报警;3-确认或抑制报警"/>
+            <column name="DESCRIPITION" type="varchar(80)" remarks="说明内容"/>
+        </createTable>
+    </changeSet>
+    <!--操作类型字典表-->
+    <changeSet author="WangXun" id="1581396439438-18">
+        <createTable remarks="操作类型字典表" tableName="OPERATE_CONTENT">
+            <column name="ID" remarks="主键" type="varchar(50)">
+                <constraints primaryKey="true" primaryKeyName="PK_OPERATE_CONTENT_ID"/>
+            </column>
+            <column name="OPERATE_KEY" remarks="操作Key" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_CONTENT" remarks="操作内容" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

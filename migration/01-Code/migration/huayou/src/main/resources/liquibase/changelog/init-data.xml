@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <property name="now" value="now()" dbms="mysql"/>
     <property name="now" value="GETDATE()" dbms="mssql"/>
@@ -34,7 +34,7 @@
             <column name="fNetworkBLoad" valueNumeric="0.09854399999999999"/>
         </insert>
         <rollback>
-            <delete tableName="CF_NodeState" />
+            <delete tableName="CF_NodeState"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-2">
@@ -159,7 +159,7 @@
             <column name="strStateTime" valueDate="2019-11-27T15:46:34"/>
         </insert>
         <rollback>
-            <delete tableName="CF_ProcessState" />
+            <delete tableName="CF_ProcessState"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-3">
@@ -175,7 +175,7 @@
             <column name="DelFlag" value="0"/>
         </insert>
         <rollback>
-            <delete tableName="SM_Department" />
+            <delete tableName="SM_Department"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-4">
@@ -193,7 +193,7 @@
             <column name="HomeBackgroundPicture" defaultOnNull="true"/>
         </insert>
         <rollback>
-            <delete tableName="SM_GeneralSettings" />
+            <delete tableName="SM_GeneralSettings"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-5">
@@ -517,7 +517,7 @@
             <column name="Remark" value="系统内置，勿删勿改"/>
         </insert>
         <rollback>
-            <delete tableName="SM_ListFieldConfig" />
+            <delete tableName="SM_ListFieldConfig"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-6">
@@ -567,7 +567,7 @@
             <column name="strOperateContent" value="删除"/>
         </insert>
         <rollback>
-            <delete tableName="SM_OperateContent" />
+            <delete tableName="SM_OperateContent"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-7">
@@ -1517,7 +1517,7 @@
             <column name="IsSysMenu" value="1"/>
         </insert>
         <rollback>
-            <delete tableName="SM_PageButtonConfig" />
+            <delete tableName="SM_PageButtonConfig"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-8">
@@ -1543,7 +1543,7 @@
             <column name="LastPasswordChangeTime" valueDate="2019-01-14T19:40:49.65"/>
         </insert>
         <rollback>
-            <delete tableName="SM_Person" />
+            <delete tableName="SM_Person"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-9">
@@ -1708,7 +1708,7 @@
             <column name="strIsEnable"/>
         </insert>
         <rollback>
-            <delete tableName="SM_PersonDataPower" />
+            <delete tableName="SM_PersonDataPower"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-10">
@@ -1865,7 +1865,7 @@
             <column name="strIsEnable"/>
         </insert>
         <rollback>
-            <delete tableName="SM_PersonSysPower" />
+            <delete tableName="SM_PersonSysPower"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-11">
@@ -1879,7 +1879,7 @@
             <column name="strDelFlag" value="0"/>
         </insert>
         <rollback>
-            <delete tableName="SM_ProjectArchitecture" />
+            <delete tableName="SM_ProjectArchitecture"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-12">
@@ -2052,7 +2052,7 @@
             <column name="nPowerCodeType" valueNumeric="0"/>
         </insert>
         <rollback>
-            <delete tableName="SM_ProjectPageButtonConfig" />
+            <delete tableName="SM_ProjectPageButtonConfig"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-13">
@@ -2121,7 +2121,7 @@
             <column name="nIsCanPowerItem" valueNumeric="1"/>
         </insert>
         <rollback>
-            <delete tableName="SM_ProjectPowerItem" />
+            <delete tableName="SM_ProjectPowerItem"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-14">
@@ -2294,7 +2294,7 @@
             <column name="IsSysMenu" value="1"/>
         </insert>
         <rollback>
-            <delete tableName="SM_QueryFieldConfig" />
+            <delete tableName="SM_QueryFieldConfig"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-15">
@@ -2307,7 +2307,7 @@
             <column name="ts" valueDate="2019-11-27T15:46:25"/>
         </insert>
         <rollback>
-            <delete tableName="SM_SyncObject" />
+            <delete tableName="SM_SyncObject"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-16">
@@ -2337,7 +2337,7 @@
             <column name="strValue" value="smtp.hollysys.com"/>
         </insert>
         <rollback>
-            <delete tableName="SM_SysSetting" />
+            <delete tableName="SM_SysSetting"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-17">
@@ -2402,7 +2402,7 @@
             <column name="DelFlag" value="0"/>
         </insert>
         <rollback>
-            <delete tableName="SM_SystemResource" />
+            <delete tableName="SM_SystemResource"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-18">
@@ -2747,7 +2747,7 @@
             <column name="DelFlag" value="0"/>
         </insert>
         <rollback>
-            <delete tableName="SM_SystemResourceDtl" />
+            <delete tableName="SM_SystemResourceDtl"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-19">
@@ -2760,7 +2760,7 @@
             <column name="strDeviceType" value="大华"/>
         </insert>
         <rollback>
-            <delete tableName="SM_VideoDevDict" />
+            <delete tableName="SM_VideoDevDict"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-20">
@@ -2780,7 +2780,7 @@
             <column name="FlowSts" valueNumeric="0"/>
         </insert>
         <rollback>
-            <delete tableName="t_BD_Dict" />
+            <delete tableName="t_BD_Dict"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-21">
@@ -2827,7 +2827,7 @@
             <column name="FlowSts" valueNumeric="0"/>
         </insert>
         <rollback>
-            <delete tableName="t_BD_Unit" />
+            <delete tableName="t_BD_Unit"/>
         </rollback>
     </changeSet>
     <changeSet author="WangXun" id="1574840791512-22">
@@ -3008,7 +3008,7 @@
             <column name="FlowSts" valueNumeric="0"/>
         </insert>
         <rollback>
-            <delete tableName="t_BD_UnitDtl" />
+            <delete tableName="t_BD_UnitDtl"/>
         </rollback>
     </changeSet>
     <changeSet id="v3.0.0.0" author="WangXun">

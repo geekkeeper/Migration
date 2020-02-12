@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <property name="now" value="now()" dbms="mysql"/>
@@ -19,7 +19,7 @@
     <property name="len" value="LENGTH" dbms="mysql"/>
     <property name="len" value="LENGTH" dbms="oracle"/>
 
-    <changeSet author="WangXun" id="1574840696094-1" >
+    <changeSet author="WangXun" id="1574840696094-1">
         <createTable remarks="生产报警信息" tableName="CF_Alarm">
             <column name="ID" remarks="主键" type="nvarchar(50)">
                 <constraints nullable="false"/>
@@ -57,7 +57,7 @@
 
         </rollback>
     </changeSet>
-    <changeSet author="WangXun" id="1574840696094-2" >
+    <changeSet author="WangXun" id="1574840696094-2">
         <createTable remarks="生产报警信息" tableName="CF_AlarmHis">
             <column name="ID" remarks="主键" type="nvarchar(50)">
                 <constraints nullable="false"/>
@@ -243,7 +243,8 @@
             <column name="strInputCode" remarks="创建人code" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_InputDate" name="strInputDate" remarks="创建时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_InputDate"
+                    name="strInputDate" remarks="创建时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -253,21 +254,24 @@
                     type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_ModifyDate" name="strModifyDate" remarks="修改时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroup_ModifyDate"
+                    name="strModifyDate" remarks="修改时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="strTrendGroupName" remarks="趋势组名称" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_PM_TrendGroup_TrendGroupType" defaultValueNumeric="0" name="nTrendGroupType"
+            <column defaultValueConstraintName="DF_PM_TrendGroup_TrendGroupType" defaultValueNumeric="0"
+                    name="nTrendGroupType"
                     remarks="趋势组类型，0公共趋势组   1自定义趋势组" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="strProjectCode" remarks="项目架构code" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroup_DelFlag" name="strDelFlag" remarks="删除标志 1删除  0未删除" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroup_DelFlag" name="strDelFlag"
+                    remarks="删除标志 1删除  0未删除" type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -281,7 +285,8 @@
                     type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_InputDate" name="strInputDate"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_InputDate"
+                    name="strInputDate"
                     remarks="创建时间" type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -291,7 +296,8 @@
                     type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_ModifyDate" name="strModifyDate"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_ModifyDate"
+                    name="strModifyDate"
                     remarks="修改时间" type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -310,13 +316,16 @@
                     type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nLowest" defaultValueNumeric="0" name="nLowest" remarks="最低值" type="int">
+            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nLowest" defaultValueNumeric="0" name="nLowest"
+                    remarks="最低值" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nHighest" defaultValueNumeric="0" name="nHighest" remarks="最高值" type="int">
+            <column defaultValueConstraintName="DF_PM_TrendGroupAndTag_nHighest" defaultValueNumeric="0" name="nHighest"
+                    remarks="最高值" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_DelFlag" name="strDelFlag" remarks="删除标志，1删除  0未删除"
+            <column defaultValue="0" defaultValueConstraintName="DF_PM_TrendGroupAndLabelPoint_DelFlag"
+                    name="strDelFlag" remarks="删除标志，1删除  0未删除"
                     type="char(1)">
                 <constraints nullable="false"/>
             </column>
@@ -337,7 +346,8 @@
             <column name="Path" type="nvarchar(1000)"/>
             <column name="Size" type="nvarchar(50)"/>
             <column name="UploadTime" type="datetime"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Attach__DelFl__3E52440B" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Attach__DelFl__3E52440B" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="PersonCode" type="nvarchar(50)"/>
@@ -443,7 +453,8 @@
             <column name="OrderNo" type="int"/>
             <column name="IsCompany" type="char(1)"/>
             <column name="IsProductionDept" type="char(1)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Depart__DelFl__1B0907CE" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Depart__DelFl__1B0907CE" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -453,15 +464,18 @@
             <column name="ID" remarks="主键，guid" type="nvarchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_SM_GeneralSettings"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_GeneralSettings_AlarmVoiceCycleNum" defaultValueNumeric="3" name="AlarmVoiceCycleNum"
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_AlarmVoiceCycleNum" defaultValueNumeric="3"
+                    name="AlarmVoiceCycleNum"
                     remarks="报警声音轮询条数设置，默认3" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_GeneralSettings_ConnInterruptTime" defaultValueNumeric="0" name="ConnInterruptTime"
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_ConnInterruptTime" defaultValueNumeric="0"
+                    name="ConnInterruptTime"
                     remarks="连接中断时间设置，单位分钟" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_GeneralSettings_LogoutTime" defaultValueNumeric="0" name="LogoutTime" remarks="无操作注销时间设置，单位分钟"
+            <column defaultValueConstraintName="DF_SM_GeneralSettings_LogoutTime" defaultValueNumeric="0"
+                    name="LogoutTime" remarks="无操作注销时间设置，单位分钟"
                     type="int">
                 <constraints nullable="false"/>
             </column>
@@ -473,11 +487,13 @@
             </column>
             <column name="LoginBackGroundPicture" remarks="登陆页背景图设置，存储文件流" type="image"/>
             <column name="MainLogoPicture" remarks="主界面logo设置" type="image"/>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_CreateTime" name="CreateTime" remarks="创建时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_CreateTime"
+                    name="CreateTime" remarks="创建时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_ModifiedTime" name="ModifiedTime"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_GeneralSettings_ModifiedTime"
+                    name="ModifiedTime"
                     remarks="修改设置时间" type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -513,7 +529,8 @@
             <column name="strOperater" remarks="创建人" type="nvarchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime" name="strOperateTime" remarks="创建时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime"
+                    name="strOperateTime" remarks="创建时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -521,11 +538,13 @@
                     remarks="日志来源 生产日志 = 1,系统日志 = 2,DCS日志 = 3" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_Log_nOperateContentKey" defaultValueNumeric="0" name="nOperateContentKey"
+            <column defaultValueConstraintName="DF_SM_Log_nOperateContentKey" defaultValueNumeric="0"
+                    name="nOperateContentKey"
                     remarks="其他0，登录注销1、新增2、删除3、修改4，置位 = 10,写模拟量值 = 11," type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_Log_nStatus" defaultValueNumeric="1" name="nStatus" remarks="状态 1成功  0失败" type="int">
+            <column defaultValueConstraintName="DF_SM_Log_nStatus" defaultValueNumeric="1" name="nStatus"
+                    remarks="状态 1成功  0失败" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="strIP" remarks="ip" type="nvarchar(50)">
@@ -554,7 +573,8 @@
             <column name="Content" type="nvarchar(4000)"/>
             <column name="Sender" type="nvarchar(50)"/>
             <column name="SendTime" type="datetime"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__108B795B" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__108B795B" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -576,7 +596,8 @@
             <column name="PID" type="nvarchar(50)"/>
             <column name="PersonCode" type="nvarchar(50)"/>
             <column name="IsRead" type="char(1)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__1367E606" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Messag__DelFl__1367E606" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -637,11 +658,13 @@
             <column name="PersonStatus" type="char(1)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Person__DelFl__21B6055D" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Person__DelFl__21B6055D" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="RandCode" type="int"/>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF__SM_Person__LastP__2DB1C7EE" name="LastPasswordChangeTime"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF__SM_Person__LastP__2DB1C7EE"
+                    name="LastPasswordChangeTime"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -752,7 +775,8 @@
             <column name="strName" remarks="项目节点名称" type="nvarchar(50)"/>
             <column name="nOrderNo" remarks="项目节点序号" type="int"/>
             <column name="strIsFinalLeaf" remarks="是否为最终叶子节点" type="char(1)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectStruct_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectStruct_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -770,7 +794,8 @@
             <column name="strProjectCode" remarks="流程图父节点编码" type="nvarchar(50)"/>
             <column name="nOrderNo" remarks="流程图节点序号" type="int"/>
             <column name="strResourceUrl" remarks="流程图节点关联资源地址" type="nvarchar(1000)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectFlowChart_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectFlowChart_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -783,18 +808,22 @@
             <column name="strProjectCode" remarks="项目架构编码" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLon" defaultValueNumeric="0" name="nLon" remarks="经度" type="decimal(18, 6)">
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLon" defaultValueNumeric="0" name="nLon" remarks="经度"
+                    type="decimal(18, 6)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLat" defaultValueNumeric="0" name="nLat" remarks="纬度" type="decimal(18, 6)">
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nLat" defaultValueNumeric="0" name="nLat" remarks="纬度"
+                    type="decimal(18, 6)">
                 <constraints nullable="false"/>
             </column>
             <column name="strIcon" remarks="图标的名字" type="nvarchar(50)"/>
-            <column defaultValueConstraintName="DF_SM_ProjectGIS_nDisplaySet" defaultValueNumeric="1" name="nDisplaySet" remarks="始终显示1  鼠标放上显示2"
+            <column defaultValueConstraintName="DF_SM_ProjectGIS_nDisplaySet" defaultValueNumeric="1" name="nDisplaySet"
+                    remarks="始终显示1  鼠标放上显示2"
                     type="int"/>
             <column name="strTagNames" remarks="标签名称集合" type="${nvarchar(MAX)}"/>
             <column name="strRemark" remarks="备注" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectGIS_strDelFlag" name="strDelFlag" remarks="删除标志 1删除  0未删除"
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectGIS_strDelFlag" name="strDelFlag"
+                    remarks="删除标志 1删除  0未删除"
                     type="char(1)">
                 <constraints nullable="false"/>
             </column>
@@ -856,7 +885,8 @@
             <column name="strResourceUrl" remarks="报表模板关联资源地址" type="nvarchar(1000)"/>
             <column name="strGTGuid" remarks="报表模板归属工程" type="nvarchar(50)"/>
             <column name="strGTProject" remarks="报表模板归属工程标识" type="nvarchar(50)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectReportTemplet_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectReportTemplet_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -875,7 +905,8 @@
             <column name="strCompanyID" remarks="高级报表厂商ID" type="nvarchar(50)"/>
             <column name="strUserName" remarks="高级报表服务器用户名" type="nvarchar(50)"/>
             <column name="strPassword" remarks="高级报表服务器访问密码" type="nvarchar(200)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectSuperReport_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectSuperReport_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -900,7 +931,8 @@
             <column name="strGTGuid" remarks="标签归属工程标识" type="nvarchar(50)"/>
             <column name="strGTPC" remarks="标签归属PC" type="nvarchar(50)"/>
             <column name="strGTDomain" remarks="标签归属MACS域号" type="nvarchar(50)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectTag_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectTag_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="nTagDataType" remarks="标签数据类型：开关，模拟" type="int"/>
@@ -920,7 +952,8 @@
             <column name="strDevType" remarks="视频设备类型" type="nvarchar(50)"/>
             <column name="strUserName" remarks="视频服务器用户名" type="nvarchar(50)"/>
             <column name="strPassword" remarks="视频服务器访问密码" type="nvarchar(50)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectVideo_DelFlag" name="strDelFlag" remarks="删除标志" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_SM_ProjectVideo_DelFlag" name="strDelFlag"
+                    remarks="删除标志" type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="strAccountID" remarks="视频帐户ID" type="nvarchar(50)"/>
@@ -959,7 +992,8 @@
             </column>
             <column name="GroupName" type="nvarchar(50)"/>
             <column name="Remark" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Receiv__DelFl__164452B1" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Receiv__DelFl__164452B1" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)">
@@ -998,11 +1032,13 @@
             <column name="ID" remarks="自增id" type="nvarchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_SM_ReportPlan"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strInputDate" name="strInputDate" remarks="创建时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strInputDate"
+                    name="strInputDate" remarks="创建时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strModifyDate" name="strModifyDate" remarks="修改时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportPlan_strModifyDate"
+                    name="strModifyDate" remarks="修改时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -1025,24 +1061,32 @@
             </column>
             <column name="strPlanDescription" remarks="报表服务描述"
                     type="nvarchar(50)"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nPlanAttribute" defaultValueNumeric="1" name="nPlanAttribute" remarks="计划属性 1自动  2手动"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nPlanAttribute" defaultValueNumeric="1"
+                    name="nPlanAttribute" remarks="计划属性 1自动  2手动"
                     type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nIsSendPrinter" defaultValueNumeric="0" name="nIsSendPrinter"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nIsSendPrinter" defaultValueNumeric="0"
+                    name="nIsSendPrinter"
                     remarks="是否自动发送打印机 1发送  0不发送" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="nPrintCycle" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonth" defaultValueNumeric="0" name="nMonth" remarks="月份，1到12" type="int"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nDay" defaultValueNumeric="0" name="nDay" remarks="日，1到31" type="int"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nHour" defaultValueNumeric="0" name="nHour" remarks="时，0到23" type="int"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nMinute" defaultValueNumeric="0" name="nMinute" remarks="分 0到59" type="int"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonthNumber" defaultValueNumeric="0" name="nMonthNumber" remarks="第几个月，为季度报表用"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonth" defaultValueNumeric="0" name="nMonth"
+                    remarks="月份，1到12" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nDay" defaultValueNumeric="0" name="nDay"
+                    remarks="日，1到31" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nHour" defaultValueNumeric="0" name="nHour"
+                    remarks="时，0到23" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMinute" defaultValueNumeric="0" name="nMinute"
+                    remarks="分 0到59" type="int"/>
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nMonthNumber" defaultValueNumeric="0"
+                    name="nMonthNumber" remarks="第几个月，为季度报表用"
                     type="int"/>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_nWeekNumber" defaultValueNumeric="0" name="nWeekNumber" remarks="周几，1到7，为周报用"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_nWeekNumber" defaultValueNumeric="0" name="nWeekNumber"
+                    remarks="周几，1到7，为周报用"
                     type="int"/>
             <column name="strReportTemplateID" remarks="报表模板id" type="nvarchar(50)">
                 <constraints nullable="false"/>
@@ -1051,11 +1095,13 @@
             <column name="strReportTemplateResourceUrl" remarks="报表模板文件磁盘地址" type="nvarchar(256)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_strDelFlag" defaultValueNumeric="0" name="strDelFlag" remarks="删除标志  1删除  0未删除"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_strDelFlag" defaultValueNumeric="0" name="strDelFlag"
+                    remarks="删除标志  1删除  0未删除"
                     type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF_SM_ReportPlan_strIsSynchronize" defaultValueNumeric="1" name="strIsSynchronize"
+            <column defaultValueConstraintName="DF_SM_ReportPlan_strIsSynchronize" defaultValueNumeric="1"
+                    name="strIsSynchronize"
                     remarks="重新下装后数据是否同步了，1是同步  0是未同步" type="int"/>
         </createTable>
     </changeSet>
@@ -1067,11 +1113,13 @@
             <column name="PID" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strInputDate" name="strInputDate" remarks="创建时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strInputDate"
+                    name="strInputDate" remarks="创建时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strModifyDate" name="strModifyDate" remarks="修改时间"
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_ReportRecord_strModifyDate"
+                    name="strModifyDate" remarks="修改时间"
                     type="datetime">
                 <constraints nullable="false"/>
             </column>
@@ -1079,7 +1127,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="strOperatorAccount" remarks="执行人（自动报表为空）" type="nvarchar(50)"/>
-            <column defaultValueConstraintName="DF_SM_ReportRecord_strDelFlag" defaultValueNumeric="0" name="strDelFlag" remarks="删除标志  1删除  0未删除"
+            <column defaultValueConstraintName="DF_SM_ReportRecord_strDelFlag" defaultValueNumeric="0" name="strDelFlag"
+                    remarks="删除标志  1删除  0未删除"
                     type="int">
                 <constraints nullable="false"/>
             </column>
@@ -1095,7 +1144,8 @@
             </column>
             <column name="Name" type="nvarchar(50)"/>
             <column name="Describe" type="nvarchar(1000)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_Role__DelFlag__2E1BDC42" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_Role__DelFlag__2E1BDC42" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -1213,7 +1263,8 @@
             <column name="IsHide" type="char(1)"/>
             <column name="IsSysMenu" type="char(1)"/>
             <column name="Platform" type="char(1)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__36B12243" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__36B12243" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -1242,7 +1293,8 @@
             <column name="ConfCodeVou" type="char(1)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__398D8EEE" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF__SM_System__DelFl__398D8EEE" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -1295,7 +1347,8 @@
             <column name="strUID" remarks="用户登录唯一标识" type="nvarchar(50)"/>
             <column name="strLogTime" remarks="用户登录时间" type="nvarchar(50)"/>
             <column name="strLastReqTime" remarks="客户端最近请求时间" type="nvarchar(50)"/>
-            <column defaultValueConstraintName="DF_SM_UserLogin_IsOrNotLogin" defaultValueNumeric="0" name="IsOrNotLogin" remarks="是否登陆，1登陆，0未登录"
+            <column defaultValueConstraintName="DF_SM_UserLogin_IsOrNotLogin" defaultValueNumeric="0"
+                    name="IsOrNotLogin" remarks="是否登陆，1登陆，0未登录"
                     type="int">
                 <constraints nullable="false"/>
             </column>
@@ -1363,7 +1416,8 @@
             <column name="ShiftCode" type="nvarchar(50)"/>
             <column name="TeamCode" type="nvarchar(50)"/>
             <column name="Dept" type="nvarchar(50)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangePeriod_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangePeriod_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1392,7 +1446,8 @@
             <column name="Dept" type="nvarchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_t_BD_ArrangeResult"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangeResult_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_ArrangeResult_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1480,7 +1535,8 @@
             <column name="SafeInventory" type="decimal(22, 6)"/>
             <column name="IsSetBatch" type="int"/>
             <column name="Remark" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Material_DelFlag" name="DelFlag" type="nchar(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Material_DelFlag" name="DelFlag"
+                    type="nchar(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1510,7 +1566,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="Remark" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialAttr_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialAttr_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1533,7 +1590,8 @@
             <column name="MatCode" type="nvarchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_t_BD_MaterialRelType"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialRelType_DelFlag" name="DelFlag" type="char(1)"/>
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_MaterialRelType_DelFlag" name="DelFlag"
+                    type="char(1)"/>
             <column name="InputCode" type="nvarchar(50)"/>
             <column name="InputDate" type="datetime"/>
             <column name="DeptCode" type="nvarchar(50)"/>
@@ -1582,7 +1640,8 @@
             <column name="ShortName" type="nvarchar(50)"/>
             <column name="Place" type="nvarchar(200)"/>
             <column name="Remark" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Supplier_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_Supplier_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1605,7 +1664,8 @@
             <column name="MatCode" type="nvarchar(50)">
                 <constraints primaryKey="true" primaryKeyName="PK_t_BD_SupplierMaterialDtl"/>
             </column>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_SupplierMaterialDtl_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_SupplierMaterialDtl_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1680,7 +1740,8 @@
             </column>
             <column name="ScaledValue" type="nvarchar(50)"/>
             <column name="Remark" type="nvarchar(500)"/>
-            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_UnitConv_DelFlag" name="DelFlag" type="char(1)">
+            <column defaultValue="0" defaultValueConstraintName="DF_t_BD_UnitConv_DelFlag" name="DelFlag"
+                    type="char(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="InputCode" type="nvarchar(50)"/>
@@ -1858,7 +1919,8 @@
     </changeSet>
 
     <changeSet author="WangXun" id="1574840696094-85" dbms="mssql">
-        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_SM_ProjectArchitecture" tableName="SM_ProjectArchitecture"/>
+        <addPrimaryKey clustered="false" columnNames="ID" constraintName="PK_SM_ProjectArchitecture"
+                       tableName="SM_ProjectArchitecture"/>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-85" dbms="mysql">
         <addPrimaryKey columnNames="ID" constraintName="PK_SM_ProjectArchitecture" tableName="SM_ProjectArchitecture"/>
@@ -1872,13 +1934,16 @@
     </changeSet>
 
     <changeSet author="WangXun" id="1574840696094-87">
-        <addUniqueConstraint columnNames="strObjectName" constraintName="UQ__SM_SyncO__96439D4DAC4FD534" tableName="SM_SyncObject"/>
+        <addUniqueConstraint columnNames="strObjectName" constraintName="UQ__SM_SyncO__96439D4DAC4FD534"
+                             tableName="SM_SyncObject"/>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-88">
-        <addUniqueConstraint columnNames="strPersonCode" constraintName="UQ__SM_UserP__4AE80FD304D4B198" tableName="SM_UserPushConfig"/>
+        <addUniqueConstraint columnNames="strPersonCode" constraintName="UQ__SM_UserP__4AE80FD304D4B198"
+                             tableName="SM_UserPushConfig"/>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-89">
-        <addUniqueConstraint columnNames="strAccount" constraintName="UQ__SM_UserS__9C0CF01868C968C4" tableName="SM_UserSetting"/>
+        <addUniqueConstraint columnNames="strAccount" constraintName="UQ__SM_UserS__9C0CF01868C968C4"
+                             tableName="SM_UserSetting"/>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-90" dbms="mssql">
         <createIndex clustered="true" indexName="IX_CF_Alarm_C" tableName="CF_Alarm">
@@ -1912,7 +1977,8 @@
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-94">
         <createIndex indexName="IX_SM_Log" tableName="SM_Log">
-            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime" name="strOperateTime"/>
+            <column defaultValueComputed="${now}" defaultValueConstraintName="DF_SM_Log_strOperateTime"
+                    name="strOperateTime"/>
         </createIndex>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-95">
@@ -1921,7 +1987,8 @@
         </createIndex>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-96" dbms="mssql">
-        <createIndex clustered="true" indexName="IX_SM_ProjectArchitecture_C" tableName="SM_ProjectArchitecture" unique="true">
+        <createIndex clustered="true" indexName="IX_SM_ProjectArchitecture_C" tableName="SM_ProjectArchitecture"
+                     unique="true">
             <column name="strProjectCode"/>
         </createIndex>
     </changeSet>
@@ -1984,7 +2051,8 @@
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-106">
         <addForeignKeyConstraint baseColumnNames="strProjectCode" baseTableName="PM_TrendGroup"
-                                 constraintName="FK_PM_TrendGroup_SM_ProjectArchitecture" deferrable="false" initiallyDeferred="false"
+                                 constraintName="FK_PM_TrendGroup_SM_ProjectArchitecture" deferrable="false"
+                                 initiallyDeferred="false"
                                  onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="strProjectCode"
                                  referencedTableName="SM_ProjectArchitecture" validate="true"/>
     </changeSet>
@@ -2134,7 +2202,8 @@
             CASE
 
             WHEN BeginTime > EndTime THEN
-            CONVERT ( VARCHAR ( 100 ), DATEADD ( DAY, 1, WorkDate ), 23 ) + ' ' + EndTime + ':00' ELSE CONVERT ( VARCHAR ( 100 ), WorkDate, 23 ) + ' ' + EndTime + ':00'
+            CONVERT ( VARCHAR ( 100 ), DATEADD ( DAY, 1, WorkDate ), 23 ) + ' ' + EndTime + ':00' ELSE CONVERT ( VARCHAR
+            ( 100 ), WorkDate, 23 ) + ' ' + EndTime + ':00'
             END AS EndDate
             FROM
             t_BD_ArrangeResult AS a
@@ -2163,7 +2232,8 @@
             CASE
 
             WHEN BeginTime > EndTime THEN
-            DATE_FORMAT( DATE_ADD( WorkDate, INTERVAL 1 DAY ), '%Y-%m-%d' ) + ' ' + EndTime + ':00' ELSE DATE_FORMAT( WorkDate, '%Y-%m-%d' ) + ' ' + EndTime + ':00'
+            DATE_FORMAT( DATE_ADD( WorkDate, INTERVAL 1 DAY ), '%Y-%m-%d' ) + ' ' + EndTime + ':00' ELSE DATE_FORMAT(
+            WorkDate, '%Y-%m-%d' ) + ' ' + EndTime + ':00'
             END AS EndDate
             FROM
             t_BD_ArrangeResult AS a
@@ -2578,14 +2648,15 @@
             END
             ) AS `NodeTypeName`,
             `a`.`strStateTime` AS `strStateTime`,
-            ( SELECT count( 0 ) AS `Expr1` FROM `cf_processstate` WHERE ( `cf_processstate`.`nNodePCID` = `a`.`nNodePCID` ) ) AS `IsHaveDetail`
+            ( SELECT count( 0 ) AS `Expr1` FROM `cf_processstate` WHERE ( `cf_processstate`.`nNodePCID` =
+            `a`.`nNodePCID` ) ) AS `IsHaveDetail`
             FROM
             `cf_nodestate` `a`
         </createView>
     </changeSet>
 
     <changeSet author="WangXun" id="1574840696094-124" dbms="mssql">
-        <createView fullDefinition="false" viewName="V_CF_ProcessState" >
+        <createView fullDefinition="false" viewName="V_CF_ProcessState">
             SELECT
             ID,
             nNodePCID,
@@ -2612,7 +2683,7 @@
         </createView>
     </changeSet>
     <changeSet author="WangXun" id="1574840696094-124" dbms="mysql">
-        <createView fullDefinition="false" viewName="V_CF_ProcessState" >
+        <createView fullDefinition="false" viewName="V_CF_ProcessState">
             SELECT
             `a`.`ID` AS `ID`,
             `a`.`nNodePCID` AS `nNodePCID`,
@@ -2680,11 +2751,13 @@
             ( CASE a.PolishRule WHEN '0' THEN '左补' WHEN '1' THEN '右补' WHEN '2' THEN '不补' END ) AS PolishRuleName,
             a.Prefix,
             a.Radix,
-            ( CASE a.Radix WHEN '0' THEN '二进制' WHEN '1' THEN '八进制' WHEN '2' THEN '十进制' WHEN '3' THEN '十六进制' END ) AS RadixName,
+            ( CASE a.Radix WHEN '0' THEN '二进制' WHEN '1' THEN '八进制' WHEN '2' THEN '十进制' WHEN '3' THEN '十六进制' END ) AS
+            RadixName,
             a.Remark,
             a.SerialEntity,
             a.SerialTimeGran,
-            ( CASE a.SerialTimeGran WHEN '0' THEN '日' WHEN '1' THEN '月' WHEN '2' THEN '年' ELSE '无' END ) AS SerialTimeGranName,
+            ( CASE a.SerialTimeGran WHEN '0' THEN '日' WHEN '1' THEN '月' WHEN '2' THEN '年' ELSE '无' END ) AS
+            SerialTimeGranName,
             a.Suffix,
             a.ValueSource,
             b.Title
@@ -3927,7 +4000,8 @@
             FROM
             SM_Person AS a
             LEFT OUTER JOIN SM_PersonRole_Rel AS b ON a.CODE = b.PersonCode
-            LEFT OUTER JOIN ( SELECT ID, CODE, NAME, 'DESCRIBE', DelFlag FROM SM_Role WHERE ( DelFlag = '0' ) ) AS c_2 ON b.RoleCode = c_2.CODE
+            LEFT OUTER JOIN ( SELECT ID, CODE, NAME, 'DESCRIBE', DelFlag FROM SM_Role WHERE ( DelFlag = '0' ) ) AS c_2
+            ON b.RoleCode = c_2.CODE
             WHERE
             a.DelFlag = '0'
             ) AS aa
