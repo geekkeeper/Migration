@@ -169,7 +169,7 @@
     <changeSet author="WangXun" id="1581416841954-5">
         <createTable remarks="报警隐藏表" tableName="CF_HideAlarm">
             <column name="ID" remarks="主键ID" type="nvarchar(50)">
-                <constraints primaryKey="true" primaryKeyName="PK_HDALARMID"/>
+                <constraints primaryKey="true" primaryKeyName="PK_HIDE_ALARM_ID"/>
             </column>
             <column name="nAlarmType" remarks="报警类型（上限，上上限......）" type="int">
                 <constraints nullable="false"/>
