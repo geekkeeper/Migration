@@ -1,20 +1,21 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 	<!--全局属性：通用数据类型、数据库兼容配置-->
 	<!--*****************************通用数据类型*******************************-->
 	<!--编号-->
-	<property global="true" name="id" value="varchar(32)" />
-	<!--编号-->
-	<property global="true" name="code" value="varchar(32)" />
+	<property global="true" name="id" value="varchar(32)"/>
+	<!--编码-->
+	<property global="true" name="code" value="varchar(32)"/>
 	<!--值-->
 	<property global="true" name="value" value="varchar(64)"/>
 	<!--名称-->
-	<property global="true" name="name" value="varchar(64)" />
+	<property global="true" name="name" value="varchar(64)"/>
 	<!--路径-->
-	<property global="true" name="url" value="varchar(512)" />
+	<property global="true" name="url" value="varchar(512)"/>
 	<!--备注-->
-	<property global="true" name="remark" value="varchar(128)" />
+	<property global="true" name="remark" value="varchar(128)"/>
 	<!--布尔-->
 	<property global="true" name="boolean" value="char(1)" />
 	<!--类型-->
@@ -62,7 +63,7 @@
 	<!--IP地址-->
 	<property global="true" name="ip" value="varchar(23)"/>
 	<!--位数-->
-	<property global="true" name="digit" value="varchar(23)"/>
+	<property global="true" name="digit" value="int"/>
 
 	<!--*****************************通用数据类型*******************************-->
 	<!--*****************************数据库兼容配置******************************-->
