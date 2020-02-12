@@ -545,7 +545,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_OPERATE_ID"/>
             </column>
             <column name="TYPE" type="char(1)" remarks="操作类型:1-确认报警;2-抑制报警;3-确认或抑制报警"/>
-            <column name="DESCRIPITION" type="varchar(80)" remarks="说明内容"/>
+            <column name="DESCRIPITION" type="varchar(100)" remarks="说明内容"/>
         </createTable>
     </changeSet>
     <!--系统资源表-->
