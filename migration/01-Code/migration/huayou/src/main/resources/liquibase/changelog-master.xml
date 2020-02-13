@@ -3,6 +3,8 @@
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
+    <!--全局属性：通用数据类型、数据库兼容配置-->
+    <include file="common-property.xml" relativeToChangelogFile="true"/>
     <!--<changeSet id="v1.0.0.0" author="WangXun">
         <tagDatabase tag="v1.0.0.0"/>
     </changeSet>

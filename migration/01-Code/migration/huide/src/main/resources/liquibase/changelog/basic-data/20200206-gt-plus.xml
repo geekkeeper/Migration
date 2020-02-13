@@ -304,7 +304,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="SERVICE_IP" type="${ip}" remarks="时钟源地址"/>
-            <column name="SERIAL_PORT" type="${serial}" remarks="串口号"/>
+            <column name="SERIAL_PORT" type="${sort}" remarks="串口号"/>
             <column name="BAUD_RATE" type="${baud}" remarks="波特率"/>
             <column name="CHECK_BIT" type="${digit}" remarks="校验位"/>
             <column name="DATA_DIGIT" type="${digit}" remarks="数据位数"/>

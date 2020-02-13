@@ -138,6 +138,10 @@
 			<column name="DELETE_TAG" value="N"/>
 			<column name="SYSTEMATIC" value="Y"/>
 		</insert>
+		<rollback>
+			<delete tableName="AM_COMMON_ACTION"/>
+			<dropTable tableName="AM_COMMON_ACTION"/>
+		</rollback>
 	</changeSet>
 	<!--新建系统模块表(AM_MODULE)-->
 	<changeSet id="1576561645670-7" author="WangXun">

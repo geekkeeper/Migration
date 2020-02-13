@@ -73,6 +73,10 @@
 			<column name="UPDATE_BY"/>
 			<column name="UPDATE_TIME"/>
 		</insert>
+		<rollback>
+			<delete tableName="BD_DICTIONARY_KEY"/>
+			<dropTable tableName="BD_DICTIONARY_KEY"/>
+		</rollback>
 	</changeSet>
 	<!--字典条目表(BD_DICTIONARY_ITEM)-->
 	<changeSet id="1576425600000-2" author="WangXun">
@@ -309,6 +313,10 @@
 			<column name="UPDATE_BY"/>
 			<column name="UPDATE_TIME"/>
 		</insert>
+		<rollback>
+			<delete tableName="BD_DICTIONARY_ITEM"/>
+			<dropTable tableName="BD_DICTIONARY_ITEM"/>
+		</rollback>
 	</changeSet>
 	<!--人员表(BD_Person)-->
 	<changeSet id="1576425600000-3" author="WangXun">
@@ -339,88 +347,6 @@
 			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 		</createTable>
 	</changeSet>
-	<!--语言表(BD_LANGUAGE)-->
-	<changeSet id="1576425600000-4" author="WangXun">
-		<comment>新建语言表(BD_LANGUAGE)</comment>
-		<createTable tableName="BD_LANGUAGE" remarks="语言表">
-			<column name="ID" type="${id}" remarks="语言编号">
-				<constraints primaryKey="true" primaryKeyName="PK_LANGUAGE_ID"/>
-			</column>
-			<column name="CODE" type="${code}" remarks="语言编码">
-				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CODE"
-							 unique="true" uniqueConstraintName="UQ_LANGUAGE_CODE"/>
-			</column>
-			<column name="REMARK" type="${remark}" remarks="描述"/>
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
-			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
-			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
-		</createTable>
-		<insert tableName="BD_LANGUAGE">
-			<column name="ID" value="LA_1000001"/>
-			<column name="CODE" value="zh_cn"/>
-			<column name="REMARK" value="中文（中华人民共和国）"/>
-			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
-		</insert>
-		<insert tableName="BD_LANGUAGE">
-			<column name="ID" value="LA_1000002"/>
-			<column name="CODE" value="en"/>
-			<column name="REMARK" value="英语（标准）"/>
-			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
-		</insert>
-		<insert tableName="BD_LANGUAGE">
-			<column name="ID" value="LA_1000003"/>
-			<column name="CODE" value="ru"/>
-			<column name="REMARK" value="俄语（标准）"/>
-			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
-		</insert>
-		<insert tableName="BD_LANGUAGE">
-			<column name="ID" value="LA_1000004"/>
-			<column name="CODE" value="fr"/>
-			<column name="REMARK" value="法语（标准）"/>
-			<column name="CREATE_TIME" value="2019-12-25 13:49:13.000"/>
-		</insert>
-	</changeSet>
-	<!--内容表(BD_CONTENT)-->
-	<changeSet id="1576425600000-5" author="WangXun">
-		<comment>新建内容表(BD_CONTENT)</comment>
-		<createTable tableName="BD_CONTENT" remarks="内容表">
-			<column name="ID" type="${id}" remarks="内容编号">
-				<constraints primaryKey="true" primaryKeyName="PK_CONTENT_ID"/>
-			</column>
-			<column name="CODE" type="${code}" remarks="内容编码">
-				<constraints nullable="false" notNullConstraintName="NU_CONTENT_CODE"/>
-			</column>
-			<column name="DEFAULT_CONTENT" type="${name}" remarks="默认内容">
-				<constraints nullable="false" notNullConstraintName="NU_CONTENT_DEFAULT_CONTENT"/>
-			</column>
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
-			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
-			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
-		</createTable>
-	</changeSet>
-	<!--语言内容表(BD_LANGUAGE_CONTENT)-->
-	<changeSet id="1576425600000-6" author="WangXun">
-		<comment>新建语言内容表(BD_LANGUAGE_CONTENT)</comment>
-		<createTable tableName="BD_LANGUAGE_CONTENT" remarks="语言内容表">
-			<column name="ID" type="${id}" remarks="编号">
-				<constraints primaryKey="true" primaryKeyName="PK_LANGUAGE_CONTENT_ID"/>
-			</column>
-			<column name="CONTENT_CODE" type="${code}" remarks="内容编码">
-				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT_CONTENT_ID"/>
-			</column>
-			<column name="LANGUAGE_ID" type="${id}" remarks="语言编号">
-				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT_LANGUAGE_ID"/>
-			</column>
-			<column name="LANGUAGE_CONTENT" type="${name}" remarks="语言内容">
-				<constraints nullable="false" notNullConstraintName="NU_LANGUAGE_CONTENT"/>
-			</column>
-			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
-			<column name="CREATE_BY" type="${id}" remarks="创建人"/>
-			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
-			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
-		</createTable>
-	</changeSet>
+
 
 </databaseChangeLog>

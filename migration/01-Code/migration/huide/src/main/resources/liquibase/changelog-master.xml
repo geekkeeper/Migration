@@ -6,11 +6,10 @@
     <!--全局属性：通用数据类型、数据库兼容配置-->
     <include file="common-property.xml" relativeToChangelogFile="true"/>
 
-<!--    <include file="changelog/basic-data/20191216-basic-data.xml" relativeToChangelogFile="true"/>-->
+   <!-- <include file="changelog/basic-data/20191216-basic-data.xml" relativeToChangelogFile="true"/>-->
 <!--    <include file="changelog/authority-manage/20191217-authority-manage.xml" relativeToChangelogFile="true"/>-->
-    <!--<include file="changelog/system-config/20191218-system-config.xml" relativeToChangelogFile="true"/>-->
-    <!--<include file="changelog/produce-monitor/20200117-alarm-manage.xml" relativeToChangelogFile="true"/>-->
-    <include file="changelog/basic-data/20200206-gt-plus.xml" relativeToChangelogFile="true"/>
-  <!--  <include file="changelog/produce-monitor/2020-02-06-produce-monitor.xml" relativeToChangelogFile="true"/>-->
-    <!--<include file="changelog/basic-data/20191228-team-manage.xml" relativeToChangelogFile="true"/>-->
+ <!--   <include file="changelog/system-config/20191218-system-config.xml" relativeToChangelogFile="true"/>-->
+ <!--   <include file="changelog/basic-data/20200206-gt-plus.xml" relativeToChangelogFile="true"/>-->
+    <include file="changelog/produce-monitor/2020-02-06-produce-monitor.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
