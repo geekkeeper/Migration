@@ -303,4 +303,5 @@
             <column name="EXECUTOR" type="${id}" remarks="执行人"/>
         </createTable>
     </changeSet>
+
 </databaseChangeLog>
