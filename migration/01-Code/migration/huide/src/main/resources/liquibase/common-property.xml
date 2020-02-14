@@ -18,6 +18,8 @@
 	<property global="true" name="name" value="varchar(64)"/>
 	<!--周期-->
 	<property global="true" name="cycle" value="int"/>
+	<!--地址-->
+	<property global="true" name="address" value="varchar(128)"/>
 	<!--备注-->
 	<property global="true" name="remark" value="varchar(128)"/>
 	<!--宽度高度-->

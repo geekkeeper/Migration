@@ -6,7 +6,7 @@
 
 	<!--基础数据模块-->
 	<!--字典键表(BD_DICTIONARY_KEY)-->
-	<changeSet id="1576425600000-1" author="WangXun">
+	<changeSet author="WangXun" id="1576425600000-1" >
 		<comment>创建字典键表</comment>
 		<createTable tableName="BD_DICTIONARY_KEY" remarks="字典键表">
 			<column name="ID" type="${id}" remarks="键编号">
@@ -79,7 +79,7 @@
 		</rollback>
 	</changeSet>
 	<!--字典条目表(BD_DICTIONARY_ITEM)-->
-	<changeSet id="1576425600000-2" author="WangXun">
+	<changeSet author="WangXun" id="1576425600000-2" >
 		<comment>创建字典条目表(BD_DICTIONARY_ITEM)</comment>
 		<createTable tableName="BD_DICTIONARY_ITEM" remarks="字典条目表">
 			<column name="ID" type="${id}" remarks="条目编号">
@@ -319,7 +319,7 @@
 		</rollback>
 	</changeSet>
 	<!--人员表(BD_Person)-->
-	<changeSet id="1576425600000-3" author="WangXun">
+	<changeSet author="WangXun" id="1576425600000-3" >
 		<comment>新建人员表(BD_Person)</comment>
 		<createTable tableName="BD_PERSON" remarks="人员表">
 			<column name="ID" type="${id}" remarks="人员编号">
@@ -347,6 +347,96 @@
 			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 		</createTable>
 	</changeSet>
-
+	<!--公司表-->
+	<changeSet author="Sun YiWen" id="1581661583168-1">
+		<createTable remarks="公司表" tableName="BD_COMPANY">
+			<column name="ID" remarks="公司编号" type="${id}">
+				<constraints primaryKey="true" primaryKeyName="PK_BD_COMPANY"/>
+			</column>
+			<column name="CODE" remarks="公司编码" type="${code}"/>
+			<column name="SHORT_NAME" remarks="公司名称（简称）" type="${name}"/>
+			<column name="FULL_NAME" remarks="公司名称（全称）" type="${name}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="STATE" remarks="公司状态" type="${type}"/>
+			<column name="TYPE" remarks="公司类型" type="${type}"/>
+			<column name="PARENT_ID" remarks="父级编号" type="${id}"/>
+			<column name="PARENT_NAME" remarks="父级名称" type="${name}"/>
+			<column name="SORT_INDEX" remarks="排序编号:同级排序" type="${sort}"/>
+			<column name="SYSTEMATIC" remarks="系统标识" type="${boolean}"/>
+			<column name="EXTERNAL_TAG" remarks="外部标识：y-外部的，n-内部的" type="${boolean}"/>
+			<column name="DELETE_TAG" remarks="删除标识:N-未删除、Y-已删除" type="${boolean}"/>
+			<column name="CREATE_BY" remarks="创建人" type="${id}"/>
+			<column name="CREATE_TIME" remarks="创建时间" type="${datetime}"/>
+			<column name="UPDATE_BY" remarks="修改人" type="${id}"/>
+			<column name="UPDATE_TIME" remarks="修改时间" type="${datetime}"/>
+			<column name="REMARK" remarks="备注信息,描述信息" type="${remark}"/>
+			<column name="REGIONAL_CODE" remarks="区域编号" type="${code}"/>
+			<column name="ADDRESS" remarks="详细地址" type="${address}"/>
+			<column name="LEVEL" remarks="层级编号" type="${level}"/>
+			<column name="EMAIL" remarks="邮箱" type="${email}"/>
+			<column name="PHONE" remarks="联系电话" type="${phone}"/>
+		</createTable>
+	</changeSet>
+	<!--部门表-->
+	<changeSet author="Sun YiWen" id="1581661583168-3">
+		<createTable remarks="部门表" tableName="BD_DEPARTMENT">
+			<column name="DEPARTMENT_ID" remarks="部门编号" type="${id}">
+				<constraints primaryKey="true" primaryKeyName="PK_BD_DEPARTMENT"/>
+			</column>
+			<column name="CODE" remarks="部门编码" type="${code}"/>
+			<column name="SHORT_NAME" remarks="部门名称（简称）" type="${name}"/>
+			<column name="FULL_NAME" remarks="部门名称（全称）" type="${name}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TYPE" remarks="部门类型" type="${type}"/>
+			<column name="LEADER" remarks="部门领导" type="${id}"/>
+			<column name="PARENT_ID" remarks="父级编号" type="${id}"/>
+			<column name="PARENT_NAME" remarks="父级名称" type="${name}"/>
+			<column name="DELETE_TAG" remarks="删除标识:N-未删除、Y-已删除" type="${boolean}"/>
+			<column name="SORT_INDEX" remarks="排序编号:同级排序" type="${sort}"/>
+			<column name="LEVEL" remarks="层级编号" type="${level}"/>
+			<column name="CREATE_BY" remarks="创建人" type="${id}"/>
+			<column name="CREATE_TIME" remarks="创建时间" type="${datetime}"/>
+			<column name="UPDATE_BY" remarks="修改人" type="${id}"/>
+			<column name="UPDATE_TIME" remarks="修改时间" type="${datetime}"/>
+			<column name="REMARK" remarks="备注信息,描述信息" type="${remark}"/>
+		</createTable>
+	</changeSet>
+	<!--公司部门关系表-->
+	<changeSet author="Sun YiWen" id="1581661583168-2">
+		<createTable remarks="公司部门关系表" tableName="BD_COMPANY_DEPARTMENT">
+			<column name="COMPANY_ID" remarks="公司编号" type="${id}"/>
+			<column name="DEPARTMENT_ID" remarks="部门编号" type="${id}"/>
+		</createTable>
+	</changeSet>
+	<!--行政区划表-->
+	<changeSet author="Sun YiWen" id="1581661583168-4">
+		<createTable remarks="行政区划表" tableName="BD_REGIONAL_DIVISION">
+			<column name="REGIONAL_ID" remarks="区域编号" type="${id}">
+				<constraints primaryKey="true" primaryKeyName="PK_BD_REGIONAL_DIVISION"/>
+			</column>
+			<column name="CODE" remarks="区域编码" type="${code}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="NAME" remarks="区域名称" type="${name}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="FULL_NAME" remarks="区域全名" type="${name}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TYPE" remarks="区域类型" type="${type}"/>
+			<column name="PARENT_NAME" remarks="父级名称" type="${name}"/>
+			<column name="PARENT_ID" remarks="父级编号" type="${id}"/>
+			<column name="LEVEL" remarks="层级编号" type="${level}"/>
+			<column name="SORT_INDEX" remarks="排序编号:同级排序" type="${sort}"/>
+			<column name="DELETE_TAG" remarks="删除标识:N-未删除、Y-已删除" type="${boolean}"/>
+			<column name="CREATE_BY" remarks="创建人" type="${id}"/>
+			<column name="CREATE_TIME" remarks="创建时间" type="${datetime}"/>
+			<column name="UPDATE_BY" remarks="修改人" type="${id}"/>
+			<column name="UPDATE_TIME" remarks="修改时间" type="${datetime}"/>
+			<column name="REMARK" remarks="备注信息,描述信息" type="${remark}"/>
+		</createTable>
+	</changeSet>
 
 </databaseChangeLog>
