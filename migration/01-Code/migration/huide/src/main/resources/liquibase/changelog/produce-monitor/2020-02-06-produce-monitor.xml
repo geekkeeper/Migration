@@ -38,7 +38,7 @@
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -89,7 +89,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="GRAPH_NAME" type="${name}" remarks="流程图名称"/>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -109,7 +109,7 @@
             <column name="REPORT_PLAN_ID" type="${id}" remarks="报表计划编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -133,7 +133,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="NODE_NAME" type="${name}" remarks="节点名称"/>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
             <constraints nullable="false"/>
         </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -143,7 +143,7 @@
             <constraints nullable="false"/>
         </column>
         </createTable>
-        <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_CODE"/>
+        <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"/>
     </changeSet>
     <!--报表计划信息表-->
     <changeSet author="WangXun" id="1581337040000-7">
@@ -172,7 +172,7 @@
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
             <constraints nullable="false"/>
         </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -262,7 +262,7 @@
             <column name="TREND_ID" type="${id}" remarks="趋势编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称"/>
@@ -399,7 +399,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称"/>

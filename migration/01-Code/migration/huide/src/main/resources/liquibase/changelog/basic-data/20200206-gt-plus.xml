@@ -25,7 +25,7 @@
             <column name="CODE" type="${code}" remarks="报表模板编码">
                 <constraints unique="true" uniqueConstraintName="UQ_REPORT_TEMPLETE_CODE"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -47,7 +47,7 @@
             <column name="CODE" type="${code}" remarks="流程图编码">
                 <constraints nullable="false" unique="true" uniqueConstraintName="UQ_GRAPH_CODE"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -96,17 +96,19 @@
             <column name="STOP_DIGIT" type="${digit}" remarks="停止位数"/>
             <column name="FLOW_CONTROL_TAG" type="${boolean}" remarks="流量控制标识"/>
             <column name="REQUEST_TAG" type="${boolean}" remarks="请求标识"/>
-            <column name="HDB_SERVICE_CODE" type="${id}" remarks="历史库服务编码"/>
-            <column name="RTDB_SERVICE_CODE" type="${id}" remarks="实时库服务编码"/>
-            <column name="CLOUD_COLLECTION_CODE" type="${id}" remarks="云采服务编码"/>
-            <column name="LOG_SERVICE_CODE" type="${id}" remarks="日志服务编码"/>
-            <column name="TIME_SERVICE_CODE" type="${id}" remarks="校时服务编码"/>
-            <column name="RDB_SERVICE_CODE" type="${id}" remarks="关系库服务编码"/>
-            <column name="NODE_STATE_CODE" type="${id}" remarks="节点状态服务编码"/>
-            <column name="ALARM_SERVICE_CODE" type="${id}" remarks="报警服务编码"/>
-            <column name="ALGORITHM_SERVICE_CODE" type="${id}" remarks="算法服务编码"/>
-            <column name="DATA_COLLECTION_CODE" type="${id}" remarks="数采服务编码"/>
-            <column name="REPORT_PRINT_CODE" type="${id}" remarks="报表服务编码"/>
+            <column name="HDB_SERVICE_CODE" type="${code}" remarks="历史库服务编码"/>
+            <column name="RTDB_SERVICE_CODE" type="${code}" remarks="实时库服务编码"/>
+            <column name="CLOUD_COLLECTION_CODE" type="${code}" remarks="云采服务编码"/>
+            <column name="LOG_SERVICE_CODE" type="${code}" remarks="日志服务编码"/>
+            <column name="TIME_SERVICE_CODE" type="${code}" remarks="校时服务编码"/>
+            <column name="RDB_SERVICE_CODE" type="${code}" remarks="关系库服务编码"/>
+            <column name="NODE_STATE_CODE" type="${code}" remarks="节点状态服务编码"/>
+            <column name="ALARM_SERVICE_CODE" type="${code}" remarks="报警服务编码"/>
+            <column name="ALGORITHM_SERVICE_CODE" type="${code}" remarks="算法服务编码"/>
+            <column name="DATA_COLLECTION_CODE" type="${code}" remarks="数采服务编码"/>
+            <column name="REPORT_PRINT_CODE" type="${code}" remarks="报表服务编码"/>
+            <column name="APPLICATION_SERVICE_CODE" type="${code}" remarks="应用服务编码"/>
+            <column name="NODE_STATE_CLIENT_CODE" type="${code}" remarks="节点状态客户端编码"/>
         </createTable>
     </changeSet>
     <!--报警服务-->
@@ -394,7 +396,7 @@
             <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
             <column name="ENABLE_COMPRESSION" type="${boolean}" remarks="启用压缩算法"/>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -408,7 +410,7 @@
             <column name="ID" type="${id}" remarks="标签编号">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TAG_ID"/>
             </column>
-            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
@@ -445,7 +447,48 @@
             <column name="EXTERAL_DATA_TYPE" type="${type}" remarks="通讯标签外部类型"/>
             <column name="CONVERT_EXPRESSION" type="${expression}" remarks="通讯标签转换公式"/>
         </createTable>
-        <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_CODE"/>
+        <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_GUID"/>
     </changeSet>
-
+    <!--节点状态客户端-->
+    <changeSet author="WangXun" id="1580976637730-17">
+        <createTable tableName="gt_node_state_client" remarks="节点状态客户端">
+            <column name="ID" type="${id}" remarks="客户端编号">
+                <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_CLIENT_ID"/>
+            </column>
+            <column name="CODE" type="${code}" remarks="节点状态客户端编码">
+                <constraints nullable="false" unique="true" uniqueConstraintName="UQ_NODE_STATE_CLIENT_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALIAS" type="${name}" remarks="别名"/>
+            <column name="PORT" type="${port}" remarks="通讯端口">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="NAME" type="${name}" remarks="客户端名称"/>
+        </createTable>
+    </changeSet>
+    <!--应用服务-->
+    <changeSet author="WangXun" id="1580976637730-18">
+        <createTable tableName="GT_APPLICATION_SERVICE" remarks="应用服务">
+            <column name="ID" type="${id}" remarks="应用服务编号">
+                <constraints primaryKey="true" primaryKeyName="PK_GT_APPLICATION_SERVICE_ID"/>
+            </column>
+            <column name="CODE" type="${code}" remarks="应用服务编码">
+                <constraints unique="true" uniqueConstraintName="UQ_APPLICATION_SERVICE_CODE"/>
+            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALIAS" type="${name}" remarks="别名"/>
+            <column name="NAME" type="${name}" remarks="服务名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PORT" type="${port}" remarks="通讯端口">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
