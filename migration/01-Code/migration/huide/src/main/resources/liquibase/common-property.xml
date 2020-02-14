@@ -57,11 +57,11 @@
 	<!--等级-->
 	<property global="true" name="level" value="smallint"/>
 	<!--类型-->
-	<property global="true" name="type" value="int" />
+	<property global="true" name="type" value="int"/>
 	<!--经纬度-->
 	<property global="true" name="longitude_latitude" value="decimal(10,7)"/>
 	<!--编码-->
-	<property global="true" name="code" value="varchar(32)"/>
+	<property global="true" name="code" value="varchar(36)"/>
 	<!--表达式-->
 	<property global="true" name="expression" value="varchar(512)"/>
 	<!--路径-->

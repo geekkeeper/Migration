@@ -28,9 +28,6 @@
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
-                <constraints nullable="false"/>
-            </column>
             <column name="NAME" type="${name}" remarks="报表模板名称">
                 <constraints nullable="false"/>
             </column>
@@ -48,9 +45,6 @@
                 <constraints nullable="false" unique="true" uniqueConstraintName="UQ_GRAPH_CODE"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
                 <constraints nullable="false"/>
             </column>
             <column name="NAME" type="${name}" remarks="流程图名称">
@@ -73,9 +67,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${id}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
                 <constraints nullable="false"/>
             </column>
             <column name="ALIAS" type="${name}" remarks="节点别名"/>
@@ -396,12 +387,6 @@
             <column name="REDUNDANCY_NAME" type="${boolean}" remarks="冗余名称：A/B"/>
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
             <column name="ENABLE_COMPRESSION" type="${boolean}" remarks="启用压缩算法"/>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
     <!--标签信息表-->
@@ -411,9 +396,6 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TAG_ID"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
                 <constraints nullable="false"/>
             </column>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
