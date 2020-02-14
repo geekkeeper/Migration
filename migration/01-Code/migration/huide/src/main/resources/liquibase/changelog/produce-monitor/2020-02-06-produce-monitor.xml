@@ -303,5 +303,203 @@
             <column name="EXECUTOR" type="${id}" remarks="执行人"/>
         </createTable>
     </changeSet>
-
+    <!--生产报警表-->
+    <changeSet author="WangXun" id="1581337040000-14">
+        <createTable tableName="PM_PRODUCE_ALARM" remarks="生产报警表">
+            <column name="ID" type="${id}" remarks="报警编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_ID"/>
+            </column>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
+            <constraints nullable="false"/>
+            </column>
+            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE" type="${type}" remarks="报警类型"/>
+            <column name="STATE" type="${type}" remarks="报警状态"/>
+            <column name="LEVEL" type="${level}" remarks="报警等级"/>
+            <column name="ALARM_TIME" type="${datetime}" remarks="报警时间"/>
+            <column name="REMARK" type="${remark}" remarks="报警描述"/>
+            <column name="LIMIT" type="${value}" remarks="报警阀值"/>
+            <column name="VALUE" type="${value}" remarks="报警实际值"/>
+            <column name="SOURCE_TYPE" type="${type}" remarks="报警来源类型"/>
+            <column name="NODE_DOMAIN" type="varchar(256)" remarks="节点域"/>
+            <column name="DOMAIN_NUM" type="${sort}" remarks="域号"/>
+            <column name="PUSH_STATE" type="${type}" remarks="推送状态"/>
+            <column name="CONFIRM_TIME" type="${datetime}" remarks="确认时间"/>
+            <column name="RECOVERY_TIME" type="${datetime}" remarks="恢复时间"/>
+        </createTable>
+    </changeSet>
+    <!--生产报警历史表-->
+    <changeSet author="WangXun" id="1581337040000-15">
+        <createTable tableName="PM_PRODUCE_ALARM_HISTORY" remarks="生产报警表">
+            <column name="ID" type="${id}" remarks="报警编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_HISTORY_ID"/>
+            </column>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE" type="${type}" remarks="报警类型"/>
+            <column name="STATE" type="${type}" remarks="报警状态"/>
+            <column name="LEVEL" type="${level}" remarks="报警等级"/>
+            <column name="ALARM_TIME" type="${datetime}" remarks="报警时间"/>
+            <column name="REMARK" type="${remark}" remarks="报警描述"/>
+            <column name="LIMIT" type="${value}" remarks="报警阀值"/>
+            <column name="VALUE" type="${value}" remarks="报警实际值"/>
+            <column name="SOURCE_TYPE" type="${type}" remarks="报警来源类型"/>
+            <column name="NODE_DOMAIN" type="varchar(256)" remarks="节点域"/>
+            <column name="DOMAIN_NUM" type="${sort}" remarks="域号"/>
+            <column name="PUSH_STATE" type="${type}" remarks="推送状态"/>
+            <column name="CONFIRM_TIME" type="${datetime}" remarks="确认时间"/>
+            <column name="RECOVERY_TIME" type="${datetime}" remarks="恢复时间"/>
+        </createTable>
+    </changeSet>
+    <!--报警等级表-->
+    <changeSet author="WangXun" id="1581337040000-16">
+        <createTable tableName="PM_ALARM_LEVEL" remarks="报警等级表">
+            <column name="ID" type="${id}" remarks="报警等级编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_LEVEL_ID"/>
+            </column>
+            <column name="ALARM_LEVEL" type="${level}" remarks="报警等级"/>
+            <column name="COLOR" type="${color}" remarks="等级颜色"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息"/>
+        </createTable>
+    </changeSet>
+    <!--报警处理记录表-->
+    <changeSet author="WangXun" id="1581337040000-17">
+        <createTable tableName="PM_ALARM_HANDLE_RECORD" remarks="报警处理记录表">
+            <column name="ID" type="${id}" remarks="处理记录编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_HANDLE_RECORD_ID"/>
+            </column>
+            <column name="PRODUCE_ALARM_ID" type="${id}" remarks="报警编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HANDLE_TYPE" type="${type}" remarks="处理类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HANDLE_TIME" type="${datetime}" remarks="处理时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HANDLER" type="${id}" remarks="操作人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="GT_PROJECT_CODE" type="${code}" remarks="GT工程编码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GT_PROJECT_NAME" type="${name}" remarks="GT工程名称"/>
+            <column name="REMARK" type="${remark}" remarks="操作说明"/>
+        </createTable>
+    </changeSet>
+    <!--节点状态表-->
+    <changeSet author="WangXun" id="1581337040000-18">
+        <createTable tableName="PM_NODE_STATE" remarks="生产报警表">
+            <column name="ID" type="${id}" remarks="节点状态编号">
+                <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_ID"/>
+            </column>
+            <column name="TYPE" type="${type}" remarks="节点类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATE" type="${boolean}" remarks="节点状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="${name}" remarks="节点名称"/>
+            <column name="SERIAL_NUM" type="${serial_num}" remarks="序列码"/>
+            <column name="CPU_RATE" type="${rate}" remarks="CPU使用率"/>
+            <column name="CPU_TEMPERATURE" type="${temperature}" remarks="CPU温度"/>
+            <column name="MEMORY_RATE" type="${rate}" remarks="内存使用率"/>
+            <column name="MOTHERBOARD_TEMPERATURE" type="${temperature}" remarks="主板温度"/>
+            <column name="FAN_SPEED" type="int" remarks="风扇转速"/>
+            <column name="DISK_TEMPERATURE" type="${temperature}" remarks="硬盘温度"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+        </createTable>
+    </changeSet>
+    <!--进程状态表-->
+    <changeSet author="WangXun" id="1581337040000-19">
+        <createTable tableName="PM_PROCESS_STATE" remarks="进程状态表">
+            <column name="ID" type="${id}" remarks="进程状态编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PROCESS_STATE_ID"/>
+            </column>
+            <column name="NAME" type="${name}" remarks="进程名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATE" type="${type}" remarks="进程状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CPU_RATE" type="${rate}" remarks="CPU使用率"/>
+            <column name="MEMORY_USED_SPACE" type="float" remarks="内存使用空间"/>
+            <column name="DISK_RATE" type="float" remarks="磁盘速率"/>
+            <column name="NETWORK_RATE" type="float" remarks="网络"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
+            <column name="PROCESS_ID" type="${id}" remarks="进程编号"/>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+        </createTable>
+    </changeSet>
+    <!--服务状态表-->
+    <changeSet author="WangXun" id="1581337040000-20">
+        <createTable tableName="PM_SERVICE_STATE" remarks="服务状态表">
+            <column name="ID" type="${id}" remarks="服务状态编号">
+                <constraints primaryKey="true" primaryKeyName="PK_SERVICE_STATE_ID"/>
+            </column>
+            <column name="PROCESS_ID" type="${id}" remarks="进程编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="${name}" remarks="服务名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATE" type="${type}" remarks="服务状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARK" type="${remark}" remarks="服务描述"/>
+            <column name="SERVICE_GROUP_NAME" type="${name}" remarks="服务组名称"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
+        </createTable>
+    </changeSet>
+    <!--日志表-->
+    <changeSet author="WangXun" id="1581337040000-21">
+        <createTable tableName="PM_log" remarks="日志表">
+            <column name="ID" type="${id}" remarks="日志编号">
+                <constraints primaryKey="true" primaryKeyName="PK_LOG_ID"/>
+            </column>
+            <column name="TYPE" type="${type}" remarks="日志类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="${name}" remarks="日志标题">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXECUTOR" type="${id}" remarks="操作人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_TIME" type="${datetime}" remarks="操作时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REQUEST_URL" type="${url}" remarks="请求地址"/>
+            <column name="REQUEST_METHOD_TYPE" type="${type}" remarks="请求方法类型"/>
+            <column name="REQUEST_PARAM" type="${json}" remarks="请求参数"/>
+            <column name="BUSINESS_KEY_CODE" type="${code}" remarks="业务主键"/>
+            <column name="BUSINESS_TYPE_CODE" type="${code}" remarks="业务类型"/>
+            <column name="CLIENT_IP" type="${ip}" remarks="客户端地址"/>
+            <column name="CLIENT_TYPE" type="${type}" remarks="客户端类型"/>
+            <column name="SERVICE_IP" type="${ip}" remarks="服务地址"/>
+            <column name="EXCEPTION_TAG" type="${boolean}" remarks="异常标识"/>
+            <column name="EXCEPTION_INFO" type="${json}" remarks="异常信息"/>
+            <column name="EXECUTE_TIME" type="${duration}" remarks="执行时间"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
