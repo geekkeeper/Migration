@@ -429,7 +429,8 @@
             <column name="EXTERAL_DATA_TYPE" type="${type}" remarks="通讯标签外部类型"/>
             <column name="CONVERT_EXPRESSION" type="${expression}" remarks="通讯标签转换公式"/>
         </createTable>
-        <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_GUID"/>
+        <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_GUID"
+                             constraintName="UQ_TAG_NAME_GUID"/>
     </changeSet>
     <!--节点状态客户端-->
     <changeSet author="WangXun" id="1580976637730-17">

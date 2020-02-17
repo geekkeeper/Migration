@@ -3,7 +3,6 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-
     <!--基础数据模块-->
     <!--字典键表(BD_DICTIONARY_KEY)-->
     <changeSet author="WangXun" id="1576425600000-1">
@@ -65,6 +64,30 @@
             <column name="ID" value="1610009459271475202"/>
             <column name="CODE" value="role_type"/>
             <column name="NAME" value="角色类型"/>
+            <column name="APP_ID"/>
+            <column name="REMARK"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_KEY">
+            <column name="ID" value="1710009459271475202"/>
+            <column name="CODE" value="widget_data_source"/>
+            <column name="NAME" value="桌面组件数据来源"/>
+            <column name="APP_ID"/>
+            <column name="REMARK"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_KEY">
+            <column name="ID" value="1810009459271475202"/>
+            <column name="CODE" value="device_type"/>
+            <column name="NAME" value="设备类型"/>
             <column name="APP_ID"/>
             <column name="REMARK"/>
             <column name="DELETE_TAG" value="N"/>
@@ -313,6 +336,62 @@
             <column name="UPDATE_BY"/>
             <column name="UPDATE_TIME"/>
         </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1710009459271475212"/>
+            <column name="KEY_ID" value="1710009459271475202"/>
+            <column name="CODE" value="api"/>
+            <column name="VALUE" value="应用接口"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1710009459271475222"/>
+            <column name="KEY_ID" value="1710009459271475202"/>
+            <column name="CODE" value="html"/>
+            <column name="VALUE" value="页面"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1810009459271475212"/>
+            <column name="KEY_ID" value="1810009459271475202"/>
+            <column name="CODE" value="dahua"/>
+            <column name="VALUE" value="大华"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1810009459271475222"/>
+            <column name="KEY_ID" value="1810009459271475202"/>
+            <column name="CODE" value="haikang"/>
+            <column name="VALUE" value="海康"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
         <rollback>
             <delete tableName="BD_DICTIONARY_ITEM"/>
             <dropTable tableName="BD_DICTIONARY_ITEM"/>
@@ -373,6 +452,20 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
+        <insert tableName="BD_ORGANIZATION">
+            <column name="ID" value="1c6ec351511346a492538e343b00d0fd"/>
+            <column name="FULL_NAME" value="xxx集团"/>
+            <column name="PARENT_ID" value="-1"/>
+            <column name="LEVEL" value="1"/>
+            <column name="SORT_INDEX" value="1"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="EXTERNAL_TAG" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <rollback>
+            <delete tableName="BD_ORGANIZATION"/>
+            <dropTable tableName="BD_ORGANIZATION"/>
+        </rollback>
     </changeSet>
     <!--组织人员关系表-->
     <changeSet author="WangXun" id="1581661583168-4">

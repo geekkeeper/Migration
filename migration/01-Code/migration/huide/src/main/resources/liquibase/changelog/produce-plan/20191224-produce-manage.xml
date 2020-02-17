@@ -22,20 +22,20 @@
 			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
 		</createTable>
 	</changeSet>
-    <!--工艺路线表(PM_TECHNICS_COURSE)-->
-	<changeSet id="1577116800000-2" author="WangXun">
-		<comment>新建工艺路线表(PM_TECHNICS_COURSE)</comment>
-		<createTable tableName="PM_TECHNICS_COURSE" remarks="工艺路线表">
-			<column name="ID" type="varchar(32)" remarks="路线编号">
-				<constraints primaryKey="true" primaryKeyName="PK_TECHNICS_COURSE_ID"/>
-			</column>
-			<column name="NAME" type="varchar(32)" remarks="路线名称"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-		</createTable>
-	</changeSet>
+    <!--工艺路线表(PM_TECHNOLOGY_COURSE)-->
+    <changeSet id="1577116800000-2" author="WangXun">
+        <comment>新建工艺路线表(PM_TECHNOLOGY_COURSE)</comment>
+        <createTable tableName="PM_TECHNOLOGY_COURSE" remarks="工艺路线表">
+            <column name="ID" type="varchar(32)" remarks="路线编号">
+                <constraints primaryKey="true" primaryKeyName="PK_TECHNOLOGY_COURSE_ID"/>
+            </column>
+            <column name="NAME" type="varchar(32)" remarks="路线名称"/>
+            <column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+            <column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+            <column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+            <column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+        </createTable>
+    </changeSet>
     <!--路线明细表(PM_COURSE_DETAIL)-->
 	<changeSet id="1577116800000-3" author="WangXun">
 		<comment>新建路线明细表(PM_COURSE_DETAIL)</comment>
@@ -46,36 +46,33 @@
 			<column name="COURSE_ID" type="varchar(32)" remarks="路线编号"/>
 			<column name="PLANT_ID" type="varchar(32)" remarks="车间编号"/>
 			<column name="OPERATOR" type="varchar(32)" remarks="操作人"/>
-			<column name="EXECUTE_TIME" type="datetime" remarks="执行时间"/>
-			<column name="PRIORITY" type="int" remarks="优先级"/>
-			<column name="START_TIME" type="datetime" remarks="计划开工时间"/>
-			<column name="END_TIME" type="datetime" remarks="计划完工时间"/>
-			<column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
-			<column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
-			<column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
-			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
-		</createTable>
-	</changeSet>
-
-	<!--预生产计划表(PM_PREPRODUCE_PLAN)-->
-	<changeSet id="1577116800000-4" author="WangXun">
-		<comment>新建预生产计划表(PM_PRODUCE_TASK)</comment>
-		<createTable tableName="PM_PREPRODUCE_PLAN" remarks="预生产计划表">
-			<column name="ID" type="varchar(32)" remarks="编号">
-				<constraints primaryKey="true" primaryKeyName="PK_PREPRODUCE_PLAN_ID"/>
-			</column>
-			<column name="PRODUCT_ID" type="varchar(32)" remarks="产品编号"/>
-			<column name="PLANT_ID" type="varchar(32)" remarks="车间编号"/>
-			<column name="PRODUCE_TYPE" type="char(1)" remarks="生产类型:0-常规产品,1-定制产品"/>
-			<column name="COUNT" type="float" remarks="生产数量"/>
-			<column name="START_TIME" type="datetime" remarks="计划开始时间"/>
-			<column name="END_TIME" type="datetime" remarks="计划结束时间"/>
-			<column name="STATUS" type="char(1)" remarks="计划状态"/>
+            <column name="EXECUTE_TIME" type="datetime" remarks="执行时间"/>
+            <column name="PRIORITY" type="int" remarks="优先级"/>
+            <column name="START_TIME" type="datetime" remarks="计划开工时间"/>
+            <column name="END_TIME" type="datetime" remarks="计划完工时间"/>
+            <column name="CREATE_TIME" type="datetime" remarks="创建时间"/>
+            <column name="CREATE_BY" type="varchar(32)" remarks="创建人"/>
+            <column name="UPDATE_TIME" type="datetime" remarks="修改时间"/>
+            <column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
+        </createTable>
+    </changeSet>
+    <!--预生产计划表(PM_PRODUCE_PLAN)-->
+    <changeSet id="1577116800000-4" author="WangXun">
+        <comment>新建预生产计划表(PM_PRODUCE_TASK)</comment>
+        <createTable tableName="PM_PRODUCE_PLAN" remarks="预生产计划表">
+            <column name="ID" type="varchar(32)" remarks="编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_PLAN_ID"/>
+            </column>
+            <column name="PRODUCT_ID" type="varchar(32)" remarks="产品编号"/>
+            <column name="PLANT_ID" type="varchar(32)" remarks="车间编号"/>
+            <column name="PRODUCE_TYPE" type="char(1)" remarks="生产类型:0-常规产品,1-定制产品"/>
+            <column name="COUNT" type="float" remarks="生产数量"/>
+            <column name="START_TIME" type="datetime" remarks="计划开始时间"/>
+            <column name="END_TIME" type="datetime" remarks="计划结束时间"/>
+            <column name="STATUS" type="char(1)" remarks="计划状态"/>
 			<column name="RECEIPT_TIME" type="datetime" remarks="接收时间"/>
 		</createTable>
 	</changeSet>
-
-
     <!--生产任务表(PM_PRODUCE_TASK)-->
 	<changeSet id="1577116800000-4" author="WangXun">
 		<comment>新建生产任务表(PM_PRODUCE_TASK)</comment>
@@ -95,7 +92,6 @@
 			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
 		</createTable>
 	</changeSet>
-
 	<!--生产计划表(PM_PRODUCE_PLAN)-->
 	<changeSet id="1577116800000-4" author="WangXun">
 		<comment>新建生产计划表(PM_PRODUCE_PLAN)</comment>
@@ -113,7 +109,6 @@
 			<column name="UPDATE_BY" type="varchar(32)" remarks="修改人"/>
 		</createTable>
 	</changeSet>
-
 	<!--任务下发记录表(PM_ISSUED_RECORD)-->
 	<changeSet id="1577116800000-5" author="WangXun">
 		<comment>新建任务下发记录表(PM_ISSUED_RECORD)</comment>
@@ -127,7 +122,6 @@
 			<column name="ISSUED_TIME" type="datetime" remarks="下发时间"/>
 		</createTable>
 	</changeSet>
-
     <!--工序计划表(PM_WORK_PRODUCE_PLAN)-->
 	<changeSet id="1577116800000-6" author="WangXun">
 		<comment>新建工序计划表(PM_WORK_PRODUCE_PLAN)</comment>

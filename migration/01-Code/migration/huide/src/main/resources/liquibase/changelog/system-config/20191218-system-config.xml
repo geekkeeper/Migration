@@ -22,8 +22,7 @@
 
 		</createTable>
 	</changeSet>
-
-	<!-- 桌面组件表 -->
+	<!--桌面组件表-->
 	<changeSet author="Sun YiWen" id="1580800591839-2">
 		<comment>创建桌面组件表(SC_DESKTOP_WIDGET)</comment>
 		<createTable tableName="SC_DESKTOP_WIDGET" remarks="桌面组件表">
@@ -40,8 +39,7 @@
 			<column name="WIDGET_POSITION" type="${id}" remarks="组件在桌面布局中的位置"/>
 		</createTable>
 	</changeSet>
-
-	<!-- 布局表 -->
+	<!--布局表-->
 	<changeSet author="Sun YiWen" id="1580800591839-3">
 		<comment>创建布局表(SC_LAYOUT)</comment>
 		<createTable tableName="SC_LAYOUT" remarks="布局表">
@@ -59,8 +57,7 @@
 			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
 	</changeSet>
-
-	<!-- 组件表 -->
+	<!--组件表-->
 	<changeSet author="Sun YiWen" id="1580800591839-4">
 		<comment>创建组件表(SC_WIDGET)</comment>
 		<createTable tableName="SC_WIDGET" remarks="组件表">
@@ -87,9 +84,205 @@
 			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 		</createTable>
+		<!-- 插入初始化数据 -->
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214512637832634370"/>
+			<column name="NAME" value="销售KPI指标"/>
+			<column name="URL" value="http://127.0.0.1:6011/sales.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="NumberTemplate"/>
+			<column name="CONTENT_JSON" value='{"title":"title","value":"value","unit":"unit","subItem":"sub"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214730952844812290"/>
+			<column name="NAME" value="待办任务列表"/>
+			<column name="URL" value="http://127.0.0.1:6011/warning.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ListTemplate"/>
+			<column name="CONTENT_JSON"
+					value='{"listUrl":"#","detailUrl":"#","pkId":"id","col1":"title","col2":"state","col3":"author","col4":""}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214778832112623618"/>
+			<column name="NAME" value="月度能源消耗"/>
+			<column name="URL" value="http://127.0.0.1:6011/energy.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ChartTemplate.bar"/>
+			<column name="CONTENT_JSON" value='{"x":"month","y":"value"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214785483523792898"/>
+			<column name="NAME" value="月度生产规模"/>
+			<column name="URL" value="http://127.0.0.1:6011/energy.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ChartTemplate.line"/>
+			<column name="CONTENT_JSON" value='{"x":"month","y":"value"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214799162248044545"/>
+			<column name="NAME" value="产品销售类别占比"/>
+			<column name="URL" value="http://127.0.0.1:6011/salesSorts.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ChartTemplate.pie"/>
+			<column name="CONTENT_JSON" value='{"x":"name","y":"value"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214814011975835650"/>
+			<column name="NAME" value="厂区生产任务"/>
+			<column name="URL" value="http://127.0.0.1:6011/jobs.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="BlockTemplate"/>
+			<column name="CONTENT_JSON"
+					value='{"listUrl":"#","detailUrl":"#","pkId":"id","col1":"title","col2":"subTitle","col3":"subType","col4":"date"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214832854391627777"/>
+			<column name="NAME" value="质检任务"/>
+			<column name="URL" value="http://127.0.0.1:6011/notice1.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ListTemplate"/>
+			<column name="CONTENT_JSON"
+					value='{"listUrl":"#","detailUrl":"#","pkId":"id","col1":"title","col2":"state","col3":"","col4":""}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214833079332151297"/>
+			<column name="NAME" value="设备保养任务"/>
+			<column name="URL" value="http://127.0.0.1:6011/notice2.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ListTemplate"/>
+			<column name="CONTENT_JSON"
+					value='{"listUrl":"#","detailUrl":"#","pkId":"id","col1":"title","col2":"state","col3":"","col4":""}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1214833261662740481"/>
+			<column name="NAME" value="安全检查任务"/>
+			<column name="URL" value="http://127.0.0.1:6011/notice3.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ListTemplate"/>
+			<column name="CONTENT_JSON"
+					value='{"listUrl":"#","detailUrl":"#","pkId":"id","columns":[{"title":"标题","code":"title"},{"title":"日期","code":"date"},{"title":"测试1","code":"test1"},{"title":"测试2","code":"test2"},{"title":"测试3","code":"test3"}]}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1215847207389593602"/>
+			<column name="NAME" value="数值统计"/>
+			<column name="URL" value="http://127.0.0.1:6011/sales.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="NumberTemplate"/>
+			<column name="CONTENT_JSON" value='{"title":"1","value":"1","unit":"1","subItem":"1"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<insert tableName="SC_WIDGET">
+			<column name="ID" value="1215847310359756801"/>
+			<column name="NAME" value="饼图"/>
+			<column name="URL" value="http://127.0.0.1:6011/salesSorts.json"/>
+			<column name="DATA_SOURCE" value="api"/>
+			<column name="TEMPLATE" value="ChartTemplate.pie"/>
+			<column name="CONTENT_JSON" value='{"x":"1","y":"1"}'/>
+			<column name="WIDTH" value="0"/>
+			<column name="POSITION"/>
+			<column name="STYLE"/>
+			<column name="ORDER_NO"/>
+			<column name="DELETE_TAG" value="N"/>
+			<column name="CREATE_BY"/>
+			<column name="CREATE_TIME"/>
+			<column name="UPDATE_BY"/>
+			<column name="UPDATE_TIME"/>
+		</insert>
+		<rollback>
+			<delete tableName="SC_WIDGET"/>
+			<dropTable tableName="SC_WIDGET"/>
+		</rollback>
 	</changeSet>
-
-	<!-- 用户桌面表 -->
+	<!--用户桌面表-->
 	<changeSet author="Sun YiWen" id="1580800591839-5">
 		<comment>创建用户桌面表(SC_USER_DESKTOP)</comment>
 		<createTable tableName="SC_USER_DESKTOP" remarks="用户桌面表">
@@ -107,8 +300,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-
-	<!-- 用户默认桌面表 -->
+	<!--用户默认桌面表-->
 	<changeSet author="Sun YiWen" id="1580800591839-6">
 		<comment>创建用户默认桌面表(SC_USER_DEFAULT_DESKTOP)</comment>
 		<createTable tableName="SC_USER_DEFAULT_DESKTOP" remarks="用户默认桌面表">
@@ -126,8 +318,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-
-	<!-- 角色桌面表 -->
+	<!--角色桌面表-->
 	<changeSet author="Sun YiWen" id="1580800591839-7">
 		<comment>创建角色桌面表(SC_ROLE_DESKTOP)</comment>
 		<createTable tableName="SC_ROLE_DESKTOP" remarks="角色桌面表">

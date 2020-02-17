@@ -72,6 +72,19 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
+        <insert tableName="PM_PROJECT_ARCHITECTURE">
+            <column name="ID" value="d49bc4d16d774352bc8e5b0ab6a99487"/>
+            <column name="NAME" value="xxx集团"/>
+            <column name="PARENT_ID" value="-1"/>
+            <column name="LEVEL" value="1"/>
+            <column name="SORT_INDEX" value="1"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <rollback>
+            <delete tableName="PM_PROJECT_ARCHITECTURE"/>
+            <dropTable tableName="PM_PROJECT_ARCHITECTURE"/>
+        </rollback>
     </changeSet>
     <!--项目流程图关系表-->
     <changeSet author="WangXun" id="1581337040000-4">
@@ -131,7 +144,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"/>
+        <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"
+                             constraintName="UQ_PROJECT_TAG_ID_NAME"/>
     </changeSet>
     <!--报表计划信息表-->
     <changeSet author="WangXun" id="1581337040000-7">
@@ -448,7 +462,7 @@
     </changeSet>
     <!--日志表-->
     <changeSet author="WangXun" id="1581337040000-21">
-        <createTable tableName="PM_log" remarks="日志表">
+        <createTable tableName="PM_LOG" remarks="日志表">
             <column name="ID" type="${id}" remarks="日志编号">
                 <constraints primaryKey="true" primaryKeyName="PK_LOG_ID"/>
             </column>
