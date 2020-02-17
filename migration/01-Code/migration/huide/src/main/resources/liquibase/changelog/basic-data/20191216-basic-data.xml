@@ -340,6 +340,7 @@
             <column name="PHONE" type="${phone}" remarks="移动电话"/>
             <column name="TELEPHONE" type="varchar(16)" remarks="固定电话"/>
             <column name="BIRTHDAY" type="${datetime}" remarks="生日"/>
+            <column name="BIND_TAG" type="${boolean}" remarks="绑定标识"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
                     defaultValue="N" defaultValueConstraintName="DF_Person_DELETE_TAG"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
@@ -373,8 +374,22 @@
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
+    <!--组织人员关系表-->
+    <changeSet author="WangXun" id="1581661583168-4">
+        <createTable remarks="组织人员关系表" tableName="BD_ORGANIZATION_PERSON">
+            <column name="ID" type="${id}" remarks="编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ORGANIZATION_PERSON_ID"/>
+            </column>
+            <column name="ORGANIZATION_ID" type="${id}" remarks="组织编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERSON_ID" type="${id}" remarks="人员编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
     <!--行政区划表-->
-    <changeSet author="Sun YiWen" id="1581661583168-4">
+    <changeSet author="Sun YiWen" id="1581661583168-5">
         <createTable remarks="行政区划表" tableName="BD_REGIONAL_DIVISION">
             <column name="REGIONAL_ID" remarks="区域编号" type="${id}">
                 <constraints primaryKey="true" primaryKeyName="PK_BD_REGIONAL_DIVISION"/>
