@@ -54,7 +54,7 @@
             <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
         </createTable>
     </changeSet>
-    <!--网络节点信息表-->
+    <!--网络节点表-->
     <changeSet author="WangXun" id="1580976637730-4">
         <createTable tableName="GT_NETWORK_NODE" remarks="网络节点信息表">
             <column name="ID" type="${id}" remarks="节点编号">
@@ -87,19 +87,6 @@
             <column name="STOP_DIGIT" type="${digit}" remarks="停止位数"/>
             <column name="FLOW_CONTROL_TAG" type="${boolean}" remarks="流量控制标识"/>
             <column name="REQUEST_TAG" type="${boolean}" remarks="请求标识"/>
-            <column name="HDB_SERVICE_CODE" type="${code}" remarks="历史库服务编码"/>
-            <column name="RTDB_SERVICE_CODE" type="${code}" remarks="实时库服务编码"/>
-            <column name="CLOUD_COLLECTION_CODE" type="${code}" remarks="云采服务编码"/>
-            <column name="LOG_SERVICE_CODE" type="${code}" remarks="日志服务编码"/>
-            <column name="TIME_SERVICE_CODE" type="${code}" remarks="校时服务编码"/>
-            <column name="RDB_SERVICE_CODE" type="${code}" remarks="关系库服务编码"/>
-            <column name="NODE_STATE_CODE" type="${code}" remarks="节点状态服务编码"/>
-            <column name="ALARM_SERVICE_CODE" type="${code}" remarks="报警服务编码"/>
-            <column name="ALGORITHM_SERVICE_CODE" type="${code}" remarks="算法服务编码"/>
-            <column name="DATA_COLLECTION_CODE" type="${code}" remarks="数采服务编码"/>
-            <column name="REPORT_PRINT_CODE" type="${code}" remarks="报表服务编码"/>
-            <column name="APPLICATION_SERVICE_CODE" type="${code}" remarks="应用服务编码"/>
-            <column name="NODE_STATE_CLIENT_CODE" type="${code}" remarks="节点状态客户端编码"/>
         </createTable>
     </changeSet>
     <!--报警服务-->
