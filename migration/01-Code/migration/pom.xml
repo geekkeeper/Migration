@@ -15,7 +15,6 @@
 		<module>huayou</module>
 		<module>spadger</module>
 	</modules>
-
 	<properties>
 		<java.version>1.8</java.version>
 		<dbms>mssql</dbms>
@@ -24,20 +23,18 @@
 		<!--获取当前时间-->
 		<current.time>${maven.build.timestamp}</current.time>
 		<!--时间格式化模式-->
-		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
 		<!--工程编译资源编码格式-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!--工程输出文件编码格式-->
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.18</version>
 		</dependency>
-
 		<!--添加Oracle连接的依赖包-->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -57,7 +54,6 @@
 			<version>3.8.2</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<!--Liquibase 插件-->
@@ -104,5 +100,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

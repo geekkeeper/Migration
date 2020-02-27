@@ -143,10 +143,10 @@
 			<dropTable tableName="AM_COMMON_ACTION"/>
 		</rollback>
 	</changeSet>
-	<!--系统模块表(AM_MODULE)-->
+	<!--模块表(AM_MODULE)-->
 	<changeSet id="1576561645670-7" author="WangXun">
-		<comment>新建系统模块表(AM_MODULE)</comment>
-		<createTable tableName="AM_MODULE" remarks="系统模块表">
+		<comment>新建模块表(AM_MODULE)</comment>
+		<createTable tableName="AM_MODULE" remarks="模块表">
 			<column name="ID" type="${id}" remarks="模块编号">
 				<constraints primaryKey="true" primaryKeyName="PK_MODULE_ID"/>
 			</column>
@@ -163,6 +163,8 @@
 					defaultValueConstraintName="DF_AM_MODULE_ENABLE"/>
 			<column name="ADMIN_OWN" type="${boolean}" remarks="管理员所有:'Y'-是，‘N’-否" defaultValue="N"
 					defaultValueConstraintName="DF_MODULE_ADMIN_OWN"/>
+			<column name="DATA_URL" type="${url}" remarks="数据地址"/>
+			<column name="DATA_SCOPE_TAG" type="varchar(64)" remarks="数据域标识"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除" defaultValue="N"
 					defaultValueConstraintName="DF_MODULE_DELETE_TAG"/>
 			<column name="EXTRINSIC" type="${boolean}" remarks="外部标识:‘Y’-外部模块，‘N’-内部模块" defaultValue="N"
@@ -342,6 +344,28 @@
 			<column name="ROLE_ID" type="${id}" remarks="角色编号">
 				<constraints nullable="false" notNullConstraintName="NU_RESOURCE_ROLE_ID" />
 			</column>
+		</createTable>
+	</changeSet>
+	<!--角色数据域表(AM_ROLE_DATA_SCOPE)-->
+	<changeSet id="1576561645670-16" author="WangXun">
+		<comment>新建角色数据域表(AM_ROLE_DATA_SCOPE)</comment>
+		<createTable tableName="AM_ROLE_DATA_SCOPE">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_ROLE_DATA_SCOPE_ID"/>
+			</column>
+			<column name="ROLE_ID" type="${id}" remarks="角色编号">
+				<constraints nullable="false" notNullConstraintName="NU_DATA_SCOPE_ROLE_ID" />
+			</column>
+			<column name="DATA_SCOPE_TAG" type="varchar(64)" remarks="数据域标识">
+				<constraints nullable="false" notNullConstraintName="NU_DATA_SCOPE_TAG"/>
+			</column>
+			<column name="EXPRESSION_TAG" type="${boolean}" remarks="表达式控制标识:Y-是;N-否"
+					defaultValue="Y" defaultValueConstraintName="DE_DATA_SCOPE_EXPRESS_TAG"/>
+			<column name="CONTROL_EXPRESSION" type="${expression}" remarks="表达式"/>
+			<column name="PRECISE_TAG" type="${boolean}" remarks="明确控制标识:Y-是;N-否"
+					defaultValue="N" defaultValueConstraintName="DE_DATA_SCOPE_PRECISE_TAG"/>
+			<column name="PRECISE_CONTROL" type="${expression}" remarks="明确的"/>
+			<column name="DIRECTION" type="${expression}" remarks="控制方向"/>
 		</createTable>
 	</changeSet>
 </databaseChangeLog>

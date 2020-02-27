@@ -74,7 +74,7 @@
         </createTable>
         <insert tableName="PM_PROJECT_ARCHITECTURE">
             <column name="ID" value="d49bc4d16d774352bc8e5b0ab6a99487"/>
-            <column name="NAME" value="xxx集团"/>
+            <column name="NAME" value="项目架构树"/>
             <column name="PARENT_ID" value="-1"/>
             <column name="LEVEL" value="1"/>
             <column name="SORT_INDEX" value="1"/>
@@ -271,9 +271,6 @@
         <createTable tableName="PM_VIDEO_ACCOUNT" remarks="视频账户信息表">
             <column name="ID" type="${id}" remarks="视频帐户编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_VIDEO_ACCOUNT"/>
-            </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
             </column>
             <column name="NAME" type="${name}" remarks="视频设备名称"/>
             <column name="DEVICE_TYPE_CODE" type="${code}" remarks="视频设备类型"/>
@@ -549,6 +546,62 @@
             <column name="EXCEPTION_INFO" type="${json}" remarks="异常信息"/>
             <column name="EXECUTE_TIME" type="${duration}" remarks="执行时间"/>
             <column name="SIGNATURE" type="varchar(256)" remarks="存储签名"/>
+        </createTable>
+    </changeSet>
+    <!--视频树表(PM_VIDEO_TREE)-->
+    <changeSet author="WangXun" id="1581337040000-24">
+        <comment>新建视频树表(PM_VIDEO_TREE)</comment>
+        <createTable tableName="PM_VIDEO_TREE" remarks="视频树">
+            <column name="ID" type="${id}" remarks="视频树节点编号">
+                <constraints primaryKey="true" primaryKeyName="PK_VIDEO_TREE_ID"/>
+            </column>
+            <column name="NAME" type="${name}" remarks="节点名称">
+                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_NAME"/>
+            </column>
+            <column name="PARENT_ID" type="${id}" remarks="父级编号"/>
+            <column name="LEVEL" type="${level}" remarks="层级编号"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"
+                    defaultValueConstraintName="DF_VIDEO_TREE_DELETE_TAG">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统的:Y-是系统的、N-自定义" defaultValue="N"
+                    defaultValueConstraintName="DF_VIDEO_TREE_SYSTEMATIC">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+        </createTable>
+        <insert tableName="PM_VIDEO_TREE">
+            <column name="ID" value="86d32ef169e7445088eea2cfcfcea735"/>
+            <column name="NAME" value="视频架构树"/>
+            <column name="PARENT_ID" value="-1"/>
+            <column name="LEVEL" value="1"/>
+            <column name="SORT_INDEX" value="1"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <rollback>
+            <delete tableName="PM_VIDEO_TREE"/>
+            <dropTable tableName="PM_VIDEO_TREE"/>
+        </rollback>
+    </changeSet>
+    <!--视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)-->
+    <changeSet author="WangXun" id="1581337040000-25" >
+        <comment>新建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
+        <createTable tableName="PM_VIDEO_TREE_ACCOUNT">
+            <column name="ID" type="${id}" remarks="编号">
+                <constraints primaryKey="true" primaryKeyName="PK_VIDEO_TREE_ACCOUNT_ID"/>
+            </column>
+            <column name="VIDEO_TREE_ID" type="${id}" remarks="视频树节点编号">
+                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_ACCOUNT_TREE_ID"/>
+            </column>
+            <column name="VIDEO_ACCOUNT_ID" type="${id}" remarks="视频账户编号">
+                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_ACCOUNT_ACCOUNT_ID"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
