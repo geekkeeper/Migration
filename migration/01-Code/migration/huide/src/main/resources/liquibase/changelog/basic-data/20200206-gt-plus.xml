@@ -405,7 +405,7 @@
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false" notNullConstraintName="NU_TAG_PROJECT_GUID"/>
             </column>
-            <column name="NETWORK_NODE_CODE" type="${code}" remarks="网络节点编码">
+            <column name="NODE_CODE" type="${code}" remarks="网络节点编码">
                 <constraints nullable="false" notNullConstraintName="NU_TAG_NETWORK_NODE_CODE"/>
             </column>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">

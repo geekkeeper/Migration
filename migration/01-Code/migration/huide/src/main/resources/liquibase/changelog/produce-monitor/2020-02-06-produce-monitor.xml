@@ -139,8 +139,7 @@
             <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="NODE_NAME" type="${name}" remarks="节点名称"/>
-            <column name="RTDB_CODE" type="${code}" remarks="实时库编码">
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码">
                 <constraints nullable="false"/>
             </column>
         </createTable>
