@@ -418,7 +418,6 @@
             <column name="DEVICE" type="varchar(128)" remarks="装置"/>
             <column name="CELL" type="varchar(128)" remarks="单元"/>
             <column name="UNIT" type="varchar(128)" remarks="单位"/>
-            <column name="TAG_TYPE" type="${type}" remarks="标签类型"/>
             <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
             <column name="TAG_DATA_TYPE" type="varchar(16)" remarks="数据类型"/>
             <column name="HDBS_TAG" type="${boolean}" remarks="进历史库标识"/>
@@ -440,6 +439,7 @@
             <column name="COMPRESS_PRECISION" type="${rate}" remarks="压缩精度"/>
             <column name="EXTERAL_DATA_TYPE" type="varchar(16)" remarks="通讯标签外部类型"/>
             <column name="CONVERT_EXPRESSION" type="${expression}" remarks="通讯标签转换公式"/>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-其他的"/>
         </createTable>
         <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_GUID"
                              constraintName="UQ_TAG_NAME_GUID"/>

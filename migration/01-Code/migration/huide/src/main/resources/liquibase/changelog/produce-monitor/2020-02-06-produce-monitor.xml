@@ -128,20 +128,21 @@
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_TAG"/>
             </column>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
+                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_PROJECT_ID"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
+                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_PROJECT_GUID"/>
             </column>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
-                <constraints nullable="false"/>
+                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_NAME"/>
+            </column>
+            <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签">
+                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_TYPE"/>
             </column>
             <column name="NODE_CODE" type="${code}" remarks="节点编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="RDBS_CODE" type="${code}" remarks="实时库编码">
-                <constraints nullable="false"/>
-            </column>
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
         </createTable>
         <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"
                              constraintName="UQ_PROJECT_TAG_ID_NAME"/>
@@ -352,11 +353,13 @@
             <column name="PUSH_STATE" type="${type}" remarks="推送状态"/>
             <column name="CONFIRM_TIME" type="${datetime}" remarks="确认时间"/>
             <column name="RECOVERY_TIME" type="${datetime}" remarks="恢复时间"/>
+            <column name="HIDE_TAG" type="${boolean}" remarks="隐藏标识:Y-已隐藏;N-未隐藏"
+                    defaultValue="N" defaultValueConstraintName="DF_PRODUCE_ALARM_HIDE_TAG"/>
         </createTable>
     </changeSet>
     <!--生产报警历史表-->
     <changeSet author="WangXun" id="1581337040000-16">
-        <createTable tableName="PM_PRODUCE_ALARM_HISTORY" remarks="生产报警表">
+        <createTable tableName="PM_PRODUCE_ALARM_HISTORY" remarks="生产报警历史表">
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_HISTORY_ID"/>
             </column>
@@ -382,6 +385,8 @@
             <column name="PUSH_STATE" type="${type}" remarks="推送状态"/>
             <column name="CONFIRM_TIME" type="${datetime}" remarks="确认时间"/>
             <column name="RECOVERY_TIME" type="${datetime}" remarks="恢复时间"/>
+            <column name="HIDE_TAG" type="${boolean}" remarks="隐藏标识:Y-已隐藏;N-未隐藏"
+                    defaultValue="N" defaultValueConstraintName="DF_ALARM_HISTORY_HIDE_TAG"/>
         </createTable>
     </changeSet>
     <!--报警等级表-->
@@ -547,7 +552,7 @@
             <column name="SIGNATURE" type="varchar(256)" remarks="存储签名"/>
         </createTable>
     </changeSet>
-    <!--视频树表(PM_VIDEO_TREE)-->
+    <!--视频树表-->
     <changeSet author="WangXun" id="1581337040000-24">
         <comment>新建视频树表(PM_VIDEO_TREE)</comment>
         <createTable tableName="PM_VIDEO_TREE" remarks="视频树">
@@ -588,8 +593,8 @@
             <dropTable tableName="PM_VIDEO_TREE"/>
         </rollback>
     </changeSet>
-    <!--视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)-->
-    <changeSet author="WangXun" id="1581337040000-25" >
+    <!--视频树账户关系表-->
+    <changeSet author="WangXun" id="1581337040000-25">
         <comment>新建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
         <createTable tableName="PM_VIDEO_TREE_ACCOUNT">
             <column name="ID" type="${id}" remarks="编号">
