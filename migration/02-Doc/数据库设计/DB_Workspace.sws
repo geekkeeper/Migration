@@ -4,7 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes" Name="DB_Workspace">
-		<Model Expanded="Yes" ID="{6E07CA6C-C4FF-49AB-9FED-152A447716E0}" Name="huide" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="huide/huide.prj"/>
+		<Model Expanded="Yes" ID="{6E07CA6C-C4FF-49AB-9FED-152A447716E0}" Loaded="No" Name="huide" Selected="Yes" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="huide/huide.prj"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
