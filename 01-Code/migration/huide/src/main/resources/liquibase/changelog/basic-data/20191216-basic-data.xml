@@ -4,9 +4,9 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <!--基础数据模块-->
-    <!--字典键表(BD_DICTIONARY_KEY)-->
+    <!--字典键表-->
     <changeSet author="WangXun" id="1576425600000-1">
-        <comment>创建字典键表</comment>
+        <comment>创建字典键表(BD_DICTIONARY_KEY)</comment>
         <createTable tableName="BD_DICTIONARY_KEY" remarks="字典键表">
             <column name="ID" type="${id}" remarks="键编号">
                 <constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_TYPE_ID"/>
@@ -101,7 +101,7 @@
             <dropTable tableName="BD_DICTIONARY_KEY"/>
         </rollback>
     </changeSet>
-    <!--字典条目表(BD_DICTIONARY_ITEM)-->
+    <!--字典条目表-->
     <changeSet author="WangXun" id="1576425600000-2">
         <comment>创建字典条目表(BD_DICTIONARY_ITEM)</comment>
         <createTable tableName="BD_DICTIONARY_ITEM" remarks="字典条目表">
@@ -397,7 +397,7 @@
             <dropTable tableName="BD_DICTIONARY_ITEM"/>
         </rollback>
     </changeSet>
-    <!--人员表(BD_Person)-->
+    <!--人员表-->
     <changeSet author="WangXun" id="1576425600000-3">
         <comment>新建人员表(BD_Person)</comment>
         <createTable tableName="BD_PERSON" remarks="人员表">
@@ -429,8 +429,9 @@
         </createTable>
     </changeSet>
     <!--组织机构表-->
-    <changeSet author="Sun YiWen" id="1581661583168-1">
-        <createTable remarks="组织机构表" tableName="BD_ORGANIZATION">
+    <changeSet author="WangXun" id="1576425600000-4">
+        <comment>创建组织机构表(BD_ORGANIZATION)</comment>
+        <createTable tableName="BD_ORGANIZATION" remarks="组织机构表">
             <column name="ID" type="${id}" remarks="组织机构编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ORGANIZATION_ID"/>
             </column>
@@ -468,7 +469,8 @@
         </rollback>
     </changeSet>
     <!--组织人员关系表-->
-    <changeSet author="WangXun" id="1581661583168-4">
+    <changeSet author="WangXun" id="1576425600000-5">
+        <comment>创建组织人员关系表(BD_ORGANIZATION_PERSON)</comment>
         <createTable remarks="组织人员关系表" tableName="BD_ORGANIZATION_PERSON">
             <column name="ID" type="${id}" remarks="编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ORGANIZATION_PERSON_ID"/>
@@ -482,8 +484,9 @@
         </createTable>
     </changeSet>
     <!--行政区划表-->
-    <changeSet author="Sun YiWen" id="1581661583168-5">
-        <createTable remarks="行政区划表" tableName="BD_REGIONAL_DIVISION">
+    <changeSet author="WangXun" id="1576425600000-6">
+        <comment>创建行政区划表(BD_REGIONAL_DIVISION)</comment>
+        <createTable tableName="BD_REGIONAL_DIVISION" remarks="行政区划表">
             <column name="REGIONAL_ID" remarks="区域编号" type="${id}">
                 <constraints primaryKey="true" primaryKeyName="PK_BD_REGIONAL_DIVISION"/>
             </column>

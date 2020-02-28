@@ -2,9 +2,10 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <!--GT_Plus组态工程信息表-->
+    <!--GT工程表-->
     <changeSet author="WangXun" id="1580976637730-1">
-        <createTable tableName="GT_PROJECT" remarks="GT_Plus组态工程信息表">
+        <comment>创建GT工程表(GT_PROJECT)</comment>
+        <createTable tableName="GT_PROJECT" remarks="GT工程表">
             <column name="ID" type="${id}" remarks="GT工程编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_PROJECT"/>
             </column>
@@ -16,14 +17,15 @@
             </column>
         </createTable>
     </changeSet>
-    <!--报表模板信息表-->
+    <!--报表模板表-->
     <changeSet author="WangXun" id="1580976637730-2">
-        <createTable tableName="GT_REPORT_TEMPLETE" remarks="报表模板信息表">
+        <comment>创建报表模板表(GT_REPORT_TEMPLATE)</comment>
+        <createTable tableName="GT_REPORT_TEMPLATE" remarks="报表模板表">
             <column name="ID" type="${id}" remarks="报表模板编号">
-                <constraints primaryKey="true" primaryKeyName="PK_REPORT_TEMPLETE_ID"/>
+                <constraints primaryKey="true" primaryKeyName="PK_REPORT_TEMPLATE_ID"/>
             </column>
             <column name="CODE" type="${code}" remarks="报表模板编码">
-                <constraints unique="true" uniqueConstraintName="UQ_REPORT_TEMPLETE_CODE"/>
+                <constraints unique="true" uniqueConstraintName="UQ_REPORT_TEMPLATE_CODE"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
@@ -35,9 +37,10 @@
             <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
         </createTable>
     </changeSet>
-    <!--流程图信息表-->
+    <!--流程图表-->
     <changeSet author="WangXun" id="1580976637730-3">
-        <createTable tableName="GT_GRAPH" remarks="流程图信息表">
+        <comment>创建流程图表(GT_GRAPH)</comment>
+        <createTable tableName="GT_GRAPH" remarks="流程图表">
             <column name="ID" type="${id}" remarks="流程图编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_FLOW_CAHRT"/>
             </column>
@@ -56,7 +59,8 @@
     </changeSet>
     <!--网络节点表-->
     <changeSet author="WangXun" id="1580976637730-4">
-        <createTable tableName="GT_NETWORK_NODE" remarks="网络节点信息表">
+        <comment>创建网络节点表(GT_NETWORK_NODE)</comment>
+        <createTable tableName="GT_NETWORK_NODE" remarks="网络节点表">
             <column name="ID" type="${id}" remarks="节点编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_NETWORK_NODE"/>
             </column>
@@ -89,9 +93,10 @@
             <column name="REQUEST_TAG" type="${boolean}" remarks="请求标识"/>
         </createTable>
     </changeSet>
-    <!--报警服务-->
+    <!--报警服务表-->
     <changeSet author="WangXun" id="1580976637730-5">
-        <createTable tableName="GT_ALARM_SERVICE" remarks="报警服务信息表">
+        <comment>创建报警服务表(GT_ALARM_SERVICE)</comment>
+        <createTable tableName="GT_ALARM_SERVICE" remarks="报警服务表">
             <column name="ID" type="${id}" remarks="报警服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_ALARM_SERVICE"/>
             </column>
@@ -113,9 +118,10 @@
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
-    <!--算法运行服务-->
+    <!--算法运行服务表-->
     <changeSet author="WangXun" id="1580976637730-6">
-        <createTable tableName="GT_ALGORITHM_SERVICE" remarks="算法运行服务信息表">
+        <comment>创建算法运行服务表(GT_ALGORITHM_SERVICE)</comment>
+        <createTable tableName="GT_ALGORITHM_SERVICE" remarks="算法运行服务表">
             <column name="ID" type="${id}" remarks="算法服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_ALGORITHM_SERVICE"/>
             </column>
@@ -139,9 +145,10 @@
             <column name="HDBS_CODE" type="${code}" remarks="历史库服务编码"/>
         </createTable>
     </changeSet>
-    <!--云卡采集服务-->
+    <!--云卡采集服务表-->
     <changeSet author="WangXun" id="1580976637730-7">
-        <createTable tableName="GT_CLOUD_COLLECTION_SERVICE" remarks="云卡采集服务信息表">
+        <comment>创建云卡采集服务表(GT_CLOUD_COLLECTION_SERVICE)</comment>
+        <createTable tableName="GT_CLOUD_COLLECTION_SERVICE" remarks="云卡采集服务表">
             <column name="ID" type="${id}" remarks="云采服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_CLOUD_COLLECTION_SERVICE"/>
             </column>
@@ -163,9 +170,10 @@
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
-    <!--数据采集服务-->
+    <!--数据采集服务表-->
     <changeSet author="WangXun" id="1580976637730-8">
-        <createTable tableName="GT_DATA_COLLECTION_SERVICE" remarks="数据采集服务信息表">
+        <comment>创建数据采集服务表(GT_DATA_COLLECTION_SERVICE)</comment>
+        <createTable tableName="GT_DATA_COLLECTION_SERVICE" remarks="数据采集服务表">
             <column name="ID" type="${id}" remarks="数采服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_DATA_COLLECTION_SERVICE"/>
             </column>
@@ -189,9 +197,10 @@
             <column name="HDBS_CODE" type="${code}" remarks="历史库服务编码"/>
         </createTable>
     </changeSet>
-    <!--日志服务-->
+    <!--日志服务表-->
     <changeSet author="WangXun" id="1580976637730-9">
-        <createTable tableName="GT_LOG_SERVICE" remarks="日志服务信息表">
+        <comment>创建日志服务表(GT_LOG_SERVICE)</comment>
+        <createTable tableName="GT_LOG_SERVICE" remarks="日志服务表">
             <column name="ID" type="${id}" remarks="日志服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_LOG_SERVICE"/>
             </column>
@@ -213,9 +222,10 @@
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
-    <!--节点状态服务-->
+    <!--节点状态服务表-->
     <changeSet author="WangXun" id="1580976637730-10">
-        <createTable tableName="GT_NODE_STATE_SERVICE" remarks="节点状态服务信息表">
+        <comment>创建节点状态服务表(GT_NODE_STATE_SERVICE)</comment>
+        <createTable tableName="GT_NODE_STATE_SERVICE" remarks="节点状态服务表">
             <column name="ID" type="${id}" remarks="节点状态服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_NODE_STATE_SERVICE"/>
             </column>
@@ -237,9 +247,10 @@
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
-    <!--节点状态客户端-->
+    <!--节点状态客户端表-->
     <changeSet author="WangXun" id="1580976637730-11">
-        <createTable tableName="GT_NODE_STATE_CLIENT" remarks="节点状态客户端">
+        <comment>创建节点状态客户端表(GT_NODE_STATE_CLIENT)</comment>
+        <createTable tableName="GT_NODE_STATE_CLIENT" remarks="节点状态客户端表">
             <column name="ID" type="${id}" remarks="客户端编号">
                 <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_CLIENT_ID"/>
             </column>
@@ -257,9 +268,10 @@
             <column name="NAME" type="${name}" remarks="客户端名称"/>
         </createTable>
     </changeSet>
-    <!--关系库服务-->
+    <!--关系库服务表-->
     <changeSet author="WangXun" id="1580976637730-12">
-        <createTable tableName="GT_RELATIONAL_DB_SERVICE" remarks="关系库服务信息表">
+        <comment>创建关系库服务表(GT_RELATIONAL_DB_SERVICE)</comment>
+        <createTable tableName="GT_RELATIONAL_DB_SERVICE" remarks="关系库服务表">
             <column name="ID" type="${id}" remarks="关系库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_RDB_SERVICE"/>
             </column>
@@ -284,9 +296,10 @@
             </column>
         </createTable>
     </changeSet>
-    <!--报表打印服务-->
+    <!--报表打印服务表-->
     <changeSet author="WangXun" id="1580976637730-13">
-        <createTable tableName="GT_REPORT_PRINT_SERVICE" remarks="报表打印服务信息表">
+        <comment>创建报表打印服务表(GT_REPORT_PRINT_SERVICE)</comment>
+        <createTable tableName="GT_REPORT_PRINT_SERVICE" remarks="报表打印服务表">
             <column name="ID" type="${id}" remarks="报表服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_REPORT_PRINT_SERVICE"/>
             </column>
@@ -308,9 +321,10 @@
             <column name="REDUNDANCY_CODE" type="${code}" remarks="互为冗余编码:对方服务编码"/>
         </createTable>
     </changeSet>
-    <!--校时服务-->
+    <!--校时服务表-->
     <changeSet author="WangXun" id="1580976637730-14">
-        <createTable tableName="GT_TIME_SYNC_SERVICE" remarks="校时服务信息表">
+        <comment>创建校时服务表(GT_TIME_SYNC_SERVICE)</comment>
+        <createTable tableName="GT_TIME_SYNC_SERVICE" remarks="校时服务表">
             <column name="ID" type="${id}" remarks="校时服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_TIME_SERVICE"/>
             </column>
@@ -343,9 +357,10 @@
             <column name="REQUEST_TAG" type="${boolean}" remarks="是否发送请求"/>
         </createTable>
     </changeSet>
-    <!--历史库服务-->
+    <!--历史库服务表-->
     <changeSet author="WangXun" id="1580976637730-15">
-        <createTable tableName="GT_HDB_SERVICE" remarks="历史数据库服务信息表">
+        <comment>创建历史库服务表(GT_HDB_SERVICE)</comment>
+        <createTable tableName="GT_HDB_SERVICE" remarks="历史库服务表">
             <column name="ID" type="${id}" remarks="历史库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_HDB_SERVICE"/>
             </column>
@@ -370,9 +385,10 @@
 
         </createTable>
     </changeSet>
-    <!--实时库服务-->
+    <!--实时库服务表-->
     <changeSet author="WangXun" id="1580976637730-16">
-        <createTable tableName="GT_REALTIME_DB_SERVICE" remarks="实时库服务信息表">
+        <comment>创建实时库服务表(GT_REALTIME_DB_SERVICE)</comment>
+        <createTable tableName="GT_REALTIME_DB_SERVICE" remarks="实时库服务表">
             <column name="ID" type="${id}" remarks="实时库服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_RTDB_SERVICE"/>
             </column>
@@ -398,6 +414,7 @@
     </changeSet>
     <!--标签表-->
     <changeSet author="WangXun" id="1580976637730-17">
+        <comment>创建标签表(GT_TAG)</comment>
         <createTable tableName="GT_TAG" remarks="标签表">
             <column name="ID" type="${id}" remarks="标签编号">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TAG_ID"/>
@@ -444,8 +461,9 @@
         <addUniqueConstraint tableName="GT_TAG" columnNames="TAG_NAME,GT_PROJECT_GUID"
                              constraintName="UQ_TAG_NAME_GUID"/>
     </changeSet>
-    <!--特殊标签表(GT_SPECIAL_TAG)-->
+    <!--特殊标签表-->
     <changeSet author="WangXun" id="1580976637730-18">
+        <comment>创建特殊标签表(GT_SPECIAL_TAG)</comment>
         <createTable tableName="GT_SPECIAL_TAG" remarks="特殊标签表">
             <column name="ID" type="${id}" remarks="标签编号">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SPECIAL_TAG_ID"/>
@@ -462,9 +480,10 @@
             <column name="REGION_NUM" type="${sort}" remarks="域号"/>
         </createTable>
     </changeSet>
-    <!--应用服务-->
+    <!--应用服务表-->
     <changeSet author="WangXun" id="1580976637730-19">
-        <createTable tableName="GT_APPLICATION_SERVICE" remarks="应用服务">
+        <comment>创建应用服务表(GT_APPLICATION_SERVICE)</comment>
+        <createTable tableName="GT_APPLICATION_SERVICE" remarks="应用服务表">
             <column name="ID" type="${id}" remarks="应用服务编号">
                 <constraints primaryKey="true" primaryKeyName="PK_GT_APPLICATION_SERVICE_ID"/>
             </column>

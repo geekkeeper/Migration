@@ -6,7 +6,7 @@
 	<!--权限管理模块-->
 	<!--令牌记录表(OAUTH_ACCESS_TOKEN)-->
 	<changeSet id="1576561645670-1" author="WangXun">
-		<comment>新建令牌记录表(OAUTH_ACCESS_TOKEN)</comment>
+		<comment>创建令牌记录表(OAUTH_ACCESS_TOKEN)</comment>
 		<createTable tableName="OAUTH_ACCESS_TOKEN" remarks="令牌记录表">
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ACCESS_ID"/>
@@ -21,7 +21,7 @@
 	</changeSet>
 	<!--授权客户端(OAUTH_CLIENT_DETAILS)-->
 	<changeSet id="1576561645670-2" author="WangXun">
-		<comment>新建授权客户端(OAUTH_CLIENT_DETAILS)</comment>
+		<comment>创建授权客户端(OAUTH_CLIENT_DETAILS)</comment>
 		<createTable tableName="OAUTH_CLIENT_DETAILS" remarks="授权客户端">
 			<column name="CLIENT_ID" type="varchar(32)" remarks="客户端编号">
 				<constraints primaryKey="true" primaryKeyName="PK_CLIENT_ID"/>
@@ -43,7 +43,7 @@
 	</changeSet>
 	<!--令牌刷新表(OAUTH_REFRESH_TOKEN)-->
 	<changeSet id="1576561645670-3" author="WangXun">
-		<comment>新建令牌刷新表(OAUTH_REFRESH_TOKEN)</comment>
+		<comment>创建令牌刷新表(OAUTH_REFRESH_TOKEN)</comment>
 		<createTable tableName="OAUTH_REFRESH_TOKEN" remarks="令牌刷新表">
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
 				<constraints primaryKey="true" primaryKeyName="PK_REFRESH_ID"/>
@@ -99,7 +99,7 @@
 	</changeSet>
 	<!--通用行为表(AM_COMMON_ACTION)-->
 	<changeSet id="1576561645670-6" author="WangXun">
-		<comment>新建通用行为表(AM_COMMON_ACTION)</comment>
+		<comment>创建通用行为表(AM_COMMON_ACTION)</comment>
 		<createTable tableName="AM_COMMON_ACTION" remarks="通用行为表">
 			<column name="ID" type="${id}" remarks="行为编号">
 				<constraints primaryKey="true" primaryKeyName="PK_COMMON_ACTION_ID"/>
@@ -145,7 +145,7 @@
 	</changeSet>
 	<!--模块表(AM_MODULE)-->
 	<changeSet id="1576561645670-7" author="WangXun">
-		<comment>新建模块表(AM_MODULE)</comment>
+		<comment>创建模块表(AM_MODULE)</comment>
 		<createTable tableName="AM_MODULE" remarks="模块表">
 			<column name="ID" type="${id}" remarks="模块编号">
 				<constraints primaryKey="true" primaryKeyName="PK_MODULE_ID"/>
@@ -180,7 +180,7 @@
 	</changeSet>
 	<!--模块行为表(AM_MODULE_ACTION)-->
 	<changeSet id="1576561645670-8" author="WangXun">
-		<comment>新建模块行为表(AM_MODULE_ACTION)</comment>
+		<comment>创建模块行为表(AM_MODULE_ACTION)</comment>
 		<createTable tableName="AM_MODULE_ACTION" remarks="模块行为表">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_MODULE_ACTION_ID"/>
@@ -205,7 +205,7 @@
 	</changeSet>
 	<!--模块列表(AM_MODULE_LIST)-->
 	<changeSet id="1576561645670-9" author="WangXun">
-		<comment>新建模块列表(AM_MODULE_LIST)</comment>
+		<comment>创建模块列表(AM_MODULE_LIST)</comment>
 		<createTable tableName="AM_MODULE_LIST" remarks="模块列表">
 			<column name="ID" type="${id}" remarks="列表编号">
 				<constraints primaryKey="true" primaryKeyName="PK_LIST_ID"/>
@@ -233,7 +233,7 @@
 	</changeSet>
 	<!--模块列表字段表(AM_LIST_FIELD)-->
 	<changeSet id="1576561645670-10" author="WangXun">
-		<comment>新建模块列表字段表(AM_LIST_FIELD)</comment>
+		<comment>创建模块列表字段表(AM_LIST_FIELD)</comment>
 		<createTable tableName="AM_LIST_FIELD" remarks="列表字段表">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_FIELD_ID"/>
@@ -256,7 +256,7 @@
 	</changeSet>
 	<!--角色表(AM_ROLE)-->
 	<changeSet id="1576561645670-12" author="WangXun">
-		<comment>新建角色表(AM_ROLE)</comment>
+		<comment>创建角色表(AM_ROLE)</comment>
 		<createTable tableName="AM_ROLE" remarks="角色表">
 			<column name="ID" type="${id}" remarks="角色编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ROLE_ID"/>
@@ -277,7 +277,7 @@
 	</changeSet>
 	<!--用户表(AM_USER)-->
 	<changeSet id="1576561645670-13" author="WangXun">
-		<comment>新建用户表(AM_USER)</comment>
+		<comment>创建用户表(AM_USER)</comment>
 		<createTable tableName="AM_USER" remarks="用户表">
 			<column name="ID" type="${id}" remarks="用户编号">
 				<constraints primaryKey="true" primaryKeyName="PK_USER_ID"/>
@@ -332,7 +332,7 @@
 	</changeSet>
 	<!--角色资源表(AM_ROLE_RESOURCE)-->
 	<changeSet id="1576561645670-15" author="WangXun">
-		<comment>新建角色资源表(AM_ROLE_RESOURCE)</comment>
+		<comment>创建角色资源表(AM_ROLE_RESOURCE)</comment>
 		<createTable tableName="AM_ROLE_RESOURCE" remarks="角色资源表">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ROLE_RESOURCE_ID"/>
@@ -348,7 +348,7 @@
 	</changeSet>
 	<!--角色数据域表(AM_ROLE_DATA_SCOPE)-->
 	<changeSet id="1576561645670-16" author="WangXun">
-		<comment>新建角色数据域表(AM_ROLE_DATA_SCOPE)</comment>
+		<comment>创建角色数据域表(AM_ROLE_DATA_SCOPE)</comment>
 		<createTable tableName="AM_ROLE_DATA_SCOPE">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ROLE_DATA_SCOPE_ID"/>

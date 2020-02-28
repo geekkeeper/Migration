@@ -2,9 +2,10 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <!--GIS位置信息表-->
+    <!--GIS位置表-->
     <changeSet author="WangXun" id="1581337040000-1">
-        <createTable tableName="PM_GIS_POSITION" remarks="GIS位置信息表">
+        <comment>创建GIS位置表</comment>
+        <createTable tableName="PM_GIS_POSITION" remarks="GIS位置表">
             <column name="ID" type="${id}" remarks="位置编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_POSITION"/>
             </column>
@@ -28,6 +29,7 @@
     </changeSet>
     <!--GIS位置标签关系表-->
     <changeSet author="WangXun" id="1581337040000-2">
+        <comment>创建GIS位置标签关系表(PM_GIS_TAG)</comment>
         <createTable tableName="PM_GIS_TAG" remarks="GIS位置标签关系表">
             <column name="ID" type="${id}" remarks="编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_GIS_TAG"/>
@@ -46,9 +48,10 @@
             </column>
         </createTable>
     </changeSet>
-    <!--项目架构信息表-->
+    <!--项目架构树表-->
     <changeSet author="WangXun" id="1581337040000-3">
-        <createTable tableName="PM_PROJECT_ARCHITECTURE" remarks="项目架构信息表">
+        <comment>创建项目架构树表(PM_PROJECT_ARCHITECTURE)</comment>
+        <createTable tableName="PM_PROJECT_ARCHITECTURE" remarks="项目架构树表">
             <column name="ID" type="${id}" remarks="项目编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_ARCHITECTURE"/>
             </column>
@@ -88,6 +91,7 @@
     </changeSet>
     <!--项目流程图关系表-->
     <changeSet author="WangXun" id="1581337040000-4">
+        <comment>创建项目流程图关系表(PM_PROJECT_GRAPH)</comment>
         <createTable tableName="PM_PROJECT_GRAPH" remarks="项目流程图关系表">
             <column name="ID" type="${id}" remarks="项目流程图编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_FLOW_CHART"/>
@@ -106,6 +110,7 @@
     </changeSet>
     <!--项目报表关系表-->
     <changeSet author="WangXun" id="1581337040000-5">
+        <comment>创建项目报表关系表(PM_PROJECT_REPORT)</comment>
         <createTable tableName="PM_PROJECT_REPORT" remarks="项目报表关系表">
             <column name="ID" type="${id}" remarks="项目报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_REPORT"/>
@@ -123,6 +128,7 @@
     </changeSet>
     <!--项目标签关系表-->
     <changeSet author="WangXun" id="1581337040000-6">
+        <comment>创建项目标签关系表(PM_PROJECT_TAG)</comment>
         <createTable tableName="PM_PROJECT_TAG" remarks="项目标签关系表">
             <column name="ID" type="${id}" remarks="项目标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_PROJECT_TAG"/>
@@ -147,9 +153,10 @@
         <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"
                              constraintName="UQ_PROJECT_TAG_ID_NAME"/>
     </changeSet>
-    <!--报表计划信息表-->
+    <!--报表计划表-->
     <changeSet author="WangXun" id="1581337040000-7">
-        <createTable tableName="PM_REPORT_PLAN" remarks="报表计划信息表">
+        <comment>创建报表计划表(PM_REPORT_PLAN)</comment>
+        <createTable tableName="PM_REPORT_PLAN" remarks="报表计划表">
             <column name="ID" type="${id}" remarks="报表计划编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_REPORT_PLAN"/>
             </column>
@@ -178,9 +185,10 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
-    <!--高级报表信息表-->
+    <!--高级报表表-->
     <changeSet author="WangXun" id="1581337040000-8">
-        <createTable tableName="PM_SUPER_REPORT" remarks="高级报表信息表">
+        <comment>创建高级报表(PM_SUPER_REPORT)</comment>
+        <createTable tableName="PM_SUPER_REPORT" remarks="高级报表表">
             <column name="ID" type="${id}" remarks="高级报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_SUPER_REPORT"/>
             </column>
@@ -204,9 +212,10 @@
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         </createTable>
     </changeSet>
-    <!--趋势信息表-->
+    <!--趋势表-->
     <changeSet author="WangXun" id="1581337040000-9">
-        <createTable tableName="PM_TREND" remarks="趋势信息表">
+        <comment>创建趋势表(PM_TREND)</comment>
+        <createTable tableName="PM_TREND" remarks="趋势表">
             <column name="ID" type="${id}" remarks="趋势编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND"/>
             </column>
@@ -222,9 +231,10 @@
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
         </createTable>
     </changeSet>
-    <!--趋势组信息表-->
+    <!--趋势组表-->
     <changeSet author="WangXun" id="1581337040000-10">
-        <createTable tableName="PM_TREND_GROUP" remarks="趋势组信息表">
+        <comment>创建趋势组表(PM_TREND_GROUP)</comment>
+        <createTable tableName="PM_TREND_GROUP" remarks="趋势组表">
             <column name="ID" type="${id}" remarks="趋势组编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP"/>
             </column>
@@ -247,6 +257,7 @@
     </changeSet>
     <!--趋势组标签关系表-->
     <changeSet author="WangXun" id="1581337040000-11">
+        <comment>创建趋势组标签关系表(PM_TREND_GROUP_TAG)</comment>
         <createTable tableName="PM_TREND_GROUP_TAG" remarks="趋势组标签关系表">
             <column name="ID" type="${id}" remarks="趋势组标签编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP_TAG"/>
@@ -266,9 +277,10 @@
             </column>
         </createTable>
     </changeSet>
-    <!--视频账户信息表-->
+    <!--视频账户表-->
     <changeSet author="WangXun" id="1581337040000-12">
-        <createTable tableName="PM_VIDEO_ACCOUNT" remarks="视频账户信息表">
+        <comment>创建视频账户表(PM_VIDEO_ACCOUNT)</comment>
+        <createTable tableName="PM_VIDEO_ACCOUNT" remarks="视频账户表">
             <column name="ID" type="${id}" remarks="视频帐户编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_VIDEO_ACCOUNT"/>
             </column>
@@ -288,6 +300,7 @@
     </changeSet>
     <!--报表记录表-->
     <changeSet author="WangXun" id="1581337040000-13">
+        <comment>创建报表记录表(PM_REPORT_RECORD)</comment>
         <createTable tableName="PM_REPORT_RECORD" remarks="报表记录表">
             <column name="ID" type="${id}" remarks="报表记录编号"/>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
@@ -300,6 +313,7 @@
     </changeSet>
     <!--系统报警表-->
     <changeSet author="WangXun" id="1581337040000-14">
+        <comment>创建系统报警表(PM_SYSTEM_ALARM)</comment>
         <createTable tableName="PM_SYSTEM_ALARM" remarks="系统报警表">
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_SYSTEM_ALARM_ID"/>
@@ -326,7 +340,8 @@
         </createTable>
     </changeSet>
     <!--生产报警表-->
-    <changeSet author="WangXun" id="1581337040000-15">
+    <changeSet author="WangXun" id="1581337040000-15" >
+        <comment>创建生产报警表(PM_PRODUCE_ALARM)</comment>
         <createTable tableName="PM_PRODUCE_ALARM" remarks="生产报警表">
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_ID"/>
@@ -359,6 +374,7 @@
     </changeSet>
     <!--生产报警历史表-->
     <changeSet author="WangXun" id="1581337040000-16">
+        <comment>创建生产报警历史表(PM_PRODUCE_ALARM_HISTORY)</comment>
         <createTable tableName="PM_PRODUCE_ALARM_HISTORY" remarks="生产报警历史表">
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_HISTORY_ID"/>
@@ -391,6 +407,7 @@
     </changeSet>
     <!--报警颜色表-->
     <changeSet author="WangXun" id="1581337040000-17">
+        <comment>创建报警颜色表(PM_ALARM_COLOR)</comment>
         <createTable tableName="PM_ALARM_COLOR" remarks="报警颜色表">
             <column name="ID" type="${id}" remarks="报警颜色编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_COLOR_ID"/>
@@ -409,11 +426,12 @@
     </changeSet>
     <!--报警处理记录表-->
     <changeSet author="WangXun" id="1581337040000-18">
+        <comment>创建报警处理记录表(PM_ALARM_HANDLE_RECORD)</comment>
         <createTable tableName="PM_ALARM_HANDLE_RECORD" remarks="报警处理记录表">
             <column name="ID" type="${id}" remarks="处理记录编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_HANDLE_RECORD_ID"/>
             </column>
-            <column name="PRODUCE_ALARM_ID" type="${id}" remarks="报警编号"/>
+            <column name="PRODUCE_ALARM_TYPE" type="${id}" remarks="生产报警类型"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
@@ -432,6 +450,7 @@
     </changeSet>
     <!--节点状态表-->
     <changeSet author="WangXun" id="1581337040000-19">
+        <comment>创建节点状态表(PM_NODE_STATE)</comment>
         <createTable tableName="PM_NODE_STATE" remarks="生产报警表">
             <column name="ID" type="${id}" remarks="节点状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_ID"/>
@@ -456,6 +475,7 @@
     </changeSet>
     <!--进程状态表-->
     <changeSet author="WangXun" id="1581337040000-20">
+        <comment>创建进程状态表(PM_PROCESS_STATE)</comment>
         <createTable tableName="PM_PROCESS_STATE" remarks="进程状态表">
             <column name="ID" type="${id}" remarks="进程状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PROCESS_STATE_ID"/>
@@ -477,6 +497,7 @@
     </changeSet>
     <!--服务状态表-->
     <changeSet author="WangXun" id="1581337040000-21">
+        <comment>创建服务状态表(PM_SERVICE_STATE)</comment>
         <createTable tableName="PM_SERVICE_STATE" remarks="服务状态表">
             <column name="ID" type="${id}" remarks="服务状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_SERVICE_STATE_ID"/>
@@ -497,6 +518,7 @@
     </changeSet>
     <!--系统日志表-->
     <changeSet author="WangXun" id="1581337040000-22">
+        <comment>创建系统日志表(PM_SYSTEM_LOG)</comment>
         <createTable tableName="PM_SYSTEM_LOG" remarks="系统日志表">
             <column name="ID" type="${id}" remarks="日志编号">
                 <constraints primaryKey="true" primaryKeyName="PK_SYSTEM_LOG_ID"/>
@@ -529,6 +551,7 @@
     </changeSet>
     <!--生产日志表-->
     <changeSet author="WangXun" id="1581337040000-23">
+        <comment>创建生产日志表(PM_PRODUCE_LOG)</comment>
         <createTable tableName="PM_PRODUCE_LOG" remarks="生产日志表">
             <column name="ID" type="${id}" remarks="日志编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_LOG_ID"/>
@@ -561,7 +584,7 @@
     </changeSet>
     <!--视频树表-->
     <changeSet author="WangXun" id="1581337040000-24">
-        <comment>新建视频树表(PM_VIDEO_TREE)</comment>
+        <comment>创建视频树表(PM_VIDEO_TREE)</comment>
         <createTable tableName="PM_VIDEO_TREE" remarks="视频树">
             <column name="ID" type="${id}" remarks="视频树节点编号">
                 <constraints primaryKey="true" primaryKeyName="PK_VIDEO_TREE_ID"/>
@@ -602,7 +625,7 @@
     </changeSet>
     <!--视频树账户关系表-->
     <changeSet author="WangXun" id="1581337040000-25">
-        <comment>新建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
+        <comment>创建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
         <createTable tableName="PM_VIDEO_TREE_ACCOUNT">
             <column name="ID" type="${id}" remarks="编号">
                 <constraints primaryKey="true" primaryKeyName="PK_VIDEO_TREE_ACCOUNT_ID"/>
