@@ -389,14 +389,21 @@
                     defaultValue="N" defaultValueConstraintName="DF_ALARM_HISTORY_HIDE_TAG"/>
         </createTable>
     </changeSet>
-    <!--报警等级表-->
+    <!--报警颜色表-->
     <changeSet author="WangXun" id="1581337040000-17">
-        <createTable tableName="PM_ALARM_LEVEL" remarks="报警等级表">
-            <column name="ID" type="${id}" remarks="报警等级编号">
-                <constraints primaryKey="true" primaryKeyName="PK_ALARM_LEVEL_ID"/>
+        <createTable tableName="PM_ALARM_COLOR" remarks="报警颜色表">
+            <column name="ID" type="${id}" remarks="报警颜色编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_COLOR_ID"/>
             </column>
-            <column name="ALARM_LEVEL" type="${level}" remarks="报警等级"/>
-            <column name="COLOR" type="${color}" remarks="等级颜色"/>
+            <column name="TYPE" type="${type}" remarks="表示类型"/>
+            <column name="TYPE_VALUE" type="${type}" remarks="类型数值"/>
+            <column name="COLOR" type="${color}" remarks="颜色"/>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-自定义的" defaultValue="N"
+                    defaultValueConstraintName="DF_ALARM_COLOR_SYSTEMATIC"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
             <column name="REMARK" type="${remark}" remarks="备注信息"/>
         </createTable>
     </changeSet>
