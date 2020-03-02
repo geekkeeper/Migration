@@ -11,11 +11,11 @@
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ACCESS_ID"/>
 			</column>
-			<column name="TOKEN" type="varchar(8000)" remarks="令牌"/>
+			<column name="TOKEN" type="${long_string}" remarks="令牌"/>
 			<column name="AUTHENTICATION_ID" type="varchar(32)" remarks="认证编号"/>
 			<column name="CLIENT_ID" type="varchar(32)" remarks="客户端编号"/>
 			<column name="USER_NAME" type="varchar(32)" remarks="用户名"/>
-			<column name="AUTHENTICATION" type="varchar(8000)" remarks="认证信息"/>
+			<column name="AUTHENTICATION" type="${long_string}" remarks="认证信息"/>
 			<column name="REFRESH_TOKEN" type="varchar(32)" remarks="刷新令牌"/>
 		</createTable>
 	</changeSet>
@@ -48,8 +48,8 @@
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
 				<constraints primaryKey="true" primaryKeyName="PK_REFRESH_ID"/>
 			</column>
-			<column name="TOKEN" type="varchar(8000)" remarks="令牌"/>
-			<column name="AUTHENTICATION" type="varchar(8000)" remarks="认证信息"/>
+			<column name="TOKEN" type="${long_string}" remarks="令牌"/>
+			<column name="AUTHENTICATION" type="${long_string}" remarks="认证信息"/>
 			<column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
 		</createTable>
 	</changeSet>
@@ -349,7 +349,7 @@
 	<!--角色数据域表(AM_ROLE_DATA_SCOPE)-->
 	<changeSet id="1576561645670-16" author="WangXun">
 		<comment>创建角色数据域表(AM_ROLE_DATA_SCOPE)</comment>
-		<createTable tableName="AM_ROLE_DATA_SCOPE">
+		<createTable tableName="AM_ROLE_DATA_SCOPE" remarks="角色数据域表">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ROLE_DATA_SCOPE_ID"/>
 			</column>

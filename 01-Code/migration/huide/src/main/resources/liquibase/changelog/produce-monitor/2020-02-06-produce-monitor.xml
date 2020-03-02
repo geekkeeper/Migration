@@ -161,7 +161,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_PM_REPORT_PLAN"/>
             </column>
             <column name="REPORT_TEMPLATE_CODE" type="${code}" remarks="报表模板编码">
-                <constraints nullable="false" notNullConstraintName="NU_REPORT_PLAN_REPORT_TEMPLATE_CODE"/>
+                <constraints nullable="false" notNullConstraintName="NU_REPORT_TEMPLATE_CODE"/>
             </column>
             <column name="NAME" type="${name}" remarks="报表计划名称"/>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
@@ -626,15 +626,15 @@
     <!--视频树账户关系表-->
     <changeSet author="WangXun" id="1581337040000-25">
         <comment>创建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
-        <createTable tableName="PM_VIDEO_TREE_ACCOUNT">
+        <createTable tableName="PM_VIDEO_TREE_ACCOUNT" remarks="视频树账户关系表">
             <column name="ID" type="${id}" remarks="编号">
                 <constraints primaryKey="true" primaryKeyName="PK_VIDEO_TREE_ACCOUNT_ID"/>
             </column>
             <column name="VIDEO_TREE_ID" type="${id}" remarks="视频树节点编号">
-                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_ACCOUNT_TREE_ID"/>
+                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_TREE_ID"/>
             </column>
             <column name="VIDEO_ACCOUNT_ID" type="${id}" remarks="视频账户编号">
-                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_ACCOUNT_ACCOUNT_ID"/>
+                <constraints nullable="false" notNullConstraintName="NU_VIDEO_TREE_ACCOUNT_ID"/>
             </column>
         </createTable>
     </changeSet>

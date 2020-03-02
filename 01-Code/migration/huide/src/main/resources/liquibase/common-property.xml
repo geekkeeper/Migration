@@ -75,9 +75,13 @@
 
 
 	<!--*****************************通用数据类型*******************************-->
-	<!--*****************************数据库兼容配置******************************-->
+	<!--****************************数据库兼容配置******************************-->
 	<property global="true" name="current_time" value="now()" dbms="mysql"/>
 	<property global="true" name="current_time" value="GETDATE()" dbms="mssql"/>
 	<property global="true" name="current_time" value="sysdate" dbms="oracle"/>
+
+	<property global="true" name="long_string" value="varchar(max)" dbms="mssql"/>
+	<property global="true" name="long_string" value="CLOB" dbms="oracle"/>
+	<property global="true" name="long_string" value="text" dbms="mysql"/>
 	<!--*****************************数据库兼容配置******************************-->
 </databaseChangeLog>
