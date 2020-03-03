@@ -17,7 +17,7 @@
 	</modules>
 	<properties>
 		<java.version>1.8</java.version>
-		<dbms>oracle</dbms>
+		<dbms>mssql</dbms>
 		<!--设置作者-->
 		<author>WangXun</author>
 		<!--<author>Sun YiWen</author>-->

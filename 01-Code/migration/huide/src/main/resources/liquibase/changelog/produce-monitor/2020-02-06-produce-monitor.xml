@@ -638,4 +638,24 @@
             </column>
         </createTable>
     </changeSet>
+    <!--流程图状态记录表-->
+    <changeSet author="WangXun" id="1581337040000-26" >
+        <comment>创建流程图状态记录表(PM_GRAPH_STATUS_RECORD)</comment>
+        <createTable tableName="PM_GRAPH_STATUS_RECORD" remarks="流程图状态记录表">
+            <column name="ID" type="${id}" remarks="状态记录编号" >
+                <constraints primaryKey="true" primaryKeyName="GRAPH_STATUS_ID"/>
+            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GRAPH_CODE" type="${code}" remarks="流程图编码">
+                <constraints nullable="false" notNullConstraintName="NU_STATUS_GRAPH_CODE"/>
+            </column>
+            <column name="GRAPH_STATUS" type="${type}" remarks="状态类型:0-保持;1-历史"
+                    defaultValue="0" defaultValueConstraintName="DF_STATUS_GRAPH_STATUS">
+                <constraints nullable="false" notNullConstraintName="NU_STATUS_GRAPH_STATUS"/>
+            </column>
+            <column name="CREATE_BY" type="${id}" remarks="添加人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="添加时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
