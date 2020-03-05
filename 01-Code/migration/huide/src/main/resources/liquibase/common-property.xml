@@ -61,7 +61,7 @@
 	<!--经纬度-->
 	<property global="true" name="longitude_latitude" value="decimal(10,7)"/>
 	<!--编码-->
-	<property global="true" name="code" value="varchar(36)"/>
+	<property global="true" name="code" value="varchar(32)"/>
 	<!--表达式-->
 	<property global="true" name="expression" value="varchar(512)"/>
 	<!--路径-->
