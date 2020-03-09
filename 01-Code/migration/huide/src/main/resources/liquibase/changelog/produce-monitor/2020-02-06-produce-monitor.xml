@@ -12,6 +12,7 @@
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
+            <column name="NAME" type="${name}" remarks="位置名称"/>
             <column name="LONGITUDE" type="${longitude_latitude}" remarks="经度">
                 <constraints nullable="false"/>
             </column>
@@ -302,7 +303,9 @@
     <changeSet author="WangXun" id="1581337040000-13">
         <comment>创建报表记录表(PM_REPORT_RECORD)</comment>
         <createTable tableName="PM_REPORT_RECORD" remarks="报表记录表">
-            <column name="ID" type="${id}" remarks="报表记录编号"/>
+            <column name="ID" type="${id}" remarks="报表记录编号">
+                <constraints primaryKey="true" primaryKeyName="PK_REPORT_RECORD_ID"/>
+            </column>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="REPORT_PLAN_ID" type="${id}" remarks="报表计划编号"/>
             <column name="REPORT_NAME" type="${name}" remarks="报表名称"/>

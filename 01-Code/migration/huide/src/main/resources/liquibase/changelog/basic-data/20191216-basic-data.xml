@@ -409,20 +409,23 @@
                 <constraints nullable="false" notNullConstraintName="NU_PERSON_USERNAME" unique="true"
                              uniqueConstraintName="UQ_PERSON_USERNAME"/>
             </column>
+            <column name="WORK_NO" type="${work_no}" remarks="工号"/>
+            <column name="INNER_NO" type="${code}" remarks="内码"/>
             <column name="GENDER" type="char(1)" remarks="性别:M-男,F-女,U-未知"
                     defaultValue="U" defaultValueConstraintName="DF_PERSON_GENDER"/>
-            <column name="ADDRESS" type="varchar(32)" remarks="住址"/>
-            <column name="ORIGIN" type="varchar(32)" remarks="户籍"/>
-            <column name="IDENTITY_CARD" type="char(18)" remarks="身份证"/>
-            <column name="WORK_NO" type="${work_no}" remarks="工号"/>
             <column name="EMAIL" type="${email}" remarks="邮箱"/>
             <column name="WECHAT" type="${wechat}" remarks="微信"/>
             <column name="PHONE" type="${phone}" remarks="移动电话"/>
             <column name="TELEPHONE" type="varchar(16)" remarks="固定电话"/>
+            <column name="ADDRESS" type="varchar(32)" remarks="住址"/>
+            <column name="ORIGIN" type="varchar(32)" remarks="户籍"/>
+            <column name="IDENTITY_CARD" type="char(18)" remarks="身份证"/>
             <column name="BIRTHDAY" type="${datetime}" remarks="生日"/>
             <column name="BIND_TAG" type="${boolean}" remarks="绑定标识"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
                     defaultValue="N" defaultValueConstraintName="DF_Person_DELETE_TAG"/>
+            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"/>
+            <column name="SYNC_TIME" type="${datetime}" remarks="同步时间"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
@@ -448,6 +451,8 @@
             <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:Y-系统的;N-自定义的"/>
             <column name="EXTERNAL_TAG" type="${boolean}" remarks="外部标识：y-外部的，n-内部的"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"/>
+            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"/>
+            <column name="SYNC_TIME" type="${datetime}" remarks="同步时间"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
@@ -484,8 +489,39 @@
             </column>
         </createTable>
     </changeSet>
-    <!--行政区划表-->
+    <!--岗位表-->
     <changeSet author="WangXun" id="1576425600000-6">
+        <comment>创建岗位表(BD_POST)</comment>
+        <createTable tableName="BD_POST" remarks="岗位表">
+            <column name="ID" type="${id}" remarks="岗位编号">
+                <constraints primaryKey="true" primaryKeyName="PK_POST_ID"/>
+            </column>
+            <column name="POST_NAME" type="${name}" remarks="岗位名称"/>
+            <column name="POST_TYPE_CODE" type="${code}" remarks="岗位类型"/>
+            <column name="SORT_INDEX" type="${sort}" remarks="排序编号"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"/>
+            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"/>
+            <column name="SYNC_TIME" type="${datetime}" remarks="同步时间"/>
+            <column name="CREATE_BY" type="${id}" remarks="创建人"/>
+            <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
+            <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+        </createTable>
+    </changeSet>
+    <!--人员岗位关系表-->
+    <changeSet author="WangXun" id="1576425600000-7">
+        <comment>创建人员岗位关系表(BD_PERSON_POST)</comment>
+        <createTable  tableName="BD_PERSON_POST" remarks="人员岗位关系表">
+            <column name="ID" type="${id}" remarks="编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PERSON_POST_ID"/>
+            </column>
+            <column name="PERSON_ID" type="${id}" remarks="人员编号"/>
+            <column name="POST_ID" type="${id}" remarks="岗位编号"/>
+        </createTable>
+    </changeSet>
+    <!--行政区划表-->
+    <changeSet author="WangXun" id="1576425600000-8" ignore="true">
         <comment>创建行政区划表(BD_REGIONAL_DIVISION)</comment>
         <createTable tableName="BD_REGIONAL_DIVISION" remarks="行政区划表">
             <column name="REGIONAL_ID" remarks="区域编号" type="${id}">
