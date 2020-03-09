@@ -321,15 +321,15 @@
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_SYSTEM_ALARM_ID"/>
             </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
+            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
+            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
+            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -349,15 +349,15 @@
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_ID"/>
             </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
+            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
+            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
+            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -382,15 +382,15 @@
             <column name="ID" type="${id}" remarks="报警编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCE_ALARM_HISTORY_ID"/>
             </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
+            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
+            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
+            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -434,22 +434,18 @@
             <column name="ID" type="${id}" remarks="处理记录编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ALARM_HANDLE_RECORD_ID"/>
             </column>
-            <column name="PRODUCE_ALARM_TYPE" type="${type}" remarks="报警类型"/>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
-            <column name="HANDLE_TYPE" type="${type}" remarks="处理类型">
-                <constraints nullable="false"/>
-            </column>
+            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
+            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
+            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
+            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
+            <column name="PRODUCE_ALARM_TYPE" type="${type}" remarks="报警类型"/>
+            <column name="HANDLE_TYPE" type="${type}" remarks="处理类型"/>
+            <column name="HANDLER" type="${id}" remarks="操作人"/>
+            <column name="HANDLE_TIME" type="${datetime}" remarks="处理时间"/>
             <column name="REMARK" type="${remark}" remarks="操作说明"/>
-            <column name="HANDLER" type="${id}" remarks="操作人">
-                <constraints nullable="false"/>
-            </column>
-            <column name="HANDLE_TIME" type="${datetime}" remarks="处理时间">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
     <!--节点状态表-->
@@ -536,6 +532,10 @@
             <column name="OPERATE_RESULT_CODE" type="${code}" remarks="操作结果"/>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
+            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
+            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
+            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="BEFORE_VALUE" type="${value}" remarks="操作前值"/>
             <column name="AFTER_VALUE" type="${value}" remarks="操作后值"/>
             <column name="EXECUTOR" type="${id}" remarks="操作人"/>
