@@ -15,6 +15,7 @@
             <column name="NAME" type="${name}" remarks="键名称">
                 <constraints nullable="false" notNullConstraintName="NU_TYPE_NAME"/>
             </column>
+            <column name="LANGUAGE_CODE" type="${code}" remarks="语言编码"/>
             <column name="APP_ID" type="${id}" remarks="应用编号"/>
             <column name="REMARK" type="${remark}" remarks="描述"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
@@ -96,6 +97,19 @@
             <column name="UPDATE_BY"/>
             <column name="UPDATE_TIME"/>
         </insert>
+        <insert tableName="BD_DICTIONARY_KEY">
+            <column name="ID" value="1910009459271475202"/>
+            <column name="CODE" value="trend_type"/>
+            <column name="NAME" value="趋势类型"/>
+            <column name="LANGUAGE_CODE" value="zh"/>
+            <column name="APP_ID"/>
+            <column name="REMARK"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
         <rollback>
             <delete tableName="BD_DICTIONARY_KEY"/>
             <dropTable tableName="BD_DICTIONARY_KEY"/>
@@ -109,13 +123,13 @@
             <column name="ID" type="${id}" remarks="条目编号">
                 <constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_ITEM_ID"/>
             </column>
-            <column name="KEY_ID" type="${id}" remarks="键编号">
-                <constraints nullable="false" notNullConstraintName="NU_ITEM_TYPE_ID"/>
-            </column>
+            <column name="KEY_ID" type="${id}" remarks="键编号"/>
+            <column name="KEY_CODE" type="${id}" remarks="键编码"/>
             <column name="CODE" type="${code}" remarks="值编码"/>
             <column name="VALUE" type="${value}" remarks="值">
                 <constraints nullable="false" notNullConstraintName="NU_ITEM_VALUE"/>
             </column>
+            <column name="LANGUAGE_CODE" type="${code}" remarks="语言编码"/>
             <column name="REMARK" type="${remark}" remarks="描述"/>
             <column name="SORT_INDEX" type="${sort}" remarks="排序编号"/>
             <column name="SYSTEMATIC" type="${boolean}" remarks="是否固定值:Y-固定值,N-可变值"
@@ -384,6 +398,38 @@
             <column name="KEY_ID" value="1810009459271475202"/>
             <column name="CODE" value="haikang"/>
             <column name="VALUE" value="海康"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1910009459271475222"/>
+            <column name="KEY_ID" value="1910009459271475202"/>
+            <column name="KEY_CODE" value="trend_type"/>
+            <column name="CODE" value="public_trend"/>
+            <column name="VALUE" value="公共趋势组"/>
+            <column name="LANGUAGE_CODE" value="zh"/>
+            <column name="REMARK"/>
+            <column name="SORT_INDEX"/>
+            <column name="SYSTEMATIC" value="N"/>
+            <column name="DELETE_TAG" value="N"/>
+            <column name="CREATE_BY"/>
+            <column name="CREATE_TIME"/>
+            <column name="UPDATE_BY"/>
+            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="1910009459271475223"/>
+            <column name="KEY_ID" value="1910009459271475202"/>
+            <column name="KEY_CODE" value="trend_type"/>
+            <column name="CODE" value="private_trend"/>
+            <column name="VALUE" value="私有趋势组"/>
+            <column name="LANGUAGE_CODE" value="zh"/>
             <column name="REMARK"/>
             <column name="SORT_INDEX"/>
             <column name="SYSTEMATIC" value="N"/>

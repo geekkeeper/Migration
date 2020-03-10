@@ -220,9 +220,6 @@
             <column name="ID" type="${id}" remarks="趋势编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND"/>
             </column>
-            <column name="TREND_GROUP_TAG_ID" type="${id}" remarks="趋势组标签编号">
-                <constraints nullable="false"/>
-            </column>
             <column name="COLOR" type="${COLOR}" remarks="趋势颜色"/>
             <column name="HIGHEST" type="int" remarks="显示上限"/>
             <column name="LOWEST" type="int" remarks="显示下线"/>
@@ -246,7 +243,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
-            <column name="TYPE" type="${type}" remarks="趋势组类型"/>
+            <column name="TYPE_CODE" type="${code}" remarks="趋势组类型编码"/>
             <column name="DELETE_TAG" type="${boolean}"
                     remarks="删除标识:N-未删除、Y-已删除" defaultValue="N" defaultValueConstraintName="DF_TREND_DELETE_TAG"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>

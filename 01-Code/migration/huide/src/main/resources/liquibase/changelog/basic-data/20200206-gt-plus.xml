@@ -254,16 +254,10 @@
         <column name="ID" type="${id}" remarks="客户端编号">
             <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_CLIENT_ID"/>
         </column>
-        <column name="CODE" type="${code}" remarks="节点状态客户端编码">
-            <constraints nullable="false" unique="true" uniqueConstraintName="UQ_NODE_STATE_CLIENT_CODE"/>
-        </column>
-        <column name="NODE_CODE" type="${code}" remarks="节点编码">
-            <constraints nullable="false"/>
-        </column>
+        <column name="CODE" type="${code}" remarks="节点状态客户端编码"/>
+        <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
         <column name="ALIAS" type="${name}" remarks="别名"/>
-        <column name="PORT" type="${port}" remarks="通讯端口">
-            <constraints nullable="false"/>
-        </column>
+        <column name="PORT" type="${port}" remarks="通讯端口"/>
         <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
         <column name="NAME" type="${name}" remarks="客户端名称"/>
     </createTable>
@@ -442,7 +436,7 @@
         <column name="COLLECT_CYCLE" type="${cycle}" remarks="趋势采集周期"/>
         <column name="INIT_VALUE" type="${value}" remarks="初始值"/>
         <column name="RANGE_TOP" type="${value}" remarks="量程上限"/>
-        <column name="RANGE_BOTTLE" type="${value}" remarks="量程下限"/>
+        <column name="RANGE_BOTTOM" type="${value}" remarks="量程下限"/>
         <column name="MOST_HIGH_LIMIT" type="${value}" remarks="报警高高限"/>
         <column name="HIGH_LIMIT" type="${value}" remarks="报警高限"/>
         <column name="LOW_LIMIT" type="${value}" remarks="报警低限"/>
