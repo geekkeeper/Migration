@@ -627,16 +627,16 @@
         </createTable>
     </changeSet>
     <!--角色标签关系表-->
-    <changeSet author="WangXun" id="1581337040000-26" >
+    <changeSet author="WangXun" id="1581337040000-27" >
         <comment>创建角色标签关系表(PM_ROLE_TAG)</comment>
         <createTable tableName="PM_ROLE_TAG" remarks="角色标签关系表">
-            <column name="ID" value="${id}" remarks="角色标签关系编号">
+            <column name="ID" type="${id}" remarks="角色标签关系编号">
                 <constraints primaryKey="true" primaryKeyName="PK_ROLE_TAG_ID"/>
             </column>
-            <column name="ROLE_ID" value="${id}" remarks="角色编号">
+            <column name="ROLE_ID" type="${id}" remarks="角色编号">
                 <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_ROLE_ID"/>
             </column>
-            <column name="TAG_NAME" value="${name}" remarks="标签名称">
+            <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_NAME"/>
             </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
