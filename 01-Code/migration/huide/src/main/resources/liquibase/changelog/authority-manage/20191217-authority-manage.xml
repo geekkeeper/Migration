@@ -364,8 +364,9 @@
 			<column name="CONTROL_EXPRESSION" type="${expression}" remarks="表达式"/>
 			<column name="PRECISE_TAG" type="${boolean}" remarks="明确控制标识:Y-是;N-否"
 					defaultValue="N" defaultValueConstraintName="DE_DATA_SCOPE_PRECISE_TAG"/>
-			<column name="PRECISE_CONTROL" type="${expression}" remarks="明确的"/>
-			<column name="DIRECTION" type="${expression}" remarks="控制方向"/>
+			<column name="PRECISE_RESOURCE" type="${expression}" remarks="明确控制资源"/>
+			<column name="PRECISE_ACTION" type="${expression}" remarks="明确控制行为"/>
+			<column name="CONTROL_DIRECTION" type="${expression}" remarks="控制方向"/>
 		</createTable>
 	</changeSet>
 </databaseChangeLog>

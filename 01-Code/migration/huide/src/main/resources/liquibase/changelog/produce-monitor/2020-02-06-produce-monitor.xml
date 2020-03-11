@@ -137,22 +137,18 @@
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_PROJECT_ID"/>
             </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_PROJECT_GUID"/>
-            </column>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_NAME"/>
             </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签">
                 <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_TYPE"/>
             </column>
-            <column name="NODE_CODE" type="${code}" remarks="节点编码">
-                <constraints nullable="false"/>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码">
+                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_RDBS_CODE"/>
             </column>
-            <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
         </createTable>
-        <addUniqueConstraint tableName="PM_PROJECT_TAG" columnNames="PROJECT_ID,TAG_NAME,GT_PROJECT_GUID"
-                             constraintName="UQ_PROJECT_TAG_ID_NAME"/>
     </changeSet>
     <!--报表计划表-->
     <changeSet author="WangXun" id="1581337040000-7">
@@ -628,6 +624,24 @@
             <column name="CONFIG_USER" type="${id}" remarks="用户编号"/>
             <column name="ALARM_VOICE_SWITCH" type="${boolean}" remarks="报警声音开关:Y-开;N-关"/>
             <column name="ALARM_LIGHT_TIME" type="${datetime}" remarks="报警灯点击时间"/>
+        </createTable>
+    </changeSet>
+    <!--角色标签关系表-->
+    <changeSet author="WangXun" id="1581337040000-26" >
+        <comment>创建角色标签关系表(PM_ROLE_TAG)</comment>
+        <createTable tableName="PM_ROLE_TAG" remarks="角色标签关系表">
+            <column name="ID" value="${id}" remarks="角色标签关系编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ROLE_TAG_ID"/>
+            </column>
+            <column name="ROLE_ID" value="${id}" remarks="角色编号">
+                <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_ROLE_ID"/>
+            </column>
+            <column name="TAG_NAME" value="${name}" remarks="标签名称">
+                <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_NAME"/>
+            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
