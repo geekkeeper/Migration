@@ -1,0 +1,364 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<!--*****************************通用数据类型*******************************-->
+	<!--****************************数据库兼容配置******************************-->
+	<property global="true" name="now" value="current_timestamp" dbms="mysql"/>
+	<property global="true" name="now" value="getdate()" dbms="mssql"/>
+	<property global="true" name="now" value="sysdate" dbms="oracle"/>
+	
+	<property global="true" name="long_string" value="varchar(max)" dbms="mssql"/>
+	<property global="true" name="long_string" value="clob" dbms="oracle"/>
+	<property global="true" name="long_string" value="longtext" dbms="mysql"/>
+	<!--*****************************数据库兼容配置******************************-->
+	<!--用户表-->
+	<changeSet author="WangXun" id="1584153694886-1">
+		<createTable tableName="users" remarks="用户表">
+			<column name="username" type="varchar(50)" remarks="用户名">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="password" type="varchar(500)" remarks="密码">
+				<constraints nullable="false"/>
+			</column>
+			<column name="enabled" type="BIT" remarks="启用标识">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<insert tableName="users">
+			<column name="username" value="nacos"/>
+			<column name="password" value="$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu"/>
+			<column name="enabled" valueBoolean="true"/>
+		</insert>
+		<rollback>
+			<delete tableName="users"/>
+			<dropTable tableName="users"/>
+		</rollback>
+	</changeSet>
+	<!--角色表-->
+	<changeSet author="WangXun" id="1584153694886-2">
+		<createTable tableName="roles" remarks="角色表">
+			<column name="username" type="varchar(50)" remarks="用户名">
+				<constraints nullable="false"/>
+			</column>
+			<column name="role" type="varchar(50)" remarks="角色">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="roles" columnNames="username, role" constraintName="UN_USER_ROLE"/>
+		<insert tableName="roles">
+			<column name="username" value="nacos" />
+			<column name="role" value="ROLE_ADMIN"/>
+		</insert>
+		<rollback>
+			<delete tableName="roles"/>
+			<dropUniqueConstraint tableName="roles" constraintName="UN_USER_ROLE"/>
+			<dropTable tableName="roles"/>
+		</rollback>
+	</changeSet>
+	<!--权限表-->
+	<changeSet author="WangXun" id="1584153694886-3">
+		<createTable tableName="permissions" remarks="权限表">
+			<column name="role" type="varchar(50)" remarks="角色">
+				<constraints nullable="false"/>
+			</column>
+			<column name="resource" type="varchar(512)" remarks="资源">
+				<constraints nullable="false"/>
+			</column>
+			<column name="action" type="varchar(8)" remarks="行为">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="permissions" columnNames="role, resource, action"
+		                     constraintName="UK_ROLE_RESOURCE_ACTION"/>
+	</changeSet>
+	<!--租户表-->
+	<changeSet author="WangXun" id="1584153694886-4">
+		<createTable tableName="tenant_info" remarks="租户表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="kp" remarks="kp" type="varchar(128)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="tenant_name" type="varchar(128)" remarks="租户名称"/>
+			<column name="tenant_desc" type="varchar(256)" remarks="租户描述"/>
+			<column name="create_source" type="varchar(32)" remarks="创建资源"/>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="tenant_info" columnNames="kp, tenant_id" constraintName="UK_KP_TENANT_ID"/>
+		<createIndex tableName="tenant_info" indexName="IX_TENANT_ID">
+			<column name="tenant_id"/>
+		</createIndex>
+	</changeSet>
+	<!--租户容量表-->
+	<changeSet author="WangXun" id="1584153694886-5">
+		<createTable tableName="tenant_capacity" remarks="租户容量表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="quota" type="int" remarks="配额，0表示使用默认值" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="usage" type="int" remarks="使用量" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_size" type="int" remarks="单个配置大小上限，单位为字节，0表示使用默认值" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_aggr_count" type="int" remarks="聚合子配置最大个数" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_aggr_size" type="int" remarks="单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值"
+			        defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_history_count" type="int" defaultValueNumeric="0" remarks="最大变更历史数量">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--配置表-->
+	<changeSet author="WangXun" id="1584153694886-6">
+		<createTable tableName="config_info" remarks="配置表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(255)" remarks="组编号"/>
+			<column name="content" type="${long_string}" remarks="配置内容">
+				<constraints nullable="false"/>
+			</column>
+			<column name="md5" type="varchar(32)" remarks="加密内容"/>
+			<column name="src_user" type="TEXT" remarks="服务器用户"/>
+			<column name="src_ip" type="varchar(20)" remarks="服务器IP"/>
+			<column name="app_name" type="varchar(128)" remarks="应用名称"/>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="c_desc" type="varchar(256)" remarks="描述信息"/>
+			<column name="c_use" type="varchar(64)" remarks="使用标识"/>
+			<column name="effect" type="varchar(64)" remarks="生效标识"/>
+			<column name="type" type="varchar(64)" remarks="类型"/>
+			<column name="c_schema" type="TEXT" remarks="概要内容"/>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="config_info" columnNames="data_id, group_id, tenant_id"
+		                     constraintName="UK_CONFIG_INFO_DATA_GROUP_TENANT"/>
+	</changeSet>
+	<!--配置集合表-->
+	<changeSet author="WangXun" id="1584153694886-7">
+		<createTable tableName="config_info_aggr" remarks="配置集合表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="app_name" type="varchar(128)" remarks="应用名称"/>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(255)" remarks="组编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="datum_id"  type="varchar(255)" remarks="datum_id">
+				<constraints nullable="false"/>
+			</column>
+			<column name="content" type="${long_string}" remarks="内容">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="config_info_aggr" columnNames="data_id, group_id, tenant_id, datum_id"
+		                     constraintName="UK_CONFIG_INFO_AGGR"/>
+	</changeSet>
+	<!--配置测试表-->
+	<changeSet author="WangXun" id="1584153694886-8">
+		<createTable tableName="config_info_beta" remarks="配置测试表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(128)" remarks="组编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="app_name" type="varchar(128)" remarks="应用名称"/>
+			<column name="content" type="${long_string}" remarks="配置内容">
+				<constraints nullable="false"/>
+			</column>
+			<column name="beta_ips" type="varchar(1024)" remarks="测试IP"/>
+			<column name="md5" type="varchar(32)" remarks="加密内容"/>
+			<column name="src_user" type="TEXT" remarks="服务器用户"/>
+			<column name="src_ip" type="varchar(20)" remarks="服务器IP"/>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="config_info_beta" columnNames="data_id, group_id, tenant_id"
+		                     constraintName="UK_BETA_DATA_GROUP_TENANT"/>
+	</changeSet>
+	<!--历史配置表-->
+	<changeSet author="WangXun" id="1584153694886-9">
+		<createTable tableName="his_config_info" remarks="历史配置表">
+			<column name="id" type="bigint" remarks="编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="nid" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(128)" remarks="组编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="app_name" type="varchar(128)" remarks="应用名称"/>
+			<column name="content" type="${long_string}" remarks="配置内容">
+				<constraints nullable="false"/>
+			</column>
+			<column name="md5" type="varchar(32)" remarks="加密内容"/>
+			<column name="src_user" type="TEXT" remarks="服务器用户"/>
+			<column name="src_ip" type="varchar(20)" remarks="服务器IP"/>
+			<column name="op_type" type="CHAR(10)" remarks="OP类型"/>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<createIndex tableName="his_config_info" indexName="IX_HIS_CONFIG_DATA_ID">
+			<column name="data_id"/>
+		</createIndex>
+		<createIndex tableName="his_config_info" indexName="IX_HIS_CONFIG_CREATE">
+			<column defaultValueComputed="${now}" name="gmt_create"/>
+		</createIndex>
+		<createIndex tableName="his_config_info" indexName="IX_HIS_CONFIG_MODIFY">
+			<column defaultValueComputed="${now}" name="gmt_modified"/>
+		</createIndex>
+	</changeSet>
+	<!--配置标签表"-->
+	<changeSet author="WangXun" id="1584153694886-10">
+		<createTable tableName="config_info_tag" remarks="配置标签表">
+			<column name="id" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(128)" remarks="组编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+			<column name="tag_id" type="varchar(128)" remarks="标签编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="app_name" type="varchar(128)" remarks="应用名称"/>
+			<column name="content" type="${long_string}" remarks="内容">
+				<constraints nullable="false"/>
+			</column>
+			<column name="md5" type="varchar(32)" remarks="加密内容"/>
+			<column name="src_user" type="TEXT" remarks="服务器用户"/>
+			<column name="src_ip" type="varchar(20)" remarks="服务器IP"/>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="config_info_tag" columnNames="data_id, group_id, tenant_id, tag_id"
+		                     constraintName="uk_data_group_tenant_tag_id"/>
+	</changeSet>
+	<!--配置标签关系表-->
+	<changeSet author="WangXun" id="1584153694886-11">
+		<createTable tableName="config_tags_relation" remarks="配置标签关系表">
+			<column name="nid" type="bigint" remarks="主键编号" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="id" type="bigint" remarks="编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tag_name" type="varchar(128)" remarks="标签名称">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tag_type" type="varchar(64)" remarks="标签类型"/>
+			<column name="data_id" type="varchar(255)" remarks="数据编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="group_id" type="varchar(128)" remarks="分组编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tenant_id" type="varchar(128)" remarks="租户编号"/>
+		</createTable>
+		<addUniqueConstraint tableName="config_tags_relation" columnNames="id, tag_name, tag_type"
+		                     constraintName="UK_CONFIG_TAG_NAME_ID_TYPE"/>
+		<createIndex tableName="config_tags_relation" indexName="IX_CONFIG_TAG_TENANT_ID">
+			<column name="tenant_id"/>
+		</createIndex>
+	</changeSet>
+	<!--集群、分组容量表-->
+	<changeSet author="WangXun" id="1584153694886-12">
+		<createTable tableName="group_capacity" remarks="集群、分组容量表">
+			<column name="id" type="bigint" remarks="主键ID" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="group_id" type="varchar(128)" remarks="分组编号，空字符表示整个集群">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="quota" type="int" remarks="配额，0表示使用默认值" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="usage" type="int" remarks="使用量" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_size" type="int" remarks="单个配置大小上限，单位为字节，0表示使用默认值" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_aggr_count" type="int" remarks="聚合子配置最大个数，，0表示使用默认值" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_aggr_size" type="int" remarks="单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值"
+			        defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="max_history_count" type="int" remarks="最大变更历史数量" defaultValueNumeric="0">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_create" type="datetime" remarks="创建时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gmt_modified" type="datetime" remarks="修改时间" defaultValueComputed="${now}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

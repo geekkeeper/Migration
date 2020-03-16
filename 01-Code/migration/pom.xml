@@ -14,10 +14,11 @@
 		<module>huide</module>
 		<module>huayou</module>
 		<module>spadger</module>
-	</modules>
+        <module>nacos</module>
+    </modules>
 	<properties>
 		<java.version>1.8</java.version>
-		<dbms>mssql</dbms>
+		<dbms>mysql</dbms>
 		<!--设置作者-->
 		<author>WangXun</author>
 		<!--<author>Sun YiWen</author>-->
@@ -81,9 +82,9 @@
 					<!--指定将来回滚SQL文件的输出路径-->
 					<outputFile>src/main/resources/liquibase/rollback/${current.time}-${dbms}-rollback.sql</outputFile>
 					<!--生成数据库变更集类型：data-->
-					<diffTypes>data</diffTypes>
+					<!--<diffTypes>data</diffTypes>-->
 					<!--数据库逆向生成变更日志-->
-					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.yml</outputChangeLogFile>
+					<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}-${dbms}-ChangeLog.xml</outputChangeLogFile>
 					<!--<outputChangeLogFile>src/main/resources/liquibase/outputChangeLog/${current.time}.${dbms}.sql</outputChangeLogFile>-->
 					<!--俩数据库比较生成差异文件-->
 					<diffChangeLogFile>src/main/resources/liquibase/diffChangeLog/${current.time}-${dbms}-diffChangeLog.xml</diffChangeLogFile>
