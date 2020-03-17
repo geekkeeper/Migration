@@ -1203,7 +1203,8 @@
             <column name="TYPE" type="${code}" remarks="角色类型"/>
             <column name="CODE" type="${code}" remarks="角色编码"/>
             <column name="NAME" type="${name}" remarks="角色名称">
-                <constraints nullable="false" notNullConstraintName="NU_ROLE_NAME"/>
+                <constraints nullable="false" notNullConstraintName="NU_ROLE_NAME"
+                             unique="true" uniqueConstraintName="UN_ROLE_NAME"/>
             </column>
             <column name="REMARK" type="${remark}" remarks="角色描述"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除" defaultValue="N"

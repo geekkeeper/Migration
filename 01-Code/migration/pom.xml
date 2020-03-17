@@ -15,10 +15,11 @@
 		<module>huayou</module>
 		<module>spadger</module>
         <module>nacos</module>
+        <module>batch</module>
     </modules>
 	<properties>
 		<java.version>1.8</java.version>
-		<dbms>mysql</dbms>
+		<dbms>mssql</dbms>
 		<!--设置作者-->
 		<author>WangXun</author>
 		<!--<author>Sun YiWen</author>-->

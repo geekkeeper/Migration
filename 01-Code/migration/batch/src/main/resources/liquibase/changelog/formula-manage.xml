@@ -1,0 +1,770 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        <column name="Creator" type="int" remarks="创建人"/>
+        <column name="CreationTime" type="datetime" remarks="创建时间"/>
+        <column name="Mender" type="int" remarks="修改人"/>
+        <column name="LastModify" type="datetime" remarks="修改时间"/>
+    -->
+
+    <!--控制配方表-->
+    <changeSet author="WangXun" id="1584431605000-26">
+        <createTable tableName="ControlRecipe" remarks="控制配方表">
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="BatchID" type="int" remarks="批次编号"/>
+            <column name="ProductionPlanID" type="int" remarks="生产计划编号"/>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int" remarks="组元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int" remarks="配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStartTime" type="datetime" remarks="计划开始时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStartTime" type="datetime" remarks="实际开始时间"/>
+            <column name="PlanEndTime" type="datetime" remarks="计划结束时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualEndTime" type="datetime" remarks="时间结束时间"/>
+            <column name="PlanOutput" type="numeric(15, 5)" remarks="计划产量">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)" remarks="实际产量"/>
+            <column name="NameStyleFormat" type="nvarchar(300)" remarks="名称样式"/>
+            <column name="ReportTName" type="nvarchar(50)" remarks="报表模板名称"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Priority" type="tinyint" remarks="优先级"/>
+            <column name="State" type="smallint" remarks="状态"/>
+            <column name="PresentOption" type="smallint" remarks="当前选项"/>
+            <column name="Excutor" type="int" remarks="执行者"/>
+            <column name="Mode" type="tinyint" remarks="模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunMode" type="tinyint" remarks="运行模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NameStyleID" type="int" remarks="名称样式编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREffectRate" type="nvarchar(50)" remarks="主配方有效率">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方表-->
+    <changeSet author="WangXun" id="1584431605000-27">
+        <createTable tableName="ControlRecipe_HIS" remarks="历史控制配方表">
+            <column name="ControlRecipeID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="BatchID" type="int" remarks="批次编号"/>
+            <column name="ProductionPlanID" type="int" remarks="生产计划编号"/>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int" remarks="组元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int" remarks="配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStartTime" type="datetime" remarks="计划开始时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStartTime" type="datetime" remarks="实际开始时间"/>
+            <column name="PlanEndTime" type="datetime" remarks="计划结束时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualEndTime" type="datetime" remarks="时间结束时间"/>
+            <column name="PlanOutput" type="numeric(15, 5)" remarks="计划产量">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)" remarks="实际产量"/>
+            <column name="NameStyleFormat" type="nvarchar(300)" remarks="名称样式"/>
+            <column name="ReportTName" type="nvarchar(50)" remarks="报表模板名称"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Priority" type="tinyint" remarks="优先级"/>
+            <column name="State" type="smallint" remarks="状态"/>
+            <column name="PresentOption" type="smallint" remarks="当前选项"/>
+            <column name="Excutor" type="int" remarks="执行者"/>
+            <column name="Mode" type="tinyint" remarks="模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunMode" type="tinyint" remarks="运行模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NameStyleID" type="int" remarks="名称样式编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREffectRate" type="nvarchar(50)" remarks="主配方有效率">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--控制配方运行队列表-->
+    <changeSet author="WangXun" id="1584431605000-28">
+        <createTable tableName="CtrRecpRunQueuing" remarks="控制配方运行队列表">
+            <column autoIncrement="true" name="QueueID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ProPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AreaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunFlag"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方组表-->
+    <changeSet author="WangXun" id="1584431605000-54">
+        <createTable tableName="MastRecpGroup" remarks="主配方组表">
+            <column autoIncrement="true" name="GroupID" type="int" remarks="主配方组编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="GroupName" type="nvarchar(60)" remarks="主配方组名称"/>
+            <column name="GroupDesc" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--主配方表-->
+    <changeSet author="WangXun" id="1584431605000-56">
+        <createTable tableName="MasterRecipe" remarks="主配方表">
+            <column autoIncrement="true" name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRName" type="nvarchar(50)" remarks="主配方名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GroupID" type="int" remarks="配方组编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DescriptionID" type="int" remarks="描述编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="State" type="tinyint" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Approver" type="int" remarks="审批人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生产版本时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsUsing" type="tinyint" remarks="是否使用">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--历史主配方表-->
+    <changeSet author="WangXun" id="1584431605000-43">
+        <createTable tableName="HMasterRecipe" remarks="历史主配方表">
+            <column autoIncrement="true" name="HMasterRecipeID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRName" type="nvarchar(50)" remarks="主配方名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GroupID" type="int" remarks="配方组编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DescriptionID" type="int" remarks="描述编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="State" type="tinyint" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Approver" type="int" remarks="审批人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生产版本时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsUsing" type="tinyint" remarks="是否使用">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--配方表-->
+    <changeSet author="WangXun" id="1584431605000-35">
+        <createTable tableName="Formula" remarks="配方表">
+            <column name="FormulaID" type="int" remarks="配方编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaName" type="nvarchar(50)" remarks="配方名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsDefault" type="tinyint" remarks="是否默认">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史配方表-->
+    <changeSet author="WangXun" id="1584431605000-37">
+        <createTable tableName="HFormula" remarks="历史配方表">
+            <column autoIncrement="true" name="HFormulaID" type="int" remarks="历史配方编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FormulaID" type="int" remarks="配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaName" type="nvarchar(50)" remarks="配方名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsDefault" type="tinyint" remarks="是否默认">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方条件表-->
+    <changeSet author="WangXun" id="1584431605000-48">
+        <createTable tableName="MRConditions" remarks="主配方条件表">
+            <column name="MRConditionID" type="int" remarks="主配方条件编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column
+                    name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int" remarks="主配方OP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Operator" type="tinyint" remarks="操作人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)" remarks="设置值">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="tinyint" remarks="序列">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DataSource" type="tinyint" remarks="数据源">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方条件表-->
+    <changeSet author="WangXun" id="1584431605000-38">
+        <createTable tableName="HMRConditions" remarks="历史主配方条件表">
+            <column autoIncrement="true" name="HMRConditionID" type="int" remarks="历史主配方条件编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRConditionID" type="int" remarks="主配方条件编号" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int" remarks="主配方OP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Operator" type="tinyint" remarks="操作人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)" remarks="设置值">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="tinyint" remarks="序列">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DataSource" type="tinyint" remarks="数据源">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方元素表-->
+    <changeSet author="WangXun" id="1584431605000-49">
+        <createTable tableName="MRElement" remarks="主配方元素表">
+            <column autoIncrement="true" name="MRElementID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPID"
+                    type="int"/>
+            <column name="OPVersion"
+                    type="int"/>
+            <column name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SelfID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OrderID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方元素表-->
+    <changeSet author="WangXun" id="1584431605000-39">
+        <createTable tableName="HMRElement" remarks="主配方元素表">
+            <column autoIncrement="true" name="HMRElementID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPID"
+                    type="int"/>
+            <column name="OPVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SelfID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OrderID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方链接表-->
+    <changeSet author="WangXun" id="1584431605000-50">
+        <createTable tableName="MRLink" remarks="主配方链接表">
+            <column autoIncrement="true" name="MRLinkID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToIDType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方链接表-->
+    <changeSet author="WangXun" id="1584431605000-40">
+        <createTable tableName="HMRLink" remarks="主配方链接表">
+            <column autoIncrement="true" name="HMRLinkID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRLinkID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToIDType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方转换表-->
+    <changeSet author="WangXun" id="1584431605000-51">
+        <createTable tableName="MRTransitions" remarks="主配方转换表">
+            <column autoIncrement="true" name="MRTransitionID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方转换表-->
+    <changeSet author="WangXun" id="1584431605000-41">
+        <createTable tableName="HMRTransitions" remarks="主配方转换表">
+            <column autoIncrement="true" name="HMRTransitionID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column name="Version" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--主配方物料比率表-->
+    <changeSet author="WangXun" id="1584431605000-55">
+        <createTable tableName="MastRecpMateriRatio" remarks="主配方物料比率表">
+            <column autoIncrement="true" name="MateriRatio" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方物料比率表-->
+    <changeSet author="WangXun" id="1584431605000-42">
+        <createTable tableName="HMastRecpMateriRatio" remarks="主配方物料比率表">
+            <column autoIncrement="true" name="HMateriRatio" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MateriRatio" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--配方参数设置表-->
+    <changeSet author="WangXun" id="1584431605000-72">
+        <createTable tableName="ParaFormula" remarks="配方参数表">
+            <column autoIncrement="true" name="ParaFormulaID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Value" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--UP序列表-->
+    <changeSet author="WangXun" id="1584431605000-87">
+        <createTable tableName="UPSequence" remarks="UP序列表">
+            <column autoIncrement="true" name="UPSequenceID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int" remarks="UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="int" remarks="序列号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime" remarks="请求时间"/>
+            <column name="CRID" type="int" remarks="控制配方编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--UP单元关系表-->
+    <changeSet author="WangXun" id="1584431605000-88">
+        <createTable tableName="UPUnit" remarks="UP单元关系表">
+            <column autoIncrement="true" name="UPUnitID" type="int" remarks="UP单元关系编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRUPID" type="int" remarks="主配方UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OP信息表-->
+    <changeSet author="WangXun" id="1584431605000-65">
+        <createTable tableName="OPInformation" remarks="OP信息表">
+            <column name="OPInfoID" type="int" remarks="OP编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Name" type="nvarchar(50)" remarks="OP名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)" remarks="OP别名"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Version" type="int" remarks="版本编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生成时间"/>
+            <column name="State" type="tinyint" remarks="OP状态"/>
+            <column name="Approver" type="int" remarks="审批人"/>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+
+        </createTable>
+    </changeSet>
+    <!--历史OP信息表-->
+    <changeSet author="WangXun" id="1584431605000-44">
+        <createTable tableName="HOPInformation" remarks="历史OP信息表">
+            <column autoIncrement="true" name="HOPInfoID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="OPInfoID" type="int" remarks="OP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)" remarks="OP名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)" remarks="OP别名"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Version" type="int" remarks="版本编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生成时间"/>
+            <column name="State" type="tinyint" remarks="OP状态"/>
+            <column name="Approver" type="int" remarks="审批人"/>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+
+    <!--OP版本参数表-->
+    <changeSet author="WangXun" id="1584431605000-66">
+        <createTable tableName="OPVersionPara" remarks="OP版本参数表">
+            <column autoIncrement="true" name="OPVersionID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="OPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPVersion"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OPGoto-->
+    <changeSet author="WangXun" id="1584431605000-64">
+        <createTable tableName="OPGoto">
+            <column autoIncrement="true" name="GotoID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,610 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--用户组表-->
+    <changeSet author="WangXun" id="1584407375607-95">
+        <createTable tableName="UserGroups" remarks="用户组表">
+            <column  name="GroupID" type="int" remarks="用户组编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_GroupID"/>
+            </column>
+            <column name="GroupName" type="nvarchar(50)" remarks="组名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Comment" type="nvarchar(255)" remarks="注释信息"/>
+            <column name="ProPlanAccredit" type="int"/>
+            <column name="ProMagAccredit" type="int"/>
+            <column name="SysAlarmAccredit" type="int"/>
+            <column name="SchedulerAccredit" type="int"/>
+            <column name="ExplorerAccredit" type="int"/>
+            <column name="PrjctMagAccredit" type="int"/>
+            <column  name="IsDefault" type="tinyint"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--用户表-->
+    <changeSet author="WangXun" id="1584407375607-96">
+        <createTable tableName="Users" remarks="用户表">
+            <column autoIncrement="true" name="UserID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_USERS"/>
+            </column>
+            <column  name="GroupID" type="int" remarks="用户组编号"/>
+            <column name="LoginName" type="nvarchar(50)" remarks="登录名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Password" type="nvarchar(50)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FingerPrint" type="image" remarks="指纹"/>
+            <column name="Comment" type="nvarchar(255)" remarks="注释信息">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SurveilleAll" type="tinyint"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+
+        </createTable>
+    </changeSet>
+    <!--登录状态表-->
+    <changeSet author="WangXun" id="1584407375607-47">
+        <createTable tableName="LoginSate" remarks="登录状态表">
+            <column autoIncrement="true" name="LoginSateID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LOGINSTATE"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)"/>
+            <column name="UserID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LoginModule" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastLogin" type="datetime"/>
+            <column defaultValueConstraintName="DF__LoginSate__IsVer__689D8392" defaultValueNumeric="0" name="IsVerify"
+                    type="tinyint"/>
+        </createTable>
+    </changeSet>
+    <!--操作日志表-->
+    <changeSet author="WangXun" id="1584407375607-67">
+        <createTable tableName="OperationLog" remarks="操作日志表">
+            <column autoIncrement="true" name="OperationLogID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOG"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Operation__LogTi__02925FBF"
+                    name="LogTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OperatorName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectName" type="nvarchar(1005)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OperationDescID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Operation__LogTy__038683F8" defaultValueNumeric="0" name="LogType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--操作日志描述表-->
+    <changeSet author="WangXun" id="1584407375607-68">
+        <createTable tableName="OperationLogDescription" remarks="操作日志描述表">
+            <column autoIncrement="true" name="OperationDescID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOGDESCRIPTION"/>
+            </column>
+            <column name="Description_EN" type="nvarchar(1024)"/>
+            <column name="Description_ZH" type="nvarchar(1024)"/>
+            <column name="Description_DE" type="nvarchar(1024)"/>
+        </createTable>
+    </changeSet>
+    <!--操作日志详情表-->
+    <changeSet author="WangXun" id="1584407375607-69">
+        <createTable tableName="OperationLogDetail" remarks="操作日志详情表">
+            <column autoIncrement="true" name="LogDetailID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LOGDETAILID"/>
+            </column>
+            <column name="OperationLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6B79F03D" name="Value1"
+                    type="nvarchar(1005)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6C6E1476" name="Value2"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6D6238AF" name="Value3"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6E565CE8" name="Value4"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6F4A8121" name="Value5"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__703EA55A" name="Value6"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--操作日志参数表-->
+    <changeSet author="WangXun" id="1584407375607-70">
+        <createTable tableName="OperationLogPara" remarks="操作日志参数表">
+            <column autoIncrement="true" name="LogParaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LogParaID"/>
+            </column>
+            <column name="OperationLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__OperationL__Item__731B1205" name="Item"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__SubIt__740F363E" name="SubItem"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75035A77" name="ValueBefore"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75F77EB0" name="ValueCurrent"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AddedPara1" type="int"/>
+            <column name="AddedPara2" type="int"/>
+            <column name="AddedPara3" type="nvarchar(260)"/>
+            <column name="AddedPara4" type="nvarchar(260)"/>
+        </createTable>
+    </changeSet>
+    <!--编辑标识表-->
+    <changeSet author="WangXun" id="1584407375607-33">
+        <createTable tableName="EditFlag" remarks="编辑标识表">
+            <column autoIncrement="true" name="EditFlagID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_EDITFLAG"/>
+            </column>
+            <column name="UserID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LoginModule" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Category" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--表空间使用情况表-->
+    <changeSet author="WangXun" id="1584407375607-84">
+        <createTable tableName="TableSpaceUsed" remarks="表空间使用情况表">
+            <column name="nameinfo" type="nvarchar(50)"/>
+            <column name="rowsinfo" type="int"/>
+            <column name="reserved" type="nvarchar(20)"/>
+            <column name="datainfo" type="nvarchar(20)"/>
+            <column name="index_size" type="nvarchar(20)"/>
+            <column name="unused" type="nvarchar(20)"/>
+        </createTable>
+    </changeSet>
+    <!--表头信息表-->
+    <changeSet author="WangXun" id="1584407375607-36">
+        <createTable tableName="GridHeaderInfo" remarks="表头信息表">
+            <column autoIncrement="true" name="FieldID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_GRIDHEADERINFO"/>
+            </column>
+            <column name="TableName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FieldName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EN" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ZH" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DE" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <!--数据库差异表-->
+    <changeSet author="WangXun" id="1584407375607-31">
+        <createTable tableName="Difference" remarks="数据库差异表">
+            <column autoIncrement="true" name="DifferenceID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DIFFERENCE"/>
+            </column>
+            <column name="TableName" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectsID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Operation" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--系统设置表-->
+    <changeSet author="WangXun" id="1584407375607-25">
+        <createTable tableName="ConfigSys" remarks="系统设置表">
+            <column autoIncrement="true" name="ConfigID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CONFIGSYS"/>
+            </column>
+            <column name="CRCLAssigned" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLIdle" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLRunning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLAborting" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLAborted" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLStopping" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLStopped" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLComplete" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLunAppod" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLAppod" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLBatched" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLRuning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLCeased" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLComplete" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLSerious" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLWarning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLNotice" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPNOSTATE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPIDLE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPRUNNING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPHOLDDING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPHELD" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPPUASING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPPAUSED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSTOPPING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSTOPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABORTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABORTED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPRESTARTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSKIPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPCOMPLETE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABNORMAL" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPNOSTATE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPIDLE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPRUNNING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPHOLDDING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPHELD" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPPUASING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPPAUSED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSTOPPING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSTOPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABORTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABORTED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPRESTARTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSKIPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPCOMPLETE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABNORMAL" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPREADDOMAIN" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPWRITEDOMAIN" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPREADPOINT" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPWRITEPOINT" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportName" type="nvarchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRStayTime" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__CtrRe__55F4C372" defaultValueNumeric="0"
+                    name="CtrRecpTimeUnit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRIDSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPOrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPOrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanStayTime" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__PlanT__56E8E7AB" defaultValueNumeric="0"
+                    name="PlanTimeUnit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanIDSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProMagCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ExplorerCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DCSVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TPFrequency" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__NetTi__57DD0BE4" defaultValueNumeric="24" name="NetTime"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__IsBar__58D1301D" defaultValueNumeric="1" name="IsBarCode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__BarCo__59C55456" defaultValueNumeric="1"
+                    name="BarCodeMode" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BarCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BarCodeAuto" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BCUPLimit" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BCLowLimit" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DBMaxSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Retention" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__Batch__5AB9788F" defaultValueNumeric="0"
+                    name="BatchPrioritySet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__Print__5BAD9CC8" defaultValueNumeric="0" name="PrintMode"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__IsDef__5CA1C101" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--Batch版本表-->
+    <changeSet author="WangXun" id="1584407375607-7">
+        <createTable tableName="BatchVersion">
+            <column autoIncrement="true" name="BVID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_BVID"/>
+            </column>
+            <column name="ProductName" type="nvarchar(60)"/>
+            <column name="ReleaseDate" type="nvarchar(60)"/>
+            <column name="buildID" type="nvarchar(60)"/>
+            <column name="Remark" type="nvarchar(60)"/>
+        </createTable>
+    </changeSet>
+    <!--名称样式表-->
+    <changeSet author="WangXun" id="1584407375607-61">
+        <createTable tableName="NameStyle" remarks="名称样式表">
+            <column autoIncrement="true" name="NameStyleID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_NAMESTYLEID"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Style__68487DD7" name="StyleName"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word1__693CA210" defaultValueNumeric="0" name="Word1"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word2__6A30C649" defaultValueNumeric="0" name="Word2"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word3__6B24EA82" defaultValueNumeric="0" name="Word3"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word4__6C190EBB" defaultValueNumeric="0" name="Word4"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word5__6D0D32F4" defaultValueNumeric="0" name="Word5"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word1__6E01572D" name="Word1Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word2__6EF57B66" name="Word2Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word3__6FE99F9F" name="Word3Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word4__70DDC3D8" name="Word4Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word5__71D1E811" name="Word5Def"
+                    type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF__NameStyle__TimeF__72C60C4A" defaultValueNumeric="0"
+                    name="TimeFormat" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__IDFor__73BA3083" defaultValueNumeric="0" name="IDFormat"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Class__74AE54BC" defaultValueNumeric="0" name="Class"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Isdef__75A278F5" defaultValueNumeric="0" name="Isdefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Defau__76969D2E" defaultValueNumeric="0"
+                    name="DefaultData" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--引擎数据配置表-->
+    <changeSet author="WangXun" id="1584407375607-34">
+        <createTable tableName="EngineDataConfig" remarks="引擎数据配置表">
+            <column defaultValueConstraintName="DF__EngineData__Mode__4AD2B8EA" defaultValueNumeric="0" name="Mode"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4BC6DD23" defaultValueNumeric="0"
+                    name="NeedProductApproval" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4CBB015C" defaultValueNumeric="0"
+                    name="NeedProductDelete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4DAF2595" defaultValueNumeric="0"
+                    name="NeedProductState" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__4EA349CE" defaultValueNumeric="0"
+                    name="NeedOnlineModify" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__4F976E07" defaultValueNumeric="0"
+                    name="NeedCRCreate" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeddC__508B9240" defaultValueNumeric="0"
+                    name="NeddCRDelete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__517FB679" defaultValueNumeric="0"
+                    name="NeedCRStart" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__5273DAB2" defaultValueNumeric="0"
+                    name="NeedCRStop" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5367FEEB" defaultValueNumeric="0"
+                    name="NeedOPStart" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__545C2324" defaultValueNumeric="0"
+                    name="NeedOPStop" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__5550475D" defaultValueNumeric="0"
+                    name="NeedCRPause" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__56446B96" defaultValueNumeric="0"
+                    name="NeedCRResume" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeddC__57388FCF" defaultValueNumeric="0"
+                    name="NeddCRComplete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__582CB408" defaultValueNumeric="0"
+                    name="NeedOPComplete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5920D841" defaultValueNumeric="0"
+                    name="NeedOPHolding" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5A14FC7A" defaultValueNumeric="0"
+                    name="NeedOPRestarting" type="int"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

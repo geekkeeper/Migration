@@ -1,0 +1,3227 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--网络节点单元关系表表-->
+    <changeSet author="WangXun" id="1584407375607-62">
+        <createTable tableName="NetNodeUnit" remarks="网络节点单元表">
+            <column autoIncrement="true" name="NetNodeUnitID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_NetNodeUnitID"/>
+            </column>
+            <column name="NodeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--网络节点表-->
+    <changeSet author="WangXun" id="1584407375607-63">
+        <createTable tableName="NetworkNode" remarks="网络节点表">
+            <column autoIncrement="true" name="NodeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_NETWORKNODE"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP1" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP2" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__NetworkNode__IP3__6E8B6712" name="IP3"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__NetworkNod__Type__6F7F8B4B" defaultValueNumeric="0" name="Type"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NetworkNo__IsOnl__7073AF84" defaultValueNumeric="0" name="IsOnline"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NetworkNo__State__7167D3BD" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NetworkNo__Surve__725BF7F6" defaultValueNumeric="0"
+                    name="SurveilleAll" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--区域表-->
+    <changeSet author="WangXun" id="1584407375607-4">
+        <createTable tableName="Areas" remarks="区域表">
+            <column name="AreaID" type="int" remarks="区域编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_AREAS_ID"/>
+            </column>
+            <column name="AreaName" type="nvarchar(50)" remarks="区域名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+        </createTable>
+    </changeSet>
+    <!--过程组元表-->
+    <changeSet author="WangXun" id="1584407375607-24">
+        <createTable tableName="Cells" remarks="过程组元表">
+            <column name="CellID" type="int" remarks="组元编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_CELLS_ID"/>
+            </column>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellName" type="nvarchar(50)" remarks="组元名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+        </createTable>
+    </changeSet>
+    <!--生产单元表-->
+    <changeSet author="WangXun" id="1584407375607-93">
+        <createTable tableName="Units" remarks="生产单元表">
+            <column name="UnitID" type="int" remarks="单元编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_UNITS_ID"/>
+            </column>
+            <column name="UnitName" type="nvarchar(50)" remarks="单元名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitOtherName" type="nvarchar(50)" remarks="单元别名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="MaterialID" type="int" remarks="物料编号"/>
+            <column name="Capacity" type="numeric(15, 5)" remarks="标准产能">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualCapacity" type="numeric(15, 5)" remarks="实际产能"/>
+            <column name="MaxBatch" type="numeric(15, 5)" remarks="最大产能"/>
+            <column name="MinBatch" type="numeric(15, 5)" remarks="最小产能"/>
+            <column name="State" type="tinyint" remarks="状态"
+                    defaultValueNumeric="0" defaultValueConstraintName="DF_Units_State">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Type" type="tinyint" remarks="类型"
+                    defaultValueConstraintName="DF_Units_Type" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsShared" type="tinyint" remarks="是否共享"
+                    defaultValueNumeric="0" defaultValueConstraintName="DF_Units_IsShared">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="IsPublic" type="tinyint" remarks="是否公共"  defaultValueNumeric="0" defaultValueConstraintName="DF_Units_IsPublic">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--组元单元关系表-->
+    <changeSet author="WangXun" id="1584407375607-90">
+        <createTable tableName="UnitCell" remarks="">
+            <column autoIncrement="true" name="UnitUsedID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UNITCELL"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--生产单元使用信息表-->
+    <changeSet author="WangXun" id="1584407375607-94">
+        <createTable tableName="UnitsUsedInfo" remarks="单元使用信息表">
+            <column autoIncrement="true" name="UnitsUsedID" type="int" remarks="单元使用编号">
+                <constraints primaryKey="true" primaryKeyName="PK_UnitsUsedID"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int" remarks="控制配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int" remarks="UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime" remarks="请求时间"
+                    defaultValueComputed="getdate()" defaultValueConstraintName="DF_UnitsUsed_RequestTime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--生产单元参数表-->
+    <changeSet author="WangXun" id="1584407375607-91">
+        <createTable tableName="UnitParameter" remarks="生产单元参数表">
+            <column autoIncrement="true" name="UnitParameterID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UNITPARAMETER"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPVersionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--系统单元参数表-->
+    <changeSet author="WangXun" id="1584407375607-92">
+        <createTable tableName="UnitSysPara" remarks="系统单元参数表">
+            <column autoIncrement="true" name="UnitSysParaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UnitSysParaID"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--仓库表-->
+    <changeSet author="WangXun" id="1584407375607-97">
+        <createTable tableName="WareHouse" remarks="仓库表">
+            <column  name="WareHouseID" type="int" remarks="仓库编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_WAREHOUSE_ID"/>
+            </column>
+            <column name="HouseName" type="nvarchar(50)" remarks="仓库名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HouseDes" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Remark1" type="nvarchar(255)"/>
+            <column name="Remark2" type="nvarchar(255)"/>
+            <column name="Remark3" type="nvarchar(255)"/>
+            <column name="Remark4" type="nvarchar(255)"/>
+            <column name="Remark5" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--槽罐使用信息表-->
+    <changeSet author="WangXun" id="1584407375607-52">
+        <createTable tableName="MTankUsedInfo" remarks="槽罐使用信息表">
+            <column autoIncrement="true" name="MTankUsedID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MTANKUSEDID"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRPrarID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__MTankUsed__Reque__11B63E6C"
+                    name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--物料表-->
+    <changeSet author="WangXun" id="1584407375607-60">
+        <createTable tableName="Materials" remarks="物料表">
+            <column autoIncrement="true" name="MaterialID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MATERIALS"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+            <column name="Unit" type="nvarchar(30)"/>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__Materials__Mende__5C6CB6D7" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Materials__Creat__5D60DB10" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Materials__Sourc__5E54FF49" defaultValueNumeric="0" name="Source"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Remark1" type="nvarchar(255)"/>
+            <column name="Remark2" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--第三方物料信息表-->
+    <changeSet author="WangXun" id="1584407375607-85">
+        <createTable tableName="ThirdpartMaterial" remarks="第三方物料信息表">
+            <column autoIncrement="true" name="ThirdMaterialID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_THIRDPARTMATERIAL"/>
+            </column>
+            <column name="ProPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MateriNumber" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaValue" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Thirdpart__TankN__3DB3258D" name="TankName"
+                    type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF__Thirdpart__Agent__3EA749C6" defaultValueNumeric="0"
+                    name="AgentParaType" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Thirdpart__Flage__3F9B6DFF" defaultValueNumeric="0" name="Flage"
+                    type="int"/>
+        </createTable>
+    </changeSet>
+    <!--第三方物料标签表-->
+    <changeSet author="WangXun" id="1584407375607-86">
+        <createTable tableName="ThirdpartMaterialLot" remarks="第三方物料标签表">
+            <column autoIncrement="true" name="ThirdMaterialLotID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_THIRDPARTMATERIALLOT"/>
+            </column>
+            <column name="ProPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Thirdpart__Mater__3A8FCD7B" name="MateriLotNo"
+                    type="nvarchar(255)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__Thirdpart__Mater__3B83F1B4" name="MateriNumber"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__Thirdpart__Quant__3C7815ED" name="Quantity"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__ThirdpartMa__UoM__3D6C3A26" name="UoM"
+                    type="nvarchar(50)"/>
+            <column name="DosingID" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Flage" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AutomaticDosing" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--物料标签表-->
+    <changeSet author="WangXun" id="1584407375607-57">
+        <createTable tableName="MaterialLOT" remarks="物料标签表">
+            <column autoIncrement="true" name="MaterialLOTID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MATERIALLOT"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOTNumber" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__MaterialL__LOTDe__61316BF4" name="LOTDes"
+                    type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MaterialL__Inspe__6225902D" defaultValueNumeric="0" name="Inspector"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QCDate" type="datetime"/>
+            <column defaultValueConstraintName="DF__MaterialL__Mende__6319B466" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__MaterialL__State__640DD89F" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MaterialL__Stora__6501FCD8" defaultValueNumeric="0"
+                    name="StorageVal" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Supplier" type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF__MaterialL__WareH__65F62111" defaultValueNumeric="0"
+                    name="WareHouseID" type="int"/>
+            <column name="Remark1" type="nvarchar(255)"/>
+            <column name="Remark2" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--物料需求单设置-->
+    <changeSet author="WangXun" id="1584407375607-58">
+        <createTable tableName="MaterialRequisitionSet" remarks="物料需求单设置">
+            <column autoIncrement="true" name="MRQID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MRQID"/>
+            </column>
+            <column name="OrderID" type="int"/>
+            <column name="UdefinedContext" type="nvarchar(260)"/>
+            <column name="ElementMode" type="int"/>
+            <column name="MRQPrintMode" type="int"/>
+            <column name="Font" type="nvarchar(50)"/>
+            <column name="Size" type="int"/>
+            <column name="Bold" type="int"/>
+            <column name="CharSet" type="int"/>
+            <column name="DeleteLine" type="int"/>
+            <column name="UnderLine" type="int"/>
+            <column name="FontColor" type="nvarchar(50)"/>
+            <column name="BackGroundColor" type="nvarchar(50)"/>
+            <column name="Alignment" type="int"/>
+            <column name="MRQSETType" type="int"/>
+            <column name="IsDefault" type="tinyint"/>
+            <column name="FontHeight" type="int"/>
+            <column name="FontWidth" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--物料槽罐序列表-->
+    <changeSet author="WangXun" id="1584407375607-59">
+        <createTable tableName="MaterialTankSequence" remarks="物料槽罐序列表">
+            <column autoIncrement="true" name="MARTANKSequenceID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MARTANKSEQUENCE"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MaterialT__CROPI__1492AB17" defaultValueNumeric="0" name="CROPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MaterialT__Seque__1586CF50" defaultValueNumeric="0" name="Sequence"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__MaterialT__Reque__167AF389"
+                    name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--包装规格表-->
+    <changeSet author="WangXun" id="1584407375607-71">
+        <createTable tableName="PackingSize" remarks="包装规格表">
+            <column autoIncrement="true" name="PackSizeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PACKSIZEID"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOTNumber" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__PackingSi__PackV__68D28DBC" defaultValueNumeric="0" name="PackValue"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__PackingSi__SizeV__69C6B1F5" defaultValueNumeric="0" name="SizeValue"
+                    type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__PackingSi__SizeU__6ABAD62E" name="SizeUnit"
+                    type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__PackingSi__PackT__6BAEFA67" defaultValueNumeric="1" name="PackType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!--UP序列表-->
+    <changeSet author="WangXun" id="1584407375607-87">
+        <createTable tableName="UPSequence" remarks="UP序列表">
+            <column autoIncrement="true" name="UPSequenceID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UPSEQUENCE"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__UPSequence__UPID__4277DAAA" defaultValueNumeric="0" name="UPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__UPSequenc__Seque__436BFEE3" defaultValueNumeric="0" name="Sequence"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__UPSequence__CRID__0ED9D1C1" defaultValueNumeric="0" name="CRID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--UP单元表-->
+    <changeSet author="WangXun" id="1584407375607-88">
+        <createTable tableName="UPUnit" remarks="UP单元表">
+            <column autoIncrement="true" name="UPUnitID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UPUNIT"/>
+            </column>
+            <column name="MRUPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史OP信息表-->
+    <changeSet author="WangXun" id="1584407375607-44">
+        <createTable tableName="HOPInformation" remarks="历史OP信息表">
+            <column autoIncrement="true" name="HOPInfoID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HOPINFORMATION"/>
+            </column>
+            <column name="OPInfoID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)"/>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__HOPInform__Creat__24285DB4" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__HOPInform__Creat__251C81ED"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HOPInform__Versi__2610A626" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__HOPInform__Versi__2704CA5F"
+                    name="VersionDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HOPInform__State__27F8EE98" defaultValueNumeric="1" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HOPInform__Appro__28ED12D1" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__HOPInform__Mende__29E1370A" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OP信息表-->
+    <changeSet author="WangXun" id="1584407375607-65">
+        <createTable tableName="OPInformation" remarks="OP信息表">
+            <column autoIncrement="true" name="OPInfoID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPINFORMATION"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)"/>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__OPInforma__Creat__7720AD13" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__OPInforma__Creat__7814D14C"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__OPInforma__Versi__7908F585" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__OPInforma__Versi__79FD19BE"
+                    name="VersionDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__OPInforma__State__7AF13DF7" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__OPInforma__Appro__7BE56230" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__OPInforma__Mende__7CD98669" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OP版本参数表-->
+    <changeSet author="WangXun" id="1584407375607-66">
+        <createTable tableName="OPVersionPara" remarks="OP版本参数表">
+            <column autoIncrement="true" name="OPVersionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPVERSIONPARA"/>
+            </column>
+            <column name="OPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__OPVersion__OPVer__7FB5F314" defaultValueNumeric="1" name="OPVersion"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OPGoto-->
+    <changeSet author="WangXun" id="1584407375607-64">
+        <createTable tableName="OPGoto">
+            <column autoIncrement="true" name="GotoID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPGOTO"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!--控制配方表-->
+    <changeSet author="WangXun" id="1584407375607-26">
+        <createTable tableName="ControlRecipe" remarks="控制配方表">
+            <column autoIncrement="true" name="ControlRecipeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CONTROLRECIPE"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Batch__5F7E2DAC" defaultValueNumeric="0" name="BatchID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Produ__607251E5" defaultValueNumeric="0"
+                    name="ProductionPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__AreaI__6166761E" defaultValueNumeric="0" name="AreaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__CellI__625A9A57" defaultValueNumeric="0" name="CellID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Maste__634EBE90" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Formu__6442E2C9" defaultValueNumeric="0" name="FormulaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStarttime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStarttime" type="datetime"/>
+            <column name="PlanEndtime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualEndtime" type="datetime"/>
+            <column name="PlanOutput" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__ControlRe__NameS__65370702" name="NameStyleFormat"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__ControlRe__Repor__662B2B3B" name="ReportTName"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__ControlRe__Creat__671F4F74" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__ControlRe__Creat__681373AD"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Prior__690797E6" defaultValueNumeric="1" name="Priority"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__ControlRe__Mende__69FBBC1F" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__State__6AEFE058" defaultValueNumeric="100" name="State"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Prese__6BE40491" defaultValueNumeric="0"
+                    name="PresentOption" type="smallint"/>
+            <column name="Excutor" type="int"/>
+            <column name="Mode" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__RunMo__6CD828CA" defaultValueNumeric="0" name="RunMode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__NameS__6DCC4D03" defaultValueNumeric="0"
+                    name="NameStyleID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="100" defaultValueConstraintName="DF__ControlRe__CREff__0B14F92C" name="CREffectRate"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方表-->
+    <changeSet author="WangXun" id="1584407375607-27">
+        <createTable tableName="ControlRecipe_HIS" remarks="历史控制配方表">
+            <column name="ControlRecipeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CONTROLRECIPE_HIS"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Batch__108B795B" defaultValueNumeric="0" name="BatchID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Produ__117F9D94" defaultValueNumeric="0"
+                    name="ProductionPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__AreaI__1273C1CD" defaultValueNumeric="0" name="AreaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__CellI__1367E606" defaultValueNumeric="0" name="CellID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Maste__145C0A3F" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Formu__15502E78" defaultValueNumeric="0" name="FormulaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStarttime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanEndtime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStarttime" type="datetime"/>
+            <column name="ActualEndtime" type="datetime"/>
+            <column name="PlanOutput" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__ControlRe__NameS__164452B1" name="NameStyleFormat"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__ControlRe__Repor__173876EA" name="ReportTName"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__ControlRe__Creat__182C9B23" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__ControlRe__Creat__1920BF5C"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Prior__1A14E395" defaultValueNumeric="1" name="Priority"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__ControlRe__Mende__1B0907CE" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__State__1BFD2C07" defaultValueNumeric="100" name="State"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__Prese__1CF15040" defaultValueNumeric="0"
+                    name="PresentOption" type="smallint"/>
+            <column name="Excutor" type="int"/>
+            <column name="Mode" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__RunMo__1DE57479" defaultValueNumeric="0" name="RunMode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ControlRe__NameS__1ED998B2" defaultValueNumeric="0"
+                    name="NameStyleID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="100" defaultValueConstraintName="DF__ControlRe__CREff__0C091D65" name="CREffectRate"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--控制配方运行队列表-->
+    <changeSet author="WangXun" id="1584407375607-28">
+        <createTable tableName="CtrRecpRunQueuing" remarks="控制配方运行队列表">
+            <column autoIncrement="true" name="QueueID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CTRRECPQUEUEID"/>
+            </column>
+            <column name="ProPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AreaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CtrRecpRu__RunFl__4F7CD00D" defaultValueNumeric="0" name="RunFlag"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__CtrRecpRu__Reque__5070F446"
+                    name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--配方表-->
+    <changeSet author="WangXun" id="1584407375607-35">
+        <createTable tableName="Formula" remarks="配方表">
+            <column autoIncrement="true" name="FormulaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_FORMULA"/>
+            </column>
+            <column defaultValueConstraintName="DF__Formula__MasterR__793DFFAF" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Formula__IsDefau__7A3223E8" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--历史配方表-->
+    <changeSet author="WangXun" id="1584407375607-37">
+        <createTable tableName="HFormula" remarks="历史配方表">
+            <column autoIncrement="true" name="HFormulaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HFORMULA"/>
+            </column>
+            <column name="FormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_HFormula_IsDefault" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史主配方条件表-->
+    <changeSet author="WangXun" id="1584407375607-38">
+        <createTable tableName="HMRConditions" remarks="历史主配方条件表">
+            <column autoIncrement="true" name="HMRConditionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMRCONDITIONS"/>
+            </column>
+            <column name="MRConditionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRCondit__MRTra__01D345B0" defaultValueNumeric="0"
+                    name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRCondit__Opera__02C769E9" defaultValueNumeric="0" name="Operator"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRCondit__Versi__03BB8E22" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRCondit__Seque__04AFB25B" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRCondit__DataS__05A3D694" defaultValueNumeric="0"
+                    name="DataSource" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方元素表-->
+    <changeSet author="WangXun" id="1584407375607-39">
+        <createTable tableName="HMRElement" remarks="主配方元素表">
+            <column autoIncrement="true" name="HMRElementID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMRELEMENT"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Maste__0880433F" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Eleme__09746778" defaultValueNumeric="0"
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Paren__0A688BB1" defaultValueNumeric="0" name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__State__0B5CAFEA" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElement__OPID__0C50D423" defaultValueNumeric="0" name="OPID"
+                    type="int"/>
+            <column name="OPVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Versi__0D44F85C" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Descr__0E391C95" defaultValueNumeric="0"
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__SelfI__6BEEF189" defaultValueNumeric="-1" name="SelfID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRElemen__Order__6CE315C2" defaultValueNumeric="0" name="OrderID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方链接表-->
+    <changeSet author="WangXun" id="1584407375607-40">
+        <createTable tableName="HMRLink" remarks="主配方链接表">
+            <column autoIncrement="true" name="HMRLinkID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMRLINK"/>
+            </column>
+            <column name="MRLinkID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRLink__FromIDT__11158940" defaultValueNumeric="1"
+                    name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRLink__ToIDTyp__1209AD79" defaultValueNumeric="1" name="ToIDType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRLink__Version__12FDD1B2" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方转换表-->
+    <changeSet author="WangXun" id="1584407375607-41">
+        <createTable tableName="HMRTransitions" remarks="主配方转换表">
+            <column autoIncrement="true" name="HMRTransitionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMRTRANSITIONS"/>
+            </column>
+            <column name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMRTransi__MREle__15DA3E5D" defaultValueNumeric="0"
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column name="Version" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--主配方物料比率表-->
+    <changeSet author="WangXun" id="1584407375607-42">
+        <createTable tableName="HMastRecpMateriRatio" remarks="主配方物料比率表">
+            <column autoIncrement="true" name="HMateriRatio" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMATERIRATIO"/>
+            </column>
+            <column name="MateriRatio" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方表-->
+    <changeSet author="WangXun" id="1584407375607-43">
+        <createTable tableName="HMasterRecipe" remarks="主配方表">
+            <column autoIncrement="true" name="HMasterRecipeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HMASTERRECIPE"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__Group__18B6AB08" defaultValueNumeric="1" name="GroupID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__Descr__19AACF41" defaultValueNumeric="0"
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__State__1A9EF37A" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__Creat__1B9317B3" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__HMasterRe__Creat__1C873BEC"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__Appro__1D7B6025" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__HMasterRe__Versi__1E6F845E" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__HMasterRe__Versi__1F63A897"
+                    name="VersionDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HMasterRe__Mende__2057CCD0" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__HMasterRe__IsUsi__214BF109" defaultValueNumeric="0" name="IsUsing"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--配方参数表-->
+    <changeSet author="WangXun" id="1584407375607-72">
+        <createTable tableName="ParaFormula" remarks="配方参数表">
+            <column autoIncrement="true" name="ParaFormulaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PARAFORMULA"/>
+            </column>
+            <column name="FormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__ParaFormu__Value__084B3915" name="Value"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ParaFormu__Versi__093F5D4E" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方组表-->
+    <changeSet author="WangXun" id="1584407375607-54">
+        <createTable tableName="MastRecpGroup" remarks="主配方组表">
+            <column autoIncrement="true" name="GroupID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MASTRECPGROUPID"/>
+            </column>
+            <column name="GroupName" type="nvarchar(60)"/>
+            <column defaultValueConstraintName="DF__MastRecpG__Creat__534D60F1" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__MastRecpG__Creat__5441852A"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__MastRecpG__Mende__5535A963" defaultValueNumeric="0" name="Mender"
+                    type="int"/>
+            <column name="GroupDesc" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--主配方物料比率表-->
+    <changeSet author="WangXun" id="1584407375607-55">
+        <createTable tableName="MastRecpMateriRatio" remarks="主配方物料比率表">
+            <column autoIncrement="true" name="MateriRatio" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MATERIRATIO"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Number" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方表-->
+    <changeSet author="WangXun" id="1584407375607-56">
+        <createTable tableName="MasterRecipe" remarks="主配方表">
+            <column autoIncrement="true" name="MasterRecipeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MASTERRECIPE"/>
+            </column>
+            <column name="MRName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__Group__50FB042B" defaultValueNumeric="1" name="GroupID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__Descr__51EF2864" defaultValueNumeric="0"
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__State__52E34C9D" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__Creat__53D770D6" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__MasterRec__Creat__54CB950F"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__Appro__55BFB948" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__MasterRec__Versi__56B3DD81" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__MasterRec__Versi__57A801BA"
+                    name="VersionDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MasterRec__Mende__589C25F3" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__MasterRec__IsUsi__59904A2C" defaultValueNumeric="0" name="IsUsing"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方条件表-->
+    <changeSet author="WangXun" id="1584407375607-48">
+        <createTable tableName="MRConditions" remarks="主配方条件表">
+            <column autoIncrement="true" name="MRConditionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MRCONDITIONS"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRConditi__MRTra__336AA144" defaultValueNumeric="0"
+                    name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRConditi__Opera__345EC57D" defaultValueNumeric="0" name="Operator"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRConditi__Versi__3552E9B6" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRConditi__Seque__36470DEF" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRConditi__DataS__373B3228" defaultValueNumeric="0"
+                    name="DataSource" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方元素表-->
+    <changeSet author="WangXun" id="1584407375607-49">
+        <createTable tableName="MRElement" remarks="主配方元素表">
+            <column autoIncrement="true" name="MRElementID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MRELEMENT"/>
+            </column>
+            <column name="Name" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__Maste__3A179ED3" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__Eleme__3B0BC30C" defaultValueNumeric="0"
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__Paren__3BFFE745" defaultValueNumeric="0" name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__State__3CF40B7E" defaultValueNumeric="0" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__OPID__3DE82FB7" defaultValueNumeric="0" name="OPID"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__MRElement__OPVer__3EDC53F0" defaultValueNumeric="0" name="OPVersion"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__MRElement__Versi__3FD07829" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__Descr__40C49C62" defaultValueNumeric="0"
+                    name="DescriptionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__SelfI__6DD739FB" defaultValueNumeric="-1" name="SelfID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRElement__Order__6ECB5E34" defaultValueNumeric="0" name="OrderID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方链接表-->
+    <changeSet author="WangXun" id="1584407375607-50">
+        <createTable tableName="MRLink" remarks="主配方链接表">
+            <column autoIncrement="true" name="MRLinkID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MRLINK"/>
+            </column>
+            <column name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRLink__FromIDTy__43A1090D" defaultValueNumeric="1"
+                    name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRLink__ToIDType__44952D46" defaultValueNumeric="1" name="ToIDType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRLink__Version__4589517F" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRLink__Sequence__467D75B8" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--主配方转换表-->
+    <changeSet author="WangXun" id="1584407375607-51">
+        <createTable tableName="MRTransitions" remarks="主配方转换表">
+            <column autoIncrement="true" name="MRTransitionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MRTRANSITIONS"/>
+            </column>
+            <column defaultValueConstraintName="DF__MRTransit__MREle__4959E263" defaultValueNumeric="0"
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__MRTransit__Versi__4A4E069C" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!--路径表-->
+    <changeSet author="WangXun" id="1584407375607-75">
+        <createTable tableName="Path" remarks="路径表">
+            <column autoIncrement="true" name="PathID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PATH"/>
+            </column>
+            <column name="PathName" type="nvarchar(50)"/>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__Path__PathType__1E3A7A34" defaultValueNumeric="0" name="PathType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Path__PreLink__1F2E9E6D" defaultValueNumeric="0" name="PreLink"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Path__BackLink__2022C2A6" defaultValueNumeric="0" name="BackLink"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--参数表-->
+    <changeSet author="WangXun" id="1584407375607-74">
+        <createTable tableName="Parameter" remarks="参数表">
+            <column autoIncrement="true" name="ParameterID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PARAMETER"/>
+            </column>
+            <column name="ParaName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaOtherName" type="nvarchar(50)"/>
+            <column name="Description" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__Parameter__ParaT__0EF836A4" defaultValueNumeric="0" name="ParaType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__DataT__0FEC5ADD" defaultValueNumeric="0" name="DataType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Unit" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__IsTre__10E07F16" defaultValueNumeric="0"
+                    name="IsTrendPoint" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__IsAlt__11D4A34F" defaultValueNumeric="0" name="IsAltered"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__Type__12C8C788" defaultValueNumeric="0" name="Type"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__IsDow__13BCEBC1" defaultValueNumeric="0"
+                    name="IsDownLoad" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__Creat__14B10FFA" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Parameter__Creat__15A53433"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__Parameter__Mende__1699586C" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Parameter__Relat__178D7CA5" defaultValueNumeric="0" name="RelatedID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--关联参数表-->
+    <changeSet author="WangXun" id="1584407375607-79">
+        <createTable tableName="RelatedPara" remarks="关联参数表">
+            <column autoIncrement="true" name="RelatedParaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_RELATEDPARA"/>
+            </column>
+            <column defaultValueConstraintName="DF__RelatedPa__MainP__1A69E950" defaultValueNumeric="0"
+                    name="MainParaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__RelatedPa__SubPa__1B5E0D89" defaultValueNumeric="0" name="SubParaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--配方参数表-->
+    <changeSet author="WangXun" id="1584407375607-45">
+        <createTable tableName="HParaFormula" remarks="配方参数表">
+            <column autoIncrement="true" name="HParaFormulaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HPARAFORMULA"/>
+            </column>
+            <column name="ParaFormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__HParaForm__Value__2CBDA3B5" name="Value"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HParaForm__Versi__2DB1C7EE" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史物料参数表-->
+    <changeSet author="WangXun" id="1584407375607-46">
+        <createTable tableName="HParaMaterial" remarks="历史物料参数表">
+            <column autoIncrement="true" name="HParaMaterialID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_HPARAMATERIAL"/>
+            </column>
+            <column name="ParaMaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaFormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HParaMate__ParaF__308E3499" defaultValueNumeric="1"
+                    name="ParaFormVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__HParaMate__IsPro__0467FB9D" defaultValueNumeric="1"
+                    name="IsProportion" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--物料参数表-->
+    <changeSet author="WangXun" id="1584407375607-73">
+        <createTable tableName="ParaMaterial" remarks="物料参数表">
+            <column autoIncrement="true" name="ParaMaterialID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PARAMATERIAL"/>
+            </column>
+            <column name="ParaFormulaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ParaMater__ParaF__0C1BC9F9" defaultValueNumeric="1"
+                    name="ParaFormVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ParaMater__IsPro__0373D764" defaultValueNumeric="1"
+                    name="IsProportion" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--路径参数表-->
+    <changeSet author="WangXun" id="1584407375607-76">
+        <createTable tableName="PathParameter" remarks="路径参数表">
+            <column autoIncrement="true" name="PathParameterID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PATHPARAMETER"/>
+            </column>
+            <column name="PathID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Value" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!--生产计划组表-->
+    <changeSet author="WangXun" id="1584407375607-77">
+        <createTable tableName="ProPlanGroup" remarks="生产计划组表">
+            <column autoIncrement="true" name="GroupID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROPLANGROUPID"/>
+            </column>
+            <column name="GroupName" type="nvarchar(60)"/>
+            <column defaultValueConstraintName="DF__ProPlanGr__Creat__5812160E" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__ProPlanGr__Creat__59063A47"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__ProPlanGr__Mende__59FA5E80" defaultValueNumeric="0" name="Mender"
+                    type="int"/>
+            <column name="GroupDesc" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--生产计划表-->
+    <changeSet author="WangXun" id="1584407375607-78">
+        <createTable tableName="ProductionPlan" remarks="生产计划表">
+            <column autoIncrement="true" name="ProductionPlanID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PRODUCTIONPLAN"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__PlanI__24E777C3" defaultValueNumeric="0" name="PlanID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProductionPlanIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Maste__25DB9BFC" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__MRVer__26CFC035" defaultValueNumeric="1" name="MRVersion"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Formu__27C3E46E" defaultValueNumeric="0" name="FormulaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Group__28B808A7" defaultValueNumeric="1" name="GroupID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanName" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanOutput" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)"/>
+            <column name="SurplusOutput" type="numeric(15, 5)"/>
+            <column name="PlanStarttime" type="datetime"/>
+            <column name="PlanEndtime" type="datetime"/>
+            <column name="ActualStarttime" type="datetime"/>
+            <column name="ActualEndtime" type="datetime"/>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__NameS__29AC2CE0" name="NameStyleFormat"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Compl__2AA05119" defaultValueNumeric="0"
+                    name="CompleteProportion" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__State__2B947552" defaultValueNumeric="200" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Creat__2C88998B" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Productio__Creat__2D7CBDC4"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Sourc__2E70E1FD" defaultValueNumeric="0" name="Source"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__Productio__Mende__2F650636" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Production__Mode__30592A6F" defaultValueNumeric="0" name="Mode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Appro__314D4EA8" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__Productio__NameS__324172E1" defaultValueNumeric="0"
+                    name="NameStyleID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__Remar__589DBCA1" name="Remark1"
+                    type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__Remar__5991E0DA" name="Remark2"
+                    type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+
+    <!--条码设置表-->
+    <changeSet author="WangXun" id="1584407375607-5">
+        <createTable tableName="BarCodeSet" remarks="条码设置表">
+            <column autoIncrement="true" name="BarCodeSetID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_BarCodeSetID"/>
+            </column>
+            <column name="CodeStandard" type="nvarchar(50)"/>
+            <column name="CodeCount" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CodeContent" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__BarCodeSe__IsDef__0B91BA14" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--条码扫描样式表-->
+    <changeSet author="WangXun" id="1584407375607-6">
+        <createTable tableName="BarcodeScanStyle" remarks="条码扫描样式表">
+            <column autoIncrement="true" name="BarcodeScanIdentityID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_BarcodeScanIdentityID"/>
+            </column>
+            <column name="StyleName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="StyleContent" type="nvarchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__BarcodeSc__Creat__027FB32B"
+                    name="CreateTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DefaultData" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Isdefault" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-8">
+        <createTable tableName="CRBarCode">
+            <column autoIncrement="true" name="CRBarCodeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRBarCodeID"/>
+            </column>
+            <column name="BarCode" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitTankID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MateriNumber" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MateriLOT" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRBarCode__SetVa__03F0984C" defaultValueNumeric="0" name="SetValue"
+                    type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRBarCode__ISDon__04E4BC85" defaultValueNumeric="0" name="ISDone"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-9">
+        <createTable tableName="CRBarCodeSize">
+            <column autoIncrement="true" name="CRBarCodeSizeID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRBCSIZE"/>
+            </column>
+            <column name="CRBarCodeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BarCode" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PackSizeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRBarCode__PackV__07C12930" defaultValueNumeric="0" name="PackValue"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRBarCode__Surpl__08B54D69" defaultValueNumeric="0" name="Surplus"
+                    type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-10">
+        <createTable tableName="CRBarcodeScanData">
+            <column autoIncrement="true" name="CRScanDataID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRCODESCANID"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRExecutionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialLOTID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOTCount" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__CRBarcode__Creat__0EE58A10"
+                    name="CreateTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ChargeMan" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualValue" type="nvarchar(300)"/>
+            <column name="PlanValue" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DefineInfo" type="nvarchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DefineInfoEx" type="nvarchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRBarcode__LOTNu__0FD9AE49" name="LOTNumber"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__CRBarcode__Actua__7DF26A3D" name="ActualValueEx"
+                    type="nvarchar(300)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-11">
+        <createTable tableName="CRConditions">
+            <column autoIncrement="true" name="CRConditionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRCONDITIONS"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__MRCon__25518C17" defaultValueNumeric="0"
+                    name="MRConditionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__CRTra__2645B050" defaultValueNumeric="0"
+                    name="CRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__CRPar__2739D489" defaultValueNumeric="0"
+                    name="CRParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__Opera__282DF8C2" defaultValueNumeric="0" name="Operator"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRConditi__Actua__29221CFB" name="ActualValue"
+                    type="nvarchar(300)"/>
+            <column defaultValueConstraintName="DF__CRConditi__Truth__2A164134" defaultValueNumeric="0"
+                    name="TruthValue" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__Seque__2B0A656D" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__DataS__2BFE89A6" defaultValueNumeric="0"
+                    name="DataSource" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-12">
+        <createTable tableName="CRConditions_HIS">
+            <column name="CRConditionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRCONDITIONS_HIS"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__MRCon__21B6055D" defaultValueNumeric="0"
+                    name="MRConditionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__CRTra__22AA2996" defaultValueNumeric="0"
+                    name="CRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__CRPar__239E4DCF" defaultValueNumeric="0"
+                    name="CRParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__Opera__24927208" defaultValueNumeric="0" name="Operator"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SetValue" type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRConditi__Actua__25869641" name="ActualValue"
+                    type="nvarchar(300)"/>
+            <column defaultValueConstraintName="DF__CRConditi__Truth__267ABA7A" defaultValueNumeric="0"
+                    name="TruthValue" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__Seque__276EDEB3" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRConditi__DataS__286302EC" defaultValueNumeric="0"
+                    name="DataSource" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-13">
+        <createTable tableName="CRElement">
+            <column autoIncrement="true" name="CRElementID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRELEMENT"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Contr__2EDAF651" defaultValueNumeric="0"
+                    name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__MREle__2FCF1A8A" defaultValueNumeric="0"
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRElement__Name__30C33EC3" name="Name"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__CRElement__CREle__31B762FC" name="CREleDes"
+                    type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__CRElement__Eleme__32AB8735" defaultValueNumeric="0"
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Paren__339FAB6E" defaultValueNumeric="0" name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__OPID__3493CFA7" defaultValueNumeric="0" name="OPID"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__OPVer__3587F3E0" defaultValueNumeric="0" name="OPVersion"
+                    type="int"/>
+            <column name="Starttime" type="datetime"/>
+            <column name="EndTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__CRElement__State__367C1819" defaultValueNumeric="0" name="State"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__State__37703C52" defaultValueNumeric="0" name="StateEx"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Error__3864608B" defaultValueNumeric="0" name="ErrorCode"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__UnitI__395884C4" defaultValueNumeric="0" name="UnitID"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__Prese__3A4CA8FD" defaultValueNumeric="0"
+                    name="PresentOperation" type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__IsMon__3B40CD36" defaultValueNumeric="0"
+                    name="IsMonitoring" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-14">
+        <createTable tableName="CRElement_HIS">
+            <column name="CRElementID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRELEMENT_HIS"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Contr__2B3F6F97" defaultValueNumeric="0"
+                    name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__MREle__2C3393D0" defaultValueNumeric="0"
+                    name="MRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRElement___Name__2D27B809" name="Name"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__CRElement__CREle__2E1BDC42" name="CREleDes"
+                    type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__CRElement__Eleme__2F10007B" defaultValueNumeric="0"
+                    name="ElementType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Paren__300424B4" defaultValueNumeric="0" name="ParentID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement___OPID__30F848ED" defaultValueNumeric="0" name="OPID"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__OPVer__31EC6D26" defaultValueNumeric="0" name="OPVersion"
+                    type="int"/>
+            <column name="Starttime" type="datetime"/>
+            <column name="EndTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__CRElement__State__32E0915F" defaultValueNumeric="0" name="State"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__State__33D4B598" defaultValueNumeric="0" name="StateEx"
+                    type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__Error__34C8D9D1" defaultValueNumeric="0" name="ErrorCode"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRElement__UnitI__35BCFE0A" defaultValueNumeric="0" name="UnitID"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__Prese__36B12243" defaultValueNumeric="0"
+                    name="PresentOperation" type="int"/>
+            <column defaultValueConstraintName="DF__CRElement__IsMon__37A5467C" defaultValueNumeric="0"
+                    name="IsMonitoring" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-15">
+        <createTable tableName="CRExecParaValue">
+            <column autoIncrement="true" name="CRExecParaValueID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRExecParaValueID"/>
+            </column>
+            <column name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRExecPar__Actua__10566F31" name="ActualValue"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRExecPar__PlanV__114A936A" name="PlanValue"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRExecutionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-16">
+        <createTable tableName="CRExecution">
+            <column autoIncrement="true" name="CRExecutionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CREXECUTION"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRExecuti__Execu__3E1D39E1" defaultValueNumeric="0"
+                    name="ExecutionOrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRExecuti__Contr__3F115E1A" defaultValueNumeric="0"
+                    name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRExecutio__UPID__40058253" defaultValueNumeric="0" name="UPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRExecutio__OPID__40F9A68C" defaultValueNumeric="0" name="OPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRExecuti__State__41EDCAC5" defaultValueNumeric="0" name="State"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Starttime" type="datetime"/>
+            <column name="Endtime" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-17">
+        <createTable tableName="CRFristUPUnintOccupy">
+            <column autoIncrement="true" name="CRFristUPIdentityID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UPIDENTITYID"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__CRFristUP__Reque__19576034"
+                    name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-18">
+        <createTable tableName="CRLink">
+            <column autoIncrement="true" name="CRLinkID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRLINKID"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParentID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRLink__Sequence__7F2BE32F" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-19">
+        <createTable tableName="CRLink_HIS">
+            <column name="CRLinkID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRLINKID_HIS"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParentID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FromIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToIDType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LinkType" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRLink_HI__Seque__3A81B327" defaultValueNumeric="1" name="Sequence"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-20">
+        <createTable tableName="CRParameter">
+            <column autoIncrement="true" name="CRParameterID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRPARAMETER"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__MROPI__44CA3770" defaultValueNumeric="0" name="MROPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__ParaV__45BE5BA9" name="ParaValue"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__Mater__46B27FE2" name="MateriNumber"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__47A6A41B" defaultValueNumeric="0"
+                    name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__489AC854" defaultValueNumeric="0"
+                    name="MaterialPath" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__055C1FD6" defaultValueNumeric="0"
+                    name="MaterialLOTID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__LOTNu__0650440F" name="LOTNumber"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="100" defaultValueConstraintName="DF__CRParamet__Effec__07446848" name="EffectRate"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-21">
+        <createTable tableName="CRParameter_HIS">
+            <column name="CRParameterID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRPARAMETER_HIS"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__MROPI__3D5E1FD2" defaultValueNumeric="0" name="MROPID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__ParaV__3E52440B" name="ParaValue"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__Mater__3F466844" name="MateriNumber"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__403A8C7D" defaultValueNumeric="0"
+                    name="MaterialID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__412EB0B6" defaultValueNumeric="0"
+                    name="MaterialPath" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRParamet__Mater__08388C81" defaultValueNumeric="0"
+                    name="MaterialLOTID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__CRParamet__LOTNu__092CB0BA" name="LOTNumber"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="100" defaultValueConstraintName="DF__CRParamet__Effec__0A20D4F3" name="EffectRate"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-22">
+        <createTable tableName="CRTransitions">
+            <column autoIncrement="true" name="CRTransitionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRTRANSITIONS"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRTransit__MRTra__4B7734FF" defaultValueNumeric="0"
+                    name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRTransit__CREle__4C6B5938" defaultValueNumeric="0"
+                    name="CRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__CRTransit__Truth__4D5F7D71" defaultValueNumeric="0"
+                    name="TruthValue" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584407375607-23">
+        <createTable tableName="CRTransitions_HIS">
+            <column name="CRTransitionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CRTRANSITIONS_HIS"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRTransit__MRTra__440B1D61" defaultValueNumeric="0"
+                    name="MRTransitionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__CRTransit__CREle__44FF419A" defaultValueNumeric="0"
+                    name="CRElementID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Relation" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__CRTransit__Truth__45F365D3" defaultValueNumeric="0"
+                    name="TruthValue" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+
+    <!--描述表-->
+    <changeSet author="WangXun" id="1584407375607-30">
+        <createTable tableName="Description" remarks="描述表">
+            <column autoIncrement="true" name="DescriptionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DESCRIPTION"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!--域信息表-->
+    <changeSet author="WangXun" id="1584407375607-32">
+        <createTable tableName="DomainInfo" remarks="域信息表">
+            <column autoIncrement="true" name="DomainID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DOMAININFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Domai__74794A92" defaultValueNumeric="0" name="DomainNo"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Maste__756D6ECB" defaultValueNumeric="0"
+                    name="MasterStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Slave__76619304" defaultValueNumeric="0"
+                    name="SlaveStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--默认域名表-->
+    <changeSet author="WangXun" id="1584407375607-29">
+        <createTable tableName="DefaultDomain" remarks="默认域名表">
+            <column autoIncrement="true" name="DefDomainID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DEFDOMAININFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Domai__6383C8BA" defaultValueNumeric="0" name="DomainNo"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Maste__6477ECF3" defaultValueNumeric="0"
+                    name="MasterStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Slave__656C112C" defaultValueNumeric="0"
+                    name="SlaveStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+
+
+
+
+
+    <!--mac点表-->
+    <changeSet author="WangXun" id="1584407375607-53">
+        <createTable tableName="MacsPoints" remarks="mac点表">
+            <column autoIncrement="true" name="MacsPiontID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MACSPOINTS"/>
+            </column>
+            <column defaultValueConstraintName="DF__MacsPoint__Domai__4D2A7347" defaultValueNumeric="0" name="DomainID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointName" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MPValue" type="nvarchar(300)"/>
+            <column name="MPType" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MacsPoint__DataT__4E1E9780" defaultValueNumeric="0" name="DataType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MPItemName" type="nvarchar(50)"/>
+            <column name="SCADATProject" type="nvarchar(50)"/>
+            <column name="SCADADomain" type="nvarchar(50)"/>
+            <column name="SCADAStation" type="nvarchar(50)"/>
+            <column name="SCADADBUnit" type="nvarchar(50)"/>
+            <column name="SCADADNodeID" type="nvarchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--报表信息表-->
+    <changeSet author="WangXun" id="1584407375607-80">
+        <createTable tableName="ReportInfo" remarks="报表信息表">
+            <column autoIncrement="true" name="ReportID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_REPORTINFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportInf__Contr__351DDF8C" defaultValueNumeric="0"
+                    name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportName" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__ReportInf__Repor__361203C5" defaultValueNumeric="0"
+                    name="ReportState" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportPath" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--报表模板表-->
+    <changeSet author="WangXun" id="1584407375607-81">
+        <createTable tableName="ReportTemplate" remarks="报表模板表">
+            <column autoIncrement="true" name="TemplateID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_REPORTTEMPLATE"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportTem__Versi__38EE7070" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Template" type="image"/>
+            <column defaultValueConstraintName="DF__ReportTem__IsUsi__39E294A9" defaultValueNumeric="0" name="IsUsing"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportTem__IsDef__3AD6B8E2" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!---->
+    <changeSet author="WangXun" id="1584407375607-82">
+        <createTable tableName="SpecialCharact">
+            <column autoIncrement="true" name="CHARACTID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CHARACTID"/>
+            </column>
+            <column name="TypeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SpeCharact" type="nvarchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+
+
+    <!--报警描述表-->
+    <changeSet author="WangXun" id="1584407375607-1">
+        <createTable tableName="AlertDescription" remarks="报警描述表">
+            <column name="AlertDescID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertDescID"/>
+            </column>
+            <column name="AlertType" type="tinyint" remarks="报警类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Level" type="tinyint" remarks="报警级别">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description_EN" type="nvarchar(1024)" remarks="报警描述-英文"/>
+            <column name="Description_ZH" type="nvarchar(1024)" remarks="报警描述-中文">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description_DE" type="nvarchar(1024)" remarks="报警描述-默认"/>
+        </createTable>
+    </changeSet>
+    <!--报警日志表-->
+    <changeSet author="WangXun" id="1584407375607-2">
+        <createTable tableName="AlertLog" remarks="报警日志表">
+            <column autoIncrement="true" name="AlertLogID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertLog_ID"/>
+            </column>
+            <column name="AlertTime" type="datetime" remarks="报警时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HandleStatus" type="tinyint" remarks="处理状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LocationDesc" type="nvarchar(600)"/>
+            <column name="ObjectIdentity"
+                    type="nvarchar(300)"/>
+            <column name="AlertDescID" type="int" defaultValueConstraintName="DF_AlertLog_AlertDescID"
+                    defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--报警点表-->
+    <changeSet author="WangXun" id="1584407375607-3">
+        <createTable tableName="AlertPoint" remarks="报警点表">
+            <column autoIncrement="true" name="AlertPointID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertPointID"/>
+            </column>
+            <column defaultValueConstraintName="DF_AlertPoint_AlertLogID" defaultValueNumeric="0"
+                    name="AlertLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_AlertPoint_ErrorID" defaultValueNumeric="0" name="ErrorID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DomainID" type="int" defaultValueConstraintName="DF_AlertPoint_DomainID"
+                    defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointName" type="nvarchar(1000)"/>
+            <column name="MacsItemName" type="nvarchar(60)"/>
+        </createTable>
+    </changeSet>
+    <!--未恢复报警信息表-->
+    <changeSet author="WangXun" id="1584407375607-89">
+        <createTable tableName="UnResumeAlarmInfo" remarks="未恢复报警信息表">
+            <column autoIncrement="true" name="UnAlarmID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UNALARMID"/>
+            </column>
+            <column name="AlertLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UUID" type="nvarchar(60)"/>
+            <column name="ERRORID" type="int"/>
+            <column name="DomainID" type="int"/>
+            <column name="PointName" type="nvarchar(1000)"/>
+            <column name="ItemName" type="nvarchar(60)"/>
+            <column name="ObjectIdentity" type="nvarchar(300)"/>
+            <column name="LocationDesc" type="nvarchar(510)"/>
+        </createTable>
+    </changeSet>
+    <!--标准趋势点表-->
+    <changeSet author="WangXun" id="1584407375607-83">
+        <createTable tableName="StdTrendPoints" remarks="标准趋势点表">
+            <column autoIncrement="true" name="StdTrendPointID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_STDTREND"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRUPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+
+
+    <!--用户组表-->
+    <changeSet author="WangXun" id="1584407375607-95">
+        <createTable tableName="UserGroups" remarks="用户组表">
+            <column  name="GroupID" type="int" remarks="用户组编号" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_GroupID"/>
+            </column>
+            <column name="GroupName" type="nvarchar(50)" remarks="组名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Comment" type="nvarchar(255)" remarks="注释信息"/>
+            <column name="ProPlanAccredit" type="int"/>
+            <column name="ProMagAccredit" type="int"/>
+            <column name="SysAlarmAccredit" type="int"/>
+            <column name="SchedulerAccredit" type="int"/>
+            <column name="ExplorerAccredit" type="int"/>
+            <column name="PrjctMagAccredit" type="int"/>
+            <column  name="IsDefault" type="tinyint"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--用户表-->
+    <changeSet author="WangXun" id="1584407375607-96">
+        <createTable tableName="Users" remarks="用户表">
+            <column autoIncrement="true" name="UserID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_USERS"/>
+            </column>
+            <column  name="GroupID" type="int" remarks="用户组编号"/>
+            <column name="LoginName" type="nvarchar(50)" remarks="登录名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Password" type="nvarchar(50)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FingerPrint" type="image" remarks="指纹"/>
+            <column name="Comment" type="nvarchar(255)" remarks="注释信息">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SurveilleAll" type="tinyint"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+
+        </createTable>
+    </changeSet>
+    <!--登录状态表-->
+    <changeSet author="WangXun" id="1584407375607-47">
+        <createTable tableName="LoginSate" remarks="登录状态表">
+            <column autoIncrement="true" name="LoginSateID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LOGINSTATE"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)"/>
+            <column name="UserID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LoginModule" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastLogin" type="datetime"/>
+            <column defaultValueConstraintName="DF__LoginSate__IsVer__689D8392" defaultValueNumeric="0" name="IsVerify"
+                    type="tinyint"/>
+        </createTable>
+    </changeSet>
+    <!--操作日志表-->
+    <changeSet author="WangXun" id="1584407375607-67">
+        <createTable tableName="OperationLog" remarks="操作日志表">
+            <column autoIncrement="true" name="OperationLogID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOG"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Operation__LogTi__02925FBF"
+                    name="LogTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OperatorName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectName" type="nvarchar(1005)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OperationDescID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Operation__LogTy__038683F8" defaultValueNumeric="0" name="LogType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--操作日志描述表-->
+    <changeSet author="WangXun" id="1584407375607-68">
+        <createTable tableName="OperationLogDescription" remarks="操作日志描述表">
+            <column autoIncrement="true" name="OperationDescID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOGDESCRIPTION"/>
+            </column>
+            <column name="Description_EN" type="nvarchar(1024)"/>
+            <column name="Description_ZH" type="nvarchar(1024)"/>
+            <column name="Description_DE" type="nvarchar(1024)"/>
+        </createTable>
+    </changeSet>
+    <!--操作日志详情表-->
+    <changeSet author="WangXun" id="1584407375607-69">
+        <createTable tableName="OperationLogDetail" remarks="操作日志详情表">
+            <column autoIncrement="true" name="LogDetailID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LOGDETAILID"/>
+            </column>
+            <column name="OperationLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6B79F03D" name="Value1"
+                    type="nvarchar(1005)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6C6E1476" name="Value2"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6D6238AF" name="Value3"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6E565CE8" name="Value4"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6F4A8121" name="Value5"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__703EA55A" name="Value6"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--操作日志参数表-->
+    <changeSet author="WangXun" id="1584407375607-70">
+        <createTable tableName="OperationLogPara" remarks="操作日志参数表">
+            <column autoIncrement="true" name="LogParaID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_LogParaID"/>
+            </column>
+            <column name="OperationLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__OperationL__Item__731B1205" name="Item"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__SubIt__740F363E" name="SubItem"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75035A77" name="ValueBefore"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75F77EB0" name="ValueCurrent"
+                    type="nvarchar(260)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AddedPara1" type="int"/>
+            <column name="AddedPara2" type="int"/>
+            <column name="AddedPara3" type="nvarchar(260)"/>
+            <column name="AddedPara4" type="nvarchar(260)"/>
+        </createTable>
+    </changeSet>
+    <!--编辑标识表-->
+    <changeSet author="WangXun" id="1584407375607-33">
+        <createTable tableName="EditFlag" remarks="编辑标识表">
+            <column autoIncrement="true" name="EditFlagID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_EDITFLAG"/>
+            </column>
+            <column name="UserID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LoginModule" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Category" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--表空间使用情况表-->
+    <changeSet author="WangXun" id="1584407375607-84">
+        <createTable tableName="TableSpaceUsed" remarks="表空间使用情况表">
+            <column name="nameinfo" type="nvarchar(50)"/>
+            <column name="rowsinfo" type="int"/>
+            <column name="reserved" type="nvarchar(20)"/>
+            <column name="datainfo" type="nvarchar(20)"/>
+            <column name="index_size" type="nvarchar(20)"/>
+            <column name="unused" type="nvarchar(20)"/>
+        </createTable>
+    </changeSet>
+    <!--表头信息表-->
+    <changeSet author="WangXun" id="1584407375607-36">
+        <createTable tableName="GridHeaderInfo" remarks="表头信息表">
+            <column autoIncrement="true" name="FieldID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_GRIDHEADERINFO"/>
+            </column>
+            <column name="TableName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FieldName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EN" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ZH" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DE" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+    <!--数据库差异表-->
+    <changeSet author="WangXun" id="1584407375607-31">
+        <createTable tableName="Difference" remarks="数据库差异表">
+            <column autoIncrement="true" name="DifferenceID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DIFFERENCE"/>
+            </column>
+            <column name="TableName" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ObjectsID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Operation" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--系统设置表-->
+    <changeSet author="WangXun" id="1584407375607-25">
+        <createTable tableName="ConfigSys" remarks="系统设置表">
+            <column autoIncrement="true" name="ConfigID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CONFIGSYS"/>
+            </column>
+            <column name="CRCLAssigned" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLIdle" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLRunning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLAborting" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLAborted" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLStopping" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLStopped" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRCLComplete" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLunAppod" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLAppod" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLBatched" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLRuning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLCeased" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCLComplete" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLSerious" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLWarning" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SysAlmCLNotice" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPNOSTATE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPIDLE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPRUNNING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPHOLDDING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPHELD" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPPUASING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPPAUSED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSTOPPING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSTOPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABORTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABORTED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPRESTARTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPSKIPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPCOMPLETE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPABNORMAL" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPNOSTATE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPIDLE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPRUNNING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPHOLDDING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPHELD" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPPUASING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPPAUSED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSTOPPING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSTOPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABORTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABORTED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPRESTARTING" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPSKIPPED" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPCOMPLETE" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPABNORMAL" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPREADDOMAIN" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPWRITEDOMAIN" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPREADPOINT" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPWRITEPOINT" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportName" type="nvarchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRStayTime" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__CtrRe__55F4C372" defaultValueNumeric="0"
+                    name="CtrRecpTimeUnit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRIDSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPOrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPOrder" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanStayTime" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__PlanT__56E8E7AB" defaultValueNumeric="0"
+                    name="PlanTimeUnit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanIDSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProPlanCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProMagCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ExplorerCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DCSVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TPFrequency" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__NetTi__57DD0BE4" defaultValueNumeric="24" name="NetTime"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__IsBar__58D1301D" defaultValueNumeric="1" name="IsBarCode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__BarCo__59C55456" defaultValueNumeric="1"
+                    name="BarCodeMode" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BarCodeSet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BarCodeAuto" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BCUPLimit" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BCLowLimit" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DBMaxSize" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Retention" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__Batch__5AB9788F" defaultValueNumeric="0"
+                    name="BatchPrioritySet" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__Print__5BAD9CC8" defaultValueNumeric="0" name="PrintMode"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ConfigSys__IsDef__5CA1C101" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--Batch版本表-->
+    <changeSet author="WangXun" id="1584407375607-7">
+        <createTable tableName="BatchVersion">
+            <column autoIncrement="true" name="BVID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_BVID"/>
+            </column>
+            <column name="ProductName" type="nvarchar(60)"/>
+            <column name="ReleaseDate" type="nvarchar(60)"/>
+            <column name="buildID" type="nvarchar(60)"/>
+            <column name="Remark" type="nvarchar(60)"/>
+        </createTable>
+    </changeSet>
+    <!--名称样式表-->
+    <changeSet author="WangXun" id="1584407375607-61">
+        <createTable tableName="NameStyle" remarks="名称样式表">
+            <column autoIncrement="true" name="NameStyleID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_NAMESTYLEID"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Style__68487DD7" name="StyleName"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word1__693CA210" defaultValueNumeric="0" name="Word1"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word2__6A30C649" defaultValueNumeric="0" name="Word2"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word3__6B24EA82" defaultValueNumeric="0" name="Word3"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word4__6C190EBB" defaultValueNumeric="0" name="Word4"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Word5__6D0D32F4" defaultValueNumeric="0" name="Word5"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word1__6E01572D" name="Word1Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word2__6EF57B66" name="Word2Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word3__6FE99F9F" name="Word3Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word4__70DDC3D8" name="Word4Def"
+                    type="nvarchar(50)"/>
+            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word5__71D1E811" name="Word5Def"
+                    type="nvarchar(50)"/>
+            <column defaultValueConstraintName="DF__NameStyle__TimeF__72C60C4A" defaultValueNumeric="0"
+                    name="TimeFormat" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__IDFor__73BA3083" defaultValueNumeric="0" name="IDFormat"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Class__74AE54BC" defaultValueNumeric="0" name="Class"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Isdef__75A278F5" defaultValueNumeric="0" name="Isdefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__NameStyle__Defau__76969D2E" defaultValueNumeric="0"
+                    name="DefaultData" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--引擎数据配置表-->
+    <changeSet author="WangXun" id="1584407375607-34">
+        <createTable tableName="EngineDataConfig" remarks="引擎数据配置表">
+            <column defaultValueConstraintName="DF__EngineData__Mode__4AD2B8EA" defaultValueNumeric="0" name="Mode"
+                    type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4BC6DD23" defaultValueNumeric="0"
+                    name="NeedProductApproval" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4CBB015C" defaultValueNumeric="0"
+                    name="NeedProductDelete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedP__4DAF2595" defaultValueNumeric="0"
+                    name="NeedProductState" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__4EA349CE" defaultValueNumeric="0"
+                    name="NeedOnlineModify" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__4F976E07" defaultValueNumeric="0"
+                    name="NeedCRCreate" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeddC__508B9240" defaultValueNumeric="0"
+                    name="NeddCRDelete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__517FB679" defaultValueNumeric="0"
+                    name="NeedCRStart" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__5273DAB2" defaultValueNumeric="0"
+                    name="NeedCRStop" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5367FEEB" defaultValueNumeric="0"
+                    name="NeedOPStart" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__545C2324" defaultValueNumeric="0"
+                    name="NeedOPStop" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__5550475D" defaultValueNumeric="0"
+                    name="NeedCRPause" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedC__56446B96" defaultValueNumeric="0"
+                    name="NeedCRResume" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeddC__57388FCF" defaultValueNumeric="0"
+                    name="NeddCRComplete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__582CB408" defaultValueNumeric="0"
+                    name="NeedOPComplete" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5920D841" defaultValueNumeric="0"
+                    name="NeedOPHolding" type="int"/>
+            <column defaultValueConstraintName="DF__EngineDat__NeedO__5A14FC7A" defaultValueNumeric="0"
+                    name="NeedOPRestarting" type="int"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

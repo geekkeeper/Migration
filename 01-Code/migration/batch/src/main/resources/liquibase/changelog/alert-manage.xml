@@ -1,0 +1,243 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--描述表-->
+    <changeSet author="WangXun" id="1584407375607-30">
+        <createTable tableName="Description" remarks="描述表">
+            <column autoIncrement="true" name="DescriptionID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DESCRIPTION"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--域信息表-->
+    <changeSet author="WangXun" id="1584407375607-32">
+        <createTable tableName="DomainInfo" remarks="域信息表">
+            <column autoIncrement="true" name="DomainID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DOMAININFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Domai__74794A92" defaultValueNumeric="0" name="DomainNo"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Maste__756D6ECB" defaultValueNumeric="0"
+                    name="MasterStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DomainInf__Slave__76619304" defaultValueNumeric="0"
+                    name="SlaveStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--默认域名表-->
+    <changeSet author="WangXun" id="1584407375607-29">
+        <createTable tableName="DefaultDomain" remarks="默认域名表">
+            <column autoIncrement="true" name="DefDomainID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_DEFDOMAININFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Domai__6383C8BA" defaultValueNumeric="0" name="DomainNo"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Maste__6477ECF3" defaultValueNumeric="0"
+                    name="MasterStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__DefaultDo__Slave__656C112C" defaultValueNumeric="0"
+                    name="SlaveStation" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--mac点表-->
+    <changeSet author="WangXun" id="1584407375607-53">
+        <createTable tableName="MacsPoints" remarks="mac点表">
+            <column autoIncrement="true" name="MacsPiontID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_MACSPOINTS"/>
+            </column>
+            <column defaultValueConstraintName="DF__MacsPoint__Domai__4D2A7347" defaultValueNumeric="0" name="DomainID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointName" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MPValue" type="nvarchar(300)"/>
+            <column name="MPType" type="nvarchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__MacsPoint__DataT__4E1E9780" defaultValueNumeric="0" name="DataType"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MPItemName" type="nvarchar(50)"/>
+            <column name="SCADATProject" type="nvarchar(50)"/>
+            <column name="SCADADomain" type="nvarchar(50)"/>
+            <column name="SCADAStation" type="nvarchar(50)"/>
+            <column name="SCADADBUnit" type="nvarchar(50)"/>
+            <column name="SCADADNodeID" type="nvarchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <!--报表信息表-->
+    <changeSet author="WangXun" id="1584407375607-80">
+        <createTable tableName="ReportInfo" remarks="报表信息表">
+            <column autoIncrement="true" name="ReportID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_REPORTINFO"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportInf__Contr__351DDF8C" defaultValueNumeric="0"
+                    name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportName" type="nvarchar(255)"/>
+            <column defaultValueConstraintName="DF__ReportInf__Repor__361203C5" defaultValueNumeric="0"
+                    name="ReportState" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportPath" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--报表模板表-->
+    <changeSet author="WangXun" id="1584407375607-81">
+        <createTable tableName="ReportTemplate" remarks="报表模板表">
+            <column autoIncrement="true" name="TemplateID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_REPORTTEMPLATE"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportTem__Versi__38EE7070" defaultValueNumeric="1" name="Version"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Template" type="image"/>
+            <column defaultValueConstraintName="DF__ReportTem__IsUsi__39E294A9" defaultValueNumeric="0" name="IsUsing"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__ReportTem__IsDef__3AD6B8E2" defaultValueNumeric="0" name="IsDefault"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!---->
+    <changeSet author="WangXun" id="1584407375607-82">
+        <createTable tableName="SpecialCharact">
+            <column autoIncrement="true" name="CHARACTID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_CHARACTID"/>
+            </column>
+            <column name="TypeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SpeCharact" type="nvarchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <!--报警描述表-->
+    <changeSet author="WangXun" id="1584407375607-1">
+        <createTable tableName="AlertDescription" remarks="报警描述表">
+            <column name="AlertDescID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertDescID"/>
+            </column>
+            <column name="AlertType" type="tinyint" remarks="报警类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Level" type="tinyint" remarks="报警级别">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description_EN" type="nvarchar(1024)" remarks="报警描述-英文"/>
+            <column name="Description_ZH" type="nvarchar(1024)" remarks="报警描述-中文">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description_DE" type="nvarchar(1024)" remarks="报警描述-默认"/>
+        </createTable>
+    </changeSet>
+    <!--报警日志表-->
+    <changeSet author="WangXun" id="1584407375607-2">
+        <createTable tableName="AlertLog" remarks="报警日志表">
+            <column autoIncrement="true" name="AlertLogID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertLog_ID"/>
+            </column>
+            <column name="AlertTime" type="datetime" remarks="报警时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HandleStatus" type="tinyint" remarks="处理状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LocationDesc" type="nvarchar(600)"/>
+            <column name="ObjectIdentity"
+                    type="nvarchar(300)"/>
+            <column name="AlertDescID" type="int" defaultValueConstraintName="DF_AlertLog_AlertDescID"
+                    defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--报警点表-->
+    <changeSet author="WangXun" id="1584407375607-3">
+        <createTable tableName="AlertPoint" remarks="报警点表">
+            <column autoIncrement="true" name="AlertPointID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_AlertPointID"/>
+            </column>
+            <column defaultValueConstraintName="DF_AlertPoint_AlertLogID" defaultValueNumeric="0"
+                    name="AlertLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF_AlertPoint_ErrorID" defaultValueNumeric="0" name="ErrorID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DomainID" type="int" defaultValueConstraintName="DF_AlertPoint_DomainID"
+                    defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointName" type="nvarchar(1000)"/>
+            <column name="MacsItemName" type="nvarchar(60)"/>
+        </createTable>
+    </changeSet>
+    <!--未恢复报警信息表-->
+    <changeSet author="WangXun" id="1584407375607-89">
+        <createTable tableName="UnResumeAlarmInfo" remarks="未恢复报警信息表">
+            <column autoIncrement="true" name="UnAlarmID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_UNALARMID"/>
+            </column>
+            <column name="AlertLogID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UUID" type="nvarchar(60)"/>
+            <column name="ERRORID" type="int"/>
+            <column name="DomainID" type="int"/>
+            <column name="PointName" type="nvarchar(1000)"/>
+            <column name="ItemName" type="nvarchar(60)"/>
+            <column name="ObjectIdentity" type="nvarchar(300)"/>
+            <column name="LocationDesc" type="nvarchar(510)"/>
+        </createTable>
+    </changeSet>
+    <!--标准趋势点表-->
+    <changeSet author="WangXun" id="1584407375607-83">
+        <createTable tableName="StdTrendPoints" remarks="标准趋势点表">
+            <column autoIncrement="true" name="StdTrendPointID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_STDTREND"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRUPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

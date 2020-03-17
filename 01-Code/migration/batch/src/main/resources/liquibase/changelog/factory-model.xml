@@ -1,0 +1,243 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--网络节点单元关系表表-->
+    <changeSet author="WangXun" id="1584426669000-1">
+        <createTable tableName="NetNodeUnit" remarks="网络节点单元表">
+            <column autoIncrement="true" name="NetNodeUnitID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NodeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--网络节点表-->
+    <changeSet author="WangXun" id="1584426669000-2">
+        <createTable tableName="NetworkNode" remarks="网络节点表">
+            <column autoIncrement="true" name="NodeID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ComputerName" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP1" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP2" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP3"
+                    type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)"/>
+            <column name="Type"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsOnline"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="SurveilleAll" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--区域表-->
+    <changeSet author="WangXun" id="1584426669000-3">
+        <createTable tableName="Areas" remarks="区域表">
+            <column name="AreaID" type="int" remarks="区域编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="AreaName" type="nvarchar(50)" remarks="区域名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+        </createTable>
+    </changeSet>
+    <!--过程组元表-->
+    <changeSet author="WangXun" id="1584426669000-4">
+        <createTable tableName="Cells" remarks="过程组元表">
+            <column name="CellID" type="int" remarks="组元编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellName" type="nvarchar(50)" remarks="组元名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+        </createTable>
+    </changeSet>
+    <!--生产单元表-->
+    <changeSet author="WangXun" id="1584426669000-5">
+        <createTable tableName="Units" remarks="生产单元表">
+            <column name="UnitID" type="int" remarks="单元编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitName" type="nvarchar(50)" remarks="单元名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitOtherName" type="nvarchar(50)" remarks="单元别名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="MaterialID" type="int" remarks="物料编号"/>
+            <column name="Capacity" type="numeric(15, 5)" remarks="标准产能">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualCapacity" type="numeric(15, 5)" remarks="实际产能"/>
+            <column name="MaxBatch" type="numeric(15, 5)" remarks="最大产能"/>
+            <column name="MinBatch" type="numeric(15, 5)" remarks="最小产能"/>
+            <column name="State" type="tinyint" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Type" type="tinyint" remarks="类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsShared" type="tinyint" remarks="是否共享">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsPublic" type="tinyint" remarks="是否公共">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--组元单元关系表-->
+    <changeSet author="WangXun" id="1584426669000-6">
+        <createTable tableName="UnitCell" remarks="组元单元关系表">
+            <column autoIncrement="true" name="UnitUsedID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--生产单元使用信息表-->
+    <changeSet author="WangXun" id="1584426669000-7">
+        <createTable tableName="UnitsUsedInfo" remarks="单元使用信息表">
+            <column autoIncrement="true" name="UnitsUsedID" type="int" remarks="单元使用编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int" remarks="控制配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int" remarks="UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime" remarks="请求时间">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--生产单元参数表-->
+    <changeSet author="WangXun" id="1584426669000-8">
+        <createTable tableName="UnitParameter" remarks="生产单元参数表">
+            <column autoIncrement="true" name="UnitParameterID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPVersionID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--系统单元参数表-->
+    <changeSet author="WangXun" id="1584426669000-9">
+        <createTable tableName="UnitSysPara" remarks="系统单元参数表">
+            <column autoIncrement="true" name="UnitSysParaID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--仓库表-->
+    <changeSet author="WangXun" id="1584426669000-10">
+        <createTable tableName="WareHouse" remarks="仓库表">
+            <column name="WareHouseID" type="int" remarks="仓库编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="HouseName" type="nvarchar(50)" remarks="仓库名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HouseDes" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+            <column name="Remark1" type="nvarchar(255)"/>
+            <column name="Remark2" type="nvarchar(255)"/>
+            <column name="Remark3" type="nvarchar(255)"/>
+            <column name="Remark4" type="nvarchar(255)"/>
+            <column name="Remark5" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--槽罐使用信息表-->
+    <changeSet author="WangXun" id="1584426669000-11">
+        <createTable tableName="MTankUsedInfo" remarks="槽罐使用信息表">
+            <column autoIncrement="true" name="MTankUsedID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CROPID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRPrarID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

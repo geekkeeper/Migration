@@ -1,0 +1,120 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--生产计划组表-->
+    <changeSet author="WangXun" id="1584407375607-77">
+        <createTable tableName="ProPlanGroup" remarks="生产计划组表">
+            <column autoIncrement="true" name="GroupID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROPLANGROUPID"/>
+            </column>
+            <column name="GroupName" type="nvarchar(60)"/>
+            <column defaultValueConstraintName="DF__ProPlanGr__Creat__5812160E" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__ProPlanGr__Creat__59063A47"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__ProPlanGr__Mende__59FA5E80" defaultValueNumeric="0" name="Mender"
+                    type="int"/>
+            <column name="GroupDesc" type="nvarchar(255)"/>
+        </createTable>
+    </changeSet>
+    <!--生产计划表-->
+    <changeSet author="WangXun" id="1584407375607-78">
+        <createTable tableName="ProductionPlan" remarks="生产计划表">
+            <column autoIncrement="true" name="ProductionPlanID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PRODUCTIONPLAN"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__PlanI__24E777C3" defaultValueNumeric="0" name="PlanID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ProductionPlanIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Maste__25DB9BFC" defaultValueNumeric="0"
+                    name="MasterRecipeID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__MRVer__26CFC035" defaultValueNumeric="1" name="MRVersion"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Formu__27C3E46E" defaultValueNumeric="0" name="FormulaID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Group__28B808A7" defaultValueNumeric="1" name="GroupID"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanName" type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanOutput" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)"/>
+            <column name="SurplusOutput" type="numeric(15, 5)"/>
+            <column name="PlanStarttime" type="datetime"/>
+            <column name="PlanEndtime" type="datetime"/>
+            <column name="ActualStarttime" type="datetime"/>
+            <column name="ActualEndtime" type="datetime"/>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__NameS__29AC2CE0" name="NameStyleFormat"
+                    type="nvarchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Compl__2AA05119" defaultValueNumeric="0"
+                    name="CompleteProportion" type="numeric(15, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__State__2B947552" defaultValueNumeric="200" name="State"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Creat__2C88998B" defaultValueNumeric="0" name="Creator"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Productio__Creat__2D7CBDC4"
+                    name="CreationTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Sourc__2E70E1FD" defaultValueNumeric="0" name="Source"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LastModify" type="datetime"/>
+            <column defaultValueConstraintName="DF__Productio__Mende__2F650636" defaultValueNumeric="0" name="Mender"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Production__Mode__30592A6F" defaultValueNumeric="0" name="Mode"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueConstraintName="DF__Productio__Appro__314D4EA8" defaultValueNumeric="0" name="Approver"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ApproveTime" type="datetime"/>
+            <column defaultValueConstraintName="DF__Productio__NameS__324172E1" defaultValueNumeric="0"
+                    name="NameStyleID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__Remar__589DBCA1" name="Remark1"
+                    type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" defaultValueConstraintName="DF__Productio__Remar__5991E0DA" name="Remark2"
+                    type="nvarchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
