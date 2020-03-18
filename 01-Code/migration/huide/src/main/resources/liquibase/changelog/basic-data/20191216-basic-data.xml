@@ -452,10 +452,11 @@
                 <constraints primaryKey="true" primaryKeyName="PK_PERSON_ID"/>
             </column>
             <column name="PERSON_NAME" type="${name}" remarks="人员名称">
-                <constraints nullable="false" notNullConstraintName="NU_PERSON_USERNAME" unique="true"
-                             uniqueConstraintName="UQ_PERSON_USERNAME"/>
+                <constraints nullable="false" notNullConstraintName="NU_PERSON_USERNAME"/>
             </column>
-            <column name="WORK_NO" type="${work_no}" remarks="工号"/>
+            <column name="WORK_NO" type="${work_no}" remarks="工号">
+                <constraints unique="true" uniqueConstraintName="UQ_PERSON_WORK_NO"/>
+            </column>
             <column name="INNER_NO" type="${code}" remarks="内码"/>
             <column name="GENDER" type="char(1)" remarks="性别:M-男,F-女,U-未知"
                     defaultValue="U" defaultValueConstraintName="DF_PERSON_GENDER"/>
@@ -469,8 +470,9 @@
             <column name="BIRTHDAY" type="${datetime}" remarks="生日"/>
             <column name="BIND_TAG" type="${boolean}" remarks="绑定标识"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
-                    defaultValue="N" defaultValueConstraintName="DF_Person_DELETE_TAG"/>
-            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"/>
+                    defaultValue="N" defaultValueConstraintName="DF_PERSON_DELETE"/>
+            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"
+                    defaultValue="N" defaultValueConstraintName="DF_PERSON_SYNC"/>
             <column name="SYNC_TIME" type="${datetime}" remarks="同步时间"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
@@ -494,10 +496,14 @@
             <column name="PARENT_ID" type="${id}" remarks="父级编号"/>
             <column name="LEVEL" type="${level}" remarks="层级编号"/>
             <column name="SORT_INDEX" type="${sort}" remarks="排序编号"/>
-            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:Y-系统的;N-自定义的"/>
-            <column name="EXTERNAL_TAG" type="${boolean}" remarks="外部标识：y-外部的，n-内部的"/>
-            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"/>
-            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"/>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:Y-系统的;N-自定义的"
+                    defaultValue="N" defaultValueConstraintName="DF_ORGANIZATION_SYSTEMATIC"/>
+            <column name="EXTERNAL_TAG" type="${boolean}" remarks="外部标识：y-外部的，n-内部的"
+                    defaultValue="N" defaultValueConstraintName="DF_ORGANIZATION_EXTERNAL"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"
+                    defaultValue="N" defaultValueConstraintName="DF_ORGANIZATION_DELETE"/>
+            <column name="SYNC_TAG" type="${boolean}" remarks="同步标识"
+                    defaultValue="N" defaultValueConstraintName="DF_ORGANIZATION_SYNC"/>
             <column name="SYNC_TIME" type="${datetime}" remarks="同步时间"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>

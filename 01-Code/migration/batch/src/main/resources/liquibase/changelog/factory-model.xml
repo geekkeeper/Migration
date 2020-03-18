@@ -240,4 +240,111 @@
             </column>
         </createTable>
     </changeSet>
+    <!--UP序列表-->
+    <changeSet author="WangXun" id="1584426669000-12">
+        <createTable tableName="UPSequence" remarks="UP序列表">
+            <column  name="UPSequenceID" type="int" remarks="UP序列编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int" remarks="UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Sequence" type="int" remarks="序列号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime" remarks="请求时间"/>
+            <column name="CRID" type="int" remarks="控制配方编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--UP单元关系表-->
+    <changeSet author="WangXun" id="1584426669000-13">
+        <createTable tableName="UPUnit" remarks="UP单元关系表">
+            <column autoIncrement="true" name="UPUnitID" type="int" remarks="UP单元关系编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRUPID" type="int" remarks="主配方UP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Version" type="int" remarks="版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UnitID" type="int" remarks="单元编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OP信息表-->
+    <changeSet author="WangXun" id="1584426669000-14">
+        <createTable tableName="OPInformation" remarks="OP信息表">
+            <column name="OPInfoID" type="int" remarks="OP编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Name" type="nvarchar(50)" remarks="OP名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)" remarks="OP别名"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Version" type="int" remarks="版本编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生成时间"/>
+            <column name="State" type="tinyint" remarks="OP状态"/>
+            <column name="Approver" type="int" remarks="审批人"/>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+
+        </createTable>
+    </changeSet>
+    <!--历史OP信息表-->
+    <changeSet author="WangXun" id="1584426669000-15">
+        <createTable tableName="HOPInformation" remarks="历史OP信息表">
+            <column autoIncrement="true" name="HOPInfoID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="OPInfoID" type="int" remarks="OP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Name" type="nvarchar(50)" remarks="OP名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtherName" type="nvarchar(50)" remarks="OP别名"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Version" type="int" remarks="版本编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VersionDate" type="datetime" remarks="生成时间"/>
+            <column name="State" type="tinyint" remarks="OP状态"/>
+            <column name="Approver" type="int" remarks="审批人"/>
+            <column name="ApproveTime" type="datetime" remarks="审批时间"/>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--OP跳转表-->
+    <changeSet author="WangXun" id="1584426669000-16">
+        <createTable tableName="OPGoto" remarks="OP跳转表">
+            <column autoIncrement="true" name="GotoID" type="int" remarks="跳转编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FromID" type="int" remarks="来方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ToID" type="int" remarks="去方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPID" type="int" remarks="UP编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

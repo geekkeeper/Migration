@@ -4,10 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!--用户组表-->
-    <changeSet author="WangXun" id="1584407375607-95">
+    <changeSet author="WangXun" id="1584504079000-95">
         <createTable tableName="UserGroups" remarks="用户组表">
-            <column  name="GroupID" type="int" remarks="用户组编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_GroupID"/>
+            <column name="GroupID" type="int" remarks="用户组编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
             <column name="GroupName" type="nvarchar(50)" remarks="组名称">
                 <constraints nullable="false"/>
@@ -19,7 +19,7 @@
             <column name="SchedulerAccredit" type="int"/>
             <column name="ExplorerAccredit" type="int"/>
             <column name="PrjctMagAccredit" type="int"/>
-            <column  name="IsDefault" type="tinyint"/>
+            <column name="IsDefault" type="tinyint"/>
             <column name="Creator" type="int" remarks="创建人"/>
             <column name="CreationTime" type="datetime" remarks="创建时间"/>
             <column name="Mender" type="int" remarks="修改人"/>
@@ -27,12 +27,12 @@
         </createTable>
     </changeSet>
     <!--用户表-->
-    <changeSet author="WangXun" id="1584407375607-96">
+    <changeSet author="WangXun" id="1584504079000-96">
         <createTable tableName="Users" remarks="用户表">
             <column autoIncrement="true" name="UserID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_USERS"/>
+                <constraints primaryKey="true"/>
             </column>
-            <column  name="GroupID" type="int" remarks="用户组编号"/>
+            <column name="GroupID" type="int" remarks="用户组编号"/>
             <column name="LoginName" type="nvarchar(50)" remarks="登录名称">
                 <constraints nullable="false"/>
             </column>
@@ -48,57 +48,53 @@
             <column name="CreationTime" type="datetime" remarks="创建时间"/>
             <column name="Mender" type="int" remarks="修改人"/>
             <column name="LastModify" type="datetime" remarks="修改时间"/>
-
         </createTable>
     </changeSet>
     <!--登录状态表-->
-    <changeSet author="WangXun" id="1584407375607-47">
+    <changeSet author="WangXun" id="1584504079000-47">
         <createTable tableName="LoginSate" remarks="登录状态表">
-            <column autoIncrement="true" name="LoginSateID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_LOGINSTATE"/>
+            <column name="LoginSateID" type="int" autoIncrement="true" >
+                <constraints primaryKey="true"/>
             </column>
-            <column name="ComputerName" type="nvarchar(50)"/>
-            <column name="UserID" type="int">
+            <column name="ComputerName" type="nvarchar(50)" remarks="计算机名称"/>
+            <column name="UserID" type="int" remarks="用户编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="LoginModule" type="int">
+            <column name="LoginModule" type="int" remarks="登录模块">
                 <constraints nullable="false"/>
             </column>
-            <column name="LastLogin" type="datetime"/>
-            <column defaultValueConstraintName="DF__LoginSate__IsVer__689D8392" defaultValueNumeric="0" name="IsVerify"
-                    type="tinyint"/>
+            <column name="LastLogin" type="datetime" remarks="最后登录时间"/>
+            <column name="IsVerify" type="tinyint" remarks="是否校验"/>
         </createTable>
     </changeSet>
     <!--操作日志表-->
-    <changeSet author="WangXun" id="1584407375607-67">
+    <changeSet author="WangXun" id="1584504079000-67">
         <createTable tableName="OperationLog" remarks="操作日志表">
-            <column autoIncrement="true" name="OperationLogID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOG"/>
+            <column  name="OperationLogID" type="int" remarks="日志编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
-            <column defaultValueComputed="getdate()" defaultValueConstraintName="DF__Operation__LogTi__02925FBF"
-                    name="LogTime" type="datetime">
+            <column name="LogTime" type="datetime" remarks="操作时间">
                 <constraints nullable="false"/>
             </column>
-            <column name="OperatorName" type="nvarchar(50)">
+            <column name="OperatorName" type="nvarchar(50)" remarks="操作人名称 ">
                 <constraints nullable="false"/>
             </column>
-            <column name="ObjectName" type="nvarchar(1005)">
+            <column name="ObjectName" type="nvarchar(1005)" remarks="对象名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="OperationDescID" type="int">
+            <column name="OperationDescID" type="int" remarks="描述编号">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__Operation__LogTy__038683F8" defaultValueNumeric="0" name="LogType"
-                    type="tinyint">
+            <column name="LogType" type="tinyint" remarks="日志类型">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--操作日志描述表-->
-    <changeSet author="WangXun" id="1584407375607-68">
+    <changeSet author="WangXun" id="1584504079000-68">
         <createTable tableName="OperationLogDescription" remarks="操作日志描述表">
             <column autoIncrement="true" name="OperationDescID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_OPERATIONLOGDESCRIPTION"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="Description_EN" type="nvarchar(1024)"/>
             <column name="Description_ZH" type="nvarchar(1024)"/>
@@ -106,63 +102,51 @@
         </createTable>
     </changeSet>
     <!--操作日志详情表-->
-    <changeSet author="WangXun" id="1584407375607-69">
+    <changeSet author="WangXun" id="1584504079000-69">
         <createTable tableName="OperationLogDetail" remarks="操作日志详情表">
             <column autoIncrement="true" name="LogDetailID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_LOGDETAILID"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="OperationLogID" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6B79F03D" name="Value1"
-                    type="nvarchar(1005)">
+            <column name="Value1" type="nvarchar(1005)"/>
+            <column name="Value2" type="nvarchar(300)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6C6E1476" name="Value2"
-                    type="nvarchar(300)">
+            <column name="Value3" type="nvarchar(300)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6D6238AF" name="Value3"
-                    type="nvarchar(300)">
+            <column name="Value4" type="nvarchar(300)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6E565CE8" name="Value4"
-                    type="nvarchar(300)">
+            <column name="Value5" type="nvarchar(300)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__6F4A8121" name="Value5"
-                    type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__703EA55A" name="Value6"
-                    type="nvarchar(300)">
+            <column name="Value6" type="nvarchar(300)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--操作日志参数表-->
-    <changeSet author="WangXun" id="1584407375607-70">
+    <changeSet author="WangXun" id="1584504079000-70">
         <createTable tableName="OperationLogPara" remarks="操作日志参数表">
             <column autoIncrement="true" name="LogParaID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_LogParaID"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="OperationLogID" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__OperationL__Item__731B1205" name="Item"
-                    type="nvarchar(260)">
+            <column name="Item" type="nvarchar(260)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__SubIt__740F363E" name="SubItem"
-                    type="nvarchar(260)">
+            <column name="SubItem" type="nvarchar(260)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75035A77" name="ValueBefore"
-                    type="nvarchar(260)">
+            <column name="ValueBefore" type="nvarchar(260)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__Operation__Value__75F77EB0" name="ValueCurrent"
-                    type="nvarchar(260)">
+            <column name="ValueCurrent" type="nvarchar(260)">
                 <constraints nullable="false"/>
             </column>
             <column name="AddedPara1" type="int"/>
@@ -172,10 +156,10 @@
         </createTable>
     </changeSet>
     <!--编辑标识表-->
-    <changeSet author="WangXun" id="1584407375607-33">
+    <changeSet author="WangXun" id="1584504079000-33">
         <createTable tableName="EditFlag" remarks="编辑标识表">
             <column autoIncrement="true" name="EditFlagID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_EDITFLAG"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="UserID" type="int">
                 <constraints nullable="false"/>
@@ -195,7 +179,7 @@
         </createTable>
     </changeSet>
     <!--表空间使用情况表-->
-    <changeSet author="WangXun" id="1584407375607-84">
+    <changeSet author="WangXun" id="1584504079000-84">
         <createTable tableName="TableSpaceUsed" remarks="表空间使用情况表">
             <column name="nameinfo" type="nvarchar(50)"/>
             <column name="rowsinfo" type="int"/>
@@ -206,10 +190,10 @@
         </createTable>
     </changeSet>
     <!--表头信息表-->
-    <changeSet author="WangXun" id="1584407375607-36">
+    <changeSet author="WangXun" id="1584504079000-36">
         <createTable tableName="GridHeaderInfo" remarks="表头信息表">
             <column autoIncrement="true" name="FieldID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_GRIDHEADERINFO"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="TableName" type="nvarchar(50)">
                 <constraints nullable="false"/>
@@ -227,10 +211,10 @@
         </createTable>
     </changeSet>
     <!--数据库差异表-->
-    <changeSet author="WangXun" id="1584407375607-31">
+    <changeSet author="WangXun" id="1584504079000-31">
         <createTable tableName="Difference" remarks="数据库差异表">
             <column autoIncrement="true" name="DifferenceID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_DIFFERENCE"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="TableName" type="nvarchar(30)">
                 <constraints nullable="false"/>
@@ -244,10 +228,10 @@
         </createTable>
     </changeSet>
     <!--系统设置表-->
-    <changeSet author="WangXun" id="1584407375607-25">
+    <changeSet author="WangXun" id="1584504079000-25">
         <createTable tableName="ConfigSys" remarks="系统设置表">
             <column autoIncrement="true" name="ConfigID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_CONFIGSYS"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="CRCLAssigned" type="nvarchar(30)">
                 <constraints nullable="false"/>
@@ -408,8 +392,7 @@
             <column name="CRStayTime" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__CtrRe__55F4C372" defaultValueNumeric="0"
-                    name="CtrRecpTimeUnit" type="int">
+            <column name="CtrRecpTimeUnit" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="CRIDSize" type="int">
@@ -427,8 +410,7 @@
             <column name="ProPlanStayTime" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__PlanT__56E8E7AB" defaultValueNumeric="0"
-                    name="PlanTimeUnit" type="int">
+            <column name="PlanTimeUnit" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="ProPlanIDSize" type="int">
@@ -449,16 +431,13 @@
             <column name="TPFrequency" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__NetTi__57DD0BE4" defaultValueNumeric="24" name="NetTime"
-                    type="int">
+            <column name="NetTime" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__IsBar__58D1301D" defaultValueNumeric="1" name="IsBarCode"
-                    type="tinyint">
+            <column name="IsBarCode" type="tinyint">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__BarCo__59C55456" defaultValueNumeric="1"
-                    name="BarCodeMode" type="int">
+            <column name="BarCodeMode" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="BarCodeSet" type="int">
@@ -479,25 +458,22 @@
             <column name="Retention" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__Batch__5AB9788F" defaultValueNumeric="0"
-                    name="BatchPrioritySet" type="int">
+            <column name="BatchPrioritySet" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__Print__5BAD9CC8" defaultValueNumeric="0" name="PrintMode"
-                    type="int">
+            <column name="PrintMode" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__ConfigSys__IsDef__5CA1C101" defaultValueNumeric="0" name="IsDefault"
-                    type="tinyint">
+            <column name="IsDefault" type="tinyint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--Batch版本表-->
-    <changeSet author="WangXun" id="1584407375607-7">
+    <changeSet author="WangXun" id="1584504079000-7">
         <createTable tableName="BatchVersion">
             <column autoIncrement="true" name="BVID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_BVID"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="ProductName" type="nvarchar(60)"/>
             <column name="ReleaseDate" type="nvarchar(60)"/>
@@ -506,104 +482,71 @@
         </createTable>
     </changeSet>
     <!--名称样式表-->
-    <changeSet author="WangXun" id="1584407375607-61">
+    <changeSet author="WangXun" id="1584504079000-61">
         <createTable tableName="NameStyle" remarks="名称样式表">
             <column autoIncrement="true" name="NameStyleID" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_NAMESTYLEID"/>
+                <constraints primaryKey="true"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Style__68487DD7" name="StyleName"
-                    type="nvarchar(50)">
+            <column name="StyleName" type="nvarchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Word1__693CA210" defaultValueNumeric="0" name="Word1"
-                    type="int">
+            <column name="Word1" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Word2__6A30C649" defaultValueNumeric="0" name="Word2"
-                    type="int">
+            <column name="Word2" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Word3__6B24EA82" defaultValueNumeric="0" name="Word3"
-                    type="int">
+            <column name="Word3" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Word4__6C190EBB" defaultValueNumeric="0" name="Word4"
-                    type="int">
+            <column name="Word4" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Word5__6D0D32F4" defaultValueNumeric="0" name="Word5"
-                    type="int">
+            <column name="Word5" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word1__6E01572D" name="Word1Def"
-                    type="nvarchar(50)"/>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word2__6EF57B66" name="Word2Def"
-                    type="nvarchar(50)"/>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word3__6FE99F9F" name="Word3Def"
-                    type="nvarchar(50)"/>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word4__70DDC3D8" name="Word4Def"
-                    type="nvarchar(50)"/>
-            <column defaultValue="" defaultValueConstraintName="DF__NameStyle__Word5__71D1E811" name="Word5Def"
-                    type="nvarchar(50)"/>
-            <column defaultValueConstraintName="DF__NameStyle__TimeF__72C60C4A" defaultValueNumeric="0"
-                    name="TimeFormat" type="int">
+            <column name="Word1Def" type="nvarchar(50)"/>
+            <column name="Word2Def" type="nvarchar(50)"/>
+            <column name="Word3Def" type="nvarchar(50)"/>
+            <column name="Word4Def" type="nvarchar(50)"/>
+            <column name="Word5Def" type="nvarchar(50)"/>
+            <column name="TimeFormat" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__IDFor__73BA3083" defaultValueNumeric="0" name="IDFormat"
-                    type="int">
+            <column name="IDFormat" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Class__74AE54BC" defaultValueNumeric="0" name="Class"
-                    type="tinyint">
+            <column name="Class" type="tinyint">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Isdef__75A278F5" defaultValueNumeric="0" name="Isdefault"
-                    type="tinyint">
+            <column name="Isdefault" type="tinyint">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueConstraintName="DF__NameStyle__Defau__76969D2E" defaultValueNumeric="0"
-                    name="DefaultData" type="tinyint">
+            <column name="DefaultData" type="tinyint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--引擎数据配置表-->
-    <changeSet author="WangXun" id="1584407375607-34">
+    <changeSet author="WangXun" id="1584504079000-34">
         <createTable tableName="EngineDataConfig" remarks="引擎数据配置表">
-            <column defaultValueConstraintName="DF__EngineData__Mode__4AD2B8EA" defaultValueNumeric="0" name="Mode"
-                    type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedP__4BC6DD23" defaultValueNumeric="0"
-                    name="NeedProductApproval" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedP__4CBB015C" defaultValueNumeric="0"
-                    name="NeedProductDelete" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedP__4DAF2595" defaultValueNumeric="0"
-                    name="NeedProductState" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__4EA349CE" defaultValueNumeric="0"
-                    name="NeedOnlineModify" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedC__4F976E07" defaultValueNumeric="0"
-                    name="NeedCRCreate" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeddC__508B9240" defaultValueNumeric="0"
-                    name="NeddCRDelete" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedC__517FB679" defaultValueNumeric="0"
-                    name="NeedCRStart" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedC__5273DAB2" defaultValueNumeric="0"
-                    name="NeedCRStop" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__5367FEEB" defaultValueNumeric="0"
-                    name="NeedOPStart" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__545C2324" defaultValueNumeric="0"
-                    name="NeedOPStop" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedC__5550475D" defaultValueNumeric="0"
-                    name="NeedCRPause" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedC__56446B96" defaultValueNumeric="0"
-                    name="NeedCRResume" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeddC__57388FCF" defaultValueNumeric="0"
-                    name="NeddCRComplete" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__582CB408" defaultValueNumeric="0"
-                    name="NeedOPComplete" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__5920D841" defaultValueNumeric="0"
-                    name="NeedOPHolding" type="int"/>
-            <column defaultValueConstraintName="DF__EngineDat__NeedO__5A14FC7A" defaultValueNumeric="0"
-                    name="NeedOPRestarting" type="int"/>
+            <column name="Mode" type="int"/>
+            <column name="NeedProductApproval" type="int"/>
+            <column name="NeedProductDelete" type="int"/>
+            <column name="NeedProductState" type="int"/>
+            <column name="NeedOnlineModify" type="int"/>
+            <column name="NeedCRCreate" type="int"/>
+            <column name="NeddCRDelete" type="int"/>
+            <column name="NeedCRStart" type="int"/>
+            <column name="NeedCRStop" type="int"/>
+            <column name="NeedOPStart" type="int"/>
+            <column name="NeedOPStop" type="int"/>
+            <column name="NeedCRPause" type="int"/>
+            <column name="NeedCRResume" type="int"/>
+            <column name="NeddCRComplete" type="int"/>
+            <column name="NeedOPComplete" type="int"/>
+            <column name="NeedOPHolding" type="int"/>
+            <column name="NeedOPRestarting" type="int"/>
         </createTable>
     </changeSet>
 

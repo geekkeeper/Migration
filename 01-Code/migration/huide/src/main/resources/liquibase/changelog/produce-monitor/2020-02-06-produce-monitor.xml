@@ -26,6 +26,7 @@
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
+            <column name="REMARK" type="remark" remarks="备注信息"/>
         </createTable>
     </changeSet>
     <!--GIS位置标签关系表-->
@@ -47,6 +48,7 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
+            <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签"/>
         </createTable>
     </changeSet>
     <!--项目架构树表-->

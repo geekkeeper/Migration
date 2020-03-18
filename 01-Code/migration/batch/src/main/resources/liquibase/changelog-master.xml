@@ -8,4 +8,7 @@
 
     <include file="changelog/factory-model.xml" relativeToChangelogFile="true"/>
     <include file="changelog/material-manage.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/formula-manage.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/param-config.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/produce-plan.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
