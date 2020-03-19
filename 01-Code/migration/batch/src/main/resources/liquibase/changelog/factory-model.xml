@@ -5,13 +5,13 @@
     <!--网络节点单元关系表表-->
     <changeSet author="WangXun" id="1584426669000-1">
         <createTable tableName="NetNodeUnit" remarks="网络节点单元表">
-            <column autoIncrement="true" name="NetNodeUnitID" type="int">
+            <column  name="NetNodeUnitID" type="int" remarks="节点单元编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="NodeID" type="int">
+            <column name="NodeID" type="int" remarks="节点编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="UnitID" type="int">
+            <column name="UnitID" type="int" remarks="单元编号">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -19,37 +19,28 @@
     <!--网络节点表-->
     <changeSet author="WangXun" id="1584426669000-2">
         <createTable tableName="NetworkNode" remarks="网络节点表">
-            <column autoIncrement="true" name="NodeID" type="int">
+            <column  name="NodeID" type="int" remarks="节点编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ComputerName" type="nvarchar(50)">
+            <column name="ComputerName" type="nvarchar(50)" remarks="节点名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="IP1" type="nvarchar(50)">
+            <column name="IP1" type="nvarchar(50)" remarks="IP地址1">
                 <constraints nullable="false"/>
             </column>
-            <column name="IP2" type="nvarchar(50)">
+            <column name="IP2" type="nvarchar(50)" remarks="IP地址2"/>
+            <column name="IP3" type="nvarchar(50)" remarks="IP地址3"/>
+            <column name="Description" type="nvarchar(255)" remarks="节点描述"/>
+            <column name="Type" type="tinyint" remarks="节点类型">
                 <constraints nullable="false"/>
             </column>
-            <column name="IP3"
-                    type="nvarchar(50)">
+            <column name="IsOnline" type="tinyint" remarks="是否在线">
                 <constraints nullable="false"/>
             </column>
-            <column name="Description" type="nvarchar(255)"/>
-            <column name="Type"
-                    type="tinyint">
+            <column name="State" type="tinyint" remarks="节点状态">
                 <constraints nullable="false"/>
             </column>
-            <column name="IsOnline"
-                    type="tinyint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="State"
-                    type="tinyint">
-                <constraints nullable="false"/>
-            </column>
-            <column
-                    name="SurveilleAll" type="tinyint">
+            <column name="SurveilleAll" type="tinyint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -82,11 +73,11 @@
             <column name="CellName" type="nvarchar(50)" remarks="组元名称">
                 <constraints nullable="false"/>
             </column>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
             <column name="Creator" type="int" remarks="创建人"/>
             <column name="CreationTime" type="datetime" remarks="创建时间"/>
             <column name="Mender" type="int" remarks="修改人"/>
             <column name="LastModify" type="datetime" remarks="修改时间"/>
-            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
         </createTable>
     </changeSet>
     <!--生产单元表-->
@@ -109,10 +100,10 @@
             <column name="ActualCapacity" type="numeric(15, 5)" remarks="实际产能"/>
             <column name="MaxBatch" type="numeric(15, 5)" remarks="最大产能"/>
             <column name="MinBatch" type="numeric(15, 5)" remarks="最小产能"/>
-            <column name="State" type="tinyint" remarks="状态">
+            <column name="State" type="tinyint" remarks="单元状态">
                 <constraints nullable="false"/>
             </column>
-            <column name="Type" type="tinyint" remarks="类型">
+            <column name="Type" type="tinyint" remarks="单元类型">
                 <constraints nullable="false"/>
             </column>
             <column name="IsShared" type="tinyint" remarks="是否共享">
@@ -144,7 +135,7 @@
     <!--生产单元使用信息表-->
     <changeSet author="WangXun" id="1584426669000-7">
         <createTable tableName="UnitsUsedInfo" remarks="单元使用信息表">
-            <column autoIncrement="true" name="UnitsUsedID" type="int" remarks="单元使用编号">
+            <column name="UnitsUsedID" type="int" remarks="单元使用编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="UnitID" type="int" remarks="单元编号">
@@ -164,13 +155,13 @@
     <!--生产单元参数表-->
     <changeSet author="WangXun" id="1584426669000-8">
         <createTable tableName="UnitParameter" remarks="生产单元参数表">
-            <column autoIncrement="true" name="UnitParameterID" type="int">
+            <column  name="UnitParameterID" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UnitID" type="int">
+            <column name="UnitID" type="int" remarks="单元编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="OPVersionID" type="int">
+            <column name="OPVersionID" type="int" remarks="OP版本编号">
                 <constraints nullable="false"/>
             </column>
             <column name="MacsPointID" type="int">
@@ -181,13 +172,13 @@
     <!--系统单元参数表-->
     <changeSet author="WangXun" id="1584426669000-9">
         <createTable tableName="UnitSysPara" remarks="系统单元参数表">
-            <column autoIncrement="true" name="UnitSysParaID" type="int">
+            <column  name="UnitSysParaID" type="int" remarks="系统单元参数编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UnitID" type="int">
+            <column name="UnitID" type="int" remarks="单元编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="ParameterID" type="int">
+            <column name="ParameterID" type="int" remarks="参数编号">
                 <constraints nullable="false"/>
             </column>
             <column name="MacsPointID" type="int">
@@ -209,11 +200,11 @@
             <column name="CreationTime" type="datetime" remarks="创建时间"/>
             <column name="Mender" type="int" remarks="修改人"/>
             <column name="LastModify" type="datetime" remarks="修改时间"/>
-            <column name="Remark1" type="nvarchar(255)"/>
-            <column name="Remark2" type="nvarchar(255)"/>
-            <column name="Remark3" type="nvarchar(255)"/>
-            <column name="Remark4" type="nvarchar(255)"/>
-            <column name="Remark5" type="nvarchar(255)"/>
+            <column name="Remark1" type="nvarchar(255)" remarks="保留字段1"/>
+            <column name="Remark2" type="nvarchar(255)" remarks="保留字段2"/>
+            <column name="Remark3" type="nvarchar(255)" remarks="保留字段3"/>
+            <column name="Remark4" type="nvarchar(255)" remarks="保留字段4"/>
+            <column name="Remark5" type="nvarchar(255)" remarks="保留字段5"/>
         </createTable>
     </changeSet>
     <!--槽罐使用信息表-->
@@ -222,20 +213,19 @@
             <column autoIncrement="true" name="MTankUsedID" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UnitID" type="int">
+            <column name="UnitID" type="int" remarks="单元编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="CtrRecpID" type="int">
+            <column name="CtrRecpID" type="int" remarks="控制配方编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="CROPID" type="int">
+            <column name="CROPID" type="int" remarks="控制配方OP编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="CRPrarID" type="int">
+            <column name="CRPrarID" type="int" remarks="控制配方参数编号">
                 <constraints nullable="false"/>
             </column>
-            <column
-                    name="RequestTime" type="datetime">
+            <column name="RequestTime" type="datetime" remarks="请求时间">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -304,7 +294,7 @@
         </createTable>
     </changeSet>
     <!--历史OP信息表-->
-    <changeSet author="WangXun" id="1584426669000-15">
+    <changeSet author="WangXun" id="1584426669000-15" ignore="true">
         <createTable tableName="HOPInformation" remarks="历史OP信息表">
             <column autoIncrement="true" name="HOPInfoID" type="int">
                 <constraints primaryKey="true"/>

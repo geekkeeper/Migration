@@ -1,0 +1,426 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--控制配方表-->
+    <changeSet author="WangXun" id="1584596602000-1">
+        <createTable tableName="ControlRecipe" remarks="控制配方表">
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="BatchID" type="int" remarks="批次编号"/>
+            <column name="ProductionPlanID" type="int" remarks="生产计划编号"/>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int" remarks="组元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int" remarks="配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStartTime" type="datetime" remarks="计划开始时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStartTime" type="datetime" remarks="实际开始时间"/>
+            <column name="PlanEndTime" type="datetime" remarks="计划结束时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualEndTime" type="datetime" remarks="时间结束时间"/>
+            <column name="PlanOutput" type="numeric(15, 5)" remarks="计划产量">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)" remarks="实际产量"/>
+            <column name="NameStyleFormat" type="nvarchar(300)" remarks="名称样式"/>
+            <column name="ReportTName" type="nvarchar(50)" remarks="报表模板名称"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Priority" type="tinyint" remarks="优先级"/>
+            <column name="State" type="smallint" remarks="状态"/>
+            <column name="PresentOption" type="smallint" remarks="当前选项"/>
+            <column name="Excutor" type="int" remarks="执行者"/>
+            <column name="Mode" type="tinyint" remarks="模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunMode" type="tinyint" remarks="运行模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NameStyleID" type="int" remarks="名称样式编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREffectRate" type="nvarchar(50)" remarks="主配方有效率">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方表-->
+    <changeSet author="WangXun" id="1584596602000-2" ignore="true">
+        <createTable tableName="ControlRecipe_HIS" remarks="历史控制配方表">
+            <column name="ControlRecipeID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="BatchID" type="int" remarks="批次编号"/>
+            <column name="ProductionPlanID" type="int" remarks="生产计划编号"/>
+            <column name="AreaID" type="int" remarks="区域编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int" remarks="组元编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MasterRecipeID" type="int" remarks="主配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int" remarks="主配方版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FormulaID" type="int" remarks="配方编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ControlRecipeIDEx" type="nvarchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PlanStartTime" type="datetime" remarks="计划开始时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualStartTime" type="datetime" remarks="实际开始时间"/>
+            <column name="PlanEndTime" type="datetime" remarks="计划结束时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualEndTime" type="datetime" remarks="时间结束时间"/>
+            <column name="PlanOutput" type="numeric(15, 5)" remarks="计划产量">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ActualOutput" type="numeric(15, 5)" remarks="实际产量"/>
+            <column name="NameStyleFormat" type="nvarchar(300)" remarks="名称样式"/>
+            <column name="ReportTName" type="nvarchar(50)" remarks="报表模板名称"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="Priority" type="tinyint" remarks="优先级"/>
+            <column name="State" type="smallint" remarks="状态"/>
+            <column name="PresentOption" type="smallint" remarks="当前选项"/>
+            <column name="Excutor" type="int" remarks="执行者"/>
+            <column name="Mode" type="tinyint" remarks="模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunMode" type="tinyint" remarks="运行模式">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NameStyleID" type="int" remarks="名称样式编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREffectRate" type="nvarchar(50)" remarks="主配方有效率">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--控制配方条码表-->
+    <changeSet author="WangXun" id="1584596602000-3">
+        <createTable tableName="CRBarCode" remarks="控制配方条码表">
+            <column name="CRBarCodeID" type="int" remarks="控制配方条码编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="BarCode" type="nvarchar(255)" remarks="条码内容"/>
+            <column name="UnitTankID" type="int"/>
+            <column name="CtrRecpID" type="int" remarks="控制配方编号"/>
+            <column name="CROPID" type="int" remarks="控制配方OP编号"/>
+            <column name="MateriNumber" type="nvarchar(50)" remarks="物料编码"/>
+            <column name="MateriLOT" type="nvarchar(50)" remarks="物料批次"/>
+            <column name="SetValue" type="numeric(15, 5)" remarks="设置值"/>
+            <column name="ISDone" type="tinyint" remarks="历史标识"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方条码规格表-->
+    <changeSet author="WangXun" id="1584596602000-4">
+        <createTable tableName="CRBarCodeSize" remarks="控制配方条码规格表">
+            <column name="CRBarCodeSizeID" type="int" remarks="条码规格编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CRBarCodeID" type="int" remarks="控制配方条码编号"/>
+            <column name="BarCode" type="nvarchar(255)" remarks="条码内容"/>
+            <column name="PackSizeID" type="int" remarks="包装规格编号"/>
+            <column name="PackValue" type="int" remarks="包装量"/>
+            <column name="Surplus" type="numeric(15, 5)" remarks="剩余量"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方扫描数据表-->
+    <changeSet author="WangXun" id="1584596602000-5">
+        <createTable tableName="CRBarcodeScanData" remarks="控制配方扫描数据表">
+            <column name="CRScanDataID" type="int" remarks="控制配方扫描数据编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CROPID" type="int" remarks="控制配方OP编号"/>
+            <column name="CRExecutionID" type="int" remarks="控制执行编号"/>
+            <column name="CRParameterID" type="int" remarks="控制参数编号"/>
+            <column name="MaterialLOTID" type="int" remarks="物料批次编号"/>
+            <column name="MaterialID" type="int" remarks="物料编号"/>
+            <column name="LOTCount" type="numeric(15, 5)" remarks="划分量"/>
+            <column name="CreateTime" type="datetime" remarks="创建时间"/>
+            <column name="ChargeMan" type="nvarchar(50)" remarks="负责人"/>
+            <column name="ActualValue" type="nvarchar(300)" remarks="实际量"/>
+            <column name="PlanValue" type="nvarchar(300)" remarks="计划量"/>
+            <column name="DefineInfo" type="nvarchar(2000)" remarks="定义信息"/>
+            <column name="DefineInfoEx" type="nvarchar(2000)" remarks="定义信息扩展"/>
+            <column name="LOTNumber" type="nvarchar(50)" remarks="批次编号"/>
+            <column name="ActualValueEx" type="nvarchar(300)" remarks="实际量扩展"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方条件表-->
+    <changeSet author="WangXun" id="1584596602000-6">
+        <createTable tableName="CRConditions" remarks="控制配方条件表">
+            <column name="CRConditionID" type="int" remarks="控制配方条件编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRConditionID" type="int" remarks="主配方条件编号"/>
+            <column name="CRTransitionID" type="int" remarks="控制配方转换编号"/>
+            <column name="CRParameterID" type="int" remarks="控制配方参数编号"/>
+            <column name="Operator" type="tinyint" remarks="操作人"/>
+            <column name="SetValue" type="nvarchar(300)" remarks="设置值"/>
+            <column name="ActualValue" type="nvarchar(300)" remarks="实际值"/>
+            <column name="TruthValue" type="tinyint" remarks="真实值"/>
+            <column name="Sequence" type="tinyint" remarks="序列"/>
+            <column name="DataSource" type="tinyint" remarks="数据源"/>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方条件表-->
+    <changeSet author="WangXun" id="1584596602000-7" ignore="true">
+        <createTable tableName="CRConditions_HIS">
+            <column name="CRConditionID" type="int" remarks="控制配方条件编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRConditionID" type="int" remarks="主配方条件编号"/>
+            <column name="CRTransitionID" type="int" remarks="控制配方转换编号"/>
+            <column name="CRParameterID" type="int" remarks="控制配方参数编号"/>
+            <column name="Operator" type="tinyint" remarks="操作人"/>
+            <column name="SetValue" type="nvarchar(300)" remarks="设置值"/>
+            <column name="ActualValue" type="nvarchar(300)" remarks="实际值"/>
+            <column name="TruthValue" type="tinyint" remarks="真实值"/>
+            <column name="Sequence" type="tinyint" remarks="序列"/>
+            <column name="DataSource" type="tinyint" remarks="数据源"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方元素表-->
+    <changeSet author="WangXun" id="1584596602000-8">
+        <createTable tableName="CRElement" remarks="控制配方元素表">
+            <column name="CRElementID" type="int" remarks="控制配方元素编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="MRElementID" type="int" remarks="主配方元素编号"/>
+            <column name="Name" type="nvarchar(50)" remarks="元素名称"/>
+            <column name="CREleDes" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="ElementType" type="tinyint" remarks="元素类型"/>
+            <column name="ParentID" type="int" remarks="父级编号"/>
+            <column name="OPID" type="int" remarks="OP编号"/>
+            <column name="OPVersion" type="int" remarks="OP版本"/>
+            <column name="StartTime" type="datetime" remarks="开始时间"/>
+            <column name="EndTime" type="datetime" remarks="结束时间"/>
+            <column name="State" type="smallint" remarks="元素状态"/>
+            <column name="StateEx" type="smallint"/>
+            <column name="ErrorCode" type="int" remarks="错误编码"/>
+            <column name="UnitID" type="int" remarks="单元编号"/>
+            <column name="PresentOperation" type="int" remarks="当前操作"/>
+            <column name="IsMonitoring" type="tinyint" remarks="是否监视"/>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方元素表-->
+    <changeSet author="WangXun" id="1584596602000-9" ignore="true">
+        <createTable tableName="CRElement_HIS" remarks="历史控制配方元素表">
+            <column name="CRElementID" type="int" remarks="控制配方元素编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="MRElementID" type="int" remarks="主配方元素编号"/>
+            <column name="Name" type="nvarchar(50)" remarks="元素名称"/>
+            <column name="CREleDes" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="ElementType" type="tinyint" remarks="元素类型"/>
+            <column name="ParentID" type="int" remarks="父级编号"/>
+            <column name="OPID" type="int" remarks="OP编号"/>
+            <column name="OPVersion" type="int" remarks="OP版本"/>
+            <column name="StartTime" type="datetime" remarks="开始时间"/>
+            <column name="EndTime" type="datetime" remarks="结束时间"/>
+            <column name="State" type="smallint" remarks="元素状态"/>
+            <column name="StateEx" type="smallint"/>
+            <column name="ErrorCode" type="int" remarks="错误编码"/>
+            <column name="UnitID" type="int" remarks="单元编号"/>
+            <column name="PresentOperation" type="int" remarks="当前操作"/>
+            <column name="IsMonitoring" type="tinyint" remarks="是否监视"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方执行参数值表-->
+    <changeSet author="WangXun" id="1584596602000-10">
+        <createTable tableName="CRExecParaValue" remarks="控制配方执行参数值表">
+            <column name="CRExecParaValueID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="CRParameterID" type="int" remarks="控制配方参数编号"/>
+            <column name="CROPID" type="int" remarks="控制配方OP编号"/>
+            <column name="ParameterID" type="int" remarks="参数编号"/>
+            <column name="ActualValue" type="nvarchar(300)" remarks="实际值"/>
+            <column name="PlanValue" type="nvarchar(300)" remarks="计划值"/>
+            <column name="CRExecutionID" type="int" remarks="控制配方执行编号"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方执行表-->
+    <changeSet author="WangXun" id="1584596602000-11">
+        <createTable tableName="CRExecution" remarks="控制配方执行表">
+            <column name="CRExecutionID" type="int" remarks="控制配方执行编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ExecutionOrder" type="int"/>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="UPID" type="int" remarks="UP编号"/>
+            <column name="OPID" type="int" remarks="OP编号"/>
+            <column name="State" type="int" remarks="执行状态"/>
+            <column name="StartTime" type="datetime" remarks="开始时间"/>
+            <column name="EndTime" type="datetime" remarks="结束时间"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="WangXun" id="1584596602000-12">
+        <createTable tableName="CRFristUPUnintOccupy">
+            <column name="CRFristUPIdentityID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CtrRecpID" type="int" remarks="控制配方编号"/>
+            <column name="CellID" type="int" remarks="组元编号 "/>
+            <column name="MRName" type="nvarchar(50)" remarks="主配方名称"/>
+            <column name="UnitName" type="nvarchar(50)" remarks="单元名称"/>
+            <column name="RequestTime" type="datetime" remarks="请求时间"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方链接表-->
+    <changeSet author="WangXun" id="1584596602000-13">
+        <createTable tableName="CRLink" remarks="控制配方链接表">
+            <column name="CRLinkID" type="int" remarks="控制配方链接编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CtrRecpID" type="int" remarks="控制配方"/>
+            <column name="ParentID" type="int" remarks="父级编号"/>
+            <column name="FromID" type="int" remarks="来方编号"/>
+            <column name="FromIDType" type="tinyint" remarks="来方 类型"/>
+            <column name="ToID" type="int" remarks="去方编号"/>
+            <column name="ToIDType" type="tinyint" remarks="去方类型"/>
+            <column name="LinkType" type="tinyint" remarks="链接类型"/>
+            <column name="Sequence" type="tinyint" remarks="序号"/>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方链接表-->
+    <changeSet author="WangXun" id="1584596602000-14" ignore="true">
+        <createTable tableName="CRLink_HIS" remarks="历史控制配方链接表">
+            <column name="CRLinkID" type="int" remarks="控制配方链接编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CtrRecpID" type="int" remarks="控制配方"/>
+            <column name="ParentID" type="int" remarks="父级编号"/>
+            <column name="FromID" type="int" remarks="来方编号"/>
+            <column name="FromIDType" type="tinyint" remarks="来方 类型"/>
+            <column name="ToID" type="int" remarks="去方编号"/>
+            <column name="ToIDType" type="tinyint" remarks="去方类型"/>
+            <column name="LinkType" type="tinyint" remarks="链接类型"/>
+            <column name="Sequence" type="tinyint" remarks="序号"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方参数表-->
+    <changeSet author="WangXun" id="1584596602000-15">
+        <createTable tableName="CRParameter" remarks="控制配方参数表">
+            <column name="CRParameterID" type="int" remarks="控制配方参数编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号"/>
+            <column name="MROPID" type="int" remarks="主配方OP编号"/>
+            <column name="CROPID" type="int" remarks="控制配方OP编号"/>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="ParaValue" type="nvarchar(300)" remarks="参数值"/>
+            <column name="MateriNumber" type="nvarchar(50)" remarks="物料编码"/>
+            <column name="MaterialID" type="int" remarks="物料编号"/>
+            <column name="MaterialPath" type="int" remarks="物料路径"/>
+            <column name="MaterialLOTID" type="int" remarks="物料批次编号"/>
+            <column name="LOTNumber" type="nvarchar(50)" remarks="批次编号"/>
+            <column name="EffectRate" type="nvarchar(50)" remarks="有效率"/>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方参数表-->
+    <changeSet author="WangXun" id="1584596602000-16" ignore="true">
+        <createTable tableName="CRParameter_HIS" remarks="历史控制配方参数表">
+            <column name="CRParameterID" type="int" remarks="历史控制配方参数编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号"/>
+            <column name="MROPID" type="int" remarks="主配方OP编号"/>
+            <column name="CROPID" type="int" remarks="控制配方OP编号"/>
+            <column name="ControlRecipeID" type="int" remarks="控制配方编号"/>
+            <column name="ParaValue" type="nvarchar(300)" remarks="参数值"/>
+            <column name="MateriNumber" type="nvarchar(50)" remarks="物料编码"/>
+            <column name="MaterialID" type="int" remarks="物料编号"/>
+            <column name="MaterialPath" type="int" remarks="物料路径"/>
+            <column name="MaterialLOTID" type="int" remarks="物料批次编号"/>
+            <column name="LOTNumber" type="nvarchar(50)" remarks="批次编号"/>
+            <column name="EffectRate" type="nvarchar(50)" remarks="有效率"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方转换表-->
+    <changeSet author="WangXun" id="1584596602000-17">
+        <createTable tableName="CRTransitions" remarks="控制配方转换表">
+            <column name="CRTransitionID" type="int" remarks="控制配方转换编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRTransitionID" type="int" remarks="主配方转换编号"/>
+            <column name="CRElementID" type="int" remarks="控制配方元素编号"/>
+            <column name="Relation" type="nvarchar(255)" remarks="关系"/>
+            <column name="TruthValue" type="smallint" remarks="真实值"/>
+        </createTable>
+    </changeSet>
+    <!--历史控制配方转换表-->
+    <changeSet author="WangXun" id="1584596602000-18" ignore="true">
+        <createTable tableName="CRTransitions_HIS">
+            <column name="CRTransitionID" type="int" remarks="历史控制配方转换编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MRTransitionID" type="int" remarks="主配方转换编号"/>
+            <column name="CRElementID" type="int" remarks="控制配方元素编号"/>
+            <column name="Relation" type="nvarchar(255)" remarks="关系"/>
+            <column name="TruthValue" type="smallint" remarks="真实值"/>
+        </createTable>
+    </changeSet>
+    <!--控制配方运行队列表-->
+    <changeSet author="WangXun" id="1584596602000-19">
+        <createTable tableName="CtrRecpRunQueuing" remarks="控制配方运行队列表">
+            <column autoIncrement="true" name="QueueID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ProPlanID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CtrRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MastRecpID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MRVersion" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AreaID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CellID" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RunFlag"
+                    type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequestTime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

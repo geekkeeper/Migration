@@ -26,7 +26,7 @@
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
-            <column name="REMARK" type="remark" remarks="备注信息"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息"/>
         </createTable>
     </changeSet>
     <!--GIS位置标签关系表-->
@@ -321,10 +321,6 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
-            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
-            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
-            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -349,10 +345,6 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
-            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
-            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
-            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -382,10 +374,6 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
-            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
-            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
-            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="TYPE" type="${type}" remarks="报警类型"/>
             <column name="STATE" type="${type}" remarks="报警状态"/>
             <column name="LEVEL" type="${level}" remarks="报警等级"/>
@@ -422,29 +410,40 @@
             <column name="REMARK" type="${remark}" remarks="备注信息"/>
         </createTable>
     </changeSet>
-    <!--报警处理记录表-->
+    <!--报警抑制表-->
     <changeSet author="WangXun" id="1581337040000-18">
-        <comment>创建报警处理记录表(PM_ALARM_HANDLE_RECORD)</comment>
-        <createTable tableName="PM_ALARM_HANDLE_RECORD" remarks="报警处理记录表">
+        <comment>创建报警抑制表(PM_ALARM_FORBID)</comment>
+        <createTable tableName="PM_ALARM_FORBID" remarks="报警抑制表">
             <column name="ID" type="${id}" remarks="处理记录编号">
-                <constraints primaryKey="true" primaryKeyName="PK_ALARM_HANDLE_RECORD_ID"/>
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_FORBID_ID"/>
             </column>
             <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
-            <column name="TAG_DESCRIPTION" type="${remark}" remarks="标签描述"/>
-            <column name="TAG_AREA" type="varchar(128)" remarks="标签区域"/>
-            <column name="TAG_DEVICE" type="varchar(128)" remarks="标签装置"/>
-            <column name="TAG_CELL" type="varchar(128)" remarks="标签单元"/>
             <column name="PRODUCE_ALARM_TYPE" type="${type}" remarks="报警类型"/>
-            <column name="HANDLE_TYPE" type="${type}" remarks="处理类型"/>
+            <column name="HANDLER" type="${id}" remarks="操作人"/>
+            <column name="HANDLE_TIME" type="${datetime}" remarks="处理时间"/>
+            <column name="REMARK" type="${remark}" remarks="操作说明"/>
+        </createTable>
+    </changeSet>
+    <!--报警隐藏表-->
+    <changeSet author="WangXun" id="1581337040000-19">
+        <comment>创建报警隐藏表(PM_ALARM_HANDLE_RECORD)</comment>
+        <createTable tableName="PM_ALARM_HIDE" remarks="报警隐藏表">
+            <column name="ID" type="${id}" remarks="处理记录编号">
+                <constraints primaryKey="true" primaryKeyName="PK_ALARM_HIDE_ID"/>
+            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="PRODUCE_ALARM_TYPE" type="${type}" remarks="报警类型"/>
             <column name="HANDLER" type="${id}" remarks="操作人"/>
             <column name="HANDLE_TIME" type="${datetime}" remarks="处理时间"/>
             <column name="REMARK" type="${remark}" remarks="操作说明"/>
         </createTable>
     </changeSet>
     <!--节点状态表-->
-    <changeSet author="WangXun" id="1581337040000-19">
+    <changeSet author="WangXun" id="1581337040000-20">
         <comment>创建节点状态表(PM_NODE_STATE)</comment>
         <createTable tableName="PM_NODE_STATE" remarks="生产报警表">
             <column name="ID" type="${id}" remarks="节点状态编号">
@@ -469,7 +468,7 @@
         </createTable>
     </changeSet>
     <!--进程状态表-->
-    <changeSet author="WangXun" id="1581337040000-20">
+    <changeSet author="WangXun" id="1581337040000-21">
         <comment>创建进程状态表(PM_PROCESS_STATE)</comment>
         <createTable tableName="PM_PROCESS_STATE" remarks="进程状态表">
             <column name="ID" type="${id}" remarks="进程状态编号">
@@ -491,7 +490,7 @@
         </createTable>
     </changeSet>
     <!--服务状态表-->
-    <changeSet author="WangXun" id="1581337040000-21">
+    <changeSet author="WangXun" id="1581337040000-22">
         <comment>创建服务状态表(PM_SERVICE_STATE)</comment>
         <createTable tableName="PM_SERVICE_STATE" remarks="服务状态表">
             <column name="ID" type="${id}" remarks="服务状态编号">
@@ -512,7 +511,7 @@
         </createTable>
     </changeSet>
     <!--日志表-->
-    <changeSet author="WangXun" id="1581337040000-22">
+    <changeSet author="WangXun" id="1581337040000-23">
         <comment>创建日志表(PM_LOG)</comment>
         <createTable tableName="PM_LOG" remarks="日志表">
             <column name="ID" type="${id}" remarks="日志编号">
@@ -541,7 +540,7 @@
         </createTable>
     </changeSet>
     <!--视频树表-->
-    <changeSet author="WangXun" id="1581337040000-23">
+    <changeSet author="WangXun" id="1581337040000-24">
         <comment>创建视频树表(PM_VIDEO_TREE)</comment>
         <createTable tableName="PM_VIDEO_TREE" remarks="视频树">
             <column name="ID" type="${id}" remarks="视频树节点编号">
@@ -582,7 +581,7 @@
         </rollback>
     </changeSet>
     <!--视频树账户关系表-->
-    <changeSet author="WangXun" id="1581337040000-24">
+    <changeSet author="WangXun" id="1581337040000-25">
         <comment>创建视频树账户关系表(PM_VIDEO_TREE_ACCOUNT)</comment>
         <createTable tableName="PM_VIDEO_TREE_ACCOUNT" remarks="视频树账户关系表">
             <column name="ID" type="${id}" remarks="编号">
@@ -597,7 +596,7 @@
         </createTable>
     </changeSet>
     <!--流程图状态记录表-->
-    <changeSet author="WangXun" id="1581337040000-25">
+    <changeSet author="WangXun" id="1581337040000-26">
         <comment>创建流程图状态记录表(PM_GRAPH_STATUS_RECORD)</comment>
         <createTable tableName="PM_GRAPH_STATUS_RECORD" remarks="流程图状态记录表">
             <column name="ID" type="${id}" remarks="状态记录编号">
@@ -617,7 +616,7 @@
         </createTable>
     </changeSet>
     <!--报警设置表-->
-    <changeSet author="WangXun" id="1581337040000-26">
+    <changeSet author="WangXun" id="1581337040000-27">
         <comment>创建报警设置表(PM_ALARM_CONFIG)</comment>
         <createTable tableName="PM_ALARM_CONFIG" remarks="报警设置表">
             <column name="ID" type="${id}" remarks="报警设置编号">
@@ -629,7 +628,7 @@
         </createTable>
     </changeSet>
     <!--角色标签关系表-->
-    <changeSet author="WangXun" id="1581337040000-27" >
+    <changeSet author="WangXun" id="1581337040000-28" >
         <comment>创建角色标签关系表(PM_ROLE_TAG)</comment>
         <createTable tableName="PM_ROLE_TAG" remarks="角色标签关系表">
             <column name="ID" type="${id}" remarks="角色标签关系编号">
@@ -644,6 +643,60 @@
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
+        </createTable>
+    </changeSet>
+    <!--标签表-->
+    <changeSet author="WangXun" id="1581337040000-29">
+        <comment>创建标签表(PM_TAG)</comment>
+        <createTable tableName="PM_TAG" remarks="标签表">
+            <column name="ID" type="${id}" remarks="标签编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PM_TAG_ID"/>
+            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
+            <column name="NODE_CODE" type="${code}" remarks="网络节点编码"/>
+            <column name="RDBS_CODE" type="${id}" remarks="实时库服务编码"/>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="ATTRIBUTE" type="varchar(16)" remarks="标签属性"/>
+            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
+            <column name="AREA" type="varchar(128)" remarks="区域"/>
+            <column name="DEVICE" type="varchar(128)" remarks="装置"/>
+            <column name="CELL" type="varchar(128)" remarks="单元"/>
+            <column name="UNIT" type="varchar(128)" remarks="单位"/>
+            <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
+            <column name="TAG_DATA_TYPE" type="varchar(16)" remarks="数据类型"/>
+            <column name="HDBS_TAG" type="${boolean}" remarks="进历史库标识"/>
+            <column name="HDBS_CODE" type="${id}" remarks="历史库服务编码"/>
+            <column name="COLLECT_CYCLE" type="${cycle}" remarks="趋势采集周期"/>
+            <column name="INIT_VALUE" type="${value}" remarks="初始值"/>
+            <column name="RANGE_TOP" type="${value}" remarks="量程上限"/>
+            <column name="RANGE_BOTTOM" type="${value}" remarks="量程下限"/>
+            <column name="MOST_HIGH_LIMIT" type="${value}" remarks="报警高高限"/>
+            <column name="HIGH_LIMIT" type="${value}" remarks="报警高限"/>
+            <column name="LOW_LIMIT" type="${value}" remarks="报警低限"/>
+            <column name="MOST_LOW_LIMIT" type="${value}" remarks="报警低低限"/>
+            <column name="MOST_HIGH_LEVEL" type="${level}" remarks="高高限警级"/>
+            <column name="HIGH_LEVEL" type="${level}" remarks="高限警级"/>
+            <column name="LOW_LEVEL" type="${level}" remarks="低限警级"/>
+            <column name="MOST_LOW_LEVEL" type="${level}" remarks="低低限警级"/>
+            <column name="SWITCH_ALARM" type="${type}" remarks="开关量报警"/>
+            <column name="SWITCH_LEVEL" type="${level}" remarks="开关量警级"/>
+            <column name="COMPRESS_PRECISION" type="${rate}" remarks="压缩精度"/>
+            <column name="EXTERAL_DATA_TYPE" type="varchar(16)" remarks="通讯标签外部类型"/>
+            <column name="CONVERT_EXPRESSION" type="${expression}" remarks="通讯标签转换公式"/>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-其他的"/>
+        </createTable>
+    </changeSet>
+    <!--特殊标签表-->
+    <changeSet author="WangXun" id="1581337040000-30">
+        <comment>创建特殊标签表(PM_SPECIAL_TAG)</comment>
+        <createTable tableName="PM_SPECIAL_TAG" remarks="特殊标签表">
+            <column name="ID" type="${id}" remarks="标签编号">
+                <constraints primaryKey="true" primaryKeyName="PK_PM_SPECIAL_TAG_ID"/>
+            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
+            <column name="NODE_CODE" type="${code}" remarks="网络节点编码"/>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="REGION_NUM" type="${sort}" remarks="域号"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

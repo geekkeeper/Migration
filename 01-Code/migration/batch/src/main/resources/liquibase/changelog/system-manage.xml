@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!--用户组表-->
-    <changeSet author="WangXun" id="1584504079000-95">
+    <changeSet author="WangXun" id="1584596602000-95">
         <createTable tableName="UserGroups" remarks="用户组表">
             <column name="GroupID" type="int" remarks="用户组编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -27,7 +27,7 @@
         </createTable>
     </changeSet>
     <!--用户表-->
-    <changeSet author="WangXun" id="1584504079000-96">
+    <changeSet author="WangXun" id="1584596602000-96">
         <createTable tableName="Users" remarks="用户表">
             <column autoIncrement="true" name="UserID" type="int">
                 <constraints primaryKey="true"/>
@@ -51,7 +51,7 @@
         </createTable>
     </changeSet>
     <!--登录状态表-->
-    <changeSet author="WangXun" id="1584504079000-47">
+    <changeSet author="WangXun" id="1584596602000-47">
         <createTable tableName="LoginSate" remarks="登录状态表">
             <column name="LoginSateID" type="int" autoIncrement="true" >
                 <constraints primaryKey="true"/>
@@ -68,7 +68,7 @@
         </createTable>
     </changeSet>
     <!--操作日志表-->
-    <changeSet author="WangXun" id="1584504079000-67">
+    <changeSet author="WangXun" id="1584596602000-67">
         <createTable tableName="OperationLog" remarks="操作日志表">
             <column  name="OperationLogID" type="int" remarks="日志编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -91,144 +91,134 @@
         </createTable>
     </changeSet>
     <!--操作日志描述表-->
-    <changeSet author="WangXun" id="1584504079000-68">
+    <changeSet author="WangXun" id="1584596602000-68">
         <createTable tableName="OperationLogDescription" remarks="操作日志描述表">
-            <column autoIncrement="true" name="OperationDescID" type="int">
+            <column autoIncrement="true" name="OperationDescID" type="int" remarks="操作日志描述编号">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="Description_EN" type="nvarchar(1024)"/>
-            <column name="Description_ZH" type="nvarchar(1024)"/>
-            <column name="Description_DE" type="nvarchar(1024)"/>
+            <column name="Description_EN" type="nvarchar(1024)" remarks="描述信息-英文"/>
+            <column name="Description_ZH" type="nvarchar(1024)" remarks="描述信息-中文"/>
+            <column name="Description_DE" type="nvarchar(1024)" remarks="描述信息-默认"/>
         </createTable>
     </changeSet>
     <!--操作日志详情表-->
-    <changeSet author="WangXun" id="1584504079000-69">
+    <changeSet author="WangXun" id="1584596602000-69">
         <createTable tableName="OperationLogDetail" remarks="操作日志详情表">
-            <column autoIncrement="true" name="LogDetailID" type="int">
+            <column  name="LogDetailID" type="int" remarks="日志详情编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="OperationLogID" type="int">
+            <column name="OperationLogID" type="int" remarks="操作日志编号">
                 <constraints nullable="false"/>
             </column>
             <column name="Value1" type="nvarchar(1005)"/>
-            <column name="Value2" type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Value3" type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Value4" type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Value5" type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Value6" type="nvarchar(300)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="Value2" type="nvarchar(300)"/>
+            <column name="Value3" type="nvarchar(300)"/>
+            <column name="Value4" type="nvarchar(300)"/>
+            <column name="Value5" type="nvarchar(300)"/>
+            <column name="Value6" type="nvarchar(300)"/>
         </createTable>
     </changeSet>
     <!--操作日志参数表-->
-    <changeSet author="WangXun" id="1584504079000-70">
+    <changeSet author="WangXun" id="1584596602000-70">
         <createTable tableName="OperationLogPara" remarks="操作日志参数表">
-            <column autoIncrement="true" name="LogParaID" type="int">
+            <column  name="LogParaID" type="int" remarks="日志参数编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="OperationLogID" type="int">
+            <column name="OperationLogID" type="int" remarks="操作日志编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="Item" type="nvarchar(260)">
+            <column name="Item" type="nvarchar(260)" remarks="条目">
                 <constraints nullable="false"/>
             </column>
-            <column name="SubItem" type="nvarchar(260)">
+            <column name="SubItem" type="nvarchar(260)" remarks="子条目">
                 <constraints nullable="false"/>
             </column>
-            <column name="ValueBefore" type="nvarchar(260)">
+            <column name="ValueBefore" type="nvarchar(260)" remarks="之前值">
                 <constraints nullable="false"/>
             </column>
-            <column name="ValueCurrent" type="nvarchar(260)">
+            <column name="ValueCurrent" type="nvarchar(260)" remarks="当前值">
                 <constraints nullable="false"/>
             </column>
-            <column name="AddedPara1" type="int"/>
-            <column name="AddedPara2" type="int"/>
-            <column name="AddedPara3" type="nvarchar(260)"/>
-            <column name="AddedPara4" type="nvarchar(260)"/>
+            <column name="AddedPara1" type="int" remarks="添加参数1"/>
+            <column name="AddedPara2" type="int" remarks="添加参数2"/>
+            <column name="AddedPara3" type="nvarchar(260)" remarks="添加参数3"/>
+            <column name="AddedPara4" type="nvarchar(260)" remarks="添加参数4"/>
         </createTable>
     </changeSet>
     <!--编辑标识表-->
-    <changeSet author="WangXun" id="1584504079000-33">
+    <changeSet author="WangXun" id="1584596602000-33">
         <createTable tableName="EditFlag" remarks="编辑标识表">
-            <column autoIncrement="true" name="EditFlagID" type="int">
+            <column  name="EditFlagID" type="int" remarks="编辑标识编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserID" type="int">
+            <column name="UserID" type="int" remarks="用户编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="ComputerName" type="nvarchar(50)">
+            <column name="ComputerName" type="nvarchar(50)" remarks="计算机名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="LoginModule" type="int">
+            <column name="LoginModule" type="int" remarks="登录模块">
                 <constraints nullable="false"/>
             </column>
-            <column name="ObjectID" type="int">
+            <column name="ObjectID" type="int" remarks="对象编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="Category" type="int">
+            <column name="Category" type="int" remarks="编辑类别">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--表空间使用情况表-->
-    <changeSet author="WangXun" id="1584504079000-84">
+    <changeSet author="WangXun" id="1584596602000-84">
         <createTable tableName="TableSpaceUsed" remarks="表空间使用情况表">
-            <column name="nameinfo" type="nvarchar(50)"/>
-            <column name="rowsinfo" type="int"/>
-            <column name="reserved" type="nvarchar(20)"/>
-            <column name="datainfo" type="nvarchar(20)"/>
-            <column name="index_size" type="nvarchar(20)"/>
-            <column name="unused" type="nvarchar(20)"/>
+            <column name="NameInfo" type="nvarchar(50)" remarks="名称信息"/>
+            <column name="RowsInfo" type="int" remarks="行信息"/>
+            <column name="DataInfo" type="nvarchar(20)" remarks="数据信息"/>
+            <column name="Reserved" type="nvarchar(20)" remarks="保留量"/>
+            <column name="IndexSize" type="nvarchar(20)" remarks="索引大小"/>
+            <column name="Unused" type="nvarchar(20)" remarks="未使用量"/>
         </createTable>
     </changeSet>
     <!--表头信息表-->
-    <changeSet author="WangXun" id="1584504079000-36">
+    <changeSet author="WangXun" id="1584596602000-36">
         <createTable tableName="GridHeaderInfo" remarks="表头信息表">
-            <column autoIncrement="true" name="FieldID" type="int">
+            <column  name="FieldID" type="int" remarks="字段编号" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="TableName" type="nvarchar(50)">
+            <column name="TableName" type="nvarchar(50)" remarks="表名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="FieldName" type="nvarchar(50)">
+            <column name="FieldName" type="nvarchar(50)" remarks="字段名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="EN" type="nvarchar(50)">
+            <column name="EN" type="nvarchar(50)" remarks="字段名称-英文">
                 <constraints nullable="false"/>
             </column>
-            <column name="ZH" type="nvarchar(50)">
+            <column name="ZH" type="nvarchar(50)" remarks="字段名称-中文">
                 <constraints nullable="false"/>
             </column>
-            <column name="DE" type="nvarchar(50)"/>
+            <column name="DE" type="nvarchar(50)" remarks="字段名称-默认"/>
         </createTable>
     </changeSet>
     <!--数据库差异表-->
-    <changeSet author="WangXun" id="1584504079000-31">
+    <changeSet author="WangXun" id="1584596602000-31">
         <createTable tableName="Difference" remarks="数据库差异表">
-            <column autoIncrement="true" name="DifferenceID" type="int">
+            <column autoIncrement="true" name="DifferenceID" type="int" remarks="差异编号">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="TableName" type="nvarchar(30)">
+            <column name="TableName" type="nvarchar(30)" remarks="表名称">
                 <constraints nullable="false"/>
             </column>
-            <column name="ObjectsID" type="int">
+            <column name="ObjectsID" type="int" remarks="对象编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="Operation" type="tinyint">
+            <column name="Operation" type="tinyint" remarks="操作">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <!--系统设置表-->
-    <changeSet author="WangXun" id="1584504079000-25">
+    <changeSet author="WangXun" id="1584596602000-25">
         <createTable tableName="ConfigSys" remarks="系统设置表">
             <column autoIncrement="true" name="ConfigID" type="int">
                 <constraints primaryKey="true"/>
@@ -470,65 +460,68 @@
         </createTable>
     </changeSet>
     <!--Batch版本表-->
-    <changeSet author="WangXun" id="1584504079000-7">
-        <createTable tableName="BatchVersion">
-            <column autoIncrement="true" name="BVID" type="int">
+    <changeSet author="WangXun" id="1584596602000-7">
+        <createTable tableName="BatchVersion" remarks="Batch版本表">
+            <column autoIncrement="true" name="BVID" type="int" remarks="版本编号">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ProductName" type="nvarchar(60)"/>
-            <column name="ReleaseDate" type="nvarchar(60)"/>
-            <column name="buildID" type="nvarchar(60)"/>
-            <column name="Remark" type="nvarchar(60)"/>
+            <column name="ProductName" type="nvarchar(60)" remarks="产品名称"/>
+            <column name="ReleaseDate" type="nvarchar(60)" remarks="发布日期"/>
+            <column name="buildID" type="nvarchar(60)" remarks="编译编号"/>
+            <column name="Remark" type="nvarchar(60)" remarks="备注信息"/>
+        </createTable>
+    </changeSet>
+    <!--条码设置表-->
+    <changeSet author="WangXun" id="1584596602000-5">
+        <createTable tableName="BarCodeSet" remarks="条码设置表">
+            <column name="BarCodeSetID" type="int" remarks="条码设置编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CodeStandard" type="nvarchar(50)" remarks="条码标准"/>
+            <column name="CodeCount" type="int" remarks="条码数"/>
+            <column name="CodeContent" type="nvarchar(255)" remarks="条码内容"/>
+            <column name="IsDefault" type="tinyint" remarks="是否默认"/>
+        </createTable>
+    </changeSet>
+    <!--条码样式表-->
+    <changeSet author="WangXun" id="1584596602000-6">
+        <createTable tableName="BarcodeScanStyle" remarks="条码样式表">
+            <column name="BarcodeScanIdentityID" type="int" remarks="条码样式编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="StyleName" type="nvarchar(50)" remarks="样式名称"/>
+            <column name="StyleContent" type="nvarchar(2000)" remarks="样式内容"/>
+            <column name="CreateTime" type="datetime" remarks="创建时间"/>
+            <column name="DefaultData" type="tinyint" remarks="默认数据"/>
+            <column name="IsDefault" type="tinyint" remarks="是否默认"/>
         </createTable>
     </changeSet>
     <!--名称样式表-->
-    <changeSet author="WangXun" id="1584504079000-61">
+    <changeSet author="WangXun" id="1584596602000-61">
         <createTable tableName="NameStyle" remarks="名称样式表">
-            <column autoIncrement="true" name="NameStyleID" type="int">
+            <column name="NameStyleID" type="int" remarks="名称样式编号">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="StyleName" type="nvarchar(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Word1" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Word2" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Word3" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Word4" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Word5" type="int">
-                <constraints nullable="false"/>
-            </column>
+            <column name="StyleName" type="nvarchar(50)" remarks="样式名称"/>
+            <column name="Word1" type="int"/>
+            <column name="Word2" type="int"/>
+            <column name="Word3" type="int"/>
+            <column name="Word4" type="int"/>
+            <column name="Word5" type="int"/>
             <column name="Word1Def" type="nvarchar(50)"/>
             <column name="Word2Def" type="nvarchar(50)"/>
             <column name="Word3Def" type="nvarchar(50)"/>
             <column name="Word4Def" type="nvarchar(50)"/>
             <column name="Word5Def" type="nvarchar(50)"/>
-            <column name="TimeFormat" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="IDFormat" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Class" type="tinyint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Isdefault" type="tinyint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DefaultData" type="tinyint">
-                <constraints nullable="false"/>
-            </column>
+            <column name="TimeFormat" type="int" remarks="格式化时间"/>
+            <column name="IDFormat" type="int" remarks="格式编号"/>
+            <column name="Class" type="tinyint"/>
+            <column name="Isdefault" type="tinyint" remarks="是否默认"/>
+            <column name="DefaultData" type="tinyint" remarks="默认值"/>
         </createTable>
     </changeSet>
     <!--引擎数据配置表-->
-    <changeSet author="WangXun" id="1584504079000-34">
+    <changeSet author="WangXun" id="1584596602000-34">
         <createTable tableName="EngineDataConfig" remarks="引擎数据配置表">
             <column name="Mode" type="int"/>
             <column name="NeedProductApproval" type="int"/>
@@ -547,6 +540,115 @@
             <column name="NeedOPComplete" type="int"/>
             <column name="NeedOPHolding" type="int"/>
             <column name="NeedOPRestarting" type="int"/>
+        </createTable>
+    </changeSet>
+    <!--路径表-->
+    <changeSet author="WangXun" id="1584596602000-75">
+        <createTable tableName="Path" remarks="路径表">
+            <column name="PathID" type="int" remarks="路径编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="PathName" type="nvarchar(50)" remarks="路径名称"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="PathType" type="tinyint" remarks="路径类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PreLink" type="int" remarks="向前链接">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BackLink" type="int" remarks="向后链接">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--参数表-->
+    <changeSet author="WangXun" id="1584596602000-74">
+        <createTable tableName="Parameter" remarks="参数表">
+            <column name="ParameterID" type="int" remarks="参数编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ParaName" type="nvarchar(50)" remarks="参数名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaOtherName" type="nvarchar(50)" remarks="参数别名"/>
+            <column name="Description" type="nvarchar(255)" remarks="描述信息"/>
+            <column name="ParaType" type="tinyint" remarks="参数类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DataType" type="tinyint" remarks="数据类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Unit" type="nvarchar(50)" remarks="计量单位">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RelatedID" type="int" remarks="关联编号"/>
+            <column name="IsTrendPoint" type="tinyint" remarks="是否是趋势点">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsAltered" type="tinyint" remarks="是否改动">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Type" type="tinyint" remarks="类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsDownLoad" type="tinyint" remarks="是否下载">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Creator" type="int" remarks="创建人"/>
+            <column name="CreationTime" type="datetime" remarks="创建时间"/>
+            <column name="Mender" type="int" remarks="修改人"/>
+            <column name="LastModify" type="datetime" remarks="修改时间"/>
+        </createTable>
+    </changeSet>
+    <!--关联参数表-->
+    <changeSet author="WangXun" id="1584596602000-79">
+        <createTable tableName="RelatedPara" remarks="关联参数表">
+            <column name="RelatedParaID" type="int" remarks="关联参数编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MainParaID" type="int" remarks="主参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SubParaID" type="int" remarks="子参数编号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--路径参数表-->
+    <changeSet author="WangXun" id="1584596602000-76">
+        <createTable tableName="PathParameter" remarks="路径参数表">
+            <column name="PathParameterID" type="int" remarks="路径参数编号" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="PathID" type="int" remarks="路径编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Value" type="nvarchar(50)" remarks="参数值">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MacsPointID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--OP版本参数表-->
+    <changeSet author="WangXun" id="1584596602000-66">
+        <createTable tableName="OPVersionPara" remarks="OP版本参数表">
+            <column autoIncrement="true" name="OPVersionID" type="int" remarks="OP版本参数编号">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="OPID" type="int" remarks="OP编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPVersion" type="int" remarks="OP版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParameterID" type="int" remarks="参数编号">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 

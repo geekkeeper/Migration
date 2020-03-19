@@ -81,7 +81,6 @@
             <column name="SCADADNodeID" type="nvarchar(1000)"/>
         </createTable>
     </changeSet>
-
     <!--报表信息表-->
     <changeSet author="WangXun" id="1584407375607-80">
         <createTable tableName="ReportInfo" remarks="报表信息表">
@@ -133,7 +132,6 @@
             <column name="SpeCharact" type="nvarchar(1000)"/>
         </createTable>
     </changeSet>
-
     <!--报警描述表-->
     <changeSet author="WangXun" id="1584407375607-1">
         <createTable tableName="AlertDescription" remarks="报警描述表">

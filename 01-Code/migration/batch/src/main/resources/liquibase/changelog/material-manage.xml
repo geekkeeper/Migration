@@ -2,17 +2,11 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <!--
-        <column name="Creator" type="int" remarks="创建人"/>
-        <column name="CreationTime" type="datetime" remarks="创建时间"/>
-        <column name="Mender" type="int" remarks="修改人"/>
-        <column name="LastModify" type="datetime" remarks="修改时间"/>
-    -->
     <!--物料表-->
     <changeSet author="WangXun" id="1584427832000-1">
         <createTable tableName="Materials" remarks="物料表">
             <column name="MaterialID" type="int" remarks="物料编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_MATERIALS_ID"/>
+                <constraints primaryKey="true" />
             </column>
             <column name="Number" type="nvarchar(50)" remarks="物料编码">
                 <constraints nullable="false"/>
@@ -31,11 +25,11 @@
             <column name="Remark2" type="nvarchar(255)"/>
         </createTable>
     </changeSet>
-    <!--物料划分表-->
+    <!--物料批次表-->
     <changeSet author="WangXun" id="1584427832000-2">
         <createTable tableName="MaterialLOT" remarks="物料划分表">
-            <column autoIncrement="true" name="MaterialLOTID" type="int" remarks="物料划分编号">
-                <constraints primaryKey="true" primaryKeyName="PK_MaterialLOTID"/>
+            <column autoIncrement="true" name="MaterialLOTID" type="int" remarks="物料批次编号">
+                <constraints primaryKey="true" />
             </column>
             <column name="Number" type="nvarchar(50)" remarks="物料编码">
                 <constraints nullable="false"/>
@@ -43,10 +37,10 @@
             <column name="MaterialID" type="int" remarks="物料编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="LOTNumber" type="nvarchar(50)" remarks="划分编码">
+            <column name="LOTNumber" type="nvarchar(50)" remarks="批次编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="LOTDes" type="nvarchar(255)" remarks="划分描述"/>
+            <column name="LOTDes" type="nvarchar(255)" remarks="批次描述"/>
             <column name="Inspector" type="int" remarks="检验员"/>
             <column name="QCDate" type="datetime" remarks="质检日期"/>
             <column name="State" type="tinyint" remarks="状态"/>
@@ -65,7 +59,7 @@
     <changeSet author="WangXun" id="1584427832000-3">
         <createTable tableName="ThirdPartMaterial" remarks="第三方物料信息表">
             <column name="ThirdMaterialID" type="int" remarks="第三方物料编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_THIRD_MATERIAL_ID"/>
+                <constraints primaryKey="true" />
             </column>
             <column name="ProPlanID" type="int" remarks="生产计划编号">
                 <constraints nullable="false"/>
@@ -99,11 +93,11 @@
             <column name="Flage" type="int"/>
         </createTable>
     </changeSet>
-    <!--第三方物料划分表-->
+    <!--第三方物料批次表-->
     <changeSet author="WangXun" id="1584427832000-4">
-        <createTable tableName="ThirdPartMaterialLot" remarks="第三方物料标签表">
-            <column name="ThirdMaterialLotID" type="int" remarks="第三方物料划分表" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_ThirdMaterialLotID"/>
+        <createTable tableName="ThirdPartMaterialLot" remarks="第三方物料批次表">
+            <column name="ThirdMaterialLotID" type="int" remarks="第三方物料批次编号" autoIncrement="true">
+                <constraints primaryKey="true" />
             </column>
             <column name="ProPlanID" type="int" remarks="生产计划编号">
                 <constraints nullable="false"/>
@@ -117,7 +111,7 @@
             <column name="Version" type="int" remarks="版本编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="MateriLotNo" type="nvarchar(255)" remarks="物料划分编号"/>
+            <column name="MateriLotNo" type="nvarchar(255)" remarks="物料批次编号"/>
             <column name="MateriNumber" type="nvarchar(50)" remarks="物料编码"/>
             <column name="Quantity" type="nvarchar(50)" remarks="数量"/>
             <column name="UoM" type="nvarchar(50)" remarks="计量单位"/>
@@ -136,7 +130,7 @@
     <changeSet author="WangXun" id="1584427832000-5">
         <createTable tableName="MaterialRequisitionSet" remarks="物料需求单设置">
             <column name="MRQID" type="int" remarks="物料需求单编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_MRQID"/>
+                <constraints primaryKey="true" />
             </column>
             <column name="OrderID" type="int" remarks="订单编号"/>
             <column name="UdefinedContext" type="nvarchar(260)"/>
@@ -161,9 +155,9 @@
     <changeSet author="WangXun" id="1584427832000-6">
         <createTable tableName="MaterialTankSequence" remarks="物料罐序号表">
             <column name="MARTANKSequenceID" type="int" remarks="序号编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_MARTANKSequenceID"/>
+                <constraints primaryKey="true" />
             </column>
-            <column name="UnitID" type="int">
+            <column name="UnitID" type="int" remarks="单元编号">
                 <constraints nullable="false"/>
             </column>
             <column name="CtrRecpID" type="int" remarks="控制配方编号">
@@ -172,14 +166,14 @@
             <column name="CROPID" type="int" remarks="控制配方OP编号"/>
             <column name="Sequence" type="int" remarks="序列号"/>
             <column name="RequestTime" type="datetime" remarks="请求时间"
-                    defaultValueComputed="getdate()" defaultValueConstraintName="DF_Sequence_RequestTime"/>
+                     />
         </createTable>
     </changeSet>
     <!--包装规格表-->
     <changeSet author="WangXun" id="1584427832000-7">
         <createTable tableName="PackingSize" remarks="包装规格表">
             <column  name="PackSizeID" type="int" remarks="包装规格编号" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_PackSizeID"/>
+                <constraints primaryKey="true" />
             </column>
             <column name="MaterialID" type="int" remarks="物料编号">
                 <constraints nullable="false"/>
@@ -187,7 +181,7 @@
             <column name="Number" type="nvarchar(50)" remarks="物料编码">
                 <constraints nullable="false"/>
             </column>
-            <column name="LOTNumber" type="nvarchar(50)" remarks="划分编码">
+            <column name="LOTNumber" type="nvarchar(50)" remarks="批次编号">
                 <constraints nullable="false"/>
             </column>
             <column  name="PackValue" type="int" remarks="包装量">
@@ -200,6 +194,49 @@
                 <constraints nullable="false"/>
             </column>
             <column  name="PackType" type="tinyint" remarks="包装类型">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--物料参数表-->
+    <changeSet author="WangXun" id="1584407375607-73">
+        <createTable tableName="ParaMaterial" remarks="物料参数表">
+            <column name="ParaMaterialID" type="int" remarks="物料参数编号" autoIncrement="true" >
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ParaFormulaID" type="int" remarks="配方参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int" remarks="物料编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaFormVersion" type="int" remarks="配方参数版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsProportion" type="int" remarks="是否是比例">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--历史物料参数表-->
+    <changeSet author="WangXun" id="1584407375607-46" ignore="true">
+        <createTable tableName="HParaMaterial" remarks="历史物料参数表">
+            <column autoIncrement="true" name="HParaMaterialID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ParaMaterialID" type="int" remarks="物料参数编号" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaFormulaID" type="int" remarks="配方参数编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MaterialID" type="int" remarks="物料编号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ParaFormVersion" type="int" remarks="配方参数版本">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsProportion" type="int" remarks="是否是比例">
                 <constraints nullable="false"/>
             </column>
         </createTable>
