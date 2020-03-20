@@ -45,6 +45,8 @@
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
                 <constraints nullable="false"/>
             </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false"/>
             </column>
@@ -264,10 +266,9 @@
             <column name="PROJECT_ID" type="${id}" remarks="项目编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
+            <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签"/>
             <column name="TREND_ID" type="${id}" remarks="趋势编号">
                 <constraints nullable="false"/>
             </column>
@@ -637,12 +638,13 @@
             <column name="ROLE_ID" type="${id}" remarks="角色编号">
                 <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_ROLE_ID"/>
             </column>
-            <column name="TAG_NAME" type="${name}" remarks="标签名称">
-                <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_NAME"/>
-            </column>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
+            <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签"/>
+            <column name="TAG_NAME" type="${name}" remarks="标签名称">
+                <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_NAME"/>
+            </column>
         </createTable>
     </changeSet>
     <!--标签表-->
