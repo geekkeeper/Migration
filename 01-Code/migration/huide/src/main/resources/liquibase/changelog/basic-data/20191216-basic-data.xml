@@ -18,6 +18,8 @@
             <column name="LANGUAGE_CODE" type="${code}" remarks="语言编码"/>
             <column name="APP_ID" type="${id}" remarks="应用编号"/>
             <column name="REMARK" type="${remark}" remarks="描述"/>
+            <column name="SYSTEMATIC" type="${boolean}" remarks="是否固定值:Y-固定值,N-可变值"
+                    defaultValue="N" defaultValueConstraintName="DF_TYPE_SYSTEMATIC"/>
             <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除"
                     defaultValue="N" defaultValueConstraintName="DF_TYPE_DELETE_TAG"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
@@ -29,92 +31,70 @@
             <column name="ID" value="1310009459271475202"/>
             <column name="CODE" value="user_type"/>
             <column name="NAME" value="用户类型"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1410009459271475202"/>
             <column name="CODE" value="user_status"/>
             <column name="NAME" value="用户状态"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1510009459271475202"/>
             <column name="CODE" value="dept_type"/>
             <column name="NAME" value="部门类型"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1610009459271475202"/>
             <column name="CODE" value="role_type"/>
             <column name="NAME" value="角色类型"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1710009459271475202"/>
             <column name="CODE" value="widget_data_source"/>
             <column name="NAME" value="桌面组件数据来源"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1810009459271475202"/>
             <column name="CODE" value="device_type"/>
             <column name="NAME" value="设备类型"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_KEY">
             <column name="ID" value="1910009459271475202"/>
             <column name="CODE" value="trend_type"/>
             <column name="NAME" value="趋势类型"/>
-            <column name="LANGUAGE_CODE" value="zh"/>
-            <column name="APP_ID"/>
-            <column name="REMARK"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_KEY">
+            <column name="ID" value="2010009459271475202"/>
+            <column name="CODE" value="operate_type"/>
+            <column name="NAME" value="生产报警操作类型"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
         </insert>
         <rollback>
             <delete tableName="BD_DICTIONARY_KEY"/>
             <dropTable tableName="BD_DICTIONARY_KEY"/>
         </rollback>
-
     </changeSet>
     <!--字典条目表-->
     <changeSet author="WangXun" id="1576425600000-2">
@@ -144,268 +124,192 @@
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475212"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="staff"/>
             <column name="VALUE" value="内部人员"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475222"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="outsider"/>
             <column name="VALUE" value="外部人员"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475232"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="supplier"/>
             <column name="VALUE" value="供应商"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475242"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="dealer"/>
             <column name="VALUE" value="经销商"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475252"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="client"/>
             <column name="VALUE" value="客户"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1310009459271475262"/>
             <column name="KEY_ID" value="1310009459271475202"/>
+            <column name="KEY_CODE" value="user_type"/>
             <column name="CODE" value="sysUser"/>
             <column name="VALUE" value="系统用户"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1410009459271475212"/>
             <column name="KEY_ID" value="1410009459271475202"/>
+            <column name="KEY_CODE" value="user_status"/>
             <column name="CODE" value="working"/>
             <column name="VALUE" value="在职"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1410009459271475222"/>
             <column name="KEY_ID" value="1410009459271475202"/>
+            <column name="KEY_CODE" value="user_status"/>
             <column name="CODE" value="leaving"/>
             <column name="VALUE" value="离职"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1510009459271475212"/>
             <column name="KEY_ID" value="1510009459271475202"/>
+            <column name="KEY_CODE" value="dept_type"/>
             <column name="CODE" value="development"/>
             <column name="VALUE" value="研发部"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1510009459271475222"/>
             <column name="KEY_ID" value="1510009459271475202"/>
+            <column name="KEY_CODE" value="dept_type"/>
             <column name="CODE" value="sales"/>
             <column name="VALUE" value="销售部"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1510009459271475232"/>
             <column name="KEY_ID" value="1510009459271475202"/>
+            <column name="KEY_CODE" value="dept_type"/>
             <column name="CODE" value="business"/>
             <column name="VALUE" value="业务部"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1510009459271475242"/>
             <column name="KEY_ID" value="1510009459271475202"/>
+            <column name="KEY_CODE" value="dept_type"/>
             <column name="CODE" value="publicRelations"/>
             <column name="VALUE" value="公关部"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1510009459271475252"/>
             <column name="KEY_ID" value="1510009459271475202"/>
+            <column name="KEY_CODE" value="dept_type"/>
             <column name="CODE" value="technical"/>
             <column name="VALUE" value="技术部"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1610009459271475212"/>
             <column name="KEY_ID" value="1610009459271475202"/>
+            <column name="KEY_CODE" value="role_type"/>
             <column name="CODE" value="normal"/>
             <column name="VALUE" value="普通用户"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1610009459271475222"/>
             <column name="KEY_ID" value="1610009459271475202"/>
+            <column name="KEY_CODE" value="role_type"/>
             <column name="CODE" value="admin"/>
             <column name="VALUE" value="系统管理员"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1710009459271475212"/>
             <column name="KEY_ID" value="1710009459271475202"/>
+            <column name="KEY_CODE" value="widget_data_source"/>
             <column name="CODE" value="api"/>
             <column name="VALUE" value="应用接口"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1710009459271475222"/>
             <column name="KEY_ID" value="1710009459271475202"/>
+            <column name="KEY_CODE" value="widget_data_source"/>
             <column name="CODE" value="html"/>
             <column name="VALUE" value="页面"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1810009459271475212"/>
             <column name="KEY_ID" value="1810009459271475202"/>
+            <column name="KEY_CODE" value="device_type"/>
             <column name="CODE" value="dahua"/>
             <column name="VALUE" value="大华"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1810009459271475222"/>
             <column name="KEY_ID" value="1810009459271475202"/>
+            <column name="KEY_CODE" value="device_type"/>
             <column name="CODE" value="haikang"/>
             <column name="VALUE" value="海康"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1910009459271475222"/>
@@ -413,15 +317,9 @@
             <column name="KEY_CODE" value="trend_type"/>
             <column name="CODE" value="public_trend"/>
             <column name="VALUE" value="公共趋势组"/>
-            <column name="LANGUAGE_CODE" value="zh"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
         </insert>
         <insert tableName="BD_DICTIONARY_ITEM">
             <column name="ID" value="1910009459271475223"/>
@@ -429,15 +327,99 @@
             <column name="KEY_CODE" value="trend_type"/>
             <column name="CODE" value="private_trend"/>
             <column name="VALUE" value="私有趋势组"/>
-            <column name="LANGUAGE_CODE" value="zh"/>
-            <column name="REMARK"/>
-            <column name="SORT_INDEX"/>
-            <column name="SYSTEMATIC" value="N"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
             <column name="DELETE_TAG" value="N"/>
-            <column name="CREATE_BY"/>
-            <column name="CREATE_TIME"/>
-            <column name="UPDATE_BY"/>
-            <column name="UPDATE_TIME"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475212"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="alarm_confirm"/>
+            <column name="VALUE" value="报警确认"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475222"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="alarm_hide"/>
+            <column name="VALUE" value="报警隐藏"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475232"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="cancel_alarm_hide"/>
+            <column name="VALUE" value="取消报警隐藏"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475242"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="alarm_forbid"/>
+            <column name="VALUE" value="报警抑制"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475252"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="cancel_alarm_forbid"/>
+            <column name="VALUE" value="取消报警抑制"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475262"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="set_position"/>
+            <column name="VALUE" value="置位"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475272"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="write_analog"/>
+            <column name="VALUE" value="写模拟量值"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475282"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="write_switch"/>
+            <column name="VALUE" value="写开关量值"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
+        </insert>
+        <insert tableName="BD_DICTIONARY_ITEM">
+            <column name="ID" value="2010009459271475292"/>
+            <column name="KEY_ID" value="2010009459271475202"/>
+            <column name="KEY_CODE" value="operate_type"/>
+            <column name="CODE" value="set_position_invalid"/>
+            <column name="VALUE" value="置标签质量位无效"/>
+            <column name="LANGUAGE_CODE" value="zh_CN"/>
+            <column name="SYSTEMATIC" value="Y"/>
+            <column name="DELETE_TAG" value="N"/>
         </insert>
         <rollback>
             <delete tableName="BD_DICTIONARY_ITEM"/>

@@ -4,7 +4,7 @@
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 	<!--系统组态模块-->
-	<changeSet author="Sun YiWen" id="1580800591839-1">
+	<changeSet author="WangXun" id="1580800591839-1">
 		<comment>创建桌面表(SC_DESKTOP)</comment>
 		<createTable tableName="SC_DESKTOP" remarks="桌面表">
 			<column name="ID" type="${id}" remarks="桌面编号">
@@ -23,7 +23,7 @@
 		</createTable>
 	</changeSet>
 	<!--桌面组件表-->
-	<changeSet author="Sun YiWen" id="1580800591839-2">
+	<changeSet author="WangXun" id="1580800591839-2">
 		<comment>创建桌面组件表(SC_DESKTOP_WIDGET)</comment>
 		<createTable tableName="SC_DESKTOP_WIDGET" remarks="桌面组件表">
 			<column name="ID" type="${id}" remarks="编号">
@@ -40,7 +40,7 @@
 		</createTable>
 	</changeSet>
 	<!--布局表-->
-	<changeSet author="Sun YiWen" id="1580800591839-3">
+	<changeSet author="WangXun" id="1580800591839-3">
 		<comment>创建布局表(SC_LAYOUT)</comment>
 		<createTable tableName="SC_LAYOUT" remarks="布局表">
 			<column name="ID" type="${id}" remarks="布局编号">
@@ -58,7 +58,7 @@
 		</createTable>
 	</changeSet>
 	<!--组件表-->
-	<changeSet author="Sun YiWen" id="1580800591839-4">
+	<changeSet author="WangXun" id="1580800591839-4">
 		<comment>创建组件表(SC_WIDGET)</comment>
 		<createTable tableName="SC_WIDGET" remarks="组件表">
 			<column name="ID" type="${id}" remarks="组件编号">
@@ -283,7 +283,7 @@
 		</rollback>
 	</changeSet>
 	<!--用户桌面表-->
-	<changeSet author="Sun YiWen" id="1580800591839-5">
+	<changeSet author="WangXun" id="1580800591839-5">
 		<comment>创建用户桌面表(SC_USER_DESKTOP)</comment>
 		<createTable tableName="SC_USER_DESKTOP" remarks="用户桌面表">
 			<column name="ID" type="${id}" remarks="编号">
@@ -301,7 +301,7 @@
 		</createTable>
 	</changeSet>
 	<!--用户默认桌面表-->
-	<changeSet author="Sun YiWen" id="1580800591839-6">
+	<changeSet author="WangXun" id="1580800591839-6">
 		<comment>创建用户默认桌面表(SC_USER_DEFAULT_DESKTOP)</comment>
 		<createTable tableName="SC_USER_DEFAULT_DESKTOP" remarks="用户默认桌面表">
 			<column name="ID" type="${id}" remarks="编号">
@@ -319,13 +319,28 @@
 		</createTable>
 	</changeSet>
 	<!--角色桌面表-->
-	<changeSet author="Sun YiWen" id="1580800591839-7">
+	<changeSet author="WangXun" id="1580800591839-7">
 		<comment>创建角色桌面表(SC_ROLE_DESKTOP)</comment>
 		<createTable tableName="SC_ROLE_DESKTOP" remarks="角色桌面表">
 			<column name="ID" type="${id}" remarks="编号">
 				<constraints primaryKey="true" primaryKeyName="PK_ROLE_DESKTOP_ID"/>
 			</column>
 			<column name="ROLE_ID" type="${id}" remarks="角色编号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<!--组织部门桌面表-->
+	<changeSet author="WangXun" id="1580800591839-8">
+		<comment>创建组织部门桌面表(SC_ORGANIZATION_DESKTOP)</comment>
+		<createTable tableName="SC_ORGANIZATION_DESKTOP" remarks="组织部门桌面表">
+			<column name="ID" type="${id}" remarks="编号">
+				<constraints primaryKey="true" primaryKeyName="PK_ORGANIZATION_DESKTOP_ID"/>
+			</column>
+			<column name="ORGANIZATION_ID" type="${id}" remarks="组织部门编号">
 				<constraints nullable="false"/>
 			</column>
 			<column name="DESKTOP_ID" type="${id}" remarks="桌面编号">

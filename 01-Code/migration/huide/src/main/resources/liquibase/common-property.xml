@@ -83,5 +83,6 @@
 	<property global="true" name="long_string" value="varchar(max)" dbms="mssql"/>
 	<property global="true" name="long_string" value="CLOB" dbms="oracle"/>
 	<property global="true" name="long_string" value="text" dbms="mysql"/>
+	<property global="true" name="long_string" value="text" dbms="sqlite"/>
 	<!--*****************************数据库兼容配置******************************-->
 </databaseChangeLog>

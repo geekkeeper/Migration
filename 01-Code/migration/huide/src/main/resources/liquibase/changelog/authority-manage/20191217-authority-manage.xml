@@ -5,7 +5,7 @@
 				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 	<!--权限管理模块-->
 	<!--令牌记录表(OAUTH_ACCESS_TOKEN)-->
-	<changeSet id="1576561645670-1" author="WangXun">
+	<changeSet id="1576561645670-01" author="WangXun">
 		<comment>创建令牌记录表(OAUTH_ACCESS_TOKEN)</comment>
 		<createTable tableName="OAUTH_ACCESS_TOKEN" remarks="令牌记录表">
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
@@ -20,7 +20,7 @@
 		</createTable>
 	</changeSet>
 	<!--授权客户端(OAUTH_CLIENT_DETAILS)-->
-	<changeSet id="1576561645670-2" author="WangXun">
+	<changeSet id="1576561645670-02" author="WangXun">
 		<comment>创建授权客户端(OAUTH_CLIENT_DETAILS)</comment>
 		<createTable tableName="OAUTH_CLIENT_DETAILS" remarks="授权客户端">
 			<column name="CLIENT_ID" type="varchar(32)" remarks="客户端编号">
@@ -42,7 +42,7 @@
 		</createTable>
 	</changeSet>
 	<!--令牌刷新表(OAUTH_REFRESH_TOKEN)-->
-	<changeSet id="1576561645670-3" author="WangXun">
+	<changeSet id="1576561645670-03" author="WangXun">
 		<comment>创建令牌刷新表(OAUTH_REFRESH_TOKEN)</comment>
 		<createTable tableName="OAUTH_REFRESH_TOKEN" remarks="令牌刷新表">
 			<column name="TOKEN_ID" type="varchar(32)" remarks="令牌编号">
@@ -54,7 +54,7 @@
 		</createTable>
 	</changeSet>
 	<!--应用表(AM_APPLICATION)-->
-	<changeSet id="1576561645670-4" author="WangXun">
+	<changeSet id="1576561645670-04" author="WangXun">
 		<comment>创建应用表(AM_APPLICATION)</comment>
 		<createTable tableName="AM_APPLICATION" remarks="应用表">
 			<column name="ID" type="${id}" remarks="应用编号">
@@ -84,7 +84,7 @@
 		</createTable>
 	</changeSet>
 	<!--导航菜单表(AM_NAVIGATION)-->
-	<changeSet id="1576561645670-5" author="WangXun">
+	<changeSet id="1576561645670-05" author="WangXun">
 		<comment>创建导航菜单表(AM_NAVIGATION)</comment>
 		<createTable tableName="AM_NAVIGATION" remarks="导航菜单表">
 			<column name="ID" type="${id}" remarks="导航编号">
@@ -98,7 +98,7 @@
 		</createTable>
 	</changeSet>
 	<!--通用行为表(AM_COMMON_ACTION)-->
-	<changeSet id="1576561645670-6" author="WangXun">
+	<changeSet id="1576561645670-06" author="WangXun">
 		<comment>创建通用行为表(AM_COMMON_ACTION)</comment>
 		<createTable tableName="AM_COMMON_ACTION" remarks="通用行为表">
 			<column name="ID" type="${id}" remarks="行为编号">
@@ -144,7 +144,7 @@
 		</rollback>
 	</changeSet>
 	<!--模块表(AM_MODULE)-->
-	<changeSet id="1576561645670-7" author="WangXun">
+	<changeSet id="1576561645670-07" author="WangXun">
 		<comment>创建模块表(AM_MODULE)</comment>
 		<createTable tableName="AM_MODULE" remarks="模块表">
 			<column name="ID" type="${id}" remarks="模块编号">
@@ -179,7 +179,7 @@
 		</createTable>
 	</changeSet>
 	<!--模块行为表(AM_MODULE_ACTION)-->
-	<changeSet id="1576561645670-8" author="WangXun">
+	<changeSet id="1576561645670-08" author="WangXun">
 		<comment>创建模块行为表(AM_MODULE_ACTION)</comment>
 		<createTable tableName="AM_MODULE_ACTION" remarks="模块行为表">
 			<column name="ID" type="${id}" remarks="编号">
@@ -204,7 +204,7 @@
 		</createTable>
 	</changeSet>
 	<!--模块列表(AM_MODULE_LIST)-->
-	<changeSet id="1576561645670-9" author="WangXun">
+	<changeSet id="1576561645670-09" author="WangXun">
 		<comment>创建模块列表(AM_MODULE_LIST)</comment>
 		<createTable tableName="AM_MODULE_LIST" remarks="模块列表">
 			<column name="ID" type="${id}" remarks="列表编号">
@@ -312,8 +312,8 @@
 			<column name="UPDATE_TIME" type="${datetime}" remarks="修改时间"/>
 			<column name="UPDATE_BY" type="${id}" remarks="修改人"/>
 		</createTable>
-		<addUniqueConstraint tableName="AM_USER" columnNames="USERNAME,DELETE_TAG"
-							 constraintName="UQ_USER_USERNAME-DELETE"/>
+		<!--<addUniqueConstraint tableName="AM_USER" columnNames="USERNAME,DELETE_TAG"
+							 constraintName="UQ_USER_USERNAME-DELETE"/>-->
 	</changeSet>
 	<!--用户角色关系表(AM_USER_ROLE)-->
 	<changeSet id="1576561645670-14" author="WangXun">

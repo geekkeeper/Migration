@@ -39,12 +39,8 @@
             <column name="POSITION_ID" type="${id}" remarks="位置编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码">
-                <constraints nullable="false"/>
-            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
+            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
@@ -149,9 +145,7 @@
                 <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_TYPE"/>
             </column>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
-            <column name="RDBS_CODE" type="${code}" remarks="实时库编码">
-                <constraints nullable="false" notNullConstraintName="NU_PROJECT_TAG_RDBS_CODE"/>
-            </column>
+            <column name="RDBS_CODE" type="${code}" remarks="实时库编码"/>
         </createTable>
     </changeSet>
     <!--报表计划表-->
@@ -193,9 +187,7 @@
             <column name="ID" type="${id}" remarks="高级报表编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_SUPER_REPORT"/>
             </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="NAME" type="${name}" remarks="高级报表名称">
                 <constraints nullable="false"/>
             </column>
@@ -236,16 +228,14 @@
             <column name="ID" type="${id}" remarks="趋势组编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PM_TREND_GROUP"/>
             </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="NAME" type="${name}" remarks="趋势组名称">
                 <constraints nullable="false"/>
             </column>
             <column name="SORT_INDEX" type="${sort}" remarks="排序编号:同级排序"/>
             <column name="TYPE_CODE" type="${code}" remarks="趋势组类型编码"/>
-            <column name="DELETE_TAG" type="${boolean}"
-                    remarks="删除标识:N-未删除、Y-已删除" defaultValue="N" defaultValueConstraintName="DF_TREND_DELETE_TAG"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"
+                    defaultValue="N" defaultValueConstraintName="DF_TREND_DELETE_TAG"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
@@ -263,9 +253,7 @@
             <column name="TREND_GROUP_ID" type="${id}" remarks="趋势组编号">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROJECT_ID" type="${id}" remarks="项目编号">
-                <constraints nullable="false"/>
-            </column>
+            <column name="PROJECT_ID" type="${id}" remarks="项目编号"/>
             <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
             <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
             <column name="TAG_TYPE" type="${type}" remarks="标签类型:0-普通标签;1-特殊标签"/>
@@ -450,22 +438,31 @@
             <column name="ID" type="${id}" remarks="节点状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_NODE_STATE_ID"/>
             </column>
-            <column name="TYPE" type="${type}" remarks="节点类型">
-                <constraints nullable="false"/>
-            </column>
-            <column name="STATE" type="${boolean}" remarks="节点状态">
-                <constraints nullable="false"/>
-            </column>
-            <column name="NAME" type="${name}" remarks="节点名称"/>
-            <column name="SERIAL_NUM" type="${serial_num}" remarks="序列码"/>
-            <column name="CPU_RATE" type="${rate}" remarks="CPU使用率"/>
-            <column name="CPU_TEMPERATURE" type="${temperature}" remarks="CPU温度"/>
-            <column name="MEMORY_RATE" type="${rate}" remarks="内存使用率"/>
-            <column name="MOTHERBOARD_TEMPERATURE" type="${temperature}" remarks="主板温度"/>
-            <column name="FAN_SPEED" type="int" remarks="风扇转速"/>
-            <column name="DISK_TEMPERATURE" type="${temperature}" remarks="硬盘温度"/>
-            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="NAME" type="${name}" remarks="节点名称"/>
+            <column name="TYPE" type="${type}" remarks="节点类型"/>
+            <column name="STATE" type="${boolean}" remarks="节点状态"/>
+            <column name="SERIAL_NUM" type="${serial_num}" remarks="序列码"/>
+            <column name="CPU_CAPACITY" type="float" remarks="CPU性能(GHz)"/>
+            <column name="MEMORY_CAPACITY" type="int" remarks="内存容量(G)"/>
+            <column name="NETWORK_CAPACITY" type="float" remarks="网络带宽(MBps)"/>
+            <column name="DISK_CAPACITY" type="int" remarks="磁盘性能(MB/s)"/>
+            <column name="CPU_USED_INIT" type="${rate}" remarks="CPU占用-初始值"/>
+            <column name="CPU_USED_MAX" type="${rate}" remarks="CPU占用-最大值"/>
+            <column name="CPU_USED_CURRENT" type="${rate}" remarks="CPU占用-当前值"/>
+            <column name="CPU_TEMPERATURE_INIT" type="${temperature}" remarks="CPU温度-初始值"/>
+            <column name="CPU_TEMPERATURE_MAX" type="${temperature}" remarks="CPU温度-最大值"/>
+            <column name="CPU_TEMPERATURE_CURRENT" type="${temperature}" remarks="CPU温度-当前值"/>
+            <column name="MEMORY_USED_INIT" type="float" remarks="内存占用-初始值"/>
+            <column name="MEMORY_USED_MAX" type="float" remarks="内存占用-最大值"/>
+            <column name="MEMORY_USED_CURRENT" type="float" remarks="内存占用-当前值"/>
+            <column name="NETWORK_USED_INIT" type="float" remarks="网络占用-初始值值"/>
+            <column name="NETWORK_USED_MAX" type="float" remarks="网络占用-最大值"/>
+            <column name="NETWORK_USED_CURRENT" type="float" remarks="网络占用-当前值"/>
+            <column name="DISK_USED_INIT" type="float" remarks="磁盘占用-初始值"/>
+            <column name="DISK_USED_MAX" type="float" remarks="磁盘占用-最大值"/>
+            <column name="DISK_USED_CURRENT" type="float" remarks="磁盘占用-当前值"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
         </createTable>
     </changeSet>
     <!--进程状态表-->
@@ -475,19 +472,23 @@
             <column name="ID" type="${id}" remarks="进程状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_PROCESS_STATE_ID"/>
             </column>
-            <column name="NAME" type="${name}" remarks="进程名称">
-                <constraints nullable="false"/>
-            </column>
-            <column name="STATE" type="${type}" remarks="进程状态">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CPU_RATE" type="${rate}" remarks="CPU使用率"/>
-            <column name="MEMORY_USED_SPACE" type="float" remarks="内存使用空间"/>
-            <column name="DISK_RATE" type="float" remarks="磁盘速率"/>
-            <column name="NETWORK_RATE" type="float" remarks="网络"/>
-            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
             <column name="PROCESS_ID" type="${id}" remarks="进程编号"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="NAME" type="${name}" remarks="进程名称"/>
+            <column name="STATE" type="${type}" remarks="进程状态"/>
+            <column name="CPU_USED_INIT" type="${rate}" remarks="CPU占用-初始值"/>
+            <column name="CPU_USED_MAX" type="${rate}" remarks="CPU占用-最大值"/>
+            <column name="CPU_USED_CURRENT" type="${rate}" remarks="CPU占用-当前值"/>
+            <column name="MEMORY_USED_INIT" type="float" remarks="内存占用-初始值"/>
+            <column name="MEMORY_USED_MAX" type="float" remarks="内存占用-最大值"/>
+            <column name="MEMORY_USED_CURRENT" type="float" remarks="内存占用-当前值"/>
+            <column name="DISK_USED_INIT" type="float" remarks="磁盘占用-初始值"/>
+            <column name="DISK_USED_MAX" type="float" remarks="磁盘占用-最大值"/>
+            <column name="DISK_USED_CURRENT" type="float" remarks="磁盘占用-当前值"/>
+            <column name="NETWORK_USED_INIT" type="float" remarks="网络占用-初始值值"/>
+            <column name="NETWORK_USED_MAX" type="float" remarks="网络占用-最大值"/>
+            <column name="NETWORK_USED_CURRENT" type="float" remarks="网络占用-当前值"/>
+            <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
         </createTable>
     </changeSet>
     <!--服务状态表-->
@@ -497,17 +498,11 @@
             <column name="ID" type="${id}" remarks="服务状态编号">
                 <constraints primaryKey="true" primaryKeyName="PK_SERVICE_STATE_ID"/>
             </column>
-            <column name="PROCESS_ID" type="${id}" remarks="进程编号">
-                <constraints nullable="false"/>
-            </column>
-            <column name="NAME" type="${name}" remarks="服务名称">
-                <constraints nullable="false"/>
-            </column>
-            <column name="STATE" type="${type}" remarks="服务状态">
-                <constraints nullable="false"/>
-            </column>
+            <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
+            <column name="PROCESS_ID" type="${id}" remarks="进程编号"/>
+            <column name="NAME" type="${name}" remarks="服务名称"/>
+            <column name="STATE" type="${type}" remarks="服务状态"/>
             <column name="REMARK" type="${remark}" remarks="服务描述"/>
-            <column name="SERVICE_GROUP_NAME" type="${name}" remarks="服务组名称"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
         </createTable>
     </changeSet>
@@ -645,60 +640,6 @@
             <column name="TAG_NAME" type="${name}" remarks="标签名称">
                 <constraints nullable="false" notNullConstraintName="NU_ROLE_TAG_NAME"/>
             </column>
-        </createTable>
-    </changeSet>
-    <!--标签表-->
-    <changeSet author="WangXun" id="1581337040000-29">
-        <comment>创建标签表(PM_TAG)</comment>
-        <createTable tableName="PM_TAG" remarks="标签表">
-            <column name="ID" type="${id}" remarks="标签编号">
-                <constraints primaryKey="true" primaryKeyName="PK_PM_TAG_ID"/>
-            </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
-            <column name="NODE_CODE" type="${code}" remarks="网络节点编码"/>
-            <column name="RDBS_CODE" type="${id}" remarks="实时库服务编码"/>
-            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
-            <column name="ATTRIBUTE" type="varchar(16)" remarks="标签属性"/>
-            <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
-            <column name="AREA" type="varchar(128)" remarks="区域"/>
-            <column name="DEVICE" type="varchar(128)" remarks="装置"/>
-            <column name="CELL" type="varchar(128)" remarks="单元"/>
-            <column name="UNIT" type="varchar(128)" remarks="单位"/>
-            <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
-            <column name="TAG_DATA_TYPE" type="varchar(16)" remarks="数据类型"/>
-            <column name="HDBS_TAG" type="${boolean}" remarks="进历史库标识"/>
-            <column name="HDBS_CODE" type="${id}" remarks="历史库服务编码"/>
-            <column name="COLLECT_CYCLE" type="${cycle}" remarks="趋势采集周期"/>
-            <column name="INIT_VALUE" type="${value}" remarks="初始值"/>
-            <column name="RANGE_TOP" type="${value}" remarks="量程上限"/>
-            <column name="RANGE_BOTTOM" type="${value}" remarks="量程下限"/>
-            <column name="MOST_HIGH_LIMIT" type="${value}" remarks="报警高高限"/>
-            <column name="HIGH_LIMIT" type="${value}" remarks="报警高限"/>
-            <column name="LOW_LIMIT" type="${value}" remarks="报警低限"/>
-            <column name="MOST_LOW_LIMIT" type="${value}" remarks="报警低低限"/>
-            <column name="MOST_HIGH_LEVEL" type="${level}" remarks="高高限警级"/>
-            <column name="HIGH_LEVEL" type="${level}" remarks="高限警级"/>
-            <column name="LOW_LEVEL" type="${level}" remarks="低限警级"/>
-            <column name="MOST_LOW_LEVEL" type="${level}" remarks="低低限警级"/>
-            <column name="SWITCH_ALARM" type="${type}" remarks="开关量报警"/>
-            <column name="SWITCH_LEVEL" type="${level}" remarks="开关量警级"/>
-            <column name="COMPRESS_PRECISION" type="${rate}" remarks="压缩精度"/>
-            <column name="EXTERAL_DATA_TYPE" type="varchar(16)" remarks="通讯标签外部类型"/>
-            <column name="CONVERT_EXPRESSION" type="${expression}" remarks="通讯标签转换公式"/>
-            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-其他的"/>
-        </createTable>
-    </changeSet>
-    <!--特殊标签表-->
-    <changeSet author="WangXun" id="1581337040000-30">
-        <comment>创建特殊标签表(PM_SPECIAL_TAG)</comment>
-        <createTable tableName="PM_SPECIAL_TAG" remarks="特殊标签表">
-            <column name="ID" type="${id}" remarks="标签编号">
-                <constraints primaryKey="true" primaryKeyName="PK_PM_SPECIAL_TAG_ID"/>
-            </column>
-            <column name="GT_PROJECT_GUID" type="${code}" remarks="GT工程编码"/>
-            <column name="NODE_CODE" type="${code}" remarks="网络节点编码"/>
-            <column name="TAG_NAME" type="${name}" remarks="标签名称"/>
-            <column name="REGION_NUM" type="${sort}" remarks="域号"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
