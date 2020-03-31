@@ -217,8 +217,6 @@
 				<constraints nullable="false" notNullConstraintName="NU_LIST_NAME"/>
 			</column>
 			<column name="CODE" type="${code}" remarks="列表编码"/>
-			<column name="CUSTOM_DESKTOP_TAG" type="${boolean}" remarks="自定义桌面标识"/>
-			<column name="CUSTOM_DESKTOP_ID" type="${id}" remarks="自定义桌面编号"/>
 			<column name="URL" type="${url}" remarks="列表URL"/>
 			<column name="DELETE_TAG" type="${boolean}" remarks="删除标识:‘Y’-已删除，‘N’-未删除" defaultValue="N"
 					defaultValueConstraintName="DF_MODULE_LIST_DELETE_TAG"/>

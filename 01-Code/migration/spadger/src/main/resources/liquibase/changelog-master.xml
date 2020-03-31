@@ -4,7 +4,7 @@
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 	<include file="changelog/2020-01-02-mysql-struct.xml" relativeToChangelogFile="true"/>
-	<changeSet id="001" author="WangXun">
-		<sqlFile path="changelog/2020-01-02-mysql-data.sql" relativeToChangelogFile="true"/>
-	</changeSet>
+<!--	<changeSet id="001" author="WangXun">-->
+<!--		<sqlFile path="changelog/2020-01-02-mysql-data.sql" relativeToChangelogFile="true"/>-->
+<!--	</changeSet>-->
 </databaseChangeLog>

@@ -430,7 +430,7 @@
             <column name="CELL" type="varchar(128)" remarks="单元"/>
             <column name="UNIT" type="varchar(128)" remarks="单位"/>
             <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
-            <column name="TAG_DATA_TYPE" type="varchar(16)" remarks="数据类型"/>
+            <column name="TAG_DATA_TYPE" type="int" remarks="数据类型"/>
             <column name="HDBS_TAG" type="${boolean}" remarks="进历史库标识"/>
             <column name="HDBS_CODE" type="${id}" remarks="历史库服务编码"/>
             <column name="COLLECT_CYCLE" type="${cycle}" remarks="趋势采集周期"/>

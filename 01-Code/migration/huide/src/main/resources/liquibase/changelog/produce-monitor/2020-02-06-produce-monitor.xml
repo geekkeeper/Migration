@@ -441,7 +441,7 @@
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="NAME" type="${name}" remarks="节点名称"/>
             <column name="TYPE" type="${type}" remarks="节点类型"/>
-            <column name="STATE" type="${boolean}" remarks="节点状态"/>
+            <column name="STATE" type="int" remarks="节点状态"/>
             <column name="SERIAL_NUM" type="${serial_num}" remarks="序列码"/>
             <column name="CPU_CAPACITY" type="float" remarks="CPU性能(GHz)"/>
             <column name="MEMORY_CAPACITY" type="int" remarks="内存容量(G)"/>
@@ -475,7 +475,7 @@
             <column name="PROCESS_ID" type="${id}" remarks="进程编号"/>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="NAME" type="${name}" remarks="进程名称"/>
-            <column name="STATE" type="${type}" remarks="进程状态"/>
+            <column name="STATE" type="int" remarks="进程状态"/>
             <column name="CPU_USED_INIT" type="${rate}" remarks="CPU占用-初始值"/>
             <column name="CPU_USED_MAX" type="${rate}" remarks="CPU占用-最大值"/>
             <column name="CPU_USED_CURRENT" type="${rate}" remarks="CPU占用-当前值"/>
@@ -500,8 +500,9 @@
             </column>
             <column name="NODE_CODE" type="${code}" remarks="节点编码"/>
             <column name="PROCESS_ID" type="${id}" remarks="进程编号"/>
+            <column name="PROCESS_NAME" type="${name}" remarks="进程名称"/>
             <column name="NAME" type="${name}" remarks="服务名称"/>
-            <column name="STATE" type="${type}" remarks="服务状态"/>
+            <column name="STATE" type="int" remarks="服务状态"/>
             <column name="REMARK" type="${remark}" remarks="服务描述"/>
             <column name="UPDATE_TIME" type="${datetime}" remarks="更新时间"/>
         </createTable>
