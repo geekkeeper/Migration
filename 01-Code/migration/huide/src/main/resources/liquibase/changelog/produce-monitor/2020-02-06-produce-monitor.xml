@@ -295,6 +295,7 @@
             <column name="REPORT_NAME" type="${name}" remarks="报表名称"/>
             <column name="GENERATE_TYPE" type="${type}" remarks="生成方式"/>
             <column name="GENERATE_TIME" type="${datetime}" remarks="生成时间"/>
+            <column name="FILE_SIZE" type="int" remarks="文件大小"/>
             <column name="EXECUTOR" type="${id}" remarks="执行人"/>
         </createTable>
     </changeSet>

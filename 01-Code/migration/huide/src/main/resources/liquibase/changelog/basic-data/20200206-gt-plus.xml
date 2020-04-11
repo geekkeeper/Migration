@@ -55,6 +55,7 @@
             </column>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
             <column name="RESOURCE_URL" type="${url}" remarks="资源地址"/>
+            <column name="MASTER_TAG" type="${boolean}" remarks="主流程图表示"/>
         </createTable>
     </changeSet>
     <!--网络节点表-->

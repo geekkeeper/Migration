@@ -342,6 +342,8 @@
 			<column name="ROLE_ID" type="${id}" remarks="角色编号">
 				<constraints nullable="false" notNullConstraintName="NU_RESOURCE_ROLE_ID" />
 			</column>
+			<column name="DIRECTIVITY" type="${boolean}" remarks="方向标识:‘Y’-正向，‘N’-反向" defaultValue="Y"
+					defaultValueConstraintName="DF_ROLE_RESOURCE_DIRECTIVITY"/>
 		</createTable>
 	</changeSet>
 	<!--角色数据域表(AM_ROLE_DATA_SCOPE)-->
