@@ -21,7 +21,8 @@
             </column>
             <column name="ICON" type="${url}" remarks="位置图标"/>
             <column name="DISPLAY_TYPE" type="${type}" remarks="显示方式"/>
-            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"
+                    defaultValue="N"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
@@ -164,7 +165,8 @@
             </column>
             <column name="REPORT_PRINT_SERVICE_CODE" type="${code}" remarks="报表计划服务编码"/>
             <column name="REPORT_TYPE" type="${type}" remarks="报表类型"/>
-            <column name="SEND_PRINTER" type="${boolean}" remarks="是否发送打印机:Y-是,N-否" defaultValue="N"/>
+            <column name="SEND_PRINTER" type="${boolean}" remarks="是否发送打印机:Y-是,N-否"
+                    defaultValue="N"/>
             <column name="PRINT_CYCLE" type="${cycle}" remarks="打印周期 1按小时，2按天，3按周，4按月，5按季度，6按年"/>
             <column name="MONTH" type="int" remarks="月份，1到12"/>
             <column name="DAY" type="int" remarks="日，1到31"/>
@@ -173,7 +175,8 @@
             <column name="MONTH_NUMBER" type="int" remarks="第几个月，为季度报表用"/>
             <column name="WEEK_NUMBER" type="int" remarks="周几，1到7，为周报用"/>
             <column name="REMARK" type="${remark}" remarks="备注信息,描述信息"/>
-            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除" defaultValue="N"/>
+            <column name="DELETE_TAG" type="${boolean}" remarks="删除标识:N-未删除、Y-已删除"
+                    defaultValue="N"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
             <column name="UPDATE_BY" type="${id}" remarks="修改人"/>
@@ -391,7 +394,8 @@
             <column name="TYPE" type="${type}" remarks="表示类型"/>
             <column name="TYPE_VALUE" type="${type}" remarks="类型数值"/>
             <column name="COLOR" type="${color}" remarks="颜色"/>
-            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-自定义的" defaultValue="N"
+            <column name="SYSTEMATIC" type="${boolean}" remarks="系统标识:‘Y’-系统的，‘N’-自定义的"
+                    defaultValue="N"
                     defaultValueConstraintName="DF_ALARM_COLOR_SYSTEMATIC"/>
             <column name="CREATE_BY" type="${id}" remarks="创建人"/>
             <column name="CREATE_TIME" type="${datetime}" remarks="创建时间"/>
@@ -457,9 +461,12 @@
             <column name="MEMORY_USED_INIT" type="float" remarks="内存占用-初始值"/>
             <column name="MEMORY_USED_MAX" type="float" remarks="内存占用-最大值"/>
             <column name="MEMORY_USED_CURRENT" type="float" remarks="内存占用-当前值"/>
-            <column name="NETWORK_USED_INIT" type="float" remarks="网络占用-初始值值"/>
-            <column name="NETWORK_USED_MAX" type="float" remarks="网络占用-最大值"/>
-            <column name="NETWORK_USED_CURRENT" type="float" remarks="网络占用-当前值"/>
+            <column name="NETWORK_A_INIT" type="float" remarks="网络A-初始值值"/>
+            <column name="NETWORK_A_MAX" type="float" remarks="网络A-最大值"/>
+            <column name="NETWORK_A_CURRENT" type="float" remarks="网络A-当前值"/>
+            <column name="NETWORK_B_INIT" type="float" remarks="网络B-初始值值"/>
+            <column name="NETWORK_B_MAX" type="float" remarks="网络B-最大值"/>
+            <column name="NETWORK_B_CURRENT" type="float" remarks="网络B-当前值"/>
             <column name="DISK_USED_INIT" type="float" remarks="磁盘占用-初始值"/>
             <column name="DISK_USED_MAX" type="float" remarks="磁盘占用-最大值"/>
             <column name="DISK_USED_CURRENT" type="float" remarks="磁盘占用-当前值"/>
@@ -626,7 +633,7 @@
         </createTable>
     </changeSet>
     <!--角色标签关系表-->
-    <changeSet author="WangXun" id="1581337040000-28" >
+    <changeSet author="WangXun" id="1581337040000-28">
         <comment>创建角色标签关系表(PM_ROLE_TAG)</comment>
         <createTable tableName="PM_ROLE_TAG" remarks="角色标签关系表">
             <column name="ID" type="${id}" remarks="角色标签关系编号">
